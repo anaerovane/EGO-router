@@ -1,0 +1,30 @@
+{
+  "name": "gaia",
+  "field_aliases": {
+    "task_id": ["task_id", "id"],
+    "split": ["split", "metadata.split"],
+    "query": ["question", "query", "instruction", "user_input"],
+    "best_candidate": ["current_answer", "assistant_response", "prediction"],
+    "second_candidate": ["metadata.second_candidate", "backup_answer"],
+    "recent_candidates": ["messages", "trajectory", "history"],
+    "available_actions": ["available_actions", "tools", "candidate_actions"],
+    "best_action": ["best_action", "teacher.best_action", "label.best_action"],
+    "should_stop": ["should_stop", "teacher.should_stop", "label.should_stop"],
+    "action_scores": ["action_scores", "teacher.action_scores", "label.action_scores"],
+    "entropy": ["state.entropy", "metrics.entropy"],
+    "margin": ["state.margin", "metrics.margin"],
+    "disagreement": ["state.disagreement", "metrics.disagreement"],
+    "verifier_confidence": ["state.verifier_confidence", "metrics.verifier_confidence"],
+    "steps_remaining": ["state.steps_remaining", "metrics.steps_remaining", "remaining_steps"],
+    "current_best_score": ["state.current_best_score", "metrics.current_best_score", "reward"]
+  },
+  "action_aliases": {
+    "stop": ["stop", "submit", "respond", "finish"],
+    "think": ["think", "reason", "plan", "reflect"],
+    "tool:search": ["search", "browser.search", "web_search", "retrieve", "browse"],
+    "tool:calculator": ["calculator", "python", "compute", "math_tool"],
+    "delegate:math": ["delegate_math", "math_expert"],
+    "delegate:code": ["delegate_code", "code_expert", "bash", "shell"]
+  },
+  "default_best_action": "tool:search"
+}

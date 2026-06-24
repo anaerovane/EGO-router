@@ -1,0 +1,52 @@
+[
+  {
+    "query": "Derive the theorem carefully and justify the proof idea.",
+    "task_type": "math",
+    "best_action": "delegate:math"
+  },
+  {
+    "query": "Calculate the numerical answer and verify the arithmetic.",
+    "task_type": "calc",
+    "best_action": "tool:calculator"
+  },
+  {
+    "query": "Find supporting evidence for the factual claim.",
+    "task_type": "search",
+    "best_action": "tool:search"
+  },
+  {
+    "query": "Implement the solution logic and debug the script behavior.",
+    "task_type": "code",
+    "best_action": "delegate:code"
+  },
+  {
+    "query": "Improve the reasoning internally before giving a concise answer.",
+    "task_type": "think",
+    "best_action": "think"
+  },
+  {
+    "query": "Derive the theorem carefully and justify the proof idea.",
+    "task_type": "math",
+    "best_action": "delegate:math"
+  },
+  {
+    "query": "Calculate the numerical answer and verify the arithmetic.",
+    "task_type": "calc",
+    "best_action": "tool:calculator"
+  },
+  {
+    "query": "Find supporting evidence for the factual claim.",
+    "task_type": "search",
+    "best_action": "tool:search"
+  },
+  {
+    "query": "Implement the solution logic and debug the script behavior.",
+    "task_type": "code",
+    "best_action": "delegate:code"
+  },
+  {
+    "query": "Improve the reasoning internally before giving a concise answer.",
+    "task_type": "think",
+    "best_action": "think"
+  }
+]

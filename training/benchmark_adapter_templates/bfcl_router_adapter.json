@@ -1,0 +1,30 @@
+{
+  "name": "bfcl",
+  "field_aliases": {
+    "task_id": ["id", "task_id", "question_id"],
+    "split": ["split", "metadata.split"],
+    "query": ["query", "question", "user_message", "instruction"],
+    "best_candidate": ["current_answer", "assistant_response", "prediction", "answer"],
+    "second_candidate": ["alternative_answer", "backup_answer", "metadata.second_candidate"],
+    "recent_candidates": ["recent_candidates", "messages", "trajectory"],
+    "available_actions": ["available_actions", "tool_options", "candidate_tools"],
+    "best_action": ["best_action", "teacher.best_action", "label.best_action"],
+    "should_stop": ["should_stop", "teacher.should_stop", "label.should_stop"],
+    "action_scores": ["action_scores", "teacher.action_scores", "label.action_scores"],
+    "entropy": ["state.entropy", "metrics.entropy"],
+    "margin": ["state.margin", "metrics.margin"],
+    "disagreement": ["state.disagreement", "metrics.disagreement"],
+    "verifier_confidence": ["state.verifier_confidence", "metrics.verifier_confidence"],
+    "steps_remaining": ["state.steps_remaining", "metrics.steps_remaining", "remaining_steps"],
+    "current_best_score": ["state.current_best_score", "metrics.current_best_score", "reward"]
+  },
+  "action_aliases": {
+    "stop": ["stop", "respond", "final", "finish"],
+    "think": ["think", "reason", "reflect"],
+    "tool:search": ["search", "web_search", "browser.search", "retrieve", "retrieval"],
+    "tool:calculator": ["calculator", "math", "python_eval", "python", "compute"],
+    "delegate:math": ["delegate_math", "math_expert", "expert_math"],
+    "delegate:code": ["delegate_code", "code_expert", "expert_code", "coder"]
+  },
+  "default_best_action": "tool:search"
+}

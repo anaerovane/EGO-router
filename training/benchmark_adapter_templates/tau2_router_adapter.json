@@ -1,0 +1,30 @@
+{
+  "name": "tau2",
+  "field_aliases": {
+    "task_id": ["task_id", "id"],
+    "split": ["split", "task.split"],
+    "query": ["user_input", "query", "task.instruction", "instruction"],
+    "best_candidate": ["agent_response", "current_answer", "answer"],
+    "second_candidate": ["metadata.second_candidate", "backup_answer"],
+    "recent_candidates": ["history", "messages", "trajectory"],
+    "available_actions": ["available_actions", "tools", "candidate_actions"],
+    "best_action": ["best_action", "teacher.best_action", "label.best_action"],
+    "should_stop": ["should_stop", "teacher.should_stop", "label.should_stop"],
+    "action_scores": ["action_scores", "teacher.action_scores", "label.action_scores"],
+    "entropy": ["controller_state.entropy", "metrics.entropy", "state.entropy"],
+    "margin": ["controller_state.margin", "metrics.margin", "state.margin"],
+    "disagreement": ["controller_state.disagreement", "metrics.disagreement", "state.disagreement"],
+    "verifier_confidence": ["controller_state.verifier_confidence", "metrics.verifier_confidence", "state.verifier_confidence"],
+    "steps_remaining": ["controller_state.steps_remaining", "metrics.steps_remaining", "remaining_turns"],
+    "current_best_score": ["controller_state.current_best_score", "metrics.current_best_score", "reward"]
+  },
+  "action_aliases": {
+    "stop": ["stop", "respond", "finish", "answer_user"],
+    "think": ["think", "reason", "plan"],
+    "tool:search": ["search", "retrieval", "knowledge_search", "browser.search"],
+    "tool:calculator": ["calculator", "python", "compute", "math_tool"],
+    "delegate:math": ["delegate_math", "math_expert", "specialist_math"],
+    "delegate:code": ["delegate_code", "code_expert", "specialist_code", "shell"]
+  },
+  "default_best_action": "think"
+}

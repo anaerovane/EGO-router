@@ -1,0 +1,2057 @@
+[
+  {
+    "id": "math_001",
+    "query": "Explain why the optimal stopping threshold should decrease when more step budget remains in EGO.",
+    "task_type": "math",
+    "best_action": "delegate:math",
+    "reference_answer": null,
+    "reference_points": [
+      "more remaining budget means the controller can afford to continue",
+      "the stopping region should shrink as budget increases",
+      "therefore the entropy threshold decreases when more budget remains",
+      "this matches h*(b+1) <= h*(b)"
+    ],
+    "rubric": [
+      "must explain the direction of monotonicity",
+      "must connect budget to willingness to continue",
+      "must not claim the threshold increases with more budget"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "medium",
+      "split": "train"
+    }
+  },
+  {
+    "id": "math_002",
+    "query": "Give the proof intuition for using a threshold-style stopping policy in the synthetic entropy environment.",
+    "task_type": "math",
+    "best_action": "delegate:math",
+    "reference_answer": null,
+    "reference_points": [
+      "continuation value decreases as uncertainty falls",
+      "there is a crossing point where continuation is no longer worth its cost",
+      "that crossing induces a threshold policy",
+      "diminishing returns or monotonicity should be mentioned"
+    ],
+    "rubric": [
+      "should mention uncertainty reduction and cost tradeoff",
+      "should explain why one crossing implies threshold stopping",
+      "should be framed as proof intuition rather than code details"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "medium",
+      "split": "train"
+    }
+  },
+  {
+    "id": "math_003",
+    "query": "Explain how entropy, margin, disagreement, and verifier confidence play different roles in the EGO state.",
+    "task_type": "math",
+    "best_action": "delegate:math",
+    "reference_answer": null,
+    "reference_points": [
+      "entropy measures overall uncertainty over candidate answers",
+      "margin measures separation between top candidates",
+      "disagreement measures inconsistency across candidate-generation channels",
+      "verifier confidence measures critic support for the current best answer"
+    ],
+    "rubric": [
+      "must distinguish the four signals rather than collapse them together",
+      "should connect them to stopping or routing decisions",
+      "should stay conceptually correct"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "math_004",
+    "query": "Why is the learned action scorer naturally connected to a contextual bandit view of routing?",
+    "task_type": "math",
+    "best_action": "delegate:math",
+    "reference_answer": null,
+    "reference_points": [
+      "each decision selects one action under a context or state",
+      "the scorer predicts reward for each action",
+      "an exploration bonus supports exploration-exploitation tradeoff",
+      "online updates after observing reward are bandit-like"
+    ],
+    "rubric": [
+      "must mention context features and per-action reward estimation",
+      "must mention exploration or uncertainty bonus",
+      "should connect routing regret or online adaptation to the formulation"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "medium",
+      "split": "train"
+    }
+  },
+  {
+    "id": "math_005",
+    "query": "Explain why approximate posterior estimation is sufficient for EGO instead of requiring the true posterior over answers.",
+    "task_type": "math",
+    "best_action": "delegate:math",
+    "reference_answer": null,
+    "reference_points": [
+      "the true posterior is unavailable in realistic agent systems",
+      "candidate answers plus verifier scores provide a usable approximation",
+      "uncertainty statistics can be derived from the approximate posterior",
+      "the method and theory can reason about robustness to estimation error"
+    ],
+    "rubric": [
+      "must mention practical unavailability of the true posterior",
+      "must explain how candidate pools approximate beliefs",
+      "should mention robustness or theorem-B style reasoning"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "medium",
+      "split": "train"
+    }
+  },
+  {
+    "id": "math_006",
+    "query": "State the main scientific difference between threshold stopping and value-based stopping in EGO.",
+    "task_type": "math",
+    "best_action": "delegate:math",
+    "reference_answer": null,
+    "reference_points": [
+      "threshold stopping uses uncertainty thresholds tied to remaining budget",
+      "value-based stopping checks whether any continuation action has positive net value",
+      "threshold stopping is more structural and theorem-friendly",
+      "value-based stopping prevents wasteful actions even if uncertainty remains"
+    ],
+    "rubric": [
+      "must clearly separate the two mechanisms",
+      "should mention budget-aware thresholds",
+      "should mention action-value comparison or non-positive continuation value"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "math_007",
+    "query": "Explain why the candidate-pool posterior construction makes EGO compatible with real agent systems.",
+    "task_type": "math",
+    "best_action": "delegate:math",
+    "reference_answer": null,
+    "reference_points": [
+      "real systems can sample candidate answers from multiple channels",
+      "candidate pools avoid assuming a closed-form true posterior",
+      "verifier scores and support signals can induce an approximate posterior",
+      "this lets uncertainty estimation work in practice"
+    ],
+    "rubric": [
+      "must mention multiple candidate sources",
+      "must explain why approximate posterior estimation is practical",
+      "should connect to real agent stacks"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "math_008",
+    "query": "Why does disagreement matter even when entropy is already moderate?",
+    "task_type": "math",
+    "best_action": "delegate:math",
+    "reference_answer": null,
+    "reference_points": [
+      "moderate entropy can still hide conflicting candidate-generation channels",
+      "disagreement reveals instability not captured by a single top probability alone",
+      "high disagreement suggests more information gathering may still be useful",
+      "this can affect routing and stopping differently from entropy"
+    ],
+    "rubric": [
+      "must explain why disagreement adds information beyond entropy",
+      "should connect disagreement to action choice or caution in stopping"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "medium",
+      "split": "train"
+    }
+  },
+  {
+    "id": "math_009",
+    "query": "Explain the role of the cost term in the unified action score Q_t(a) = VOI_hat(a) - C_t(a).",
+    "task_type": "math",
+    "best_action": "delegate:math",
+    "reference_answer": null,
+    "reference_points": [
+      "the cost term penalizes expensive continuation actions",
+      "it can combine token, latency, step, and risk costs",
+      "an action is worthwhile only if information gain exceeds cost",
+      "this is what makes the controller utility-aware rather than accuracy-only"
+    ],
+    "rubric": [
+      "must mention resource tradeoffs",
+      "must explain net value rather than raw gain only",
+      "should mention more than one cost dimension if possible"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "math_010",
+    "query": "Give a theorem-friendly explanation for why remaining budget can be used as a state variable in EGO.",
+    "task_type": "math",
+    "best_action": "delegate:math",
+    "reference_answer": null,
+    "reference_points": [
+      "remaining budget affects the option value of future actions",
+      "it changes how selective the controller should be about stopping",
+      "budget is a compact control-relevant summary even if full history is large",
+      "using budget in the state supports dynamic decision making"
+    ],
+    "rubric": [
+      "must mention future option value or willingness to continue",
+      "must connect budget to control decisions",
+      "should frame the answer conceptually rather than implementation-only"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "medium",
+      "split": "train"
+    }
+  },
+  {
+    "id": "math_011",
+    "query": "Why is a finite-horizon sequential decision framing more appropriate than a single-shot classifier framing for EGO?",
+    "task_type": "math",
+    "best_action": "delegate:math",
+    "reference_answer": null,
+    "reference_points": [
+      "EGO chooses actions over multiple rounds rather than outputting one label once",
+      "observations arrive after actions and update the state",
+      "stopping itself is a decision variable",
+      "resource budgets make the problem sequential and constrained"
+    ],
+    "rubric": [
+      "must mention multi-round control or sequential interaction",
+      "must mention observations or budget dynamics",
+      "must distinguish this from one-shot classification"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "math_012",
+    "query": "Explain why diminishing returns of additional information support threshold-based stopping.",
+    "task_type": "math",
+    "best_action": "delegate:math",
+    "reference_answer": null,
+    "reference_points": [
+      "early information-gathering actions can reduce uncertainty substantially",
+      "later actions provide smaller marginal benefit",
+      "once marginal gain drops below marginal cost, stopping becomes optimal",
+      "this creates a threshold or crossing structure"
+    ],
+    "rubric": [
+      "must mention diminishing marginal value",
+      "must connect marginal gain versus cost to stopping",
+      "should mention threshold or crossing behavior"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "math_013",
+    "query": "What is the conceptual role of verifier confidence in the EGO state, beyond simple answer ranking?",
+    "task_type": "math",
+    "best_action": "delegate:math",
+    "reference_answer": null,
+    "reference_points": [
+      "verifier confidence estimates external support for the current best candidate",
+      "it can gate stopping even if entropy alone looks low",
+      "it helps distinguish consensus from justified confidence",
+      "it affects both continuation value and stopping safety"
+    ],
+    "rubric": [
+      "must explain why verifier confidence is not redundant with entropy",
+      "should connect it to stopping or quality control"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "medium",
+      "split": "train"
+    }
+  },
+  {
+    "id": "math_014",
+    "query": "Explain the difference between a hand-crafted heuristic gain proxy and a learned reward predictor in EGO routing.",
+    "task_type": "math",
+    "best_action": "delegate:math",
+    "reference_answer": null,
+    "reference_points": [
+      "a heuristic gain proxy encodes prior beliefs about useful actions",
+      "a learned reward predictor estimates action value from data or trajectories",
+      "the learned predictor can adapt online to task distributions",
+      "the heuristic term is more interpretable and stable initially"
+    ],
+    "rubric": [
+      "must compare prior knowledge versus learned adaptation",
+      "must mention online learning or data dependence",
+      "should mention stability or interpretability tradeoff"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "math_015",
+    "query": "Why can think, tool, and delegate actions be treated in one unified action space instead of three separate controllers?",
+    "task_type": "math",
+    "best_action": "delegate:math",
+    "reference_answer": null,
+    "reference_points": [
+      "all three are continuation actions that trade information gain against cost",
+      "they can be compared through a common net-value score",
+      "a unified space enables direct routing competition",
+      "this avoids brittle hard-coded precedence rules"
+    ],
+    "rubric": [
+      "must mention common scoring or unified comparison",
+      "must explain why this is better than separate heuristics",
+      "should mention cost-benefit comparison"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "medium",
+      "split": "dev"
+    }
+  },
+  {
+    "id": "math_016",
+    "query": "Explain how theorem A and theorem B correspond to different parts of the EGO method.",
+    "task_type": "math",
+    "best_action": "delegate:math",
+    "reference_answer": null,
+    "reference_points": [
+      "theorem A supports budget-dependent stopping thresholds",
+      "theorem B supports robustness under uncertainty estimation error",
+      "theorem A is more about the structure of stopping",
+      "theorem B is more about performance loss under imperfect estimates"
+    ],
+    "rubric": [
+      "must distinguish the two theorem roles",
+      "must connect each theorem to a concrete method component"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "dev"
+    }
+  },
+  {
+    "id": "math_017",
+    "query": "Why is oracle threshold extraction useful in the synthetic environment even if the final method does not use dynamic programming at runtime?",
+    "task_type": "math",
+    "best_action": "delegate:math",
+    "reference_answer": null,
+    "reference_points": [
+      "the oracle provides a reference policy or upper-bound behavior",
+      "it helps validate whether budget-aware thresholding is qualitatively correct",
+      "it is useful for analysis and benchmarking rather than deployment",
+      "it can reveal the target monotonic threshold pattern"
+    ],
+    "rubric": [
+      "must mention oracle as a reference or upper bound",
+      "must explain why analysis value differs from runtime use"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "medium",
+      "split": "dev"
+    }
+  },
+  {
+    "id": "math_018",
+    "query": "Explain why first-action optimality and final-answer quality are related but not identical notions.",
+    "task_type": "math",
+    "best_action": "delegate:math",
+    "reference_answer": null,
+    "reference_points": [
+      "the first action affects the trajectory but later steps can partially recover mistakes",
+      "a wrong first action can still lead to a decent final answer",
+      "a correct first action does not guarantee the final answer is best if later steps fail",
+      "thus routing metrics and final quality metrics capture different behaviors"
+    ],
+    "rubric": [
+      "must distinguish trajectory quality from final answer quality",
+      "should mention recovery or later-step effects"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "test"
+    }
+  },
+  {
+    "id": "math_019",
+    "query": "Why is it scientifically useful to separate stopping experiments from routing experiments in this project?",
+    "task_type": "math",
+    "best_action": "delegate:math",
+    "reference_answer": null,
+    "reference_points": [
+      "stopping and routing answer different research questions",
+      "separate experiments isolate which component provides gains",
+      "stopping experiments can align with theorem analysis",
+      "routing experiments can focus on task-action specialization"
+    ],
+    "rubric": [
+      "must mention disentangling components or claims",
+      "must distinguish stopping from routing objectives"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "test"
+    }
+  },
+  {
+    "id": "math_020",
+    "query": "Explain why a project-specific realistic benchmark can still be scientifically useful for an orchestration method paper.",
+    "task_type": "math",
+    "best_action": "delegate:math",
+    "reference_answer": null,
+    "reference_points": [
+      "it provides realistic queries tied to actual documents, code, and reasoning tasks",
+      "it tests whether the method survives beyond pure toy mocks",
+      "it naturally supports search, code, calc, and reasoning actions",
+      "it is especially useful as an intermediate validation layer before large public benchmarks"
+    ],
+    "rubric": [
+      "must acknowledge realism without overstating generality",
+      "must mention why project-centric tasks match the action space"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "medium",
+      "split": "test"
+    }
+  },
+  {
+    "id": "calc_001",
+    "query": "Compute `0.08 + 0.75 / (3 + 1)`.",
+    "task_type": "calc",
+    "best_action": "tool:calculator",
+    "reference_answer": "0.2675",
+    "reference_points": null,
+    "rubric": null,
+    "evaluation_type": "numeric_exact",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "numeric_tolerance": 1e-09,
+      "note": "budget-threshold formula at 3 remaining steps",
+      "split": "train"
+    }
+  },
+  {
+    "id": "calc_002",
+    "query": "Compute `0.08 + 0.75 / (8 + 1)`.",
+    "task_type": "calc",
+    "best_action": "tool:calculator",
+    "reference_answer": "0.16333333333333333",
+    "reference_points": null,
+    "rubric": null,
+    "evaluation_type": "numeric_exact",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "numeric_tolerance": 1e-09,
+      "note": "budget-threshold formula at 8 remaining steps",
+      "split": "train"
+    }
+  },
+  {
+    "id": "calc_003",
+    "query": "Compute `1.0 - 0.2267`.",
+    "task_type": "calc",
+    "best_action": "tool:calculator",
+    "reference_answer": "0.7733",
+    "reference_points": null,
+    "rubric": null,
+    "evaluation_type": "numeric_exact",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "numeric_tolerance": 1e-09,
+      "note": "complement of oracle threshold at budget 7",
+      "split": "train"
+    }
+  },
+  {
+    "id": "calc_004",
+    "query": "Compute `(0.6915 - 0.6889) / 0.6889`.",
+    "task_type": "calc",
+    "best_action": "tool:calculator",
+    "reference_answer": "0.003774133982",
+    "reference_points": null,
+    "rubric": null,
+    "evaluation_type": "numeric_exact",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "medium",
+      "numeric_tolerance": 1e-09,
+      "note": "relative gain of oracle threshold over budget threshold",
+      "split": "train"
+    }
+  },
+  {
+    "id": "calc_005",
+    "query": "Compute `0.55 * 0.8 + 0.20 * 0.3 + 0.10 * (1.0 - 0.4) + 0.05 * 3`.",
+    "task_type": "calc",
+    "best_action": "tool:calculator",
+    "reference_answer": "0.71",
+    "reference_points": null,
+    "rubric": null,
+    "evaluation_type": "numeric_exact",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "medium",
+      "numeric_tolerance": 1e-09,
+      "note": "example think gain calculation",
+      "split": "train"
+    }
+  },
+  {
+    "id": "calc_006",
+    "query": "Compute `0.65 * 0.9 + 0.25 * 0.2 + 0.20 * (1.0 - 0.3) + 0.50 * 0.6 + 0.25 * 0.55 + 0.10`.",
+    "task_type": "calc",
+    "best_action": "tool:calculator",
+    "reference_answer": "1.3125",
+    "reference_points": null,
+    "rubric": null,
+    "evaluation_type": "numeric_exact",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "medium",
+      "numeric_tolerance": 1e-09,
+      "note": "example search-tool gain calculation",
+      "split": "train"
+    }
+  },
+  {
+    "id": "calc_007",
+    "query": "Compute `0.60 * 0.9 + 0.30 * 0.2 + 0.25 * (1.0 - 0.3) + 0.55 * 0.7 + 0.30 * 0.82 + 0.20`.",
+    "task_type": "calc",
+    "best_action": "tool:calculator",
+    "reference_answer": "1.606",
+    "reference_points": null,
+    "rubric": null,
+    "evaluation_type": "numeric_exact",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "medium",
+      "numeric_tolerance": 1e-09,
+      "note": "example delegate gain calculation",
+      "split": "train"
+    }
+  },
+  {
+    "id": "calc_008",
+    "query": "Compute `0.08 + 0.75 / (1 + 1)`.",
+    "task_type": "calc",
+    "best_action": "tool:calculator",
+    "reference_answer": "0.455",
+    "reference_points": null,
+    "rubric": null,
+    "evaluation_type": "numeric_exact",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "numeric_tolerance": 1e-09,
+      "note": "budget-threshold formula at 1 remaining step",
+      "split": "train"
+    }
+  },
+  {
+    "id": "calc_009",
+    "query": "Compute `0.08 + 0.75 / (2 + 1)`.",
+    "task_type": "calc",
+    "best_action": "tool:calculator",
+    "reference_answer": "0.33",
+    "reference_points": null,
+    "rubric": null,
+    "evaluation_type": "numeric_exact",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "numeric_tolerance": 1e-09,
+      "note": "budget-threshold formula at 2 remaining steps",
+      "split": "train"
+    }
+  },
+  {
+    "id": "calc_010",
+    "query": "Compute `0.08 + 0.75 / (4 + 1)`.",
+    "task_type": "calc",
+    "best_action": "tool:calculator",
+    "reference_answer": "0.22999999999999998",
+    "reference_points": null,
+    "rubric": null,
+    "evaluation_type": "numeric_exact",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "numeric_tolerance": 1e-09,
+      "note": "budget-threshold formula at 4 remaining steps",
+      "split": "train"
+    }
+  },
+  {
+    "id": "calc_011",
+    "query": "Compute `0.08 + 0.75 / (5 + 1)`.",
+    "task_type": "calc",
+    "best_action": "tool:calculator",
+    "reference_answer": "0.20500000000000002",
+    "reference_points": null,
+    "rubric": null,
+    "evaluation_type": "numeric_exact",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "numeric_tolerance": 1e-09,
+      "note": "budget-threshold formula at 5 remaining steps",
+      "split": "train"
+    }
+  },
+  {
+    "id": "calc_012",
+    "query": "Compute `0.08 + 0.75 / (6 + 1)`.",
+    "task_type": "calc",
+    "best_action": "tool:calculator",
+    "reference_answer": "0.18714285714285714",
+    "reference_points": null,
+    "rubric": null,
+    "evaluation_type": "numeric_exact",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "numeric_tolerance": 1e-09,
+      "note": "budget-threshold formula at 6 remaining steps",
+      "split": "train"
+    }
+  },
+  {
+    "id": "calc_013",
+    "query": "Compute `(3.0 - 2.2)`.",
+    "task_type": "calc",
+    "best_action": "tool:calculator",
+    "reference_answer": "0.7999999999999998",
+    "reference_points": null,
+    "rubric": null,
+    "evaluation_type": "numeric_exact",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "numeric_tolerance": 1e-09,
+      "note": "gap between calculator-supported and math-expert-supported reward on calc tasks",
+      "split": "train"
+    }
+  },
+  {
+    "id": "calc_014",
+    "query": "Compute `(3.0 - 0.7)`.",
+    "task_type": "calc",
+    "best_action": "tool:calculator",
+    "reference_answer": "2.3",
+    "reference_points": null,
+    "rubric": null,
+    "evaluation_type": "numeric_exact",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "numeric_tolerance": 1e-09,
+      "note": "gap between search-supported and refined reasoning reward on search tasks",
+      "split": "train"
+    }
+  },
+  {
+    "id": "calc_015",
+    "query": "Compute `(3.0 - 1.0)`.",
+    "task_type": "calc",
+    "best_action": "tool:calculator",
+    "reference_answer": "2.0",
+    "reference_points": null,
+    "rubric": null,
+    "evaluation_type": "numeric_exact",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "numeric_tolerance": 1e-09,
+      "note": "gap between math-expert-supported and refined reasoning reward on math tasks",
+      "split": "dev"
+    }
+  },
+  {
+    "id": "calc_016",
+    "query": "Compute `0.12 * 15`.",
+    "task_type": "calc",
+    "best_action": "tool:calculator",
+    "reference_answer": "1.7999999999999998",
+    "reference_points": null,
+    "rubric": null,
+    "evaluation_type": "numeric_exact",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "numeric_tolerance": 1e-09,
+      "note": "total action cost if a 0.12-cost action were chosen 15 times",
+      "split": "dev"
+    }
+  },
+  {
+    "id": "calc_017",
+    "query": "Compute `(2.29 - 1.98)`.",
+    "task_type": "calc",
+    "best_action": "tool:calculator",
+    "reference_answer": "0.31000000000000005",
+    "reference_points": null,
+    "rubric": null,
+    "evaluation_type": "numeric_exact",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "numeric_tolerance": 1e-09,
+      "note": "reward gain of learned routing over heuristic in the controlled benchmark snapshot",
+      "split": "dev"
+    }
+  },
+  {
+    "id": "calc_018",
+    "query": "Compute `(0.45 - 0.40)`.",
+    "task_type": "calc",
+    "best_action": "tool:calculator",
+    "reference_answer": "0.04999999999999999",
+    "reference_points": null,
+    "rubric": null,
+    "evaluation_type": "numeric_exact",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "numeric_tolerance": 1e-09,
+      "note": "first-action accuracy gain in the controlled benchmark snapshot",
+      "split": "test"
+    }
+  },
+  {
+    "id": "calc_019",
+    "query": "Compute `(0.6915 + 0.6889) / 2`.",
+    "task_type": "calc",
+    "best_action": "tool:calculator",
+    "reference_answer": "0.6901999999999999",
+    "reference_points": null,
+    "rubric": null,
+    "evaluation_type": "numeric_exact",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "medium",
+      "numeric_tolerance": 1e-09,
+      "note": "average of oracle and budget-threshold rewards in the stopping prototype",
+      "split": "test"
+    }
+  },
+  {
+    "id": "calc_020",
+    "query": "Compute `sqrt(16) + log(e)`.",
+    "task_type": "calc",
+    "best_action": "tool:calculator",
+    "reference_answer": "5.0",
+    "reference_points": null,
+    "rubric": null,
+    "evaluation_type": "numeric_exact",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "medium",
+      "numeric_tolerance": 1e-09,
+      "note": "calculator sanity-check using supported functions",
+      "split": "test"
+    }
+  },
+  {
+    "id": "search_001",
+    "query": "Which file defines the LinUCB-based learned action scorer?",
+    "task_type": "search",
+    "best_action": "tool:search",
+    "reference_answer": "src/integrations/learned_action_scorer.py",
+    "reference_points": [
+      "class LinUCBActionScorer"
+    ],
+    "rubric": null,
+    "evaluation_type": "substring_or_evidence_match",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "search_002",
+    "query": "Which document explains the mixed-task routing benchmark design?",
+    "task_type": "search",
+    "best_action": "tool:search",
+    "reference_answer": "docs/12_mixed_task_benchmark.md",
+    "reference_points": [
+      "Mixed-Task Routing Benchmark"
+    ],
+    "rubric": null,
+    "evaluation_type": "substring_or_evidence_match",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "search_003",
+    "query": "Which script runs the theorem-A synthetic stopping validation?",
+    "task_type": "search",
+    "best_action": "tool:search",
+    "reference_answer": "scripts/run_synthetic_theorem_a.py",
+    "reference_points": [
+      "Synthetic Theorem-A Validation"
+    ],
+    "rubric": null,
+    "evaluation_type": "substring_or_evidence_match",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "search_004",
+    "query": "Which module defines the LangChain-compatible orchestration wrapper?",
+    "task_type": "search",
+    "best_action": "tool:search",
+    "reference_answer": "src/integrations/langchain_ego_adapter.py",
+    "reference_points": [
+      "class LangChainEGOAgent"
+    ],
+    "rubric": null,
+    "evaluation_type": "substring_or_evidence_match",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "search_005",
+    "query": "Which document records the first runnable synthetic prototype status and oracle thresholds?",
+    "task_type": "search",
+    "best_action": "tool:search",
+    "reference_answer": "docs/09_prototype_status.md",
+    "reference_points": [
+      "Prototype Status After First Synthetic Run",
+      "First oracle thresholds"
+    ],
+    "rubric": null,
+    "evaluation_type": "substring_or_evidence_match",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "search_006",
+    "query": "Which file contains the formal problem definition for EGO?",
+    "task_type": "search",
+    "best_action": "tool:search",
+    "reference_answer": "docs/01_formalization.md",
+    "reference_points": [
+      "EGO Formalization v1"
+    ],
+    "rubric": null,
+    "evaluation_type": "substring_or_evidence_match",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "search_007",
+    "query": "Which file now contains the runtime components for real and mock experiments?",
+    "task_type": "search",
+    "best_action": "tool:search",
+    "reference_answer": "src/integrations/experiment_runtime.py",
+    "reference_points": [
+      "OpenAICompatibleChatModel",
+      "LLMJudgeVerifier"
+    ],
+    "rubric": null,
+    "evaluation_type": "substring_or_evidence_match",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "search_008",
+    "query": "Which file defines the core budget-aware stopping controller and posterior estimator?",
+    "task_type": "search",
+    "best_action": "tool:search",
+    "reference_answer": "src/integrations/ego_core.py",
+    "reference_points": [
+      "class EGOStoppingController",
+      "class CandidatePosteriorEstimator"
+    ],
+    "rubric": null,
+    "evaluation_type": "substring_or_evidence_match",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "search_009",
+    "query": "Which runner script supports both mock mode and real mode from JSON config?",
+    "task_type": "search",
+    "best_action": "tool:search",
+    "reference_answer": "scripts/run_configurable_routing_experiment.py",
+    "reference_points": [
+      "build_mock_agent",
+      "build_real_agent"
+    ],
+    "rubric": null,
+    "evaluation_type": "substring_or_evidence_match",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "search_010",
+    "query": "Which file stores the first 30-item realistic mixed-task benchmark?",
+    "task_type": "search",
+    "best_action": "tool:search",
+    "reference_answer": "data/realistic_mixed_task_benchmark_v1.json",
+    "reference_points": [
+      "math_001",
+      "search_001"
+    ],
+    "rubric": null,
+    "evaluation_type": "substring_or_evidence_match",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "search_011",
+    "query": "Which file stores the expanded 100-item realistic mixed-task benchmark?",
+    "task_type": "search",
+    "best_action": "tool:search",
+    "reference_answer": "data/realistic_mixed_task_benchmark_v2.json",
+    "reference_points": [
+      "math_001",
+      "think_020"
+    ],
+    "rubric": null,
+    "evaluation_type": "substring_or_evidence_match",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "search_012",
+    "query": "Which config file is intended for mock routing experiments?",
+    "task_type": "search",
+    "best_action": "tool:search",
+    "reference_answer": "configs/experiment_mock.json",
+    "reference_points": [
+      "\"mode\": \"mock\""
+    ],
+    "rubric": null,
+    "evaluation_type": "substring_or_evidence_match",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "search_013",
+    "query": "Which config file is intended for real routing experiments?",
+    "task_type": "search",
+    "best_action": "tool:search",
+    "reference_answer": "configs/experiment_real.json",
+    "reference_points": [
+      "\"mode\": \"real\""
+    ],
+    "rubric": null,
+    "evaluation_type": "substring_or_evidence_match",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "search_014",
+    "query": "Which query-set file contains the small project-centric real queries used by the configurable runner?",
+    "task_type": "search",
+    "best_action": "tool:search",
+    "reference_answer": "configs/query_sets/real_project_queries.json",
+    "reference_points": [
+      "task_type",
+      "best_action"
+    ],
+    "rubric": null,
+    "evaluation_type": "substring_or_evidence_match",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "search_015",
+    "query": "Which query-set file contains the original mock benchmark task list for the configurable runner?",
+    "task_type": "search",
+    "best_action": "tool:search",
+    "reference_answer": "configs/query_sets/mock_benchmark.json",
+    "reference_points": [
+      "delegate:math",
+      "tool:calculator"
+    ],
+    "rubric": null,
+    "evaluation_type": "substring_or_evidence_match",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "medium",
+      "split": "dev"
+    }
+  },
+  {
+    "id": "search_016",
+    "query": "Which document acts as the paper-aligned method section draft?",
+    "task_type": "search",
+    "best_action": "tool:search",
+    "reference_answer": "docs/14_paper_method_section_draft.md",
+    "reference_points": [
+      "Paper Draft: Method Section"
+    ],
+    "rubric": null,
+    "evaluation_type": "substring_or_evidence_match",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "medium",
+      "split": "dev"
+    }
+  },
+  {
+    "id": "search_017",
+    "query": "Which document acts as the method section outline before the full draft?",
+    "task_type": "search",
+    "best_action": "tool:search",
+    "reference_answer": "docs/13_method_section_outline.md",
+    "reference_points": [
+      "EGO Method Section Outline"
+    ],
+    "rubric": null,
+    "evaluation_type": "substring_or_evidence_match",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "medium",
+      "split": "dev"
+    }
+  },
+  {
+    "id": "search_018",
+    "query": "Which document freezes the first implementable algorithm spec for EGO-v1?",
+    "task_type": "search",
+    "best_action": "tool:search",
+    "reference_answer": "docs/03_algorithm_v1.md",
+    "reference_points": [
+      "EGO-v1 Algorithm Spec"
+    ],
+    "rubric": null,
+    "evaluation_type": "substring_or_evidence_match",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "medium",
+      "split": "test"
+    }
+  },
+  {
+    "id": "search_019",
+    "query": "Which document describes the learned action scoring prototype?",
+    "task_type": "search",
+    "best_action": "tool:search",
+    "reference_answer": "docs/11_learned_action_scoring.md",
+    "reference_points": [
+      "Learned Action Scoring for EGO Routing"
+    ],
+    "rubric": null,
+    "evaluation_type": "substring_or_evidence_match",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "medium",
+      "split": "test"
+    }
+  },
+  {
+    "id": "search_020",
+    "query": "Which document is the main method spec under docs/proposals?",
+    "task_type": "search",
+    "best_action": "tool:search",
+    "reference_answer": "docs/proposals/ego_orchestration_method_spec.md",
+    "reference_points": [
+      "Feature name",
+      "Benchmark Construction Specification"
+    ],
+    "rubric": null,
+    "evaluation_type": "substring_or_evidence_match",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "medium",
+      "split": "test"
+    }
+  },
+  {
+    "id": "code_001",
+    "query": "If you want to add a new delegate expert action to the runtime agent, which module should you edit first?",
+    "task_type": "code",
+    "best_action": "delegate:code",
+    "reference_answer": "src/integrations/langchain_ego_adapter.py",
+    "reference_points": [
+      "ExpertSpec",
+      "_score_actions",
+      "_execute_action",
+      "_normalize_expert"
+    ],
+    "rubric": [
+      "should identify the adapter module as the main integration point",
+      "should mention at least one relevant method or class involved in expert handling"
+    ],
+    "evaluation_type": "reference_points_judge",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "code_002",
+    "query": "Which file should you modify to change how the contextual bandit features are constructed?",
+    "task_type": "code",
+    "best_action": "delegate:code",
+    "reference_answer": "src/integrations/learned_action_scorer.py",
+    "reference_points": [
+      "class EGOFeatureBuilder",
+      "build"
+    ],
+    "rubric": [
+      "must point to the learned_action_scorer module",
+      "should mention feature builder rather than only the agent wrapper"
+    ],
+    "evaluation_type": "reference_points_judge",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "code_003",
+    "query": "Where would you edit the entropy-threshold stopping logic in the current implementation?",
+    "task_type": "code",
+    "best_action": "delegate:code",
+    "reference_answer": "src/integrations/ego_core.py",
+    "reference_points": [
+      "class EGOStoppingController",
+      "entropy_threshold",
+      "decide"
+    ],
+    "rubric": [
+      "must point to ego_core.py",
+      "should mention the stopping controller methods"
+    ],
+    "evaluation_type": "reference_points_judge",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "code_004",
+    "query": "If you need to swap the mock runtime for a real OpenAI-compatible model, which new runner script is the main entry point?",
+    "task_type": "code",
+    "best_action": "delegate:code",
+    "reference_answer": "scripts/run_configurable_routing_experiment.py",
+    "reference_points": [
+      "build_real_agent",
+      "build_mock_agent",
+      "mode"
+    ],
+    "rubric": [
+      "must identify the configurable routing experiment runner",
+      "should mention that it supports mock and real modes"
+    ],
+    "evaluation_type": "reference_points_judge",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "code_005",
+    "query": "Which module should be edited to change how local corpus search works in real mode?",
+    "task_type": "code",
+    "best_action": "delegate:code",
+    "reference_answer": "src/integrations/experiment_runtime.py",
+    "reference_points": [
+      "class LocalCorpusSearchTool",
+      "invoke",
+      "_score_text"
+    ],
+    "rubric": [
+      "must identify experiment_runtime.py",
+      "should mention LocalCorpusSearchTool"
+    ],
+    "evaluation_type": "reference_points_judge",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "code_006",
+    "query": "Where should you modify the synthetic routing task definitions for the old mixed-task benchmark?",
+    "task_type": "code",
+    "best_action": "delegate:code",
+    "reference_answer": "scripts/mixed_task_routing_benchmark.py",
+    "reference_points": [
+      "BenchmarkTask",
+      "TASKS"
+    ],
+    "rubric": [
+      "must identify the mixed_task_routing_benchmark script",
+      "should mention the task list or BenchmarkTask dataclass"
+    ],
+    "evaluation_type": "reference_points_judge",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "code_007",
+    "query": "Which file would you modify to change how action costs are configured in the new configurable runner?",
+    "task_type": "code",
+    "best_action": "delegate:code",
+    "reference_answer": "configs/experiment_real.json",
+    "reference_points": [
+      "costs",
+      "think",
+      "search",
+      "calculator"
+    ],
+    "rubric": [
+      "must identify a config file rather than only a Python module",
+      "should mention the costs block"
+    ],
+    "evaluation_type": "reference_points_judge",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "code_008",
+    "query": "If you want to alter how the LLM-as-judge parses numeric scores, which class and file should you inspect?",
+    "task_type": "code",
+    "best_action": "delegate:code",
+    "reference_answer": "src/integrations/experiment_runtime.py",
+    "reference_points": [
+      "class LLMJudgeVerifier",
+      "_parse_score"
+    ],
+    "rubric": [
+      "must mention the judge verifier class",
+      "should identify the parsing helper"
+    ],
+    "evaluation_type": "reference_points_judge",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "code_009",
+    "query": "Where should you change the default OpenAI-compatible request payload used for real model invocation?",
+    "task_type": "code",
+    "best_action": "delegate:code",
+    "reference_answer": "src/integrations/experiment_runtime.py",
+    "reference_points": [
+      "class OpenAICompatibleChatModel",
+      "complete",
+      "messages"
+    ],
+    "rubric": [
+      "must mention the chat model runtime class",
+      "should mention where the payload is assembled"
+    ],
+    "evaluation_type": "reference_points_judge",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "code_010",
+    "query": "Which file should you edit to add a new evaluation type to benchmark items?",
+    "task_type": "code",
+    "best_action": "delegate:code",
+    "reference_answer": "docs/proposals/ego_orchestration_method_spec.md",
+    "reference_points": [
+      "Evaluation types",
+      "Benchmark item schema"
+    ],
+    "rubric": [
+      "must point to the main spec",
+      "should mention evaluation-type definitions"
+    ],
+    "evaluation_type": "reference_points_judge",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "code_011",
+    "query": "If you want the configurable runner to read additional benchmark fields such as rubric or reference points, which script is the first code location to modify?",
+    "task_type": "code",
+    "best_action": "delegate:code",
+    "reference_answer": "scripts/run_configurable_routing_experiment.py",
+    "reference_points": [
+      "load_tasks",
+      "QueryTask",
+      "evaluate_agent"
+    ],
+    "rubric": [
+      "must point to the configurable runner",
+      "should mention task loading or evaluation"
+    ],
+    "evaluation_type": "reference_points_judge",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "medium",
+      "split": "train"
+    }
+  },
+  {
+    "id": "code_012",
+    "query": "Where should you extend the runtime if you want to add a web-search tool wrapper later?",
+    "task_type": "code",
+    "best_action": "delegate:code",
+    "reference_answer": "src/integrations/experiment_runtime.py",
+    "reference_points": [
+      "LocalCorpusSearchTool",
+      "SafeCalculatorTool"
+    ],
+    "rubric": [
+      "must point to the runtime tool layer",
+      "should mention adding a new tool class"
+    ],
+    "evaluation_type": "reference_points_judge",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "medium",
+      "split": "train"
+    }
+  },
+  {
+    "id": "code_013",
+    "query": "Which file should you edit if you want to change how default tool and expert relevance are estimated from keywords?",
+    "task_type": "code",
+    "best_action": "delegate:code",
+    "reference_answer": "src/integrations/langchain_ego_adapter.py",
+    "reference_points": [
+      "_default_tool_relevance",
+      "_default_expert_relevance"
+    ],
+    "rubric": [
+      "must mention the adapter module",
+      "should mention the default relevance functions"
+    ],
+    "evaluation_type": "reference_points_judge",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "medium",
+      "split": "train"
+    }
+  },
+  {
+    "id": "code_014",
+    "query": "Where is the best place to modify the candidate-to-posterior conversion logic?",
+    "task_type": "code",
+    "best_action": "delegate:code",
+    "reference_answer": "src/integrations/ego_core.py",
+    "reference_points": [
+      "class CandidatePosteriorEstimator",
+      "_softmax"
+    ],
+    "rubric": [
+      "must mention the posterior estimator",
+      "should mention softmax or estimate"
+    ],
+    "evaluation_type": "reference_points_judge",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "medium",
+      "split": "train"
+    }
+  },
+  {
+    "id": "code_015",
+    "query": "Which file should you change to alter how online contextual-bandit updates accumulate A and b statistics?",
+    "task_type": "code",
+    "best_action": "delegate:code",
+    "reference_answer": "src/integrations/learned_action_scorer.py",
+    "reference_points": [
+      "update",
+      "self.A",
+      "self.b"
+    ],
+    "rubric": [
+      "must identify the learned scorer module",
+      "should mention the update path"
+    ],
+    "evaluation_type": "reference_points_judge",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "medium",
+      "split": "dev"
+    }
+  },
+  {
+    "id": "code_016",
+    "query": "If you want to add a new benchmark query-set config for a larger real dataset, which directory should you place it in?",
+    "task_type": "code",
+    "best_action": "delegate:code",
+    "reference_answer": "configs/query_sets",
+    "reference_points": [
+      "mock_benchmark.json",
+      "real_project_queries.json"
+    ],
+    "rubric": [
+      "must mention the query_sets directory",
+      "should mention that JSON files live there"
+    ],
+    "evaluation_type": "reference_points_judge",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "medium",
+      "split": "dev"
+    }
+  },
+  {
+    "id": "code_017",
+    "query": "Which file should you inspect to change the mock benchmark verifier reward rules?",
+    "task_type": "code",
+    "best_action": "delegate:code",
+    "reference_answer": "scripts/mixed_task_routing_benchmark.py",
+    "reference_points": [
+      "def verifier",
+      "math-expert-supported",
+      "calculator-supported"
+    ],
+    "rubric": [
+      "must point to the old mixed-task benchmark script",
+      "should mention the verifier function"
+    ],
+    "evaluation_type": "reference_points_judge",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "medium",
+      "split": "dev"
+    }
+  },
+  {
+    "id": "code_018",
+    "query": "If you want to change how mock and real environments load environment variables, which runtime function should you edit?",
+    "task_type": "code",
+    "best_action": "delegate:code",
+    "reference_answer": "src/integrations/experiment_runtime.py",
+    "reference_points": [
+      "load_dotenv"
+    ],
+    "rubric": [
+      "must identify the environment-loading helper"
+    ],
+    "evaluation_type": "reference_points_judge",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "medium",
+      "split": "test"
+    }
+  },
+  {
+    "id": "code_019",
+    "query": "Where would you modify the README instructions for running mock and real experiments?",
+    "task_type": "code",
+    "best_action": "delegate:code",
+    "reference_answer": "README.md",
+    "reference_points": [
+      "Run mock / real 双模式实验",
+      "configs/experiment_real.json"
+    ],
+    "rubric": [
+      "must point to README.md",
+      "should mention the run instructions section"
+    ],
+    "evaluation_type": "reference_points_judge",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "medium",
+      "split": "test"
+    }
+  },
+  {
+    "id": "code_020",
+    "query": "Which file should you edit to update the benchmark construction rules written as project specification?",
+    "task_type": "code",
+    "best_action": "delegate:code",
+    "reference_answer": "docs/proposals/ego_orchestration_method_spec.md",
+    "reference_points": [
+      "Benchmark Construction Specification"
+    ],
+    "rubric": [
+      "must mention the main spec file",
+      "should reference the benchmark section"
+    ],
+    "evaluation_type": "reference_points_judge",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "medium",
+      "split": "test"
+    }
+  },
+  {
+    "id": "think_001",
+    "query": "Summarize, in your own words, the difference between stopping and routing in EGO.",
+    "task_type": "think",
+    "best_action": "think",
+    "reference_answer": null,
+    "reference_points": [
+      "stopping decides whether to continue or terminate",
+      "routing decides which continuation action to take if not stopping",
+      "stopping depends on uncertainty and value of continuation",
+      "routing compares think, tool, and delegate actions"
+    ],
+    "rubric": [
+      "should be concise and conceptually clear",
+      "must not conflate stopping with final-answer scoring only",
+      "should mention continuation actions"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "think_002",
+    "query": "Give a concise explanation of why this project is a method paper prototype rather than a benchmark project.",
+    "task_type": "think",
+    "best_action": "think",
+    "reference_answer": null,
+    "reference_points": [
+      "the core contribution is the orchestration method",
+      "theory and algorithm are central",
+      "benchmarks are validation tools rather than the main object",
+      "controlled benchmarks act as evaluation scaffolds"
+    ],
+    "rubric": [
+      "should emphasize method over benchmark",
+      "should mention theory or formalization",
+      "should not claim the benchmark is the main contribution"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "think_003",
+    "query": "Explain why a hybrid learned-plus-heuristic routing score can be more stable than a purely learned score in early-stage experiments.",
+    "task_type": "think",
+    "best_action": "think",
+    "reference_answer": null,
+    "reference_points": [
+      "purely learned scores can over-explore or be unstable with sparse data",
+      "heuristic gain provides a prior or stabilizing bias",
+      "exploration bonus still allows learning",
+      "the hybrid score is practical before large-scale logs exist"
+    ],
+    "rubric": [
+      "must mention sparse or noisy reward signals",
+      "must explain the stabilizing role of the heuristic term",
+      "should stay focused on early-stage experiments"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "medium",
+      "split": "train"
+    }
+  },
+  {
+    "id": "think_004",
+    "query": "Briefly explain why first-action accuracy is a useful metric for this project.",
+    "task_type": "think",
+    "best_action": "think",
+    "reference_answer": null,
+    "reference_points": [
+      "the project focuses on orchestration or routing",
+      "first-action accuracy directly measures the first routing decision",
+      "it separates routing quality from later recovery behavior",
+      "it is especially useful in mixed-task settings"
+    ],
+    "rubric": [
+      "must connect the metric to routing or orchestration",
+      "should mention that final reward alone can hide first-step mistakes"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "think_005",
+    "query": "Describe the role of the candidate pool in one short paragraph.",
+    "task_type": "think",
+    "best_action": "think",
+    "reference_answer": null,
+    "reference_points": [
+      "the candidate pool stores answers from different channels",
+      "it enables posterior approximation over answers",
+      "it supports entropy, margin, and disagreement estimation",
+      "it is central to both stopping and routing"
+    ],
+    "rubric": [
+      "should mention multiple candidate sources",
+      "must connect the pool to uncertainty estimation",
+      "should be brief but accurate"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "think_006",
+    "query": "Explain, at a high level, why cost-aware utility matters more than plain answer quality for an orchestration controller.",
+    "task_type": "think",
+    "best_action": "think",
+    "reference_answer": null,
+    "reference_points": [
+      "the controller chooses actions, not just answers",
+      "actions consume resources such as tokens, latency, and steps",
+      "extra computation is only worthwhile if the gain exceeds the cost",
+      "utility captures the real orchestration tradeoff better than accuracy alone"
+    ],
+    "rubric": [
+      "must mention resource cost",
+      "must connect costs to control decisions",
+      "should explain why accuracy alone is incomplete"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "think_007",
+    "query": "Why is benchmark construction for this project more complicated than writing a standard QA test set?",
+    "task_type": "think",
+    "best_action": "think",
+    "reference_answer": null,
+    "reference_points": [
+      "the benchmark must evaluate both final answers and action choices",
+      "different task families need different answer formats and evaluators",
+      "cost and stopping behavior are part of the method claim",
+      "the project mixes closed-form and open-ended tasks"
+    ],
+    "rubric": [
+      "must mention both answer quality and routing labels",
+      "should mention multiple evaluation types"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "medium",
+      "split": "train"
+    }
+  },
+  {
+    "id": "think_008",
+    "query": "Explain why AI-assisted benchmark construction is useful but should still be described carefully in the paper.",
+    "task_type": "think",
+    "best_action": "think",
+    "reference_answer": null,
+    "reference_points": [
+      "AI can accelerate generation of queries, labels, and rubrics",
+      "AI-generated labels may carry bias or self-confirming assumptions",
+      "light human review or oracle validation improves credibility",
+      "the paper should describe the process honestly as AI-assisted"
+    ],
+    "rubric": [
+      "must mention both usefulness and limitations",
+      "must mention honest reporting or validation"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "medium",
+      "split": "train"
+    }
+  },
+  {
+    "id": "think_009",
+    "query": "Why is a project-centric realistic benchmark a good intermediate step before using large public datasets?",
+    "task_type": "think",
+    "best_action": "think",
+    "reference_answer": null,
+    "reference_points": [
+      "it is easier to align with the action space and available tools",
+      "it provides real documents and code rather than pure mocks",
+      "it exposes engineering issues before large-scale evaluation",
+      "it is a bridge between toy scaffolds and external benchmarks"
+    ],
+    "rubric": [
+      "must mention intermediate realism",
+      "should mention action-space alignment or engineering practicality"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "think_010",
+    "query": "In one paragraph, explain what the configurable runner adds beyond the older mixed-task benchmark script.",
+    "task_type": "think",
+    "best_action": "think",
+    "reference_answer": null,
+    "reference_points": [
+      "it supports both mock and real modes",
+      "it reads configuration from JSON",
+      "it separates runtime components from benchmark data more cleanly",
+      "it is meant as a bridge toward real experiments"
+    ],
+    "rubric": [
+      "must mention mock versus real support",
+      "should mention config-driven execution"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "think_011",
+    "query": "Why does the project need both synthetic and realistic benchmarks instead of only one of them?",
+    "task_type": "think",
+    "best_action": "think",
+    "reference_answer": null,
+    "reference_points": [
+      "synthetic benchmarks isolate specific theoretical claims",
+      "realistic benchmarks test whether the method survives under more natural queries",
+      "different benchmarks answer different research questions",
+      "using both improves interpretability and credibility"
+    ],
+    "rubric": [
+      "must mention complementary roles",
+      "must distinguish theory alignment from realism"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "think_012",
+    "query": "Explain why having a best_action label is important even when final reward is also measured.",
+    "task_type": "think",
+    "best_action": "think",
+    "reference_answer": null,
+    "reference_points": [
+      "best_action directly evaluates the routing decision",
+      "final reward alone can hide recoveries after poor first actions",
+      "routing is a core contribution of the method",
+      "best_action enables first-action accuracy metrics"
+    ],
+    "rubric": [
+      "must connect labels to routing evaluation",
+      "should mention complementarity with final reward"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "think_013",
+    "query": "Why should open-ended tasks in this benchmark use rubrics or key points instead of only exact-string matching?",
+    "task_type": "think",
+    "best_action": "think",
+    "reference_answer": null,
+    "reference_points": [
+      "open-ended answers can be correct in many phrasings",
+      "rubrics focus evaluation on substantive content",
+      "exact matching would undercount valid reasoning",
+      "rubrics are especially useful for math explanations and conceptual summaries"
+    ],
+    "rubric": [
+      "must mention multiple valid phrasings",
+      "must justify rubric-based evaluation"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "train"
+    }
+  },
+  {
+    "id": "think_014",
+    "query": "Give a high-level explanation of why the search tasks in this project are local-corpus search rather than web search for now.",
+    "task_type": "think",
+    "best_action": "think",
+    "reference_answer": null,
+    "reference_points": [
+      "local search avoids external dependency during early prototyping",
+      "the project corpus already contains meaningful retrieval tasks",
+      "this makes experiments more reproducible in the current environment",
+      "web search can be added later as a stronger external tool"
+    ],
+    "rubric": [
+      "must mention practicality or reproducibility",
+      "should mention current environment constraints or staged development"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "medium",
+      "split": "train"
+    }
+  },
+  {
+    "id": "think_015",
+    "query": "Why is it useful to track stop reason distribution in addition to average reward?",
+    "task_type": "think",
+    "best_action": "think",
+    "reference_answer": null,
+    "reference_points": [
+      "stop reasons reveal why the controller terminates",
+      "they help distinguish entropy-based stopping from value-based stopping",
+      "behavioral diagnostics can explain reward patterns",
+      "this improves interpretability of orchestration decisions"
+    ],
+    "rubric": [
+      "must mention interpretability or diagnostics",
+      "should mention multiple stop mechanisms"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "dev"
+    }
+  },
+  {
+    "id": "think_016",
+    "query": "Explain why the benchmark now includes split metadata such as train/dev/test even before full experiments are run.",
+    "task_type": "think",
+    "best_action": "think",
+    "reference_answer": null,
+    "reference_points": [
+      "the splits prepare the dataset for formal evaluation later",
+      "learned routing should eventually be evaluated on held-out data",
+      "adding split metadata early reduces future benchmark churn",
+      "this supports a smoother transition to paper-grade experiments"
+    ],
+    "rubric": [
+      "must mention future held-out evaluation",
+      "should justify including split metadata now"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "dev"
+    }
+  },
+  {
+    "id": "think_017",
+    "query": "Why is it useful to keep the benchmark schema unified across math, calc, search, code, and think tasks?",
+    "task_type": "think",
+    "best_action": "think",
+    "reference_answer": null,
+    "reference_points": [
+      "a unified schema simplifies data handling and evaluation pipelines",
+      "it lets different task types share core orchestration metadata such as best_action",
+      "it makes benchmark growth easier to manage",
+      "task-specific evaluation can still differ through evaluation_type"
+    ],
+    "rubric": [
+      "must mention common structure plus task-specific evaluation",
+      "should mention implementation or scaling benefits"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "dev"
+    }
+  },
+  {
+    "id": "think_018",
+    "query": "Explain why the current 100-item benchmark should still be considered a v2 prototype rather than a final paper benchmark.",
+    "task_type": "think",
+    "best_action": "think",
+    "reference_answer": null,
+    "reference_points": [
+      "labels are AI-assisted and need further validation",
+      "the evaluator is not fully wired into all experiment loops yet",
+      "dataset size is improved but still modest for strong claims",
+      "more baselines and held-out testing are still needed"
+    ],
+    "rubric": [
+      "must mention remaining limitations",
+      "must avoid overstating the maturity of the benchmark"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "medium",
+      "split": "test"
+    }
+  },
+  {
+    "id": "think_019",
+    "query": "What is the main reason to keep benchmark construction details inside the spec document instead of only in ad hoc notes?",
+    "task_type": "think",
+    "best_action": "think",
+    "reference_answer": null,
+    "reference_points": [
+      "the spec gives a stable source of truth for schema and evaluation rules",
+      "it reduces ambiguity across implementation and paper writing",
+      "it helps future contributors understand benchmark assumptions",
+      "it aligns the benchmark with the method claims"
+    ],
+    "rubric": [
+      "must mention consistency or source-of-truth value",
+      "should mention alignment with implementation or paper claims"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "test"
+    }
+  },
+  {
+    "id": "think_020",
+    "query": "Why is action-family balance across task types important in the expanded benchmark?",
+    "task_type": "think",
+    "best_action": "think",
+    "reference_answer": null,
+    "reference_points": [
+      "balanced task families reduce skew toward one preferred action",
+      "they make first-action accuracy more interpretable",
+      "they allow clearer per-task-type analysis",
+      "they reduce the risk that a baseline wins by exploiting class imbalance"
+    ],
+    "rubric": [
+      "must mention balance or skew",
+      "should connect balance to routing evaluation quality"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "split": "test"
+    }
+  }
+]

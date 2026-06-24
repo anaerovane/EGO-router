@@ -1,0 +1,50 @@
+### model
+model_name_or_path: Qwen/Qwen2.5-1.5B-Instruct
+trust_remote_code: true
+
+### method
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_target: q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj
+lora_rank: 32
+lora_alpha: 64
+lora_dropout: 0.05
+
+### dataset
+dataset_dir: training/llamafactory_data
+dataset: ego_router_seed
+template: qwen
+cutoff_len: 1536
+max_samples: 100000
+overwrite_cache: true
+preprocessing_num_workers: 8
+val_size: 0.05
+
+### output
+output_dir: outputs/qwen25_router_lora_sft
+logging_steps: 20
+save_steps: 200
+plot_loss: true
+overwrite_output_dir: true
+save_total_limit: 3
+
+### train
+per_device_train_batch_size: 4
+gradient_accumulation_steps: 8
+learning_rate: 2.0e-4
+num_train_epochs: 3.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.03
+bf16: true
+optim: adamw_torch
+weight_decay: 0.01
+max_grad_norm: 1.0
+
+### eval
+per_device_eval_batch_size: 4
+eval_strategy: steps
+eval_steps: 200
+
+### extras
+report_to: none

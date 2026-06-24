@@ -1,0 +1,27 @@
+[
+  {
+    "query": "Derive why the EGO stopping threshold should decrease when more step budget remains, and explain the proof intuition.",
+    "task_type": "math",
+    "best_action": "delegate:math"
+  },
+  {
+    "query": "Compute `0.08 + 0.75 / (3 + 1)` and explain what threshold this gives in the controller.",
+    "task_type": "calc",
+    "best_action": "tool:calculator"
+  },
+  {
+    "query": "Find which file in this project defines the LinUCB-based learned action scorer and summarize what it implements.",
+    "task_type": "search",
+    "best_action": "tool:search"
+  },
+  {
+    "query": "Explain how you would modify the project to add a new delegate expert action, and point to the most relevant module to edit.",
+    "task_type": "code",
+    "best_action": "delegate:code"
+  },
+  {
+    "query": "Summarize, in your own reasoning, the difference between stopping and routing in EGO.",
+    "task_type": "think",
+    "best_action": "think"
+  }
+]

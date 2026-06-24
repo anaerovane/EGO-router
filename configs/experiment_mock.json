@@ -1,0 +1,29 @@
+{
+  "mode": "mock",
+  "query_set": "configs/query_sets/mock_benchmark.json",
+  "max_steps": 3,
+  "use_learned_action_scorer": true,
+  "learned_gain_mix": 0.85,
+  "controller_config": {
+    "h0": 0.08,
+    "alpha_h": 0.75
+  },
+  "costs": {
+    "think": 0.05,
+    "search": 0.16,
+    "calculator": 0.12,
+    "math": 0.10,
+    "code": 0.11
+  },
+  "priors": {
+    "search": 0.55,
+    "calculator": 0.75,
+    "math": 0.85,
+    "code": 0.72
+  },
+  "learned_scorer": {
+    "alpha": 0.12,
+    "ridge": 1.0,
+    "feature_dim": 15
+  }
+}

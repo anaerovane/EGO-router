@@ -1,0 +1,20 @@
+[
+  {
+    "id": "calc_001",
+    "query": "Compute `0.08 + 0.75 / (1 + 1)`.",
+    "task_type": "calc",
+    "best_action": "tool:calculator",
+    "reference_answer": "0.455",
+    "reference_points": null,
+    "rubric": null,
+    "evaluation_type": "numeric_exact",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "difficulty_cn": "简单",
+      "expected_reasoning_steps": 1,
+      "split": "train",
+      "numeric_tolerance": 1e-09
+    }
+  }
+]

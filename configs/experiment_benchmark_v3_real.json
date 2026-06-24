@@ -1,0 +1,47 @@
+{
+  "mode": "real",
+  "query_set": "data/realistic_mixed_task_benchmark_v3.json",
+  "max_steps": 3,
+  "use_learned_action_scorer": true,
+  "learned_gain_mix": 0.65,
+  "controller_config": {
+    "h0": 0.08,
+    "alpha_h": 0.75
+  },
+  "real": {
+    "api_base_env": "OPENAI_BASE_URL",
+    "api_key_env": "OPENAI_API_KEY",
+    "model_env": "OPENAI_MODEL",
+    "default_api_base": "https://api.openai.com/v1",
+    "default_model": "gpt-4.1-mini",
+    "temperature": 0.2,
+    "judge_model_env": "OPENAI_JUDGE_MODEL",
+    "judge_default_model": "gpt-4.1-mini",
+    "search_corpus_dir": ".",
+    "enable_search_tool": true,
+    "enable_calculator_tool": true,
+    "enable_math_expert": true,
+    "enable_code_expert": true
+  },
+  "costs": {
+    "think": 0.05,
+    "search": 0.16,
+    "calculator": 0.12,
+    "math": 0.10,
+    "code": 0.11
+  },
+  "priors": {
+    "search": 0.60,
+    "calculator": 0.72,
+    "math": 0.82,
+    "code": 0.74
+  },
+  "learned_scorer": {
+    "alpha": 0.10,
+    "ridge": 1.0,
+    "feature_dim": 15
+  },
+  "benchmark": {
+    "use_llm_for_open_ended": true
+  }
+}

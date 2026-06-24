@@ -1,0 +1,42 @@
+{
+  "ego_router_seed": {
+    "file_name": "router_sft_seed.jsonl",
+    "formatting": "alpaca",
+    "columns": {
+      "instruction": "instruction",
+      "input": "input",
+      "output": "output",
+      "system": "system"
+    }
+  },
+  "tau2_airline_raw": {
+    "file_name": "router_sft_tau2_airline_raw.jsonl",
+    "formatting": "alpaca",
+    "columns": {
+      "instruction": "instruction",
+      "input": "input",
+      "output": "output",
+      "system": "system"
+    }
+  },
+  "bfcl_raw": {
+    "file_name": "router_sft_bfcl_raw.jsonl",
+    "formatting": "alpaca",
+    "columns": {
+      "instruction": "instruction",
+      "input": "input",
+      "output": "output",
+      "system": "system"
+    }
+  },
+  "ego_router_mixed": {
+    "file_name": "router_sft_mixed.jsonl",
+    "formatting": "alpaca",
+    "columns": {
+      "instruction": "instruction",
+      "input": "input",
+      "output": "output",
+      "system": "system"
+    }
+  }
+}

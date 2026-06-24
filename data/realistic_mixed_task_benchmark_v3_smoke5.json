@@ -1,0 +1,115 @@
+[
+  {
+    "id": "math_001",
+    "query": "Explain the role of budget-dependent stopping threshold in EGO.",
+    "task_type": "math",
+    "best_action": "delegate:math",
+    "reference_answer": null,
+    "reference_points": [
+      "must correctly explain budget-dependent stopping threshold",
+      "more budget means more willingness to continue",
+      "should connect the concept to EGO rather than generic agent discussion",
+      "should remain consistent with the project documents"
+    ],
+    "rubric": [
+      "must be conceptually correct",
+      "should connect to stopping, routing, or utility when relevant",
+      "must avoid contradicting the current EGO project narrative"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "difficulty_cn": "简单",
+      "expected_reasoning_steps": 1,
+      "split": "train"
+    }
+  },
+  {
+    "id": "calc_001",
+    "query": "Compute `0.08 + 0.75 / (1 + 1)`.",
+    "task_type": "calc",
+    "best_action": "tool:calculator",
+    "reference_answer": "0.455",
+    "reference_points": null,
+    "rubric": null,
+    "evaluation_type": "numeric_exact",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "difficulty_cn": "简单",
+      "expected_reasoning_steps": 1,
+      "split": "train",
+      "numeric_tolerance": 1e-09
+    }
+  },
+  {
+    "id": "search_001",
+    "query": "Which file defines the learned action scorer?",
+    "task_type": "search",
+    "best_action": "tool:search",
+    "reference_answer": "src/integrations/learned_action_scorer.py",
+    "reference_points": [
+      "class LinUCBActionScorer"
+    ],
+    "rubric": null,
+    "evaluation_type": "substring_or_evidence_match",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "difficulty_cn": "简单",
+      "expected_reasoning_steps": 1,
+      "split": "train"
+    }
+  },
+  {
+    "id": "code_001",
+    "query": "If you want to work on adding a new delegate expert action, which file should you edit first?",
+    "task_type": "code",
+    "best_action": "delegate:code",
+    "reference_answer": "src/integrations/langchain_ego_adapter.py",
+    "reference_points": [
+      "ExpertSpec",
+      "_score_actions",
+      "_execute_action"
+    ],
+    "rubric": [
+      "must identify the most relevant file",
+      "should mention at least one key class, function, or config field when useful",
+      "must stay aligned with the current repository structure"
+    ],
+    "evaluation_type": "reference_points_judge",
+    "metadata": {
+      "source": "project_corpus_ai_assisted",
+      "difficulty": "easy",
+      "difficulty_cn": "简单",
+      "expected_reasoning_steps": 1,
+      "split": "train"
+    }
+  },
+  {
+    "id": "think_001",
+    "query": "Briefly explain the difference between stopping and routing in EGO.",
+    "task_type": "think",
+    "best_action": "think",
+    "reference_answer": null,
+    "reference_points": [
+      "stopping decides whether to continue, routing decides which action to take",
+      "the answer should remain aligned with the current project materials",
+      "the explanation should emphasize orchestration-specific relevance"
+    ],
+    "rubric": [
+      "must be conceptually coherent",
+      "should avoid overclaiming beyond the current benchmark maturity",
+      "should be concise for easy items and more nuanced for hard items"
+    ],
+    "evaluation_type": "rubric_judge",
+    "metadata": {
+      "source": "project_derived_ai_assisted",
+      "difficulty": "easy",
+      "difficulty_cn": "简单",
+      "expected_reasoning_steps": 1,
+      "split": "train"
+    }
+  }
+]

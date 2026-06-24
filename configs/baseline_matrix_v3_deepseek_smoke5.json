@@ -1,0 +1,10 @@
+{
+  "experiment_config": "configs/experiment_benchmark_v3_deepseek_smoke5.json",
+  "baselines": [
+    "always_think",
+    "tool_first",
+    "delegate_first",
+    "heuristic_ego",
+    "learned_ego"
+  ]
+}
