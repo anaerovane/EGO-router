@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]_step_7_manual_734",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]",
+  "step_id": 7,
+  "query": "The number that’s having the issue is 555-123-2002—the one I’m using right now.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports intermittent or slow mobile data and wants excellent speed.\nassistant: The assistant authenticates the account using phone number 555-123-2002 and finds a customer record with multiple lines on the account.\nassistant: The assistant asks which phone number is actually having the issue.\nuser: The user confirms that the affected number is 555-123-2002.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for confirming the affected line. I’ll inspect that line’s account details so I can see what plan and line state might be causing the mobile data problem."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has resolved the line-selection ambiguity, so the next grounded step is to retrieve the specific line details rather than discuss fixes that could apply to the wrong line."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.21,
+      "margin": 0.58,
+      "disagreement": 0.08,
+      "verifier_confidence": 0.9,
+      "steps_remaining": 5
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.91,
+    "think": 0.19,
+    "tool:get_customer_by_phone": -0.73,
+    "tool:get_customer_by_name": -0.95,
+    "tool:get_details_by_id": 0.92,
+    "tool:get_bills_for_customer": -0.67,
+    "tool:send_payment_request": -0.93,
+    "tool:check_payment_request": -0.94,
+    "tool:make_payment": -0.96,
+    "tool:resume_line": -0.39,
+    "tool:enable_roaming": -0.34,
+    "tool:refuel_data": -0.28,
+    "tool:transfer_to_human_agents": -0.42
+  },
+  "best_action": "tool:get_details_by_id",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "4a0eabe0-1325-4c3e-8918-3a09a02506a2",
+    "termination_reason": "user_stop",
+    "selected_message_index": 7,
+    "message_count": 24,
+    "decision_rule": "Choose a state where account identity is known but the affected line among several lines has just been clarified, making line-detail retrieval the most grounded next step.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores prefer the minimal diagnostic lookup needed before picking any concrete fix.",
+    "notes": [
+      "This sample captures a telecom disambiguation point between account-level identity and line-level diagnosis.",
+      "best_action is get_details_by_id because the agent now needs the selected line record, not billing or remediation execution yet."
+    ]
+  }
+}

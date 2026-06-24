@@ -1,0 +1,69 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_airplane_mode_on_break_apn_settings_contract_end_suspension_unseat_sim_card_persona_easy_step_49_manual_669",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|break_apn_settings|contract_end_suspension|unseat_sim_card[PERSONA:Easy]",
+  "step_id": 49,
+  "query": "I’ve completed the payment for the overdue bill. However, my status bar still shows “No Signal” and “Data Disabled.” Is there anything else I should do to get my service working again?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports a No Service issue on a work-critical phone.\nassistant: The assistant authenticates the account, has the user turn off Airplane Mode, inspect SIM status, reseat the SIM, and reset APN settings.\nuser: The user continues reporting no signal and data disabled after those device-side steps.\nassistant: The assistant checks billing, finds an overdue bill tied to the line suspension, and asks the user to complete the payment.\nuser: The user says the overdue bill payment is now complete, but the phone still shows no signal and data disabled, and asks what else to do.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for confirming the payment. The next thing to try is a device/settings check so the line can refresh against the network and we can see whether service comes back."
+      },
+      {
+        "source": "think-refine",
+        "text": "The billing blocker has been cleared, so the grounded next move is to re-check the device/service state rather than resend payment instructions or transfer immediately."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.22,
+      "margin": 0.48,
+      "disagreement": 0.1,
+      "verifier_confidence": 0.89,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:check_device_settings",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.94,
+    "think": 0.2,
+    "tool:get_customer_by_phone": -0.9,
+    "tool:get_details_by_id": -0.38,
+    "tool:get_data_usage": -0.88,
+    "tool:change_plan": -0.94,
+    "tool:refuel_data": -0.93,
+    "tool:check_device_settings": 0.92,
+    "tool:transfer_to_human_agents": -0.22,
+    "tool:calculate": -0.63
+  },
+  "best_action": "tool:check_device_settings",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom-workflow_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "fd954ce0-d80f-4e1d-8de8-efbec1283c3d",
+    "termination_reason": "user_stop",
+    "selected_message_index": 49,
+    "message_count": 60,
+    "decision_rule": "Choose a late-stage state where the billing fix has been completed but visible service symptoms persist, creating a meaningful next-step decision rather than a trivial closeout.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. check_device_settings is highest because the next grounded step is to prompt or trigger a post-payment device/service refresh check before escalating.",
+    "notes": [
+      "This sample captures a post-payment recovery checkpoint, not the earlier send-payment-request decision.",
+      "The chosen query contains only what the user could visibly know at the time.",
+      "The real trajectory recovers service after another restart, which is intentionally omitted from the state summary."
+    ]
+  }
+}

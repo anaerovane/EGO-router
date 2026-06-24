@@ -1,0 +1,98 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_airplane_mode_on_break_apn_settings_lock_sim_card_pin_step_13_manual_559",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|break_apn_settings|lock_sim_card_pin[PERSONA:None]",
+  "step_id": 13,
+  "query": "I see that Airplane Mode is currently enabled on my phone. What should I do next?",
+  "state": {
+    "history_summary": "assistant: The user reports a no-service problem affecting calls and mobile data.\nassistant: The assistant authenticates the telecom account, checks the line details, and confirms that the line is active rather than suspended.\nassistant: The assistant asks the user to inspect the phone status bar for obvious indicators such as Airplane Mode or No Signal.\nuser: The status-bar check reveals that Airplane Mode is enabled, and the user asks what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Airplane Mode cuts off cellular service, so the next thing to do is turn it off and then recheck whether signal returns."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible device state already exposes a direct cause of the service outage—Airplane Mode is on—so the grounded next action is to disable it before investigating deeper issues like APN or SIM state."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.08,
+      "margin": 0.91,
+      "disagreement": 0.02,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_customer",
+    "tool:get_customer_details",
+    "tool:get_line_details",
+    "tool:list_invoices",
+    "tool:get_plan_details",
+    "tool:check_service_status",
+    "tool:check_data_balance",
+    "tool:check_outage",
+    "tool:refuel_data",
+    "tool:change_plan",
+    "tool:toggle_airplane_mode",
+    "tool:toggle_mobile_data",
+    "tool:toggle_data_roaming",
+    "tool:check_network_status",
+    "tool:check_network_mode_preference",
+    "tool:toggle_data_saver_mode",
+    "tool:check_data_restriction_status",
+    "tool:check_vpn_status",
+    "tool:disconnect_vpn",
+    "tool:reboot_device",
+    "tool:run_speed_test",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.95,
+    "think": 0.04,
+    "tool:find_customer": -0.99,
+    "tool:get_customer_details": -0.87,
+    "tool:get_line_details": -0.55,
+    "tool:list_invoices": -0.93,
+    "tool:get_plan_details": -0.95,
+    "tool:check_service_status": -0.58,
+    "tool:check_data_balance": -0.97,
+    "tool:check_outage": -0.79,
+    "tool:refuel_data": -0.98,
+    "tool:change_plan": -0.99,
+    "tool:toggle_airplane_mode": 0.99,
+    "tool:toggle_mobile_data": -0.62,
+    "tool:toggle_data_roaming": -0.91,
+    "tool:check_network_status": 0.28,
+    "tool:check_network_mode_preference": -0.95,
+    "tool:toggle_data_saver_mode": -0.98,
+    "tool:check_data_restriction_status": -0.97,
+    "tool:check_vpn_status": -0.97,
+    "tool:disconnect_vpn": -0.98,
+    "tool:reboot_device": -0.81,
+    "tool:run_speed_test": -0.93,
+    "tool:transfer_to_human_agents": -0.89
+  },
+  "best_action": "tool:toggle_airplane_mode",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "26f41c9b-fa8f-4ea6-9677-f83c31826b9b",
+    "termination_reason": "user_stop",
+    "selected_message_index": 13,
+    "message_count": 24,
+    "decision_rule": "Choose a service-troubleshooting state where account lookup is already complete and the first status-bar inspection surfaces a single obvious cause of the outage.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Turning off Airplane Mode clearly dominates because it directly removes the visible cause of the no-service condition before any deeper SIM or APN investigation.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample adds a clear first-line telecom remediation case that differs from roaming and throttling scenarios."
+    ]
+  }
+}

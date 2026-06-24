@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_49_step_7_manual_237",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "49",
+  "step_id": 7,
+  "query": "I’m sure this is the correct reservation—I specifically remember adding insurance when I booked the flight. Can you please double-check? I definitely purchased the insurance and would like to use it for a refund since I’m sick and can’t travel.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to cancel a flight and use purchased insurance for a refund because they are sick.\nassistant: The assistant asks for the user ID and reservation ID.\nuser: The user provides user ID anya_garcia_5901 and confirmation number 3RK2T9.\nassistant/tool: The reservation is retrieved, and the assistant says no insurance is attached.\nuser: The user insists this is the correct reservation and asks the assistant to double-check because they are sure insurance was purchased.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I understand why you want this checked again. Since you are disputing the system record for insurance coverage, I’ll transfer you to a human agent who can investigate the discrepancy further."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user is contesting the reservation data itself rather than asking for a standard booking action, so escalation is the most grounded next step instead of repeating the same automated lookup."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.13,
+      "margin": 0.87,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.6,
+    "think": 0.05,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.9,
+    "tool:cancel_reservation": -0.9,
+    "tool:get_flight_status": -0.85,
+    "tool:get_reservation_details": -0.77,
+    "tool:get_user_details": -0.71,
+    "tool:list_all_airports": -0.97,
+    "tool:search_direct_flight": -0.95,
+    "tool:search_onestop_flight": -0.95,
+    "tool:send_certificate": -0.9,
+    "tool:transfer_to_human_agents": 0.99,
+    "tool:update_reservation_baggages": -0.92,
+    "tool:update_reservation_flights": -0.92,
+    "tool:update_reservation_passengers": -0.92
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "76b4e517-55a9-48e7-bb47-16c7a1480e99",
+    "termination_reason": "user_stop",
+    "selected_message_index": 7,
+    "message_count": 16,
+    "decision_rule": "Choose the later user turn where the reservation has already been retrieved, the assistant says no insurance is attached, and the user disputes the system record and asks for a double-check.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "selected_message_index is 7 because the grounded decision point is the dispute over a possible insurance-record error after the booking has already been checked once."
+    ]
+  }
+}

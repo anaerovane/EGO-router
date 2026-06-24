@@ -1,0 +1,75 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]_step_13_manual_745",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 13,
+  "query": "Thanks for checking! Please go ahead and add 2GB of data to my plan. I really need to get back to excellent internet speed as soon as possible. Let me know if you need anything else from me.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports mobile data problems while abroad in France and wants excellent internet speed.\nassistant: The assistant identifies the account from phone number 555-123-2002, checks the relevant line, confirms roaming is already enabled, and retrieves data usage.\nassistant: The assistant explains that the line has used 15.1 GB against a 15.0 GB limit, which is causing the degraded service.\nuser: The user explicitly asks to add 2GB of refuel data so service can return to normal.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. I’ll proceed with the 2GB data refuel for your line so you can get service back as quickly as possible."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user is authorizing a specific paid remediation step after the overage has been surfaced, so the next grounded move is to execute the refuel rather than repeat diagnosis."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.17,
+      "margin": 0.66,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.94,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.95,
+    "think": 0.04,
+    "tool:get_customer_by_phone": -0.91,
+    "tool:get_customer_by_name": -0.98,
+    "tool:get_details_by_id": 0.28,
+    "tool:get_bills_for_customer": -0.88,
+    "tool:send_payment_request": -0.97,
+    "tool:check_payment_request": -0.96,
+    "tool:make_payment": -0.98,
+    "tool:resume_line": -0.84,
+    "tool:enable_roaming": -0.57,
+    "tool:refuel_data": 0.98,
+    "tool:transfer_to_human_agents": -0.43
+  },
+  "best_action": "tool:refuel_data",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "d482947b-bc2a-479d-9084-e6cc9dceac7a",
+    "termination_reason": "user_stop",
+    "selected_message_index": 13,
+    "message_count": 38,
+    "decision_rule": "Choose a state where the cause of slow service is visible as a data overage and the user explicitly authorizes a specific refuel amount.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Highest score goes to immediate refueling because the user has already agreed to that remediation and the overage diagnosis is complete.",
+    "notes": [
+      "query is taken from the visible user message only",
+      "history_summary excludes future device checks after the refuel",
+      "best_action is refuel_data because the user explicitly approves 2GB and no other telecom action directly resolves the visible overage"
+    ]
+  }
+}

@@ -1,0 +1,409 @@
+{
+  "config_path": "/Users/bytedance/Desktop/lunwen/aaai_agent_method/configs/experiment_benchmark_v3_deepseek_smoke10.json",
+  "mode": "real",
+  "avg_reward": 1.2,
+  "std_reward": 1.661324772583615,
+  "first_action_accuracy": 0.0,
+  "reward_by_type": {
+    "math": 2.5,
+    "calc": 3.0,
+    "search": -1.0,
+    "code": 0.0,
+    "think": 1.5
+  },
+  "reward_by_difficulty": {
+    "easy": 1.2
+  },
+  "reward_by_split": {
+    "train": 1.2
+  },
+  "reward_by_evaluation_type": {
+    "rubric_judge": 2.0,
+    "numeric_exact": 3.0,
+    "substring_or_evidence_match": -1.0,
+    "reference_points_judge": 0.0
+  },
+  "first_action_accuracy_by_type": {
+    "math": 0.0,
+    "calc": 0.0,
+    "search": 0.0,
+    "code": 0.0,
+    "think": 0.0
+  },
+  "num_tasks": 10,
+  "trajectories": [
+    {
+      "id": "math_001",
+      "query": "Explain the role of budget-dependent stopping threshold in EGO.",
+      "task_type": "math",
+      "difficulty": "easy",
+      "split": "train",
+      "evaluation_type": "rubric_judge",
+      "best_action": "delegate:math",
+      "first_action": null,
+      "final_answer": "The budget-dependent stopping threshold in EGO (Efficient Global Optimization) controls when to terminate optimization based on remaining evaluations. It dynamically adjusts the required improvement (e.g., in expected improvement criterion) to restrict further exploration as the budget nears depletion, ensuring efficient use of resources and convergence toward the optimum.",
+      "stop_reason": "non_positive_continuation_score",
+      "reward": 3.0,
+      "evaluation": {
+        "matched_reference": false,
+        "matched_points": 4,
+        "total_points": 4,
+        "details": {
+          "raw_judge_output": "{\n  \"score\": 3.0,\n  \"matched_points\": 4,\n  \"total_points\": 4,\n  \"short_reason\": \"Correctly explains the budget-dependent stopping threshold in EGO, linking budget to willingness to continue, and is consistent with the EGO narrative.\"\n}"
+        }
+      },
+      "trajectory": []
+    },
+    {
+      "id": "math_002",
+      "query": "Why is value-based stopping important for the EGO controller?",
+      "task_type": "math",
+      "difficulty": "easy",
+      "split": "train",
+      "evaluation_type": "rubric_judge",
+      "best_action": "delegate:math",
+      "first_action": null,
+      "final_answer": "Value-based stopping allows the EGO controller to terminate optimization when the expected improvement falls below a threshold, preventing wasteful evaluations and reducing computational cost while still reliably converging to near-optimal solutions.",
+      "stop_reason": "non_positive_continuation_score",
+      "reward": 2.0,
+      "evaluation": {
+        "matched_reference": false,
+        "matched_points": 2,
+        "total_points": 4,
+        "details": {
+          "raw_judge_output": "{\n  \"score\": 2,\n  \"matched_points\": 2,\n  \"total_points\": 4,\n  \"short_reason\": \"Correctly identifies expected improvement threshold for stopping in EGO, but does not use the exact phrase 'net action value non-positive' from reference. Satisfactory overall.\"\n}"
+        }
+      },
+      "trajectory": []
+    },
+    {
+      "id": "calc_001",
+      "query": "Compute `0.08 + 0.75 / (1 + 1)`.",
+      "task_type": "calc",
+      "difficulty": "easy",
+      "split": "train",
+      "evaluation_type": "numeric_exact",
+      "best_action": "tool:calculator",
+      "first_action": null,
+      "final_answer": "0.455",
+      "stop_reason": "low_entropy_and_low_value_of_continuation",
+      "reward": 3.0,
+      "evaluation": {
+        "matched_reference": true,
+        "matched_points": 0,
+        "total_points": 0,
+        "details": {
+          "pred": 0.455,
+          "target": 0.455,
+          "abs_err": 0.0,
+          "rel_err": 0.0
+        }
+      },
+      "trajectory": []
+    },
+    {
+      "id": "calc_002",
+      "query": "Compute `0.08 + 0.75 / (2 + 1)`.",
+      "task_type": "calc",
+      "difficulty": "easy",
+      "split": "train",
+      "evaluation_type": "numeric_exact",
+      "best_action": "tool:calculator",
+      "first_action": null,
+      "final_answer": "0.33",
+      "stop_reason": "low_entropy_and_low_value_of_continuation",
+      "reward": 3.0,
+      "evaluation": {
+        "matched_reference": true,
+        "matched_points": 0,
+        "total_points": 0,
+        "details": {
+          "pred": 0.33,
+          "target": 0.33,
+          "abs_err": 0.0,
+          "rel_err": 0.0
+        }
+      },
+      "trajectory": []
+    },
+    {
+      "id": "search_001",
+      "query": "Which file defines the learned action scorer?",
+      "task_type": "search",
+      "difficulty": "easy",
+      "split": "train",
+      "evaluation_type": "substring_or_evidence_match",
+      "best_action": "tool:search",
+      "first_action": "delegate:math",
+      "final_answer": "Based on the delegated expert’s analysis, the most widely referenced file defining the **learned action scorer** is:\n\n```\naction_scorer.py\n```\n\nThis conclusion follows from the most cloned open‑source MuZero implementation (e.g., [Werner Duvaud’s `muzero‑general`](https://github.com/werner-duvaud/muzero-general)), where the `ActionScorer` class wraps the neural network to produce policy and value estimates for unvisited actions during Monte Carlo Tree Search.\n\n### Important context\n- The term “learned action scorer” is not universal; it appears most frequently in **MuZero/AlphaZero** literature.\n- In other frameworks (e.g., Stable‑Baselines3, RLlib, custom projects) the scorer may reside in files like `policies.py`, `networks.py`, or `model.py`.\n- If you are working with a specific codebase, search for `ActionScorer` or `def score` to locate the file.\n\n### Recommendation\nFor a **definitive answer**, provide the exact repository or framework name. Otherwise, under the most common interpretation, the defining file is **`action_scorer.py`**.",
+      "stop_reason": "no_available_actions",
+      "reward": -1.0,
+      "evaluation": {
+        "matched_reference": false,
+        "matched_points": 0,
+        "total_points": 1,
+        "details": {
+          "reference_hit": false,
+          "point_fraction": 0.0
+        }
+      },
+      "trajectory": [
+        {
+          "step": 1,
+          "budget_before": 3,
+          "chosen_action": "delegate:math",
+          "action": "delegate:math",
+          "action_scores": [
+            {
+              "action_name": "delegate:math",
+              "score": 0.9301523874410643,
+              "estimated_gain": 1.021,
+              "action_cost": 0.1,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.3665023874410643
+            },
+            {
+              "action_name": "delegate:code",
+              "score": 0.9028746153975907,
+              "estimated_gain": 0.9969999999999999,
+              "action_cost": 0.11,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.36482461539759076
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 0.7839557586319634,
+              "estimated_gain": 0.83,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.36445575863196344
+            },
+            {
+              "action_name": "tool:search",
+              "score": 0.7224306830278032,
+              "estimated_gain": 0.8,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.3624306830278033
+            },
+            {
+              "action_name": "think",
+              "score": 0.6808564267133819,
+              "estimated_gain": 0.575,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.3571064267133819
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "budget_before": 2,
+          "chosen_action": "delegate:code",
+          "action": "delegate:code",
+          "action_scores": [
+            {
+              "action_name": "delegate:code",
+              "score": 0.8879707909782791,
+              "estimated_gain": 1.112888308335967,
+              "action_cost": 0.11,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.27459339055990045
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 0.7752078215635495,
+              "estimated_gain": 0.9555456673639645,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.2741031377769726
+            },
+            {
+              "action_name": "delegate:math",
+              "score": 0.7560824994514592,
+              "estimated_gain": 1.136888308335967,
+              "action_cost": 0.1,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.11710509903308049
+            },
+            {
+              "action_name": "tool:search",
+              "score": 0.7130094187106052,
+              "estimated_gain": 0.9255456673639645,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.2714047349240282
+            },
+            {
+              "action_name": "think",
+              "score": 0.6245528940255266,
+              "estimated_gain": 0.63123094930797,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.26425277697534616
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "budget_before": 1,
+          "chosen_action": "delegate:math",
+          "action": "delegate:math",
+          "action_scores": [
+            {
+              "action_name": "delegate:math",
+              "score": 0.8534172233739644,
+              "estimated_gain": 1.2301673732008658,
+              "action_cost": 0.1,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.1538084307934016
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 0.8026105900072545,
+              "estimated_gain": 1.060764654300938,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.2331135647116449
+            },
+            {
+              "action_name": "delegate:code",
+              "score": 0.7914305903795165,
+              "estimated_gain": 1.2061673732008658,
+              "action_cost": 0.11,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.11742179779895363
+            },
+            {
+              "action_name": "tool:search",
+              "score": 0.7399316552506694,
+              "estimated_gain": 1.0307646543009379,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.22993462995505975
+            },
+            {
+              "action_name": "think",
+              "score": 0.7158679216754283,
+              "estimated_gain": 0.8375700921007938,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.22144736180991242
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "search_002",
+      "query": "Which file should I open to find the mixed-task routing benchmark design?",
+      "task_type": "search",
+      "difficulty": "easy",
+      "split": "train",
+      "evaluation_type": "substring_or_evidence_match",
+      "best_action": "tool:search",
+      "first_action": null,
+      "final_answer": "mixed_task_routing_benchmark.yaml",
+      "stop_reason": "low_entropy_and_low_value_of_continuation",
+      "reward": -1.0,
+      "evaluation": {
+        "matched_reference": false,
+        "matched_points": 0,
+        "total_points": 1,
+        "details": {
+          "reference_hit": false,
+          "point_fraction": 0.0
+        }
+      },
+      "trajectory": []
+    },
+    {
+      "id": "code_001",
+      "query": "If you want to work on adding a new delegate expert action, which file should you edit first?",
+      "task_type": "code",
+      "difficulty": "easy",
+      "split": "train",
+      "evaluation_type": "reference_points_judge",
+      "best_action": "delegate:code",
+      "first_action": null,
+      "final_answer": "delegate_expert_actions.py",
+      "stop_reason": "low_entropy_and_low_value_of_continuation",
+      "reward": 0.0,
+      "evaluation": {
+        "matched_reference": false,
+        "matched_points": 0,
+        "total_points": 3,
+        "details": {
+          "raw_judge_output": "{\n  \"score\": 0.0,\n  \"matched_points\": 0,\n  \"total_points\": 3,\n  \"short_reason\": \"The candidate file 'delegate_expert_actions.py' is not the primary file to edit; the expected file is 'src/integrations/langchain_ego_adapter.py', which contains key classes/functions like ExpertSpec, _score_actions, _execute_action. No key elements were mentioned.\"\n}"
+        }
+      },
+      "trajectory": []
+    },
+    {
+      "id": "code_002",
+      "query": "Which file is the first place to inspect for changing contextual-bandit features?",
+      "task_type": "code",
+      "difficulty": "easy",
+      "split": "train",
+      "evaluation_type": "reference_points_judge",
+      "best_action": "delegate:code",
+      "first_action": null,
+      "final_answer": "The first place to inspect is the feature configuration file (e.g., `features.yaml` or `context.yaml`) that defines the contextual-bandit feature schema.",
+      "stop_reason": "non_positive_continuation_score",
+      "reward": 0.0,
+      "evaluation": {
+        "matched_reference": false,
+        "matched_points": 0,
+        "total_points": 1,
+        "details": {
+          "raw_judge_output": "{\n  \"score\": 0.0,\n  \"matched_points\": 0,\n  \"total_points\": 1,\n  \"short_reason\": \"Does not specify the correct file; mentions a generic config file instead of the specific source file.\"\n}"
+        }
+      },
+      "trajectory": []
+    },
+    {
+      "id": "think_001",
+      "query": "Briefly explain the difference between stopping and routing in EGO.",
+      "task_type": "think",
+      "difficulty": "easy",
+      "split": "train",
+      "evaluation_type": "rubric_judge",
+      "best_action": "think",
+      "first_action": null,
+      "final_answer": "In EGO orchestration, **stopping** refers to terminating the execution of a workflow or suppressing further processing of a message (e.g., due to an error or completion condition), while **routing** involves directing a message or task to a specific next handler or service based on defined rules or dynamic conditions.",
+      "stop_reason": "low_entropy_and_low_value_of_continuation",
+      "reward": 3.0,
+      "evaluation": {
+        "matched_reference": false,
+        "matched_points": 3,
+        "total_points": 3,
+        "details": {
+          "raw_judge_output": "{\n  \"score\": 3.0,\n  \"matched_points\": 3,\n  \"total_points\": 3,\n  \"short_reason\": \"Clearly explains difference between stopping and routing in EGO orchestration, aligns with reference points, and is conceptually coherent.\"\n}"
+        }
+      },
+      "trajectory": []
+    },
+    {
+      "id": "think_002",
+      "query": "Give a concise explanation of why this project is a method paper prototype rather than a benchmark project.",
+      "task_type": "think",
+      "difficulty": "easy",
+      "split": "train",
+      "evaluation_type": "rubric_judge",
+      "best_action": "think",
+      "first_action": null,
+      "final_answer": "A method paper prototype focuses on illustrating a novel technique or approach, often with a simple or small-scale implementation to convey the core idea, whereas a benchmark project is designed for standardized evaluation, reproducibility, and comparison across methods. The project likely lacks thorough baselines, fixed evaluation protocols, or broad applicability, making it a prototype rather than a benchmark.",
+      "stop_reason": "low_entropy_and_low_value_of_continuation",
+      "reward": 0.0,
+      "evaluation": {
+        "matched_reference": false,
+        "matched_points": 0,
+        "total_points": 3,
+        "details": {
+          "raw_judge_output": "{\n  \"score\": 0.0,\n  \"matched_points\": 0,\n  \"total_points\": 3,\n  \"short_reason\": \"Generic answer lacks orchestration-specific relevance and does not align with project materials; overclaims without evidence.\"\n}"
+        }
+      },
+      "trajectory": []
+    }
+  ]
+}

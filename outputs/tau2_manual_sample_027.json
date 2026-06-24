@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_1_step_13_manual_027",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "1",
+  "step_id": 13,
+  "query": "The reason is a change of plan. I don’t have travel insurance for this reservation, and I haven’t taken the flight yet. Can you let me know if I’ll get a refund before you proceed? I only want to cancel if I’ll be refunded.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user says a phone support representative mentioned a service agent could help cancel a reservation.\nassistant: The assistant asks for the user ID and reservation ID, and says it can help locate the reservation if needed.\nuser: The user provides user ID raj_sanchez_7340 and says the trip is from Philadelphia to LaGuardia.\nassistant called tools: get_user_details and then get_reservation_details for the user’s reservations.\ntool results identify Q69X3R as the reservation for Philadelphia to LaGuardia.\nassistant: The assistant identifies Q69X3R and asks for the cancellation reason.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes. Since the reservation was made within the last 24 hours, cancellation is eligible and the refund would go back to your original payment method if you decide to proceed."
+      },
+      {
+        "source": "think-refine",
+        "text": "The target reservation and cancellation reason are visible, and the user explicitly asks for refund eligibility before deciding. The grounded next move is a direct policy-based answer rather than a tool call."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.27,
+      "margin": 0.52,
+      "disagreement": 0.1,
+      "verifier_confidence": 0.87,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": 0.9,
+    "think": 0.21,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.84,
+    "tool:cancel_reservation": 0.18,
+    "tool:get_flight_status": -0.76,
+    "tool:get_reservation_details": -0.32,
+    "tool:get_user_details": -0.41,
+    "tool:list_all_airports": -0.94,
+    "tool:search_direct_flight": -0.91,
+    "tool:search_onestop_flight": -0.91,
+    "tool:send_certificate": -0.86,
+    "tool:transfer_to_human_agents": -0.21,
+    "tool:update_reservation_baggages": -0.89,
+    "tool:update_reservation_flights": -0.89,
+    "tool:update_reservation_passengers": -0.89
+  },
+  "best_action": "stop",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "5f517696-947b-4a5a-b014-6065d7513402",
+    "termination_reason": "user_stop",
+    "selected_message_index": 13,
+    "message_count": 24,
+    "decision_rule": "Choose a user turn where the reservation is identified and the user asks for refund eligibility before deciding whether to cancel, making a direct answer the grounded next move.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user’s request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is stop because the real next assistant move is a direct natural-language policy explanation without another tool call"
+    ]
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "sample_id": "tau2_retail_task_97_step_15_manual_682",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "retail",
+  "task_id": "97",
+  "step_id": 15,
+  "query": "Yes, that’s correct. Please go ahead with just those two changes—exchange the Bluetooth Speaker for the cheapest green one and update the delivery address to my NYC address. Thank you!",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to exchange a Bluetooth Speaker in a pending order for the cheapest green option and also move delivery from the Los Angeles address to the New York address already on file.\nassistant: The assistant asks for account email.\nuser: The user does not remember the email and instead provides the name Yusuf Li and zip code 91148.\nassistant: The assistant looks up the account by name and zip, retrieves the user profile, and inspects pending order #W6750959.\nassistant: The assistant retrieves Bluetooth Speaker product details to find the cheapest available green variant.\nassistant: The assistant retrieves the alternate saved address from another order and presents a combined plan: exchange the pending-order speaker to the cheapest green variant and update the same order to the NYC address.\nuser: The user confirms both requested pending-order changes.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for confirming. I’ll update the pending order by switching the speaker to the cheapest available green variant and changing the delivery address to your NYC address."
+      },
+      {
+        "source": "think-refine",
+        "text": "Both pending-order modifications are fully specified and confirmed, so the grounded next move is to execute the item change and address update rather than gather more catalog or account information."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.14,
+      "margin": 0.32,
+      "disagreement": 0.07,
+      "verifier_confidence": 0.93,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_user_id_by_email",
+    "tool:find_user_id_by_name_zip",
+    "tool:get_user_details",
+    "tool:get_order_details",
+    "tool:get_product_details",
+    "tool:list_all_product_types",
+    "tool:modify_pending_order_items",
+    "tool:modify_pending_order_address",
+    "tool:modify_pending_order_payment",
+    "tool:cancel_pending_order",
+    "tool:return_delivered_order_items",
+    "tool:exchange_delivered_order_items",
+    "tool:modify_user_address",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.88,
+    "think": 0.09,
+    "tool:find_user_id_by_email": -0.95,
+    "tool:find_user_id_by_name_zip": -0.96,
+    "tool:get_user_details": -0.76,
+    "tool:get_order_details": -0.44,
+    "tool:get_product_details": -0.58,
+    "tool:list_all_product_types": -0.97,
+    "tool:modify_pending_order_items": 0.97,
+    "tool:modify_pending_order_address": 0.94,
+    "tool:modify_pending_order_payment": -0.89,
+    "tool:cancel_pending_order": -0.9,
+    "tool:return_delivered_order_items": -0.96,
+    "tool:exchange_delivered_order_items": -0.93,
+    "tool:modify_user_address": -0.85,
+    "tool:transfer_to_human_agents": -0.79,
+    "tool:calculate": -0.61
+  },
+  "best_action": "tool:modify_pending_order_items",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_retail_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "97_trial0",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 21,
+    "decision_rule": "Choose a state where the user has confirmed a concrete pending-order item replacement and a concrete alternate delivery address, so at least one executable order mutation is immediately available from visible context.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. modify_pending_order_items edges out modify_pending_order_address because the replacement SKU choice depends on just-completed catalog work and is the more task-specific mutation, but both execution actions remain strongly appropriate.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is the argmax and intentionally differs from 681 by favoring a pending-order modification action instead of a return flow"
+    ]
+  }
+}

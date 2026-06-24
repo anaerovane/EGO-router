@@ -1,0 +1,67 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_airplane_bad_network_bad_vpn_data_saver_usage_roaming_step_70_manual_529",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_saver_mode_on|data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:None]",
+  "step_id": 70,
+  "query": "I removed and reinserted my SIM card, and my status bar still shows excellent signal and 5G with data enabled. However, the speed test still fails with “no connection.” I really need excellent internet speed to work right away. What should I try next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user is troubleshooting a severe mobile data problem while abroad and wants excellent speed.\nassistant: Through earlier steps, the assistant identified the line, checked service details, refueled data, and walked through several device-side fixes.\nassistant: After reseating the SIM card, the latest visible device state still shows excellent 5G signal with data enabled, but a speed test continues to fail with no connection.\nuser: The user asks what to try next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Since the radio signal now looks healthy but data still won’t pass, the next targeted step is to reset the APN settings and clear any bad network configuration."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible evidence suggests the issue has moved beyond signal availability and toward device-side network configuration, so APN reset is a stronger next step than repeating earlier account checks."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.27,
+      "margin": 0.52,
+      "disagreement": 0.1,
+      "verifier_confidence": 0.89,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:check_network_status",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:reset_apn_settings",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.91,
+    "think": 0.2,
+    "tool:check_network_status": 0.11,
+    "tool:get_customer_by_phone": -0.94,
+    "tool:get_details_by_id": -0.38,
+    "tool:get_data_usage": -0.26,
+    "tool:refuel_data": -0.88,
+    "tool:reset_apn_settings": 0.9,
+    "tool:transfer_to_human_agents": 0.29
+  },
+  "best_action": "tool:reset_apn_settings",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "80a597ee-cd2a-49e1-a4b6-c57362cc81fe",
+    "termination_reason": "user_stop",
+    "selected_message_index": 70,
+    "message_count": 85,
+    "decision_rule": "Choose a late troubleshooting turn where signal indicators are already healthy but packet data still fails, making configuration repair more appropriate than more quota or identity checks.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Highest score goes to resetting APN settings because it directly targets likely misconfiguration after multiple earlier fixes have failed.",
+    "notes": [
+      "This sample intentionally captures a deep device-configuration branch of the telecom workflow.",
+      "Escalation is plausible and scored positively, but still lower because there remains an obvious targeted self-service step grounded in the visible evidence.",
+      "The selected state excludes later manual APN instructions and any eventual escalation outcome."
+    ]
+  }
+}

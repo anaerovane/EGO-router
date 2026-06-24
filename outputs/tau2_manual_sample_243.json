@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_25_step_3_manual_243",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "25",
+  "step_id": 3,
+  "query": "Sure! My user ID is ivan_muller_7015. I’m not sure about the reservation ID off the top of my head—can you look it up with my user ID?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to book a matching flight for friend Ivan Smith using the same itinerary as the user's current reservation.\nassistant: The assistant asks for the user ID and reservation ID of the current booking.\nuser: The user provides user ID ivan_muller_7015 and asks the assistant to look up the reservation because the reservation ID is not available.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Absolutely. Since you’ve shared your user ID, I’ll pull up your account and locate your current reservation so we can mirror it for Ivan Smith."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user cannot provide the reservation identifier and explicitly asks for an account-based lookup, so the grounded next move is to retrieve the user details first."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.11,
+      "margin": 0.87,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.98,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.45,
+    "think": 0.09,
+    "tool:book_reservation": -0.84,
+    "tool:calculate": -0.91,
+    "tool:cancel_reservation": -0.95,
+    "tool:get_flight_status": -0.9,
+    "tool:get_reservation_details": -0.28,
+    "tool:get_user_details": 0.99,
+    "tool:list_all_airports": -0.95,
+    "tool:search_direct_flight": -0.92,
+    "tool:search_onestop_flight": -0.92,
+    "tool:send_certificate": -0.91,
+    "tool:transfer_to_human_agents": -0.48,
+    "tool:update_reservation_baggages": -0.94,
+    "tool:update_reservation_flights": -0.93,
+    "tool:update_reservation_passengers": -0.93
+  },
+  "best_action": "tool:get_user_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "b6eb1422-96f4-4237-89c6-c37253f623d1",
+    "termination_reason": "user_stop",
+    "selected_message_index": 3,
+    "message_count": 28,
+    "decision_rule": "Choose the first user turn where the user provides account identity and explicitly requests reservation lookup, making a single grounded retrieval action clearly available.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the reservation-lookup request and excludes later reservation contents, pricing, and booking steps",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is get_user_details because the assistant needs the user profile before it can identify which active reservation should be copied for the friend's booking"
+    ]
+  }
+}

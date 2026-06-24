@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]data_saver_mode_on|user_abroad_roaming_enabled_off[PERSONA:Easy]_step_38_manual_780",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_saver_mode_on|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 38,
+  "query": "The result shows that Data Saver mode is ON, which limits data usage. Could this be affecting my internet speed? What should I do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports poor mobile data performance while abroad in France and wants excellent speed.\nassistant: The assistant authenticates the telecom account, confirms roaming is enabled on the line, and guides the user through phone-side diagnostics.\nassistant: The user has already enabled data roaming, rerun a speed test, and confirmed that the network mode is already set to 4G/5G preferred, but the result is still only good rather than excellent.\nuser: The user discovers that Data Saver mode is ON and asks whether that could be affecting speed and what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes — Data Saver can limit throughput, so the next step is to turn it off and then retest your connection to see if that gets you to the excellent speed you want."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has already ruled out several other visible bottlenecks, and Data Saver is an actionable device-side limiter surfaced directly from the current diagnostic state, so guidance is the best next move."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.18,
+      "margin": 0.41,
+      "disagreement": 0.09,
+      "verifier_confidence": 0.89,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.73,
+    "think": 0.84,
+    "tool:get_customer_by_phone": -0.94,
+    "tool:get_customer_by_name": -0.98,
+    "tool:get_details_by_id": 0.22,
+    "tool:get_bills_for_customer": -0.89,
+    "tool:send_payment_request": -0.97,
+    "tool:check_payment_request": -0.98,
+    "tool:make_payment": -0.99,
+    "tool:resume_line": -0.77,
+    "tool:enable_roaming": -0.42,
+    "tool:refuel_data": -0.58,
+    "tool:transfer_to_human_agents": -0.09
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_telecom_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "aa5516ba-0f60-442c-be17-8c38bc93db6e",
+    "termination_reason": "user_stop",
+    "selected_message_index": 38,
+    "message_count": 49,
+    "decision_rule": "Choose a later diagnostic state where the user surfaces a concrete device-side limiter and the right next move is grounded guidance rather than another backend account action.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. think is highest because the appropriate next step is to reason from the diagnostic result and instruct the user to disable Data Saver before retesting.",
+    "notes": [
+      "This sample provides late-stage telecom diagnostic diversity with a guidance-oriented best action.",
+      "The history summary excludes the later successful retest to avoid future leakage."
+    ]
+  }
+}

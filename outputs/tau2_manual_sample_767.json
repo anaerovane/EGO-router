@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]bad_network_preference|bad_vpn|user_abroad_roaming_enabled_off[PERSONA:Easy]_step_32_manual_767",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]bad_network_preference|bad_vpn|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 32,
+  "query": "It looks like there is a VPN active and connected on my phone. The details show the server performance is listed as \"poor.\" Should I disconnect the VPN before rebooting and running the speed test, or would you like me to do something else first?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that mobile data is too slow while abroad in France and wants excellent speed.\nassistant: The assistant authenticates the line and confirms roaming is enabled on the carrier side.\nassistant: A network-status diagnostic shows the phone was on 2G with Data Roaming off.\nassistant: The assistant has the user enable Data Roaming and switch the phone to prefer 4G/5G, after which the updated status shows a connected 5G line with excellent signal.\nassistant: A speed test still returns only Good.\nassistant: The assistant then checks VPN status.\nuser: The user reports that a VPN is active and its server performance is poor, and asks what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes, disconnecting that VPN is the most sensible next step because it could easily be throttling the connection even though the radio conditions now look good."
+      },
+      {
+        "source": "think-refine",
+        "text": "The radio path is already corrected, and the newly surfaced poor-performing VPN is the strongest remaining visible bottleneck, so the next move should target that rather than billing or roaming."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.19,
+      "margin": 0.44,
+      "disagreement": 0.09,
+      "verifier_confidence": 0.89,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.88,
+    "think": 0.24,
+    "tool:get_customer_by_phone": -0.93,
+    "tool:get_customer_by_name": -0.97,
+    "tool:get_details_by_id": 0.61,
+    "tool:get_bills_for_customer": -0.77,
+    "tool:send_payment_request": -0.95,
+    "tool:check_payment_request": -0.92,
+    "tool:make_payment": -0.94,
+    "tool:resume_line": -0.83,
+    "tool:enable_roaming": -0.69,
+    "tool:refuel_data": -0.74,
+    "tool:transfer_to_human_agents": -0.18
+  },
+  "best_action": "tool:get_details_by_id",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "6e15514c-925a-462c-a0bf-9ad1a41404b6",
+    "termination_reason": "user_stop",
+    "selected_message_index": 32,
+    "message_count": 41,
+    "decision_rule": "Choose a decision point after major radio-path problems have been fixed, so the sample turns on whether a newly surfaced on-device bottleneck should be investigated next.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. With no direct VPN-disconnect primitive in the telecom action set, the best available next action is additional inspection/state retrieval rather than irrelevant account-side operations.",
+    "notes": [
+      "This is a higher-ambiguity telecom sample with a constrained action inventory, so think and transfer retain mildly competitive scores.",
+      "The visible state explicitly mentions poor VPN performance, which is enough to justify prioritizing device-focused follow-up over carrier-side billing actions."
+    ]
+  }
+}

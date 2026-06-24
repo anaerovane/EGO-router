@@ -1,0 +1,76 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_usage_exceeded_user_abroad_roaming_enabled_off_step_17_manual_575",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 17,
+  "query": "I’d like to refuel 2 GB of data, please. I don’t want to change my plan—just add the extra data for now. What do I need to do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user is abroad in France and says mobile data is not working or is extremely slow.\nassistant: The assistant asks for the phone number associated with the account.\nuser: The user provides 555-123-2002.\nassistant: The assistant looks up the customer, inspects the relevant line, checks billing information, and reviews the plan details.\nassistant: The assistant explains that roaming is already enabled on the carrier side but the line has used 15.1 GB out of a 15 GB monthly allowance, so the data cap is the visible reason service has stopped.\nuser: The user asks to add 2 GB of extra data without changing plans and wants to know the next step.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I can add a 2 GB data refuel to your current line. The next step is to confirm the charge and then apply the refuel to the existing plan."
+      },
+      {
+        "source": "think-refine",
+        "text": "The conversation has already surfaced a concrete carrier-side cause and the user has requested a 2 GB top-up instead of a plan change, so the grounded next action is to move toward executing a data refuel rather than re-diagnose the line."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.2,
+      "margin": 0.58,
+      "disagreement": 0.08,
+      "verifier_confidence": 0.92,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_customer_by_id",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:enable_roaming",
+    "tool:resume_line",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.88,
+    "think": 0.18,
+    "tool:get_customer_by_phone": -0.91,
+    "tool:get_customer_by_name": -0.98,
+    "tool:get_customer_by_id": -0.74,
+    "tool:get_details_by_id": -0.42,
+    "tool:get_bills_for_customer": -0.37,
+    "tool:get_data_usage": -0.29,
+    "tool:refuel_data": 0.93,
+    "tool:enable_roaming": -0.78,
+    "tool:resume_line": -0.86,
+    "tool:send_payment_request": -0.33,
+    "tool:transfer_to_human_agents": -0.41
+  },
+  "best_action": "tool:refuel_data",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "2d66d764-c5b6-4f86-a255-ce4ded06ef59",
+    "termination_reason": "user_stop",
+    "selected_message_index": 17,
+    "message_count": 40,
+    "decision_rule": "Choose a user turn where the line-level cause has already been surfaced and the user makes a concrete, bounded request for a data top-up, creating a direct telecom action choice.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores favor the data-refuel tool because the user explicitly prefers a top-up over a plan change and the overage cause is already visible.",
+    "notes": [
+      "task_id preserves the richer telecom task string used in source results rather than a numeric retail-style id",
+      "history_summary ends before the assistant quotes the exact price and before the tool executes",
+      "available actions are domain-appropriate telecom actions distilled from observed tool calls in the source files",
+      "best_action is a telecom transactional tool distinct from retail mutation flows"
+    ]
+  }
+}

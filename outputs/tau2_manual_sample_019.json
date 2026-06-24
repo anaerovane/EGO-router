@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_31_step_1_manual_019",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "31",
+  "step_id": 1,
+  "query": "Hi, I need to change my upcoming flight from JFK. My cat is really sick and I need to get home sooner. Can you help me look into changing my flight to an earlier nonstop option?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I’m sorry to hear that. I can help look into flight-change options, but first I’ll need your user ID and reservation ID."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user describes an urgent desire to change an upcoming flight, but no identifying reservation information is visible yet. The grounded next move is to ask for the user ID and reservation ID before taking any tool action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.2,
+      "margin": 0.69,
+      "disagreement": 0.06,
+      "verifier_confidence": 0.93,
+      "steps_remaining": 6
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": 0.96,
+    "think": 0.17,
+    "tool:book_reservation": -0.97,
+    "tool:calculate": -0.86,
+    "tool:cancel_reservation": -0.94,
+    "tool:get_flight_status": -0.9,
+    "tool:get_reservation_details": -0.65,
+    "tool:get_user_details": -0.61,
+    "tool:list_all_airports": -0.95,
+    "tool:search_direct_flight": -0.74,
+    "tool:search_onestop_flight": -0.78,
+    "tool:send_certificate": -0.89,
+    "tool:transfer_to_human_agents": -0.39,
+    "tool:update_reservation_baggages": -0.94,
+    "tool:update_reservation_flights": -0.82,
+    "tool:update_reservation_passengers": -0.94
+  },
+  "best_action": "stop",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "3eab22fd-f0a7-4a93-9f3f-615235ac1304",
+    "termination_reason": "user_stop",
+    "selected_message_index": 1,
+    "message_count": 18,
+    "decision_rule": "Choose a user turn where the user requests a flight change but has not yet provided the identifiers required for grounded reservation handling.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect whether the next move should be a direct clarification response versus an environment action, using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is stop because the next grounded move is to ask for user ID and reservation ID before any lookup"
+    ]
+  }
+}

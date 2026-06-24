@@ -1,0 +1,72 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_break_apn_settings_contract_end_suspension_lock_sim_card_pin_step_12_manual_957",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]break_apn_settings|contract_end_suspension|lock_sim_card_pin[PERSONA:Hard]",
+  "step_id": 12,
+  "query": "Oh, I see. If that’s what needs to happen, then yes, please transfer me to a real person who can help. I just want my phone to work again. Thank you.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that the phone has shown \"No Service\" for hours and they want calls and texts working again.\nassistant: The assistant identifies the account using phone number 555-123-2002, retrieves the relevant line, and determines that line L1002 is suspended.\nassistant: The assistant explains that the line’s contract end date is in the past and says it is not allowed to lift this suspension under policy. It offers to transfer the user for further assistance.\nuser: The user accepts the transfer and asks for a real person to help restore service.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood — since this suspension cannot be resolved in the current support flow, I’ll transfer you to a human agent now."
+      },
+      {
+        "source": "think-refine",
+        "text": "The assistant has already reached a visible policy boundary on a contract-ended suspension, and the user explicitly accepts escalation, so transfer is the grounded next step."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.11,
+      "margin": 0.87,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:add_goodwill_credit",
+    "tool:apply_payment_extension",
+    "tool:change_plan",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:lift_line_suspension",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.86,
+    "think": 0.2,
+    "tool:add_goodwill_credit": -0.94,
+    "tool:apply_payment_extension": -0.89,
+    "tool:change_plan": -0.74,
+    "tool:get_customer_by_phone": -0.87,
+    "tool:get_details_by_id": -0.62,
+    "tool:lift_line_suspension": -0.98,
+    "tool:refuel_data": -0.91,
+    "tool:send_payment_request": -0.9,
+    "tool:transfer_to_human_agents": 0.99
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_telecom_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "fdffd676-8010-496b-9c35-784b9ead1663",
+    "termination_reason": "user_stop",
+    "selected_message_index": 12,
+    "message_count": 15,
+    "decision_rule": "Choose a terminal escalation turn where the suspension cause has already been surfaced from visible context and the user explicitly agrees to transfer.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. transfer_to_human_agents is highest because the visible contract-end suspension is not agent-resolvable and the user asks for escalation.",
+    "notes": [
+      "query comes directly from the selected visible user message, not hidden task text",
+      "history_summary stops at the decision point and excludes the later transfer result",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is transfer_to_human_agents because policy bars the assistant from lifting this suspension and the user requests a real person"
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "sample_id": "tau2_telecom_task_overdue_bill_suspension_step_51_manual_818",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]break_apn_settings|lock_sim_card_pin|overdue_bill_suspension[PERSONA:Easy]",
+  "step_id": 51,
+  "query": "I reseated the SIM card as you suggested, but I’m still seeing “No Signal” and “Data Disabled” in the status bar. This is getting a bit frustrating—what should I try next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports a No Service issue.\nassistant: The assistant finds that line 555-123-2002 was suspended for overdue bill B1234321, sends a payment request, and after payment confirmation resumes the line successfully.\nassistant: The assistant then has the user reboot the phone, but the status bar still shows No Signal and Data Disabled.\nassistant: The assistant verifies the line remains active on the carrier side, asks the user to turn mobile data on, and then tries reseating the SIM card when that does not fix the problem.\nuser: After reseating the SIM card, the user reports that the phone still shows No Signal and Data Disabled and asks what to try next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I’m sorry that the basic troubleshooting still hasn’t fixed it. I’ll transfer you to a human agent for deeper device and line diagnostics."
+      },
+      {
+        "source": "think-refine",
+        "text": "The line is already active and the standard recovery steps have failed, so the grounded next step is escalation rather than repeating the same automated troubleshooting."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.06,
+      "margin": 0.93,
+      "disagreement": 0.02,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.9,
+    "think": 0.04,
+    "tool:get_customer_by_phone": -0.96,
+    "tool:get_customer_by_name": -0.98,
+    "tool:get_details_by_id": -0.34,
+    "tool:get_bills_for_customer": -0.95,
+    "tool:send_payment_request": -0.97,
+    "tool:check_payment_request": -0.97,
+    "tool:make_payment": -0.97,
+    "tool:resume_line": -0.88,
+    "tool:enable_roaming": -0.97,
+    "tool:refuel_data": -0.98,
+    "tool:transfer_to_human_agents": 0.99
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "f0c15021-047d-4910-865d-5af339639746",
+    "termination_reason": "user_stop",
+    "selected_message_index": 51,
+    "message_count": 56,
+    "decision_rule": "Choose a late-stage troubleshooting turn where the billing block has been cleared, the line is active again, and multiple device-level fixes have already failed, making escalation the most grounded next move.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Highest score goes to transfer_to_human_agents because additional automated steps are no longer well supported by the visible evidence and repeating them would not advance the case.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "best_action is transfer_to_human_agents because payment, line reactivation, reboot, mobile-data toggle, and SIM reseat have all already been attempted without resolving the no-service state"
+    ]
+  }
+}

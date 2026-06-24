@@ -1,0 +1,75 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]bad_vpn|data_saver_mode_on|user_abroad_roaming_disabled_on[PERSONA:None]_step_17_manual_747",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]bad_vpn|data_saver_mode_on|user_abroad_roaming_disabled_on[PERSONA:None]",
+  "step_id": 17,
+  "query": "I’m currently abroad in France, so I am roaming. I haven’t made any recent changes to my phone settings, and I haven’t tried restarting my device yet. What should I do next to get excellent internet speed?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports very slow or interrupted mobile data and says they need excellent speed.\nassistant: After an initial failed lookup with an unknown phone number, the assistant obtains the real phone number, authenticates the account, checks the relevant line and plan, and confirms data usage is still below the plan limit.\nuser: The user clarifies they are abroad in France and roaming, and asks what to do next. The visible line details show roaming is not enabled on the affected line.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Since you’re abroad and roaming is not yet enabled on the line, the next step is to enable roaming so your phone can use mobile data in France."
+      },
+      {
+        "source": "think-refine",
+        "text": "Visible context rules out a data-cap problem and introduces international usage abroad, so enabling roaming is the most grounded next action before deeper device troubleshooting."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.22,
+      "margin": 0.55,
+      "disagreement": 0.08,
+      "verifier_confidence": 0.91,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.93,
+    "think": 0.13,
+    "tool:get_customer_by_phone": -0.84,
+    "tool:get_customer_by_name": -0.98,
+    "tool:get_details_by_id": 0.31,
+    "tool:get_bills_for_customer": -0.89,
+    "tool:send_payment_request": -0.98,
+    "tool:check_payment_request": -0.98,
+    "tool:make_payment": -0.99,
+    "tool:resume_line": -0.76,
+    "tool:enable_roaming": 0.96,
+    "tool:refuel_data": -0.74,
+    "tool:transfer_to_human_agents": -0.29
+  },
+  "best_action": "tool:enable_roaming",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "8ce14ca5-754f-42e6-b030-03cd0004490c",
+    "termination_reason": "user_stop",
+    "selected_message_index": 17,
+    "message_count": 35,
+    "decision_rule": "Choose a user turn where being abroad becomes explicit and the visible line state already shows roaming disabled, making a single telecom setting action newly justified.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Highest score goes to enabling roaming because the abroad context and disabled roaming setting align directly with the next remedy.",
+    "notes": [
+      "the query is strictly the visible user utterance at the decision point",
+      "history_summary does not include later discovery of Data Saver or VPN issues",
+      "best_action is enable_roaming because it is the most direct visible blocker at this state, even though further optimization is needed later"
+    ]
+  }
+}

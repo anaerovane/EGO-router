@@ -1,0 +1,75 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_overdue_bill_suspension_step_21_manual_507",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|overdue_bill_suspension[PERSONA:None]",
+  "step_id": 21,
+  "query": "I've completed the payment for the overdue bill. What should I do next to get my service restored?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: Hi, my phone has been showing \"No Service\" for the past few hours and I can’t make any calls or use mobile data. Can you help me fix this?\nassistant: The assistant asks for the phone number to identify the account.\nuser: Sure, my phone number is 555-123-2002.\nassistant: The assistant looks up the account, checks the affected line, finds it suspended, and reviews billing information.\nassistant: The assistant explains that the line is suspended because of an overdue $65 bill and says payment is needed before service can be restored.\nuser: I'm ready to make the payment to restore my service. Could you please send me the payment request so I can proceed?\nassistant: The assistant sends the payment request and tells the user service can be restored after payment completes.\nuser: I've completed the payment for the overdue bill. What should I do next to get my service restored?",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for confirming the payment. I’ll verify the bill status and restore the suspended line if the payment has posted."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user says payment is complete, so the next grounded move is to verify the relevant bill record and resume the suspended line rather than ask for unrelated troubleshooting details."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.23,
+      "margin": 0.42,
+      "disagreement": 0.11,
+      "verifier_confidence": 0.9,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:toggle_data",
+    "tool:grant_app_permission",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.91,
+    "think": 0.14,
+    "tool:get_customer_by_phone": -0.85,
+    "tool:get_details_by_id": 0.91,
+    "tool:get_data_usage": -0.73,
+    "tool:refuel_data": -0.95,
+    "tool:send_payment_request": -0.58,
+    "tool:resume_line": 0.49,
+    "tool:enable_roaming": -0.94,
+    "tool:toggle_data": -0.62,
+    "tool:grant_app_permission": -0.97,
+    "tool:transfer_to_human_agents": -0.41
+  },
+  "best_action": "tool:get_details_by_id",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "b3a0854d-1336-4401-b089-0e136c541a2e",
+    "termination_reason": "user_stop",
+    "selected_message_index": 21,
+    "message_count": 38,
+    "decision_rule": "Choose a post-payment confirmation turn where service restoration is likely but still requires a grounded status verification before executing an account-changing action.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores prefer the safest action that verifies visible payment completion before resuming service.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample deliberately prefers verification over immediate resumption to diversify best_action and reflect prudent billing workflow.",
+      "No hidden task fields were used in the query or summary."
+    ]
+  }
+}

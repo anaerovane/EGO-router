@@ -1,0 +1,81 @@
+{
+  "sample_id": "tau2_airline_task_14_step_14_manual_858",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "14",
+  "step_id": 14,
+  "query": "I don’t have my reservation ID handy. Could you please look it up for me? The trip details should be under my user ID, mohamed_silva_9265. And yes, I want to keep the same origin, destination, and travel dates—just switch to the cheapest business class round trip, direct or not.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user first asks to check gift card and certificate balances.\nassistant: The assistant retrieves the user details from user ID mohamed_silva_9265, reports the balances, and then calculates the totals for gift cards and certificates when asked.\nuser: The user then asks to change an upcoming reservation while keeping the same trip dates and route but switching to the cheapest available business-class round trip.\nassistant: The assistant asks for the reservation ID or offers to look it up.\nuser: The user says the reservation ID is not handy, repeats the user ID, and confirms that the change request is to keep the same origin, destination, and dates while finding the cheapest business-class round trip, even if it is not direct.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes. I’ll pull up your reservation from the trips on your account so I can compare business-class options on the same dates and route."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has already confirmed the change criteria but lacks the reservation ID, so the grounded next move is to retrieve the reservation details from the account rather than ask for more trip information."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.16,
+      "margin": 0.74,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.86,
+    "think": 0.12,
+    "tool:book_reservation": -0.93,
+    "tool:calculate": -0.42,
+    "tool:cancel_reservation": -0.96,
+    "tool:get_flight_status": -0.88,
+    "tool:get_reservation_details": 0.99,
+    "tool:get_user_details": -0.19,
+    "tool:list_all_airports": -0.97,
+    "tool:search_direct_flight": -0.67,
+    "tool:search_onestop_flight": -0.67,
+    "tool:send_certificate": -0.94,
+    "tool:transfer_to_human_agents": -0.53,
+    "tool:update_reservation_baggages": -0.97,
+    "tool:update_reservation_flights": -0.78,
+    "tool:update_reservation_passengers": -0.97
+  },
+  "best_action": "tool:get_reservation_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_airline_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "901bd589-ef4b-4664-8985-bef756cad670",
+    "termination_reason": "user_stop",
+    "selected_message_index": 14,
+    "message_count": 30,
+    "decision_rule": "Choose the turn where the user has specified the desired modification criteria but the reservation identifier itself is missing, making reservation lookup the next grounded action.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. get_reservation_details is highest because the account already exposes the reservation to inspect, and searching flights before retrieving the booked itinerary would be premature.",
+    "notes": [
+      "this airline sample adds diversity with a modification workflow instead of a cancellation/refund workflow",
+      "the user query is visible only and does not rely on hidden reservation metadata",
+      "best_action is get_reservation_details because the assistant needs the current itinerary before searching replacement business-class options"
+    ]
+  }
+}

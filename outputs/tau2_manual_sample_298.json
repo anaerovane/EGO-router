@@ -1,0 +1,83 @@
+{
+  "sample_id": "tau2_airline_task_4_step_19_manual_298",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "4",
+  "step_id": 19,
+  "query": "I’m sure it was June 7th, New York to Chicago. I booked it through your website under my account. Maybe there’s a system error or something, but I definitely had that flight and it was canceled last minute. I really need you to help me get compensation for all the trouble this caused. Isn’t there anything you can do?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user is upset about a canceled business flight and wants compensation.\nassistant: The assistant asks for the user ID and reservation ID.\nuser: The user provides user ID sophia_silva_7557 but does not know the reservation ID.\nassistant: The assistant asks for the date and route of the canceled flight.\nuser: The user says the flight was on June 7 from New York to Chicago and describes missing an important meeting.\nassistant/tool: The assistant retrieves the user profile and checks multiple existing reservations under the account but does not find a matching business flight from New York to Chicago on June 7.\nassistant: The assistant says it could not find the flight and asks the user to double-check the date or route or provide any other details.\nuser: The user insists the flight definitely existed, suggests there may be a system issue, and again asks whether anything can be done for compensation.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I’m sorry this has been so frustrating. Since I still can’t verify the canceled flight in the account data you’ve provided, the best next step is to escalate this to a human support agent who can investigate possible system issues and compensation options."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user is asking for compensation on a flight the assistant cannot locate in the available records, so escalation is more grounded than repeating the same lookup steps."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.1,
+      "margin": 0.85,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.98,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.72,
+    "think": 0.14,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.94,
+    "tool:cancel_reservation": -0.97,
+    "tool:get_flight_status": -0.71,
+    "tool:get_reservation_details": -0.36,
+    "tool:get_user_details": -0.64,
+    "tool:list_all_airports": -0.97,
+    "tool:search_direct_flight": -0.95,
+    "tool:search_onestop_flight": -0.95,
+    "tool:send_certificate": -0.89,
+    "tool:transfer_to_human_agents": 0.99,
+    "tool:update_reservation_baggages": -0.97,
+    "tool:update_reservation_flights": -0.96,
+    "tool:update_reservation_passengers": -0.97
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "763ba26d-28ca-4192-891a-9ee194a3ea75",
+    "termination_reason": "user_stop",
+    "selected_message_index": 19,
+    "message_count": 26,
+    "decision_rule": "Use the later user turn where the assistant has already failed to locate the claimed flight and the user alleges a possible system error; escalation is the most grounded next move when compensation cannot be resolved from visible records.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "selected_message_index is 19 because it occurs after the failed reservation search and adds the system-error/escalation cue",
+      "special case: no grounded certificate or compensation amount can be offered because the flight could not be verified in visible tool results"
+    ]
+  }
+}

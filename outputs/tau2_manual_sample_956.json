@@ -1,0 +1,72 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_airplane_mode_on_break_apn_settings_lock_sim_card_pin_step_13_manual_956",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|break_apn_settings|lock_sim_card_pin[PERSONA:None]",
+  "step_id": 13,
+  "query": "I see that Airplane Mode is currently enabled on my phone. What should I do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports several hours of \"No Service\" and inability to call or use mobile data.\nassistant: The assistant authenticates the account using the user’s phone number and name, finds the relevant active line, and asks the user to check the status bar.\nuser: The user runs the status-bar check.\ntool: The status bar shows Airplane Mode is enabled.\nuser: The user reports that Airplane Mode is on and asks what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Airplane Mode is blocking the cellular connection, so the next step is to turn it off and see whether service comes back."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible diagnostic result already identifies a concrete cause of the no-service issue. The most grounded next action is to have the user toggle Airplane Mode off before exploring deeper causes like SIM or APN issues."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.13,
+      "margin": 0.79,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.96,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:add_goodwill_credit",
+    "tool:apply_payment_extension",
+    "tool:change_plan",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:lift_line_suspension",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.81,
+    "think": 0.44,
+    "tool:add_goodwill_credit": -0.95,
+    "tool:apply_payment_extension": -0.93,
+    "tool:change_plan": -0.9,
+    "tool:get_customer_by_phone": -0.74,
+    "tool:get_details_by_id": -0.22,
+    "tool:lift_line_suspension": -0.84,
+    "tool:refuel_data": -0.9,
+    "tool:send_payment_request": -0.91,
+    "tool:transfer_to_human_agents": -0.63
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "26f41c9b-fa8f-4ea6-9677-f83c31826b9b",
+    "termination_reason": "user_stop",
+    "selected_message_index": 13,
+    "message_count": 24,
+    "decision_rule": "Choose a device-diagnostic user turn where the next assistant move should be guidance rather than an assistant-side backend tool call.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. think is highest because the correct next step is to instruct the user to toggle Airplane Mode off on-device, while the available assistant-side tool set contains no direct phone-control action for this turn.",
+    "notes": [
+      "query comes directly from the selected visible user message, not hidden task text",
+      "history_summary stops at the decision point and excludes the later user device action and SIM-lock discovery",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is think because the grounded next move is assistant reasoning plus user guidance, not a backend account operation"
+    ]
+  }
+}

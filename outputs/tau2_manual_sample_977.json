@@ -1,0 +1,75 @@
+{
+  "sample_id": "tau2_telecom_task_[service_issue]airplane_mode_on|overdue_bill_suspension[PERSONA:None]_step_15_manual_977",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|overdue_bill_suspension[PERSONA:None]",
+  "step_id": 15,
+  "query": "I'm ready to make the payment to restore my service. Could you please send me the payment request so I can proceed?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports a phone showing No Service.\nassistant: The assistant authenticates the account, checks the relevant line, and finds the line is suspended.\nassistant: The assistant retrieves the bills, identifies an overdue $65.00 bill as the cause of suspension, and verifies that no payment request is currently pending.\nuser: The user says they are ready to pay and explicitly asks for the payment request to be sent.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Absolutely. I’ll send the payment request for the overdue bill now so you can complete the payment and we can restore your service."
+      },
+      {
+        "source": "think-refine",
+        "text": "The line suspension cause is already established, and the user is explicitly authorizing the supported next step, so sending the payment request is the most direct grounded action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.08,
+      "margin": 0.9,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.9,
+    "think": 0.05,
+    "tool:get_customer_by_phone": -0.97,
+    "tool:get_customer_by_name": -0.99,
+    "tool:get_details_by_id": -0.63,
+    "tool:get_bills_for_customer": -0.52,
+    "tool:send_payment_request": 0.99,
+    "tool:check_payment_request": -0.91,
+    "tool:make_payment": -0.72,
+    "tool:resume_line": -0.95,
+    "tool:enable_roaming": -0.97,
+    "tool:refuel_data": -0.98,
+    "tool:transfer_to_human_agents": -0.67
+  },
+  "best_action": "tool:send_payment_request",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "b3a0854d-1336-4401-b089-0e136c541a2e",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 38,
+    "decision_rule": "Choose a user turn where overdue-bill suspension has been confirmed and there is no current payment request, making payment-request creation the enabled next step.",
+    "scoring_method": "Manual one-step proxy scoring from the visible telecom state. Highest score goes to the action that advances the overdue-bill workflow exactly as the policy requires.",
+    "notes": [
+      "query is from the visible user request after the no-request check",
+      "history summary excludes later payment completion and line restoration",
+      "this sample adds a telecom best_action type not used elsewhere in the batch"
+    ]
+  }
+}

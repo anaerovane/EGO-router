@@ -1,0 +1,67 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_airplane_mode_overdue_bill_suspension_step_31_manual_656",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|overdue_bill_suspension[PERSONA:None]",
+  "step_id": 31,
+  "query": "I've restarted my phone as you suggested, but my status bar is still showing Airplane Mode and I don't see any signal yet. What should I do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports No Service on phone number 555-123-2002.\nassistant: The assistant identifies an overdue bill, sends a payment request, the user pays bill B1234321, and the assistant resumes the suspended line.\nassistant: After service restoration on the account side, the assistant asks the user to reboot the phone.\nuser: After rebooting, the user reports that the status bar still shows Airplane Mode and there is still no signal.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Since your service is restored on the line but the phone is still stuck in Airplane Mode, the next step is to turn Airplane Mode off on the device."
+      },
+      {
+        "source": "think-refine",
+        "text": "The account-side suspension has already been resolved, and the only visible blocker now is the device remaining in Airplane Mode, so the grounded next move is to toggle that setting."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.04,
+      "margin": 0.95,
+      "disagreement": 0.01,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_details_by_id",
+    "tool:resume_line",
+    "tool:toggle_airplane_mode",
+    "tool:reboot_device",
+    "tool:check_status_bar",
+    "tool:check_network_status",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.98,
+    "think": 0.03,
+    "tool:get_details_by_id": -0.77,
+    "tool:resume_line": -0.96,
+    "tool:toggle_airplane_mode": 0.99,
+    "tool:reboot_device": -0.31,
+    "tool:check_status_bar": -0.08,
+    "tool:check_network_status": 0.11,
+    "tool:transfer_to_human_agents": -0.73
+  },
+  "best_action": "tool:toggle_airplane_mode",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "task_service_issue_airplane_mode_overdue_bill_suspension_trial_0",
+    "termination_reason": "user_stop",
+    "selected_message_index": 31,
+    "message_count": 38,
+    "decision_rule": "Choose a late troubleshooting state where the network-side suspension is already fixed and the remaining visible blocker is a device-level Airplane Mode condition reported by the user.",
+    "scoring_method": "Manual one-step proxy scoring from the visible telecom state. Scores reward the direct device-setting fix over redundant checks because the user explicitly reports Airplane Mode after reboot.",
+    "notes": [
+      "This state is intentionally post-payment and post-line-resume, unlike billing-oriented telecom samples.",
+      "history_summary excludes the later successful Airplane Mode toggle and closing resolution.",
+      "best_action is toggle_airplane_mode because that is the only remaining clearly surfaced issue in the visible state."
+    ]
+  }
+}

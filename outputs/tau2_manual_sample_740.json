@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_retail_task_0_step_7_manual_740",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "retail",
+  "task_id": "0",
+  "step_id": 7,
+  "query": "Yes, the order ID is W2378156. Let me know if you need any more details!",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to exchange a mechanical keyboard and a smart thermostat from a received order.\nassistant: The assistant authenticates the account using name and zip code and identifies user Yusuf Rossi.\nassistant: The assistant asks for the order ID containing the items to exchange.\nuser: The user confirms that the relevant order is W2378156.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Perfect, thanks. I’ll pull up order W2378156 so I can verify the items in it and see what exchange options we can support."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has now supplied the missing order identifier, so the next grounded move is to retrieve that order rather than jumping ahead to product matching or exchange execution."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.17,
+      "margin": 0.68,
+      "disagreement": 0.06,
+      "verifier_confidence": 0.93,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_user_id_by_email",
+    "tool:find_user_id_by_name_zip",
+    "tool:get_user_details",
+    "tool:get_order_details",
+    "tool:get_product_details",
+    "tool:list_all_product_types",
+    "tool:modify_pending_order_items",
+    "tool:modify_pending_order_address",
+    "tool:modify_pending_order_payment",
+    "tool:cancel_pending_order",
+    "tool:return_delivered_order_items",
+    "tool:exchange_delivered_order_items",
+    "tool:modify_user_address",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.93,
+    "think": 0.13,
+    "tool:find_user_id_by_email": -0.87,
+    "tool:find_user_id_by_name_zip": -0.84,
+    "tool:get_user_details": -0.49,
+    "tool:get_order_details": 0.95,
+    "tool:get_product_details": -0.24,
+    "tool:list_all_product_types": -0.8,
+    "tool:modify_pending_order_items": -0.9,
+    "tool:modify_pending_order_address": -0.96,
+    "tool:modify_pending_order_payment": -0.94,
+    "tool:cancel_pending_order": -0.86,
+    "tool:return_delivered_order_items": -0.77,
+    "tool:exchange_delivered_order_items": -0.54,
+    "tool:modify_user_address": -0.97,
+    "tool:transfer_to_human_agents": -0.39,
+    "tool:calculate": -0.64
+  },
+  "best_action": "tool:get_order_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_retail_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "91be1eb1-dfc9-42a6-95f8-0e64866b72f4",
+    "termination_reason": "user_stop",
+    "selected_message_index": 7,
+    "message_count": 24,
+    "decision_rule": "Choose an early order-selection state after authentication where the user supplies the exact order ID needed to ground the exchange flow.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores reward retrieving the newly identified order before catalog lookup or exchange execution.",
+    "notes": [
+      "This sample is similar in action type to 732 but comes from a different source run and earlier, leaner state history.",
+      "best_action is get_order_details because order W2378156 is now the key grounded object for the exchange flow."
+    ]
+  }
+}

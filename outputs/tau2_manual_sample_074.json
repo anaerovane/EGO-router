@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_28_step_9_manual_074",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "28",
+  "step_id": 9,
+  "query": "I really don’t think it’s fair to get nothing back at all. Even if it’s basic economy, there should be some way to help customers in situations like this. Can you at least offer a partial refund—maybe 50%? Or even just 10% back would be better than losing everything. I’m sure there’s something you can do. Please check again or escalate this for me.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user asks to cancel reservation SI5UKW and wants a refund.\nassistant: The assistant asks for the user ID and cancellation reason.\nuser: The user provides user ID amelia_rossi_1297 and says the reason is a change of plans.\nassistant called tool: get_reservation_details for reservation SI5UKW.\nassistant: The assistant explains that the reservation is basic economy, outside the 24-hour window, has no travel insurance, and is not eligible for a refund for this reason.\nuser: The user asks whether any compensation like a voucher or gift card is available.\nassistant: The assistant says the policy does not allow compensation or vouchers in this situation and offers transfer to a human agent.\nuser: The user continues to dispute the outcome and asks for at least a partial refund.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I’m sorry, but I can’t offer a partial refund here under the visible policy. Since you’d like the decision reviewed further, I can transfer you to a human agent."
+      },
+      {
+        "source": "think-refine",
+        "text": "The policy-based denial has already been explained and no new factual information has appeared that would change eligibility. The user's continued request is effectively a request for exception handling, so escalation is the most grounded next action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.13,
+      "margin": 0.82,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.96,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": 0.22,
+    "think": 0.12,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.88,
+    "tool:cancel_reservation": -0.95,
+    "tool:get_flight_status": -0.76,
+    "tool:get_reservation_details": -0.41,
+    "tool:get_user_details": -0.52,
+    "tool:list_all_airports": -0.96,
+    "tool:search_direct_flight": -0.94,
+    "tool:search_onestop_flight": -0.94,
+    "tool:send_certificate": -0.91,
+    "tool:transfer_to_human_agents": 0.99,
+    "tool:update_reservation_baggages": -0.93,
+    "tool:update_reservation_flights": -0.93,
+    "tool:update_reservation_passengers": -0.93
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "5584dba4-1242-4dc0-a509-23f40fdb9f43",
+    "termination_reason": "user_stop",
+    "selected_message_index": 9,
+    "message_count": 14,
+    "decision_rule": "Choose a user turn where refund ineligibility has already been explained, compensation has been denied, and the user keeps asking for an exception-level partial refund.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is supported by the real next assistant action, which transfers the user to a human agent"
+    ]
+  }
+}

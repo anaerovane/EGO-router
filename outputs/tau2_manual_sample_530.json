@@ -1,0 +1,59 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_break_apn_lock_pin_step_23_manual_530",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]break_apn_settings|lock_sim_card_pin[PERSONA:None]",
+  "step_id": 23,
+  "query": "I’m not sure what my other PIN options are, and I don’t have the SIM packaging with me. I think it’s best if you transfer me to a human agent for help with the SIM security.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports a service issue.\nassistant: The assistant identifies the line and inspects details while troubleshooting a SIM lock problem.\nassistant: After the user tries the remembered SIM PIN and the phone still reports that the SIM card is locked, the assistant warns that more failed attempts could PUK-lock the SIM.\nuser: The user says they do not know other PIN options, do not have the SIM packaging, and explicitly requests transfer to a human agent for SIM-security help.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. Since this involves SIM security and you don’t have safer self-service recovery information available, I’ll transfer you to a human agent now."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user is explicitly asking for escalation after a failed PIN attempt, and the visible risk of further lockout makes human transfer more appropriate than continued self-service guessing."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.16,
+      "margin": 0.79,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.96,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.9,
+    "think": 0.1,
+    "tool:get_customer_by_phone": -0.95,
+    "tool:get_details_by_id": -0.47,
+    "tool:transfer_to_human_agents": 0.97
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "2b37a4b6-e47f-4e4e-9d42-4d8037922ff2",
+    "termination_reason": "user_stop",
+    "selected_message_index": 23,
+    "message_count": 28,
+    "decision_rule": "Choose a late service-recovery turn where the user explicitly requests escalation and further self-service attempts carry visible SIM lock risk.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Highest score goes to transfer because the user has both requested it and exhausted the safe information available for continued PIN troubleshooting.",
+    "notes": [
+      "This is a successful escalation example, unlike some earlier mobile-data escalation trajectories that end poorly.",
+      "The visible state already contains enough identity and line context, so more retrieval would not resolve the SIM-security impasse.",
+      "The summary stops before the actual transfer confirmation message to avoid future leakage."
+    ]
+  }
+}

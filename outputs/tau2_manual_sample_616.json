@@ -1,0 +1,76 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_bad_network_preference_user_abroad_roaming_enabled_off_step_30_manual_616",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]bad_network_preference|user_abroad_roaming_enabled_off[PERSONA:Hard]",
+  "step_id": 30,
+  "query": "It looks like my phone shows an excellent 5G signal, and mobile data is enabled. But I noticed that data roaming is not enabled. Could that be the problem? What should I do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports slow or nonworking mobile data while traveling in France and provides phone number 555-123-2002.\nassistant: The assistant retrieves the customer, confirms that line 555-123-2002 has roaming enabled on the carrier side and still has data remaining, then walks the user through troubleshooting.\nuser: The user checks the network mode, finds the phone was set to 2G only, switches it to 4G/5G preferred, and then reports that the speed test still shows no connection.\nuser: After checking network status and the status bar, the user sees excellent 5G signal, mobile data enabled, but device-level data roaming turned off, and asks what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes — if data roaming is turned off on the phone, that can block mobile data abroad even when the line itself allows roaming. The next step is to enable roaming on the device."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible diagnostics already isolate the remaining blocker: device-side roaming is off while the user is abroad, so the grounded next action is to enable roaming rather than inspect billing or line status again."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.19,
+      "margin": 0.7,
+      "disagreement": 0.07,
+      "verifier_confidence": 0.94,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_customer_by_id",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:get_bills_for_customer",
+    "tool:enable_roaming",
+    "tool:resume_line",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.92,
+    "think": 0.11,
+    "tool:get_customer_by_phone": -0.89,
+    "tool:get_customer_by_name": -0.95,
+    "tool:get_customer_by_id": -0.91,
+    "tool:get_details_by_id": -0.27,
+    "tool:get_data_usage": -0.55,
+    "tool:get_bills_for_customer": -0.94,
+    "tool:enable_roaming": 0.98,
+    "tool:resume_line": -0.88,
+    "tool:refuel_data": -0.83,
+    "tool:send_payment_request": -0.97,
+    "tool:transfer_to_human_agents": -0.41
+  },
+  "best_action": "tool:enable_roaming",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "81a8049a-35b6-45ab-b6ea-e6f7cb883e4f",
+    "termination_reason": "user_stop",
+    "selected_message_index": 30,
+    "message_count": 41,
+    "decision_rule": "Choose a later troubleshooting state where earlier causes have been ruled out and the remaining visible blocker is the phone’s disabled roaming setting while abroad.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores prioritize the action that directly removes the last identified barrier to mobile data abroad, without revisiting already-checked account state.",
+    "notes": [
+      "The query is a direct copy of the user’s observed network state and question.",
+      "history_summary includes only visible diagnostics before the decision point and omits the later successful speed test.",
+      "enable_roaming represents the domain-appropriate next action category for turning on device-level roaming in this benchmark.",
+      "This sample adds a telecom troubleshooting state with a configuration-enablement best action."
+    ]
+  }
+}

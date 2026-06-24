@@ -1,0 +1,84 @@
+{
+  "sample_id": "tau2_retail_task_50_step_5_manual_984",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "retail",
+  "task_id": "50",
+  "step_id": 5,
+  "query": "Yes, please transfer me to someone who can help. I really need this order delivered, so I’d appreciate it if you could escalate this for me. Thank you.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user urgently asks to undo a canceled order and have the original items delivered quickly.\nassistant: The assistant explains twice that canceled orders cannot be reversed or reinstated and offers help placing a new order instead.\nuser: The user explicitly asks to be transferred to someone who can help and requests escalation.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I understand. Since the visible policy explanation has not resolved the request and the user is explicitly asking for escalation, the next step is to transfer the case to a human agent with a short summary of the urgency and cancelled-order issue."
+      },
+      {
+        "source": "think-refine",
+        "text": "The request is now an escalation request rather than a standard self-service order action. A human handoff is more grounded than repeating the same policy or attempting an impossible reinstatement."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.09,
+      "margin": 0.89,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_user_id_by_email",
+    "tool:find_user_id_by_name_zip",
+    "tool:get_user_details",
+    "tool:get_order_details",
+    "tool:get_product_details",
+    "tool:list_all_product_types",
+    "tool:modify_pending_order_items",
+    "tool:modify_pending_order_address",
+    "tool:modify_pending_order_payment",
+    "tool:cancel_pending_order",
+    "tool:return_delivered_order_items",
+    "tool:exchange_delivered_order_items",
+    "tool:modify_user_address",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.83,
+    "think": 0.08,
+    "tool:find_user_id_by_email": -0.97,
+    "tool:find_user_id_by_name_zip": -0.97,
+    "tool:get_user_details": -0.92,
+    "tool:get_order_details": -0.9,
+    "tool:get_product_details": -0.96,
+    "tool:list_all_product_types": -0.98,
+    "tool:modify_pending_order_items": -0.98,
+    "tool:modify_pending_order_address": -0.98,
+    "tool:modify_pending_order_payment": -0.98,
+    "tool:cancel_pending_order": -0.97,
+    "tool:return_delivered_order_items": -0.97,
+    "tool:exchange_delivered_order_items": -0.97,
+    "tool:modify_user_address": -0.98,
+    "tool:transfer_to_human_agents": 0.97,
+    "tool:calculate": -0.95
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_retail_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "6a958aab-9770-443f-9a54-db08a7961d3f",
+    "termination_reason": "user_stop",
+    "selected_message_index": 5,
+    "message_count": 6,
+    "decision_rule": "Choose an explicit escalation turn where visible retail policy has already been explained and the user directly requests human assistance.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect that escalation is the only action that advances the request without violating the no-reinstatement policy already stated in the conversation.",
+    "notes": [
+      "query comes directly from the selected visible user message including the transfer marker",
+      "history_summary stops before any transfer action is performed",
+      "best_action is the argmax because the user explicitly requests human escalation after a policy dead end",
+      "this sample provides a short high-certainty handoff case to diversify the batch"
+    ]
+  }
+}

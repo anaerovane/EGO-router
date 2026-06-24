@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_4_step_3_manual_257",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "4",
+  "step_id": 3,
+  "query": "My user ID is sophia_silva_7557. I don’t have the reservation ID handy right now, but I can give you the date and route if that helps. I really need you to do something about this because missing that meeting was a huge deal for me.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user says a business flight earlier this month was canceled at the last minute and asks for compensation for the inconvenience and missed meeting.\nassistant: The assistant expresses sympathy and asks for the user ID and reservation ID of the canceled flight to verify the details.\nuser: The user provides user ID sophia_silva_7557, says the reservation ID is unavailable, and asks whether the issue can still be looked up from other visible details.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for sharing your user ID. I’ll look up your account first so I can identify the canceled trip you're referring to and check what compensation options may apply."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user is missing the reservation identifier but has provided the account identifier needed to begin verification, so the grounded next step is to retrieve the user details."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.12,
+      "margin": 0.86,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.46,
+    "think": 0.11,
+    "tool:book_reservation": -0.97,
+    "tool:calculate": -0.89,
+    "tool:cancel_reservation": -0.93,
+    "tool:get_flight_status": -0.54,
+    "tool:get_reservation_details": -0.3,
+    "tool:get_user_details": 0.99,
+    "tool:list_all_airports": -0.94,
+    "tool:search_direct_flight": -0.94,
+    "tool:search_onestop_flight": -0.94,
+    "tool:send_certificate": -0.78,
+    "tool:transfer_to_human_agents": -0.28,
+    "tool:update_reservation_baggages": -0.94,
+    "tool:update_reservation_flights": -0.94,
+    "tool:update_reservation_passengers": -0.94
+  },
+  "best_action": "tool:get_user_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "a8815ef2-f6a3-40c7-962a-f4677cf57dad",
+    "termination_reason": "user_stop",
+    "selected_message_index": 3,
+    "message_count": 29,
+    "decision_rule": "Choose the user turn where the complaint can first be grounded with an account identifier despite the missing reservation ID, making account lookup the most direct next action.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is get_user_details because the assistant needs sophia_silva_7557's account history to identify the canceled business trip before it can assess delay-related explanation or compensation options."
+    ]
+  }
+}

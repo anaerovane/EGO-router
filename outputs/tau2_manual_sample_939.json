@@ -1,0 +1,80 @@
+{
+  "sample_id": "tau2_telecom_task_bad_network_roaming_off_step_19_manual_939",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]bad_network_preference|user_abroad_roaming_enabled_off[PERSONA:Hard]",
+  "step_id": 19,
+  "query": "I checked, and it says my phone is set to \"2G only\" for the network mode. What should I do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user is in France with mobile data that is very slow and wants excellent speed.\nassistant: The assistant asks for the phone number.\nuser: The user provides 555-123-2002.\nassistant: The assistant verifies the customer, checks the line, confirms roaming is enabled on the carrier side, and verifies the user is still under the data cap.\nassistant: The assistant explains that the plan should support good international speeds and asks the user to inspect device network settings.\nuser: The user reports that the phone is currently set to 2G-only network mode.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "That explains the slow speeds. The next step is to switch the handset from 2G-only to a 4G or 5G preferred network mode."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible evidence identifies a concrete misconfiguration on the device, so the grounded next move is to change the network preference rather than continue generic troubleshooting."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.12,
+      "margin": 0.61,
+      "disagreement": 0.06,
+      "verifier_confidence": 0.94,
+      "steps_remaining": 5
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_details",
+    "tool:find_line_by_phone",
+    "tool:get_plan_details",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:check_roaming_status",
+    "tool:toggle_data_roaming",
+    "tool:check_network_status",
+    "tool:toggle_airplane_mode",
+    "tool:toggle_mobile_data",
+    "tool:toggle_data_saver",
+    "tool:run_speed_test",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.89,
+    "think": 0.98,
+    "tool:get_customer_details": -0.86,
+    "tool:find_line_by_phone": -0.76,
+    "tool:get_plan_details": -0.66,
+    "tool:get_data_usage": -0.58,
+    "tool:refuel_data": -0.84,
+    "tool:check_roaming_status": -0.33,
+    "tool:toggle_data_roaming": -0.47,
+    "tool:check_network_status": -0.09,
+    "tool:toggle_airplane_mode": -0.71,
+    "tool:toggle_mobile_data": -0.69,
+    "tool:toggle_data_saver": -0.81,
+    "tool:run_speed_test": -0.63,
+    "tool:transfer_to_human_agents": -0.56
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "81a8049a-f92a-4358-88f3-2681b1a7519e",
+    "termination_reason": "user_stop",
+    "selected_message_index": 19,
+    "message_count": 41,
+    "decision_rule": "Choose a state where the user reveals the exact device misconfiguration and the assistant should convert that diagnosis into a targeted next instruction.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. think is highest because the next assistant move should be a grounded instruction to switch off 2G-only mode, not an account-side tool action.",
+    "notes": [
+      "query comes directly from the selected visible user message, not hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "this sample intentionally captures an instruction-first decision point after diagnosis rather than a direct environment write"
+    ]
+  }
+}

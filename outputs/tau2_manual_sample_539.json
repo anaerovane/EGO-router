@@ -1,0 +1,84 @@
+{
+  "sample_id": "tau2_retail_task_44_step_11_manual_539",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "retail",
+  "task_id": "44",
+  "step_id": 11,
+  "query": "Yes, please go ahead and make the swap to the cheapest Desk Lamp and put the $17.99 refund on a gift card. That’s the only change I want to make to this order.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: Wants to swap the desk lamp in order W9300146 to the cheapest desk lamp option and asks how much refund they would receive on a gift card.\nassistant: Authenticated the user by name and zip, retrieved order #W9300146, and inspected the desk lamp product variants.\nassistant: Reported the current lamp price, identified the cheapest available replacement variant, and stated that the refund difference would be $17.99 to a gift card.\nuser: Explicitly asked to make that exact swap and apply the refund to a gift card.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Got it — you’ve approved the cheapest desk lamp replacement and the refund destination, so I can update the pending order now."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has already selected a specific pending-order replacement and refund method, so the direct next step is to modify the order items rather than re-run catalog checks."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.11,
+      "margin": 0.87,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.98,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_user_id_by_email",
+    "tool:find_user_id_by_name_zip",
+    "tool:get_user_details",
+    "tool:get_order_details",
+    "tool:get_product_details",
+    "tool:list_all_product_types",
+    "tool:modify_pending_order_items",
+    "tool:modify_pending_order_address",
+    "tool:modify_pending_order_payment",
+    "tool:cancel_pending_order",
+    "tool:return_delivered_order_items",
+    "tool:exchange_delivered_order_items",
+    "tool:modify_user_address",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.93,
+    "think": 0.06,
+    "tool:find_user_id_by_email": -0.97,
+    "tool:find_user_id_by_name_zip": -0.9,
+    "tool:get_user_details": -0.76,
+    "tool:get_order_details": -0.48,
+    "tool:get_product_details": -0.58,
+    "tool:list_all_product_types": -0.97,
+    "tool:modify_pending_order_items": 0.99,
+    "tool:modify_pending_order_address": -0.96,
+    "tool:modify_pending_order_payment": -0.64,
+    "tool:cancel_pending_order": -0.95,
+    "tool:return_delivered_order_items": -0.98,
+    "tool:exchange_delivered_order_items": -0.92,
+    "tool:modify_user_address": -0.98,
+    "tool:transfer_to_human_agents": -0.72,
+    "tool:calculate": -0.81
+  },
+  "best_action": "tool:modify_pending_order_items",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_retail_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "1005448f-435c-4bdf-9717-910629df3560",
+    "termination_reason": "user_stop",
+    "selected_message_index": 11,
+    "message_count": 16,
+    "decision_rule": "Choose a state where a pending-order item swap has been fully specified, including the exact replacement direction and refund destination, so execution is the most direct grounded next action.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Highest score goes to modifying the pending order items because the order is pending and the user has explicitly authorized the change.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample adds diversity by focusing on pending-order modification rather than delivered-item return or exchange."
+    ]
+  }
+}

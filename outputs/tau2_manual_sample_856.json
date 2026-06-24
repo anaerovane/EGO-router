@@ -1,0 +1,67 @@
+{
+  "sample_id": "tau2_telecom_task_data_usage_exceeded_roaming_off_step_29_manual_856",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 29,
+  "query": "I checked my phone’s settings, and it looks like data roaming is currently turned off. Should I go ahead and enable data roaming now?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user is abroad in France and says mobile data is either unusable or extremely slow.\nassistant: The assistant authenticates the account via phone number, finds the matching line, verifies roaming is enabled on the line itself, and checks data usage.\nassistant: The assistant finds that the user exceeded the data limit, the user authorizes a 2GB refuel, and the assistant successfully adds it.\nassistant: After the refuel, the user still has no connection, so the assistant asks the user to inspect device-side settings relevant to international roaming.\nuser: The user reports that the phone has cellular connection, excellent 5G signal, mobile data enabled, and device-side data roaming turned off, then asks whether to enable data roaming now.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes — please enable data roaming on your phone now, since roaming is already enabled on the line from our side."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible state already isolates the missing piece to the phone setting itself: the user is abroad, account-side roaming is enabled, extra data has been added, and device-side data roaming is off."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.24,
+      "margin": 0.51,
+      "disagreement": 0.08,
+      "verifier_confidence": 0.9,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:enable_roaming",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.74,
+    "think": 0.41,
+    "tool:get_customer_by_phone": -0.9,
+    "tool:get_details_by_id": -0.61,
+    "tool:get_data_usage": -0.67,
+    "tool:change_plan": -0.97,
+    "tool:refuel_data": -0.71,
+    "tool:enable_roaming": 0.96,
+    "tool:transfer_to_human_agents": -0.55
+  },
+  "best_action": "tool:enable_roaming",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "d482947b-bc2a-479d-9084-e6cc9dceac7a",
+    "termination_reason": "user_stop",
+    "selected_message_index": 29,
+    "message_count": 38,
+    "decision_rule": "Choose a device-configuration troubleshooting turn where network-side fixes are already complete and the user has surfaced the missing device-side setting.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. enable_roaming is highest because the user has surfaced the exact missing device-side setting while abroad, and the represented action set uses enable_roaming as the closest grounded intervention for restoring service.",
+    "notes": [
+      "the visible state isolates device-side roaming as the remaining blocker after line-side roaming and data refill are already in place",
+      "the represented action set uses enable_roaming as the closest grounded step for resolving the surfaced device-side blocker",
+      "no future leakage: the later successful speed test is not assumed in the state"
+    ]
+  }
+}

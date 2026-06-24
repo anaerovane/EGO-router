@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_31_step_13_manual_022",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "31",
+  "step_id": 13,
+  "query": "Yes, that’s the reservation I want to change. I’d like to switch to an earlier nonstop flight from JFK to my destination on May 17. Can you check what nonstop options are available that day? Also, I only want to make the change if it costs less than $100. I don’t want to buy a new ticket—just change my existing one if possible.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to change an upcoming flight from JFK to an earlier nonstop option because they need to get home sooner.\nassistant: The assistant asks for the user ID and reservation ID.\nuser: The user provides user ID daiki_lee_6144 but does not know the reservation ID.\nassistant called tools: get_user_details.\ntool get_user_details returned three reservation IDs for the user.\nassistant: The assistant asks the user to identify which reservation is the one departing from JFK.\nuser: The user says the target flight departs from JFK on May 17.\nassistant called tools: get_reservation_details for the listed reservations.\ntool results identify reservation DF89BM as the one departing from JFK on May 17 and show it is booked in basic economy.\nassistant: The assistant identifies DF89BM and asks what change the user wants to make.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I can check that for you. I’ll look for earlier nonstop options tied to reservation DF89BM on May 17 and see whether a change on the existing booking is possible within your cost limit."
+      },
+      {
+        "source": "think-refine",
+        "text": "The target reservation is now identified and the user has specified the desired earlier nonstop change plus a price constraint. The grounded next move is to assess flight-change options on the current booking."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.22,
+      "margin": 0.64,
+      "disagreement": 0.08,
+      "verifier_confidence": 0.92,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.21,
+    "think": 0.11,
+    "tool:book_reservation": -0.95,
+    "tool:calculate": -0.72,
+    "tool:cancel_reservation": -0.81,
+    "tool:get_flight_status": -0.74,
+    "tool:get_reservation_details": -0.36,
+    "tool:get_user_details": -0.45,
+    "tool:list_all_airports": -0.94,
+    "tool:search_direct_flight": 0.42,
+    "tool:search_onestop_flight": -0.66,
+    "tool:send_certificate": -0.86,
+    "tool:transfer_to_human_agents": -0.38,
+    "tool:update_reservation_baggages": -0.89,
+    "tool:update_reservation_flights": -0.58,
+    "tool:update_reservation_passengers": -0.89
+  },
+  "best_action": "tool:search_direct_flight",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "2e092051-0b2f-4be5-8502-326d3dfc15cf",
+    "termination_reason": "user_stop",
+    "selected_message_index": 13,
+    "message_count": 18,
+    "decision_rule": "Choose a user turn where the target reservation is identified and the user specifies a desired nonstop replacement plus a cost constraint.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user’s request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action reflects the requested nonstop-option lookup, even though the real assistant then declined based on fare rules without executing the search"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_35_step_34_manual_384",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "35",
+  "step_id": 34,
+  "query": "Yes, I’d like to book the one-stop flight: HAT069 from JFK to SEA and HAT258 from SEA to SFO for $290 in economy. The passenger details are the same as my previous booking. I don’t need any baggage or insurance. Let me know if you need my payment info.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user asks to cancel a JFK to MCO reservation.\nassistant: The assistant retrieves the account, identifies reservation M20IZO, and discusses refund eligibility.\nuser: After deciding to proceed under standard policy terms, the user asks for help booking a new JFK to SFO flight on May 24 in economy and wants the second cheapest option.\nassistant: The assistant completes the cancellation and searches direct JFK to SFO options, finding only one direct flight.\nuser: The user asks to also check one-stop flights.\ntool: One-stop combinations are searched.\nassistant: The assistant lists direct and one-stop economy options, sorts them by price, and identifies HAT069 plus HAT258 for $290 as the second cheapest option. The assistant asks whether the user wants to book it and to provide passenger details and payment method.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Great — I can book the HAT069 plus HAT258 one-stop economy itinerary and use the same passenger details as the previous reservation."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has chosen a specific itinerary and confirmed no bags or insurance, so the next grounded step is to prepare the booking with the reused passenger details and collect or confirm payment."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.11,
+      "margin": 0.86,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.82,
+    "think": 0.13,
+    "tool:book_reservation": 0.99,
+    "tool:calculate": -0.72,
+    "tool:cancel_reservation": -0.98,
+    "tool:get_flight_status": -0.95,
+    "tool:get_reservation_details": -0.86,
+    "tool:get_user_details": -0.81,
+    "tool:list_all_airports": -0.99,
+    "tool:search_direct_flight": -0.95,
+    "tool:search_onestop_flight": -0.73,
+    "tool:send_certificate": -0.99,
+    "tool:transfer_to_human_agents": -0.98,
+    "tool:update_reservation_baggages": -0.99,
+    "tool:update_reservation_flights": -0.98,
+    "tool:update_reservation_passengers": -0.99
+  },
+  "best_action": "tool:book_reservation",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "0734781e-a7a5-4c85-8007-9bcafa55d337",
+    "termination_reason": "user_stop",
+    "selected_message_index": 34,
+    "message_count": 51,
+    "decision_rule": "Use the itinerary-selection turn because the second-cheapest one-stop option is now explicitly chosen and the user's service preferences are already specified, making booking the direct next action.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message",
+      "history_summary stops before later payment clarification, amount correction, and booking execution",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "payment is not fully confirmed yet, but booking preparation is the operational branch opened by this message"
+    ]
+  }
+}

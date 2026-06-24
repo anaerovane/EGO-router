@@ -1,0 +1,84 @@
+{
+  "sample_id": "tau2_retail_task_50_step_5_manual_960",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "retail",
+  "task_id": "50",
+  "step_id": 5,
+  "query": "Yes, please transfer me to someone who can help. I really need this order delivered, so I’d appreciate it if you could escalate this for me. Thank you.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user urgently wants to undo an order cancellation and have the original order delivered.\nassistant: The assistant explains that cancelled orders cannot be reversed or reinstated under policy and offers help placing a new order.\nuser: The user pushes back, asks the assistant to check again, and requests escalation if reversal is impossible.\nassistant: The assistant repeats that a cancelled order cannot be reactivated and says it can transfer the user to a human agent if desired.\nuser: The user explicitly asks to be transferred and includes the transfer token.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood — since you want this escalated after the cancellation-policy denial, I’ll transfer you to a human agent now."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user’s request is outside the self-service policy path already explained, and they now explicitly ask for escalation, so transfer is the most grounded next action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.1,
+      "margin": 0.89,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.98,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:calculate",
+    "tool:cancel_pending_order",
+    "tool:exchange_delivered_order_items",
+    "tool:find_user_id_by_email",
+    "tool:find_user_id_by_name_zip",
+    "tool:get_order_details",
+    "tool:get_product_details",
+    "tool:get_user_details",
+    "tool:list_all_product_types",
+    "tool:modify_pending_order_address",
+    "tool:modify_pending_order_items",
+    "tool:modify_pending_order_payment",
+    "tool:modify_user_address",
+    "tool:return_delivered_order_items",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.85,
+    "think": 0.16,
+    "tool:calculate": -0.91,
+    "tool:cancel_pending_order": -0.98,
+    "tool:exchange_delivered_order_items": -0.97,
+    "tool:find_user_id_by_email": -0.93,
+    "tool:find_user_id_by_name_zip": -0.93,
+    "tool:get_order_details": -0.61,
+    "tool:get_product_details": -0.98,
+    "tool:get_user_details": -0.84,
+    "tool:list_all_product_types": -0.99,
+    "tool:modify_pending_order_address": -0.97,
+    "tool:modify_pending_order_items": -0.97,
+    "tool:modify_pending_order_payment": -0.96,
+    "tool:modify_user_address": -0.95,
+    "tool:return_delivered_order_items": -0.95,
+    "tool:transfer_to_human_agents": 0.99
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_retail_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "6a958aab-9770-443f-9a54-db08a7961d3f",
+    "termination_reason": "user_stop",
+    "selected_message_index": 5,
+    "message_count": 6,
+    "decision_rule": "Choose a user turn where the assistant has already stated a visible policy denial and the customer explicitly requests escalation instead of further self-service handling.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. transfer_to_human_agents is highest because the cancellation reversal request is outside the stated policy path and the user explicitly asks to escalate.",
+    "notes": [
+      "query comes directly from the selected visible user message, including the transfer token, not hidden task text",
+      "history_summary stops at the decision point and excludes any post-transfer content because none follows in the episode",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is transfer_to_human_agents because the user explicitly requests escalation after the assistant repeats the cancellation policy"
+    ]
+  }
+}

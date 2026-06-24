@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_vpn_data_saver_step_55_manual_879",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]bad_vpn|data_saver_mode_on|user_abroad_roaming_disabled_on[PERSONA:None]",
+  "step_id": 55,
+  "query": "I reset the APN settings and rebooted my device as you instructed. Unfortunately, when I ran the speed test again, it still failed and said \"No Connection.\" This is getting frustrating—what else can we do?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user is troubleshooting a mobile-data issue while abroad.\nassistant: The assistant authenticates the account, walks through device-state checks, inspects line usage, and guides the user through several grounded remediation steps including VPN disconnection, APN inspection, APN reset, and a reboot.\nuser: After following those visible troubleshooting steps, the user reports that the speed test still fails with no connection and asks what else can be done.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for trying all of that. Since the guided troubleshooting steps still didn’t restore data service, I need to escalate this to a human agent for deeper investigation."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible self-service troubleshooting path has been exhausted without success, so the grounded next step is to transfer the case rather than repeat ineffective diagnostics or invent unsupported fixes."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.14,
+      "margin": 0.79,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.96,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:toggle_data",
+    "tool:grant_app_permission",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.92,
+    "think": 0.12,
+    "tool:get_customer_by_phone": -0.96,
+    "tool:get_details_by_id": -0.28,
+    "tool:get_data_usage": -0.52,
+    "tool:refuel_data": -0.89,
+    "tool:send_payment_request": -0.97,
+    "tool:resume_line": -0.81,
+    "tool:enable_roaming": -0.43,
+    "tool:toggle_data": -0.68,
+    "tool:grant_app_permission": -0.85,
+    "tool:transfer_to_human_agents": 0.98
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "4bb18fae-1613-4968-8330-7c19f44281fb",
+    "termination_reason": "user_stop",
+    "selected_message_index": 55,
+    "message_count": 60,
+    "decision_rule": "Choose a late-state troubleshooting turn where multiple visible self-service interventions have failed, making escalation the most grounded next action under telecom support scope.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores reflect immediate usefulness after repeated unsuccessful troubleshooting using only evidence visible before the transfer point.",
+    "notes": [
+      "query comes directly from the selected visible user message",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "this sample intentionally contrasts with sample 877 by using a much later state from the same real trajectory where escalation becomes justified"
+    ]
+  }
+}

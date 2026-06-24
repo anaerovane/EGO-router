@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_40_step_11_manual_394",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "40",
+  "step_id": 11,
+  "query": "Thank you, that’s all I needed. Have a great day! \n\n###STOP###",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user asks to change a passenger name on a reservation from Mei Lee to Mei Garcia.\nassistant: The assistant asks for the user ID and reservation ID.\nuser: The user provides user ID anya_garcia_5901 and reservation 3RK2T9.\ntool: The reservation details show passengers Anya Garcia and Mei Lee.\nassistant: The assistant summarizes the requested name change and asks for confirmation.\nuser: The user confirms the name change.\nassistant: The assistant says it will proceed with the update.\ntool: The reservation is updated so the passenger is now Mei Garcia.\nassistant: The assistant confirms the name change was successful.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "You’re welcome. The passenger name update is already complete, so there’s nothing else you need to do."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible state shows the requested passenger update has already been applied and the user is simply ending the conversation."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.05,
+      "margin": 0.96,
+      "disagreement": 0.01,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 0
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": 0.99,
+    "think": -0.23,
+    "tool:book_reservation": -0.99,
+    "tool:calculate": -0.98,
+    "tool:cancel_reservation": -0.99,
+    "tool:get_flight_status": -0.98,
+    "tool:get_reservation_details": -0.95,
+    "tool:get_user_details": -0.97,
+    "tool:list_all_airports": -0.99,
+    "tool:search_direct_flight": -0.99,
+    "tool:search_onestop_flight": -0.99,
+    "tool:send_certificate": -0.98,
+    "tool:transfer_to_human_agents": -0.96,
+    "tool:update_reservation_baggages": -0.99,
+    "tool:update_reservation_flights": -0.99,
+    "tool:update_reservation_passengers": -0.88
+  },
+  "best_action": "stop",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "cba46119-6160-4d58-ae64-0868d7717594",
+    "termination_reason": "user_stop",
+    "selected_message_index": 11,
+    "message_count": 12,
+    "decision_rule": "Use the later closing user turn because it is an exact source user message after the passenger name update has already been completed, so stop is the only grounded next action.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message including the stop marker",
+      "history_summary stops at the completed name-change confirmation and excludes future content",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "special case: terminal thank-you turn after successful passenger update"
+    ]
+  }
+}

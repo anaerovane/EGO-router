@@ -1,0 +1,93 @@
+{
+  "sample_id": "tau2_telecom_task_roaming_datasaver_step_15_manual_995",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_saver_mode_on|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 15,
+  "query": "I’m using an Android phone. Could you walk me through how to check if Data Roaming is enabled and make sure my network settings are optimized for the best possible speed? I want to be sure I’m getting excellent service while I’m here.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that mobile data is not working well while abroad in France and wants excellent speed.\nassistant: The assistant asks for the phone number associated with the account.\nuser: The user provides phone number 555-123-2002.\nassistant: The assistant authenticates the account, finds the relevant line, and confirms that carrier-side international roaming is enabled.\nassistant: The assistant checks data usage and plan details and confirms the user still has available data under the plan.\nassistant: The assistant summarizes that the line is active, roaming is enabled on the carrier side, and the remaining issue likely depends on device configuration.\nuser: The user says they are on Android and asks how to verify Data Roaming and optimize network settings for the best possible speed while abroad.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Since the carrier-side checks look fine and the user is asking for device-side guidance, the best next move is to think through the troubleshooting sequence before choosing the first phone-setting action."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible state does not yet show whether roaming, data saver, airplane mode, or network preference is wrong on the device, so a planning step is more grounded than directly toggling any one setting."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.31,
+      "margin": 0.34,
+      "disagreement": 0.12,
+      "verifier_confidence": 0.82,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_customer",
+    "tool:get_customer_details",
+    "tool:list_lines",
+    "tool:get_line_details",
+    "tool:get_plan_details",
+    "tool:get_device_details",
+    "tool:get_billing_details",
+    "tool:check_status_bar",
+    "tool:check_network_status",
+    "tool:set_airplane_mode",
+    "tool:set_data_roaming",
+    "tool:set_network_mode_preference",
+    "tool:toggle_data_saver_mode",
+    "tool:check_sim_status",
+    "tool:reseat_sim_card",
+    "tool:refuel_data",
+    "tool:pay_bill",
+    "tool:transfer_to_human_agents",
+    "tool:run_speed_test",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.84,
+    "think": 0.91,
+    "tool:find_customer": -0.96,
+    "tool:get_customer_details": -0.73,
+    "tool:list_lines": -0.66,
+    "tool:get_line_details": -0.35,
+    "tool:get_plan_details": -0.41,
+    "tool:get_device_details": -0.27,
+    "tool:get_billing_details": -0.94,
+    "tool:check_status_bar": 0.29,
+    "tool:check_network_status": 0.57,
+    "tool:set_airplane_mode": -0.42,
+    "tool:set_data_roaming": -0.18,
+    "tool:set_network_mode_preference": 0.11,
+    "tool:toggle_data_saver_mode": -0.12,
+    "tool:check_sim_status": -0.31,
+    "tool:reseat_sim_card": -0.74,
+    "tool:refuel_data": -0.93,
+    "tool:pay_bill": -0.98,
+    "tool:transfer_to_human_agents": -0.52,
+    "tool:run_speed_test": 0.21,
+    "tool:calculate": -0.98
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "94859ed5-ec56-4c15-a817-df006f807f07",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 34,
+    "decision_rule": "Choose a telecom troubleshooting turn before any device diagnostics have been surfaced, where the assistant must decide whether to gather phone-state evidence or jump to a specific fix.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. think is highest because the carrier account checks are complete but the device-side failure mode is still underdetermined from visible evidence.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops before the user runs device diagnostics and before the successful resolution later in the episode",
+      "This sample intentionally uses think as the best action to diversify action types across the batch."
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_vpn_data_saver_step_19_manual_877",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]bad_vpn|data_saver_mode_on|user_abroad_roaming_disabled_on[PERSONA:None]",
+  "step_id": 19,
+  "query": "Here’s what my phone reports: - Airplane mode is off. - SIM card is active. - Cellular connection is connected. - Signal strength is excellent. - Network type is 5G. - Mobile data is on. - Data roaming is off. - VPN is connected. What should I do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user says mobile data is not working while abroad and wants excellent internet speed restored.\nassistant: The assistant authenticates the account using the phone number and starts guided diagnostics.\nassistant: The assistant asks the user to inspect the device’s network indicators and report the current mobile-data status.\nuser: The user reports a healthy local radio state, but also says they are abroad, data roaming is off, and a VPN is connected.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "You should first turn on data roaming on the phone, since you’re abroad and the device is explicitly showing that roaming is off."
+      },
+      {
+        "source": "think-refine",
+        "text": "Given the visible device report, the clearest immediate blocker is that data roaming is off while the user is abroad; a usage lookup is secondary until that obvious settings issue is corrected."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.28,
+      "margin": 0.41,
+      "disagreement": 0.12,
+      "verifier_confidence": 0.85,
+      "steps_remaining": 5
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:toggle_data",
+    "tool:grant_app_permission",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.91,
+    "think": 0.24,
+    "tool:get_customer_by_phone": -0.88,
+    "tool:get_details_by_id": 0.09,
+    "tool:get_data_usage": 0.36,
+    "tool:refuel_data": -0.56,
+    "tool:send_payment_request": -0.93,
+    "tool:resume_line": -0.79,
+    "tool:enable_roaming": 0.97,
+    "tool:toggle_data": -0.41,
+    "tool:grant_app_permission": -0.9,
+    "tool:transfer_to_human_agents": -0.34
+  },
+  "best_action": "tool:enable_roaming",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "4bb18fae-1613-4968-8330-7c19f44281fb",
+    "termination_reason": "user_stop",
+    "selected_message_index": 19,
+    "message_count": 60,
+    "decision_rule": "Choose a mid-diagnosis user turn where the phone-state report already reveals an obvious blocker: the user is abroad and device-side data roaming is off.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. enable_roaming is highest because the most visible and actionable cause is the disabled roaming setting on the phone; additional usage checks are weaker until that blocker is removed.",
+    "notes": [
+      "query comes directly from the selected visible user message",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "enable_roaming is now best supported because the visible report already shows the user is abroad with device-side data roaming turned off, which is a direct blocker independent of later quota questions"
+    ]
+  }
+}

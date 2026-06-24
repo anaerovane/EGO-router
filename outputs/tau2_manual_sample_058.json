@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_8_step_23_manual_058",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "8",
+  "step_id": 23,
+  "query": "Great, that price works for me! Please use the $500 certificate for payment. You can go ahead and proceed with the booking for both passengers with aisle and middle seats together. Thank you!",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user asks to book the exact same May 10 ORD-to-PHL flight again for May 26.\nassistant: The assistant asks for the user ID.\nuser: The user provides user ID sophia_silva_7557.\nassistant called tools: get_user_details, get_reservation_details for the matching prior reservation, and search_direct_flight for ORD to PHL on 2024-05-26.\nassistant: The assistant identifies the prior flight as HAT271 in economy and confirms it is available on May 26. It asks for final booking details.\nuser: The user asks to add Kevin Smith as a second passenger, says there should be no checked baggage or travel insurance, wants to pay using only one certificate, and asks for the total price first.\nassistant called tool: search_direct_flight.\nassistant: The assistant confirms that HAT271 has availability in economy at $174 per seat, for a total of $348 for two passengers, and asks which certificate to use.\nuser: The user says the price works, chooses the $500 certificate, and authorizes the assistant to proceed with the booking for both passengers.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "To confirm before I book: one-way ORD to PHL on May 26 on flight HAT271 in economy for Sophia Silva and Kevin Smith, no checked baggage, no travel insurance, using your $500 certificate for the $348 total. Please reply yes and I’ll complete the booking."
+      },
+      {
+        "source": "think-refine",
+        "text": "The itinerary, second passenger, total price, and single-certificate payment choice are all grounded, but the assistant’s established pattern is to provide one final explicit booking confirmation before calling the booking tool."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.29,
+      "margin": 0.53,
+      "disagreement": 0.09,
+      "verifier_confidence": 0.89,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": 0.87,
+    "think": 0.21,
+    "tool:book_reservation": 0.46,
+    "tool:calculate": -0.81,
+    "tool:cancel_reservation": -0.92,
+    "tool:get_flight_status": -0.59,
+    "tool:get_reservation_details": -0.41,
+    "tool:get_user_details": -0.47,
+    "tool:list_all_airports": -0.94,
+    "tool:search_direct_flight": -0.68,
+    "tool:search_onestop_flight": -0.91,
+    "tool:send_certificate": -0.78,
+    "tool:transfer_to_human_agents": -0.35,
+    "tool:update_reservation_baggages": -0.89,
+    "tool:update_reservation_flights": -0.9,
+    "tool:update_reservation_passengers": -0.89
+  },
+  "best_action": "stop",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "76797414-a37f-4139-aa51-02846e915b7b",
+    "termination_reason": "user_stop",
+    "selected_message_index": 23,
+    "message_count": 30,
+    "decision_rule": "Choose a user turn where the exact flight, passenger list, and single-certificate payment choice are all established, but the assistant still gives one final explicit confirmation prompt before issuing the booking call.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user’s request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is stop because the real next assistant move is a final booking confirmation summary rather than an immediate book_reservation call"
+    ]
+  }
+}

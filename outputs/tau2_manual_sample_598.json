@@ -1,0 +1,72 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_data_saver_data_usage_exceeded_step_29_manual_598",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_saver_mode_on|data_usage_exceeded[PERSONA:Easy]",
+  "step_id": 29,
+  "query": "The diagnostic shows that Data Saver mode is ON right now. Could this be what’s slowing down my connection? What should I do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports mobile data that is extremely slow or not working and says excellent speed is needed.\nassistant: The assistant asks for the affected phone number.\nuser: The user provides phone number 555-123-2002.\nassistant: The assistant retrieves the customer, line, billing, and plan details and determines that the line has exceeded the included data allowance.\nassistant: The assistant refuels 2 GB of extra data for the line after the user chooses that option.\nassistant: The assistant asks the user to test data speed again.\nuser: The user reports that a speed test is only Good at 44 Mbps and wants Excellent speed.\nassistant: The assistant asks the user to check the network mode, and the user reports that 4G/5G preferred is already set.\nassistant: The assistant then asks the user to check for data restrictions on the phone.\nuser: The user reports that Data Saver mode is ON and asks what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes — Data Saver can absolutely limit throughput. The next step is to reason from that device finding and tell the user to disable it before retesting."
+      },
+      {
+        "source": "think-refine",
+        "text": "The account-side data cap has already been addressed and network mode is already optimal, so the newly surfaced on-device restriction should drive the next instruction rather than another backend tool call."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.22,
+      "margin": 0.49,
+      "disagreement": 0.09,
+      "verifier_confidence": 0.9,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents",
+    "tool:enable_roaming"
+  ],
+  "action_scores": {
+    "stop": -0.85,
+    "think": 0.94,
+    "tool:get_customer_by_phone": -0.98,
+    "tool:get_details_by_id": -0.58,
+    "tool:get_bills_for_customer": -0.9,
+    "tool:get_data_usage": -0.46,
+    "tool:change_plan": -0.82,
+    "tool:refuel_data": -0.91,
+    "tool:send_payment_request": -0.94,
+    "tool:transfer_to_human_agents": -0.36,
+    "tool:enable_roaming": -0.77
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "8b56de43-5c22-4171-9f94-f839b7cfeb3f",
+    "termination_reason": "assistant_stop",
+    "selected_message_index": 29,
+    "message_count": 37,
+    "decision_rule": "Choose a state where the backend data-limit problem has already been solved and a new on-device restriction is exposed, making instruction planning more appropriate than another system action.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores rank think highest because Data Saver is a handset setting surfaced by user diagnostics, not something the visible backend tools can directly fix.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample captures a telecom state where the correct next move is explanatory reasoning around a device restriction."
+    ]
+  }
+}

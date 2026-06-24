@@ -1,0 +1,80 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_usage_exceeded_user_abroad_roaming_enabled_off_step_17_manual_895",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 17,
+  "query": "I’d like to refuel 2 GB of data, please. I don’t want to change my plan—just add the extra data for now. What do I need to do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user is abroad in France and says mobile data is not working or is extremely slow, and wants excellent speed.\nassistant: The assistant asks for the affected phone number.\nuser: The user provides 555-123-2002.\nassistant: The assistant looks up the customer, inspects the line and plan, and determines that roaming is enabled on the carrier side but the line has already used 15.1 GB of a 15 GB plan allowance.\nassistant: The assistant explains that data is cut off because the limit is exceeded and says the user can refuel extra data instead of changing plans.\nuser: The user chooses a 2 GB refuel and asks what the next step is.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I can add the 2 GB refuel for you now, since you’ve chosen that option instead of changing plans."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has already selected the 2 GB refuel and asked what to do next, so carrying out the refuel is better grounded than treating this as merely tentative interest."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.31,
+      "margin": 0.38,
+      "disagreement": 0.12,
+      "verifier_confidence": 0.84,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:suspend_line",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:check_roaming_status",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.73,
+    "think": 0.28,
+    "tool:get_customer_by_phone": -0.78,
+    "tool:get_customer_by_name": -0.89,
+    "tool:get_details_by_id": -0.41,
+    "tool:get_bills_for_customer": -0.7,
+    "tool:get_data_usage": -0.36,
+    "tool:change_plan": -0.9,
+    "tool:refuel_data": 0.98,
+    "tool:send_payment_request": -0.58,
+    "tool:suspend_line": -0.96,
+    "tool:resume_line": -0.95,
+    "tool:enable_roaming": -0.83,
+    "tool:check_roaming_status": -0.65,
+    "tool:transfer_to_human_agents": -0.76
+  },
+  "best_action": "tool:refuel_data",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "2d66d764-c5b6-4f86-a255-ce4ded06ef59",
+    "termination_reason": "user_stop",
+    "selected_message_index": 17,
+    "message_count": 40,
+    "decision_rule": "Choose a state where the user explicitly selects the 2 GB refuel option after the assistant has already established that overage is the cause of the issue and refuel is the remedy.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. refuel_data is highest because the user has already chosen the concrete add-on and asked what to do next, so executing that selected remedy is the most grounded move.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "refuel_data is best supported because the visible state already frames 2 GB refuel as the chosen remedy rather than a vague preference requiring more abstract deliberation"
+    ]
+  }
+}

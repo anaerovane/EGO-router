@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_retail_task_9_step_21_manual_842",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "retail",
+  "task_id": "9",
+  "step_id": 21,
+  "query": "I’ll go with the Black High Brightness Desk Lamp with the AC adapter. Let me know what the price difference is and how I can pay.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user asks to exchange a delivered water bottle and desk lamp.\nassistant: The assistant authenticates the account via name and zip, retrieves order #W6390527, and identifies the delivered desk lamp and water bottle variants.\nuser: The user first asks for a bigger water bottle and a brighter AC-powered desk lamp.\nassistant: The assistant retrieves catalog options for both products and presents matching replacements.\nuser: The user changes scope to only the desk lamp, then selects the Black High Brightness Desk Lamp with AC adapter and asks for the price difference and payment instructions.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Got it — I’ll compare your current desk lamp price with that replacement and tell you the amount due, then I can walk you through the payment method we have on file."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has chosen a specific replacement lamp and wants the exact amount owed plus payment path, so the next grounded step is to calculate the exchange difference before asking for final payment confirmation."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.19,
+      "margin": 0.64,
+      "disagreement": 0.06,
+      "verifier_confidence": 0.93,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_user_id_by_email",
+    "tool:find_user_id_by_name_zip",
+    "tool:get_user_details",
+    "tool:get_order_details",
+    "tool:get_product_details",
+    "tool:list_all_product_types",
+    "tool:modify_pending_order_items",
+    "tool:modify_pending_order_address",
+    "tool:modify_pending_order_payment",
+    "tool:cancel_pending_order",
+    "tool:return_delivered_order_items",
+    "tool:exchange_delivered_order_items",
+    "tool:modify_user_address",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.96,
+    "think": 0.16,
+    "tool:find_user_id_by_email": -0.99,
+    "tool:find_user_id_by_name_zip": -0.92,
+    "tool:get_user_details": -0.74,
+    "tool:get_order_details": -0.39,
+    "tool:get_product_details": -0.31,
+    "tool:list_all_product_types": -0.87,
+    "tool:modify_pending_order_items": -0.98,
+    "tool:modify_pending_order_address": -0.99,
+    "tool:modify_pending_order_payment": -0.68,
+    "tool:cancel_pending_order": -0.94,
+    "tool:return_delivered_order_items": -0.86,
+    "tool:exchange_delivered_order_items": -0.44,
+    "tool:modify_user_address": -0.99,
+    "tool:transfer_to_human_agents": -0.52,
+    "tool:calculate": 0.96
+  },
+  "best_action": "tool:calculate",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_retail_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "d8f6a4ea-39d2-4974-af70-733ff85f65bd",
+    "termination_reason": "user_stop",
+    "selected_message_index": 21,
+    "message_count": 32,
+    "decision_rule": "Choose a late retail exchange state where the user has already selected a concrete replacement item but asks for the price delta and payment path before approving the transaction.",
+    "scoring_method": "Manual one-step proxy scoring from visible state. Calculation is highest because the user explicitly asks for the amount due; payment mutation is premature until the assistant states the amount and secures consent for the stored method.",
+    "notes": [
+      "This sample uses a different retail task and product pair than nearby manual samples to diversify trajectories.",
+      "The decision point is state-level and does not leak the later PayPal confirmation or exchange execution."
+    ]
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "sample_id": "tau2_manual_sample_308_step_7_manual_10b7ac37-c466-4583-9409-4e42dd1b2719",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "40",
+  "selected_message_index": 7,
+  "step_id": 7,
+  "query": "Yes, that's correct. Please update the name to Mei Garcia and keep everything else the same.",
+  "state": {
+    "history_summary": "The user wants to change a passenger name on an existing reservation from Mei Lee to Mei Garcia. The assistant checked the reservation, confirmed the passenger list, and asked whether the date of birth should remain unchanged. The user now confirms the date of birth stays the same and explicitly approves updating the passenger name.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "The reservation and requested passenger-name change are already confirmed, so I can now update the passenger information."
+      },
+      {
+        "source": "think-refine",
+        "text": "Because the user approved the exact name correction with no other changes, the next step is to update the reservation passenger record."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.12,
+      "margin": 0.84,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.96,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.38,
+    "think": 0.08,
+    "tool:book_reservation": -0.97,
+    "tool:calculate": -0.86,
+    "tool:cancel_reservation": -0.91,
+    "tool:get_flight_status": -0.72,
+    "tool:get_reservation_details": -0.43,
+    "tool:get_user_details": -0.48,
+    "tool:list_all_airports": -0.95,
+    "tool:search_direct_flight": -0.94,
+    "tool:search_onestop_flight": -0.94,
+    "tool:send_certificate": -0.87,
+    "tool:transfer_to_human_agents": -0.55,
+    "tool:update_reservation_baggages": -0.92,
+    "tool:update_reservation_flights": -0.92,
+    "tool:update_reservation_passengers": 0.99
+  },
+  "best_action": "tool:update_reservation_passengers",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "10b7ac37-c466-4583-9409-4e42dd1b2719",
+    "termination_reason": "user_stop",
+    "selected_message_index": 7,
+    "message_count": 16,
+    "decision_rule": "Choose a user turn where the assistant has already summarized the passenger-name change and the user explicitly confirms the update.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user request using only visible conversation evidence.",
+    "notes": [
+      "manual / non-leaky annotation based only on transcript content visible before or at the selected user turn",
+      "query exactly matches the selected user message from the current source transcript file",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are grounded only in visible context from the transcript up to this turn",
+      "best_action is the argmax of action_scores"
+    ]
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "sample_id": "tau2_airline_task_46_step_11_manual_779",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "46",
+  "step_id": 11,
+  "query": "Yes, please transfer me to a human agent who can review my situation. Thank you.   ###TRANSFER###",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants a refund for travel insurance on a recent booking without cancelling the flight itself.\nassistant: The assistant explains the apparent insurance-refund policy, retrieves reservation H8Q05L, and then checks the user profile after the user pushes back on the policy outcome.\nassistant: The assistant still cannot offer the requested insurance-only refund through the visible flow.\nuser: The user asks to be transferred to a human agent for case review.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. I’ll transfer you to a human agent so they can review the insurance refund dispute on your booking."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user is contesting a policy-bound insurance outcome that the visible airline tools do not resolve, and they explicitly request escalation, so transfer is the most grounded next action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.06,
+      "margin": 0.94,
+      "disagreement": 0.02,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.91,
+    "think": -0.04,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.87,
+    "tool:cancel_reservation": -0.89,
+    "tool:get_flight_status": -0.96,
+    "tool:get_reservation_details": -0.63,
+    "tool:get_user_details": -0.58,
+    "tool:list_all_airports": -0.99,
+    "tool:search_direct_flight": -0.98,
+    "tool:search_onestop_flight": -0.98,
+    "tool:send_certificate": -0.93,
+    "tool:transfer_to_human_agents": 0.99,
+    "tool:update_reservation_baggages": -0.97,
+    "tool:update_reservation_flights": -0.95,
+    "tool:update_reservation_passengers": -0.97
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_airline_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "7acd1241-ed32-404a-aa36-ce7cc0edab26",
+    "termination_reason": "user_transfer",
+    "selected_message_index": 11,
+    "message_count": 12,
+    "decision_rule": "Choose a user turn where the dispute is policy-bound, no airline self-service tool can resolve it, and the user explicitly requests escalation.",
+    "scoring_method": "Manual one-step proxy scoring from the visible decision state. Transfer receives the highest score because further lookup or execution would not advance the insurance-only refund request.",
+    "notes": [
+      "The visible query includes the transfer marker because it is part of the original user message in the source episode.",
+      "This airline sample is used only for diversity after prioritizing retail and telecom cases."
+    ]
+  }
+}

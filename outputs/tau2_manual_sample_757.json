@@ -1,0 +1,76 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]_step_7_manual_757",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]",
+  "step_id": 7,
+  "query": "I toggled my mobile data off and back on as you suggested, but I still don’t have a connection—my speed test failed due to no connection. What should I try next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that mobile data is unreliable and wants excellent internet speed on the phone.\nassistant: The assistant has the user refresh the mobile-data connection by toggling data, but the follow-up speed test still fails due to no connection.\nuser: The user reports the failed speed test after the data toggle and asks what to try next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for checking. Since the connection still fails after refreshing mobile data, the next grounded step is to restore usable data service on the line."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible state suggests a capacity-related blocker remains after a basic device-side refresh, so adding data is the most plausible operational next move among the available telecom actions."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.31,
+      "margin": 0.33,
+      "disagreement": 0.12,
+      "verifier_confidence": 0.83,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.84,
+    "think": 0.22,
+    "tool:get_customer_by_phone": -0.88,
+    "tool:get_customer_by_name": -0.91,
+    "tool:get_details_by_id": -0.49,
+    "tool:get_bills_for_customer": -0.78,
+    "tool:send_payment_request": -0.95,
+    "tool:check_payment_request": -0.94,
+    "tool:make_payment": -0.97,
+    "tool:resume_line": -0.72,
+    "tool:enable_roaming": -0.87,
+    "tool:refuel_data": 0.55,
+    "tool:transfer_to_human_agents": 0.11
+  },
+  "best_action": "tool:refuel_data",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_op_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "4f24198b-155b-4ab1-a11b-f006edc04f06",
+    "termination_reason": "user_stop",
+    "selected_message_index": 7,
+    "message_count": 16,
+    "decision_rule": "Choose a user turn where a simple device-side toggle has already failed and the remaining visible issue is persistent lack of data connectivity, making an account-side data restoration action newly justified.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores leave some uncertainty because the exact hidden root cause is not stated to the user, but refueling data is still the strongest available operational move.",
+    "notes": [
+      "query is copied from the selected visible user turn",
+      "history_summary stops before the assistant refuels the line and before the later successful speed test",
+      "best_action is the argmax because it is the most plausible telecom backend action among the listed options for a no-connection state after a data refresh",
+      "the source reward_info contains a successful assistant refuel_data action followed by restored excellent speed"
+    ]
+  }
+}

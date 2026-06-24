@@ -1,0 +1,70 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_lock_sim_card_pin_overdue_bill_suspension_persona_easy_step_15_manual_609",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]lock_sim_card_pin|overdue_bill_suspension[PERSONA:Easy]",
+  "step_id": 15,
+  "query": "Yes, please transfer me to a human agent so I can get help unlocking my SIM card. Thank you! ###TRANSFER###",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that the phone shows No Service and they cannot make calls or use mobile data.\nassistant: The assistant authenticates the account by phone number and asks the user to inspect device status.\nuser: The user reports a No Signal icon with no airplane-mode icon present.\nassistant: The assistant asks the user to check SIM status.\nuser: The user reports that the SIM card is locked with a PIN code and asks what to do.\nassistant: The assistant explains that unlocking the SIM requires the correct PIN or further help if the PIN is unavailable.\nuser: The user explicitly requests transfer to a human agent for SIM-unlock assistance.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. Since you need help with the SIM lock itself, I’ll transfer you to a human agent now."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible state has reached an access boundary: the SIM is PIN-locked and the user is asking for escalation, so the grounded next action is transfer rather than more device probing."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.12,
+      "margin": 0.82,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.96,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:check_device_settings",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.9,
+    "think": 0.09,
+    "tool:get_customer_by_phone": -0.93,
+    "tool:get_details_by_id": -0.58,
+    "tool:get_data_usage": -0.91,
+    "tool:change_plan": -0.94,
+    "tool:refuel_data": -0.93,
+    "tool:check_device_settings": -0.34,
+    "tool:transfer_to_human_agents": 0.98,
+    "tool:calculate": -0.88
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom-workflow_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "85ea20f0-20a4-4cc7-b64b-8ddab8f0b925",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 16,
+    "decision_rule": "Choose a state where the user explicitly asks for escalation after the troubleshooting path reaches a SIM-lock boundary the assistant cannot resolve directly.",
+    "scoring_method": "Manual one-step proxy scoring from the visible telecom support state. Highest score goes to transfer_to_human_agents because the user requests escalation for SIM unlock help and no better self-service next action remains.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample adds an escalation decision type distinct from the data-remediation cases."
+    ]
+  }
+}

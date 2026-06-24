@@ -1,0 +1,89 @@
+{
+  "sample_id": "tau2_telecom_task_unseat_sim_step_21_manual_999",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|unseat_sim_card[PERSONA:None]",
+  "step_id": 21,
+  "query": "My phone says that there is no SIM card detected. What should I do about this?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that the phone has shown No Service for several hours and asks for help.\nassistant: The assistant authenticates the account using the provided phone number and name, confirms the line is active, and starts troubleshooting.\nassistant: The assistant asks the user to inspect the status bar.\nuser: The user reports that Airplane Mode is on.\nassistant: The assistant instructs the user to turn Airplane Mode off.\nuser: After turning it off, the user still sees No Signal and cannot use mobile data.\nassistant: The assistant asks the user to check SIM card status.\nuser: The user reports that no SIM card is detected in the phone and asks what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "A missing SIM detection points to a physical seating problem, so the next grounded troubleshooting action is to reseat the SIM card."
+      },
+      {
+        "source": "think-refine",
+        "text": "The line is already active and Airplane Mode has been cleared, leaving local SIM recognition as the visible blocker; reseating the SIM is more direct than escalating immediately."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.14,
+      "margin": 0.81,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.96,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_customer",
+    "tool:get_customer_details",
+    "tool:list_lines",
+    "tool:get_line_details",
+    "tool:get_plan_details",
+    "tool:get_device_details",
+    "tool:get_billing_details",
+    "tool:check_status_bar",
+    "tool:check_network_status",
+    "tool:set_airplane_mode",
+    "tool:set_data_roaming",
+    "tool:set_network_mode_preference",
+    "tool:check_sim_status",
+    "tool:reseat_sim_card",
+    "tool:transfer_to_human_agents",
+    "tool:pay_bill",
+    "tool:run_speed_test",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.88,
+    "think": 0.12,
+    "tool:find_customer": -0.97,
+    "tool:get_customer_details": -0.77,
+    "tool:list_lines": -0.72,
+    "tool:get_line_details": -0.49,
+    "tool:get_plan_details": -0.58,
+    "tool:get_device_details": -0.44,
+    "tool:get_billing_details": -0.96,
+    "tool:check_status_bar": -0.36,
+    "tool:check_network_status": -0.41,
+    "tool:set_airplane_mode": -0.69,
+    "tool:set_data_roaming": -0.73,
+    "tool:set_network_mode_preference": -0.74,
+    "tool:check_sim_status": -0.28,
+    "tool:reseat_sim_card": 0.98,
+    "tool:transfer_to_human_agents": -0.18,
+    "tool:pay_bill": -0.98,
+    "tool:run_speed_test": -0.86,
+    "tool:calculate": -0.98
+  },
+  "best_action": "tool:reseat_sim_card",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "53c02981-3701-46b2-bb27-97bc3dbf921f",
+    "termination_reason": "user_stop",
+    "selected_message_index": 21,
+    "message_count": 28,
+    "decision_rule": "Choose a telecom turn after one obvious blocker has already been removed so the remaining symptom isolates a physical SIM-recognition problem.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. reseat_sim_card is highest because the phone explicitly reports that no SIM card is detected after Airplane Mode has already been turned off.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary excludes the later successful reseat result and issue resolution",
+      "this sample uses a direct device-remediation action rather than another account-side telecom step"
+    ]
+  }
+}

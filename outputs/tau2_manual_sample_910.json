@@ -1,0 +1,98 @@
+{
+  "sample_id": "tau2_telecom_task_data_saver_step_43_manual_910",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]bad_network_preference|data_saver_mode_on|data_usage_exceeded[PERSONA:Hard]",
+  "step_id": 43,
+  "query": "It looks like Data Saver mode is ON. Could that be slowing things down? Should I turn it off to get excellent speed?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user says mobile data is extremely slow and they need excellent internet speed.\nassistant: The assistant asks for the phone number and retrieves the customer account.\nassistant: The assistant identifies the correct line, checks the plan, and finds that data usage exceeded the plan limit.\nassistant: The assistant gets the user to approve a 2 GB data refuel and applies it successfully.\nuser: The user says the internet is still extremely slow after refueling.\nassistant: The assistant asks the user to inspect network status.\nuser: The user reports poor signal, 2G network type, data enabled, and roaming off.\nassistant: The assistant enables roaming on the account side and instructs the user to switch the phone to prefer 4G/5G, then reboot and recheck.\nuser: The user reports that the phone is now on 5G with excellent signal, but a speed test still only rates the connection as good rather than excellent.\nassistant: The assistant asks the user to check for data restrictions.\nuser: The user reports that Data Saver mode is ON and asks whether turning it off would help achieve excellent speed.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes — Data Saver can absolutely limit throughput. The next step is to turn Data Saver off, then reboot and test your speed again to see if that restores excellent performance."
+      },
+      {
+        "source": "think-refine",
+        "text": "At this point the phone already has strong 5G signal and data access, so the remaining visible bottleneck is the device-side data restriction, making a Data Saver toggle the most direct next action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.13,
+      "margin": 0.85,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:refuel_data",
+    "tool:enable_roaming",
+    "tool:check_network_status",
+    "tool:check_network_mode_preference",
+    "tool:set_network_mode_preference",
+    "tool:check_data_restriction_status",
+    "tool:toggle_data_saver_mode",
+    "tool:check_roaming_status",
+    "tool:toggle_roaming",
+    "tool:check_data_usage",
+    "tool:check_status_bar",
+    "tool:toggle_airplane_mode",
+    "tool:toggle_data",
+    "tool:reboot_device",
+    "tool:run_speed_test",
+    "tool:check_apn_settings",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.84,
+    "think": 0.08,
+    "tool:get_customer_by_phone": -0.95,
+    "tool:get_customer_by_name": -0.98,
+    "tool:get_details_by_id": -0.81,
+    "tool:get_bills_for_customer": -0.99,
+    "tool:send_payment_request": -0.99,
+    "tool:refuel_data": -0.96,
+    "tool:enable_roaming": -0.77,
+    "tool:check_network_status": -0.43,
+    "tool:check_network_mode_preference": -0.62,
+    "tool:set_network_mode_preference": -0.58,
+    "tool:check_data_restriction_status": -0.27,
+    "tool:toggle_data_saver_mode": 0.99,
+    "tool:check_roaming_status": -0.69,
+    "tool:toggle_roaming": -0.91,
+    "tool:check_data_usage": -0.88,
+    "tool:check_status_bar": -0.57,
+    "tool:toggle_airplane_mode": -0.97,
+    "tool:toggle_data": -0.83,
+    "tool:reboot_device": -0.26,
+    "tool:run_speed_test": -0.18,
+    "tool:check_apn_settings": -0.61,
+    "tool:transfer_to_human_agents": -0.73
+  },
+  "best_action": "tool:toggle_data_saver_mode",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "51acce05-f499-4e93-958f-f9a5ee4d286c",
+    "termination_reason": "user_stop",
+    "selected_message_index": 43,
+    "message_count": 62,
+    "decision_rule": "Choose a state where earlier capacity and network-preference problems have already been addressed, and the user has surfaced one remaining device restriction that directly matches an available tool.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. toggle_data_saver_mode is highest because the phone already has 5G and excellent signal, and the user has just confirmed that Data Saver is on, making that setting the most direct remaining cause of sub-excellent speed.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "run_speed_test is lower because the user has already reported a merely 'good' result and also surfaced a plausible limiting setting, so fixing the setting should come before another measurement",
+      "This sample provides a later-stage telecom recovery state with a distinct device-action best_action type"
+    ]
+  }
+}

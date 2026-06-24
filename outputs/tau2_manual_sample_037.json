@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_38_step_18_manual_037",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "38",
+  "step_id": 18,
+  "query": "Just to confirm, there were 3 passengers in my reservation, right? I want to make sure the compensation is correct.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user says a recent flight was delayed for hours and wants help about it.\nassistant: The assistant asks for the user ID and reservation ID.\nuser: The user provides user ID noah_muller_9847 and says it was the most recent booking.\nassistant called tools: get_user_details and get_reservation_details for the most recent reservation.\nassistant called tools: get_flight_status and identifies a delayed flight within reservation 4OG6T3.\nassistant: The assistant explains that the user may be eligible for compensation because the reservation has a delayed flight and the user is gold with travel insurance.\nuser: The user asks to proceed and says there were 3 passengers in the reservation.\nassistant called tools: send_certificate.\nassistant: The assistant says a $150 certificate has been issued as a gesture for the delay.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Let me verify the reservation details so I can confirm how many passengers were actually on the booking and whether the compensation amount matches that."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user is asking to verify a factual reservation detail after compensation was issued. The grounded next move is to retrieve the reservation details rather than answer from memory."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.19,
+      "margin": 0.71,
+      "disagreement": 0.06,
+      "verifier_confidence": 0.93,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.24,
+    "think": 0.12,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.84,
+    "tool:cancel_reservation": -0.82,
+    "tool:get_flight_status": -0.43,
+    "tool:get_reservation_details": 0.97,
+    "tool:get_user_details": -0.32,
+    "tool:list_all_airports": -0.94,
+    "tool:search_direct_flight": -0.91,
+    "tool:search_onestop_flight": -0.91,
+    "tool:send_certificate": -0.64,
+    "tool:transfer_to_human_agents": -0.27,
+    "tool:update_reservation_baggages": -0.89,
+    "tool:update_reservation_flights": -0.89,
+    "tool:update_reservation_passengers": -0.89
+  },
+  "best_action": "tool:get_reservation_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "0637cadb-7cee-4ae8-8a35-f735d4b82a9d",
+    "termination_reason": "user_stop",
+    "selected_message_index": 18,
+    "message_count": 25,
+    "decision_rule": "Choose a user turn where the user asks to verify a specific reservation fact and the grounded next move is to check the reservation record.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user’s request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is supported by the real next assistant action, which retrieves the reservation again to verify passenger count"
+    ]
+  }
+}

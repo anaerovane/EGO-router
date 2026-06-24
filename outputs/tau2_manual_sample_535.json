@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_locked_pin_step_15_manual_535",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]break_apn_settings|lock_sim_card_pin[PERSONA:None]",
+  "step_id": 15,
+  "query": "I checked, and Airplane Mode is currently off. However, it looks like my SIM card status is showing as \"locked_pin.\" What should I do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: Reports a prolonged \"No Service\" problem preventing calls and mobile data.\nassistant: Identified the account by phone number and checked the customer lines, finding the affected line active rather than suspended.\nassistant: Asked the user to inspect device network status.\nuser: Reported that Airplane Mode is off and the SIM status shows locked_pin.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "A locked SIM PIN would explain the lack of service. Let me confirm the SIM status path and guide the next step carefully so you do not risk a lockout."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user-facing symptom now points to SIM security rather than billing or radio state, so the next grounded action is to reason through that status instead of re-checking the account."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.33,
+      "margin": 0.36,
+      "disagreement": 0.14,
+      "verifier_confidence": 0.82,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:toggle_data",
+    "tool:grant_app_permission",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.82,
+    "think": 0.92,
+    "tool:get_customer_by_phone": -0.84,
+    "tool:get_details_by_id": -0.38,
+    "tool:get_data_usage": -0.65,
+    "tool:refuel_data": -0.97,
+    "tool:send_payment_request": -0.98,
+    "tool:resume_line": -0.93,
+    "tool:enable_roaming": -0.9,
+    "tool:toggle_data": -0.72,
+    "tool:grant_app_permission": -0.98,
+    "tool:transfer_to_human_agents": -0.21
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "2b37a4b6-e47f-4e4e-9d42-4d8037922ff2",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 28,
+    "decision_rule": "Choose a user turn where available telecom tools do not directly manipulate SIM-PIN state, so the strongest next step is to reason from the visible diagnosis and provide the correct procedural guidance.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Highest score goes to internal reasoning because none of the listed tools directly unlock a SIM or safely confirm a PIN-based recovery flow.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample intentionally uses think as best_action for a state where the right next move is explanation and caution rather than a backend tool call."
+    ]
+  }
+}

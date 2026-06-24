@@ -1,0 +1,84 @@
+{
+  "sample_id": "tau2_manual_sample_306_step_20_manual_73707749-851e-4661-bd5c-3884765c8b28",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "11",
+  "selected_message_index": 20,
+  "step_id": 20,
+  "query": "Yes, that’s correct—please proceed with downgrading all of us to basic economy and refund the $5244 to my original payment method. Let me know when it’s done.",
+  "state": {
+    "history_summary": "The user asked about downgrading all travelers on a reservation to basic economy and wanted to know the exact refund. The assistant checked the reservation, searched the lower fare, and explained that downgrading would refund $5,244 to the original payment method. The user now explicitly confirms proceeding with the downgrade and refund.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "The downgrade option and refund amount are already visible, so the direct next step is to update the reservation flights."
+      },
+      {
+        "source": "think-refine",
+        "text": "Because the user gave explicit final approval for the downgrade and refund, I should now apply the reservation change."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.12,
+      "margin": 0.83,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.96,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.37,
+    "think": 0.09,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.7,
+    "tool:cancel_reservation": -0.93,
+    "tool:get_flight_status": -0.72,
+    "tool:get_reservation_details": -0.44,
+    "tool:get_user_details": -0.49,
+    "tool:list_all_airports": -0.95,
+    "tool:search_direct_flight": -0.58,
+    "tool:search_onestop_flight": -0.89,
+    "tool:send_certificate": -0.87,
+    "tool:transfer_to_human_agents": -0.52,
+    "tool:update_reservation_baggages": -0.92,
+    "tool:update_reservation_flights": 0.99,
+    "tool:update_reservation_passengers": -0.92
+  },
+  "best_action": "tool:update_reservation_flights",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "73707749-851e-4661-bd5c-3884765c8b28",
+    "termination_reason": "user_stop",
+    "selected_message_index": 20,
+    "message_count": 31,
+    "decision_rule": "Choose a user turn where the assistant has already calculated the downgrade refund from visible fare information and the user gives explicit final authorization to make the flight change.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user request using only visible conversation evidence.",
+    "notes": [
+      "manual / non-leaky annotation based only on transcript content visible before or at the selected user turn",
+      "query exactly matches the selected user message from the current source transcript file",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are grounded only in visible context from the transcript up to this turn",
+      "best_action is the argmax of action_scores"
+    ]
+  }
+}

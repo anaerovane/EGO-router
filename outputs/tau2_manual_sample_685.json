@@ -1,0 +1,70 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_usage_exceeded_user_abroad_roaming_enabled_off_persona_easy_step_28_manual_685",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 28,
+  "query": "Thanks for checking! I’d like to refuel 2.0 GB of additional data, but I do not want to change my mobile data plan. Please proceed with the 2 GB refuel.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports nonworking mobile data while abroad in France and wants excellent speed.\nassistant: The assistant authenticates the line by phone number, asks for speed-test results, and then asks for status-bar and network-diagnostic checks.\nuser: The user reports no connection despite excellent signal, 5G, and mobile data enabled; diagnostics also show Data Roaming OFF.\nassistant: The assistant instructs the user to turn Data Roaming ON.\nuser: After enabling roaming, the user still gets no connection.\nassistant: The assistant retrieves line and plan details and determines that the line has exceeded its 15 GB monthly data limit.\nassistant: The assistant explains that the user can either refuel additional data or change plans.\nuser: The user explicitly declines a plan change and requests a 2 GB data refuel.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. I’ll add the 2 GB data refuel to your current line and keep your plan unchanged."
+      },
+      {
+        "source": "think-refine",
+        "text": "The quota problem has already been diagnosed and the user has chosen a concrete refuel amount, so the grounded next step is to execute the refuel rather than revisit troubleshooting or pricing."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.07,
+      "margin": 0.9,
+      "disagreement": 0.02,
+      "verifier_confidence": 0.98,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:check_device_settings",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.88,
+    "think": 0.06,
+    "tool:get_customer_by_phone": -0.94,
+    "tool:get_details_by_id": -0.53,
+    "tool:get_data_usage": -0.57,
+    "tool:change_plan": -0.91,
+    "tool:refuel_data": 0.99,
+    "tool:check_device_settings": -0.66,
+    "tool:transfer_to_human_agents": -0.82,
+    "tool:calculate": -0.44
+  },
+  "best_action": "tool:refuel_data",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom-workflow_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "mobile_data_refuel_trial0",
+    "termination_reason": "user_stop",
+    "selected_message_index": 28,
+    "message_count": 39,
+    "decision_rule": "Choose a telecom state where root cause analysis is complete and the user explicitly selects a concrete self-serve remediation action with a numeric parameter.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. refuel_data is dominant because the data cap diagnosis and desired refill amount are both already established in the conversation.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action differs from retail examples by using an account-level telecom remediation tool rather than an order-management tool"
+    ]
+  }
+}

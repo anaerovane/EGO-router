@@ -1,0 +1,80 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_airplane_mode_on_break_apn_settings_lock_sim_card_pin_step_23_manual_900",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|break_apn_settings|lock_sim_card_pin[PERSONA:None]",
+  "step_id": 23,
+  "query": "Yes, please transfer me to a human agent who can help with unlocking my SIM card. Thank you.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that the phone has shown “No Service” for hours and asks for help.\nassistant: The assistant asks for account-identifying information.\nuser: The user provides phone number 555-123-2002 and name John Smith.\nassistant: The assistant looks up the customer and line.\nassistant: The assistant asks about status-bar indicators.\nuser: The user reports Airplane Mode is on.\nassistant: The assistant instructs the user to turn Airplane Mode off.\nuser: The user reports that after turning it off there is still no signal.\nassistant: The assistant asks the user to check SIM status.\nuser: The user reports that the SIM is locked with a PIN code and asks how to unlock it.\nassistant: The assistant explains that it cannot help unlock a SIM PIN/PUK and offers transfer to a human agent.\nuser: The user accepts the transfer to a human agent.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. Since the issue now requires human assistance for SIM unlocking, I should transfer you to a human agent with a brief summary of the troubleshooting already completed."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user explicitly requested escalation after a SIM PIN lock was identified, so the grounded next move is to perform the transfer rather than continue device troubleshooting."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.07,
+      "margin": 0.93,
+      "disagreement": 0.02,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:suspend_line",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:check_roaming_status",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.88,
+    "think": 0.05,
+    "tool:get_customer_by_phone": -0.94,
+    "tool:get_customer_by_name": -0.95,
+    "tool:get_details_by_id": -0.91,
+    "tool:get_bills_for_customer": -0.97,
+    "tool:get_data_usage": -0.97,
+    "tool:change_plan": -0.98,
+    "tool:refuel_data": -0.98,
+    "tool:send_payment_request": -0.98,
+    "tool:suspend_line": -0.98,
+    "tool:resume_line": -0.97,
+    "tool:enable_roaming": -0.97,
+    "tool:check_roaming_status": -0.95,
+    "tool:transfer_to_human_agents": 0.99
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "26f41c9b-fa8f-4ea6-9677-f83c31826b9b",
+    "termination_reason": "user_stop",
+    "selected_message_index": 23,
+    "message_count": 24,
+    "decision_rule": "Choose a state where the user explicitly accepts escalation after a SIM-PIN lock has been identified as outside the assistant’s support boundary, making human transfer the correct grounded next action.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. transfer_to_human_agents is highest because the user has requested escalation and no other available action can resolve a locked SIM PIN/PUK issue.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample adds an escalation endpoint from a real telecom troubleshooting trajectory"
+    ]
+  }
+}

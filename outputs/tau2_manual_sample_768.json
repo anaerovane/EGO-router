@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]data_saver_mode_on|user_abroad_roaming_enabled_off[PERSONA:Easy]_step_33_manual_768",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_saver_mode_on|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 33,
+  "query": "The check shows that Data Saver mode is ON, which limits data usage. Should I turn Data Saver off and try another speed test?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports mobile data trouble while abroad in France and wants excellent speed.\nassistant: The assistant authenticates the account and confirms the line is active with roaming enabled on the carrier side.\nassistant: A network-status check shows the phone is connected on 5G with excellent signal but device-side data roaming is off.\nassistant: The assistant asks the user to turn on data roaming, and a later speed test improves only to Good.\nassistant: The assistant requests a data-restriction check.\nuser: The user reports that Data Saver mode is ON and asks whether turning it off is the next step.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes, turning Data Saver off is the right next step because it can directly cap throughput even when signal and roaming are already fixed."
+      },
+      {
+        "source": "think-refine",
+        "text": "The remaining visible blocker is Data Saver being enabled on-device, so the next action should focus on that bottleneck rather than rechecking already-resolved carrier settings."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.21,
+      "margin": 0.36,
+      "disagreement": 0.11,
+      "verifier_confidence": 0.87,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.89,
+    "think": 0.22,
+    "tool:get_customer_by_phone": -0.92,
+    "tool:get_customer_by_name": -0.97,
+    "tool:get_details_by_id": 0.58,
+    "tool:get_bills_for_customer": -0.73,
+    "tool:send_payment_request": -0.95,
+    "tool:check_payment_request": -0.93,
+    "tool:make_payment": -0.94,
+    "tool:resume_line": -0.85,
+    "tool:enable_roaming": -0.48,
+    "tool:refuel_data": -0.66,
+    "tool:transfer_to_human_agents": -0.16
+  },
+  "best_action": "tool:get_details_by_id",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "2417b86e-68b3-4c89-8fe9-2568559e4953",
+    "termination_reason": "user_stop",
+    "selected_message_index": 33,
+    "message_count": 42,
+    "decision_rule": "Choose a state where roaming and signal quality are already fixed and the remaining issue is a newly observed on-device restriction.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. As in other telecom diagnostics with missing device-toggle primitives, the best available action among the listed tools is additional line/device inspection via get_details_by_id.",
+    "notes": [
+      "This sample is similar in surface form to 766 but comes from a different task pattern without exhausted-plan remediation as the primary branch.",
+      "The manual scoring avoids future leakage by not referencing the later excellent speed-test result."
+    ]
+  }
+}

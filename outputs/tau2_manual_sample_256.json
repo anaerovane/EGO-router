@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_17_step_3_manual_256",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "17",
+  "step_id": 3,
+  "query": "Sure! My user ID is omar_rossi_1241. I’ll need to look up my reservation ID, but I can tell you my full name is Omar Rossi. My birthday should already be in my user profile, so I’d prefer not to provide it again. The current passenger name on the reservation isn’t me, but I’d like to change it to my name. Let me know if you need anything else!",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to add 3 checked bags, change the passenger on an upcoming New York to Chicago trip to Omar Rossi, and change the ticket to economy class.\nassistant: The assistant requests the user ID, reservation ID, current passenger name, and Omar Rossi's date of birth, while noting some relevant policy constraints.\nuser: The user provides user ID omar_rossi_1241, says the reservation ID is not available yet, states the new passenger name should be Omar Rossi, and says the birth date should already be in the user profile.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks. I’ll first pull up your profile so I can use the account details you referenced and then identify the reservation for the New York to Chicago trip."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has supplied an account identifier and some passenger-change context but not the reservation ID, so the grounded next move is to retrieve the user profile rather than attempt a reservation change immediately."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.12,
+      "margin": 0.86,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.45,
+    "think": 0.12,
+    "tool:book_reservation": -0.97,
+    "tool:calculate": -0.9,
+    "tool:cancel_reservation": -0.95,
+    "tool:get_flight_status": -0.88,
+    "tool:get_reservation_details": -0.29,
+    "tool:get_user_details": 0.99,
+    "tool:list_all_airports": -0.94,
+    "tool:search_direct_flight": -0.89,
+    "tool:search_onestop_flight": -0.89,
+    "tool:send_certificate": -0.9,
+    "tool:transfer_to_human_agents": -0.46,
+    "tool:update_reservation_baggages": -0.71,
+    "tool:update_reservation_flights": -0.76,
+    "tool:update_reservation_passengers": -0.63
+  },
+  "best_action": "tool:get_user_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "4f82a236-71b6-4d24-aca3-778925f9ea9b",
+    "termination_reason": "user_stop",
+    "selected_message_index": 3,
+    "message_count": 28,
+    "decision_rule": "Choose a user turn where the user provides the account identifier and refers to profile-held passenger details but still lacks the reservation identifier, making profile retrieval the most direct grounded next step.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is get_user_details because the assistant can use omar_rossi_1241's profile to confirm the user-linked personal details and then locate the reservation before any baggage, passenger, or cabin updates."
+    ]
+  }
+}

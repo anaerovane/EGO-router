@@ -1,0 +1,85 @@
+{
+  "summary": [
+    {
+      "file": "tau2_manual_sample_501.json",
+      "domain": "retail",
+      "task_id": "6",
+      "step_id": 13,
+      "best_action": "tool:get_product_details",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_502.json",
+      "domain": "retail",
+      "task_id": "2",
+      "step_id": 25,
+      "best_action": "tool:return_delivered_order_items",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_503.json",
+      "domain": "retail",
+      "task_id": "74",
+      "step_id": 23,
+      "best_action": "tool:modify_pending_order_items",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_504.json",
+      "domain": "retail",
+      "task_id": "88",
+      "step_id": 17,
+      "best_action": "tool:cancel_pending_order",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_505.json",
+      "domain": "retail",
+      "task_id": "31",
+      "step_id": 17,
+      "best_action": "think",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_506.json",
+      "domain": "telecom",
+      "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]",
+      "step_id": 15,
+      "best_action": "tool:refuel_data",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_507.json",
+      "domain": "telecom",
+      "task_id": "[service_issue]airplane_mode_on|overdue_bill_suspension[PERSONA:None]",
+      "step_id": 21,
+      "best_action": "tool:get_details_by_id",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_508.json",
+      "domain": "telecom",
+      "task_id": "[mobile_data_issue]bad_vpn|data_saver_mode_on|user_abroad_roaming_disabled_on[PERSONA:None]",
+      "step_id": 17,
+      "best_action": "tool:enable_roaming",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_509.json",
+      "domain": "telecom",
+      "task_id": "[mms_issue]break_app_sms_permission|data_mode_off[PERSONA:None]",
+      "step_id": 51,
+      "best_action": "tool:grant_app_permission",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_510.json",
+      "domain": "telecom",
+      "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:Hard]",
+      "step_id": 45,
+      "best_action": "tool:transfer_to_human_agents",
+      "issue_count": 0
+    }
+  ],
+  "issues": []
+}

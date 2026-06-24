@@ -1,0 +1,67 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_break_apn_lock_pin_overdue_bill_step_1_manual_527",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]break_apn_settings|lock_sim_card_pin|overdue_bill_suspension[PERSONA:Easy]",
+  "step_id": 1,
+  "query": "Hi there! I’m having an issue with my phone—it’s been showing “No Service” in the status bar for the past few hours. Can you help me get my signal back?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that the phone has shown “No Service” in the status bar for hours and asks for help restoring signal.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I can help troubleshoot that. First, I need to check the phone’s current status indicators so we can narrow down why the device shows no service."
+      },
+      {
+        "source": "think-refine",
+        "text": "At the opening of a service-loss troubleshooting flow, status-bar evidence is the most directly relevant diagnostic input because it can distinguish radio, SIM, and suspension-like conditions before account-specific actions."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.34,
+      "margin": 0.41,
+      "disagreement": 0.14,
+      "verifier_confidence": 0.84,
+      "steps_remaining": 5
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:check_status_bar",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:resume_line",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.92,
+    "think": 0.21,
+    "tool:check_status_bar": 0.89,
+    "tool:get_customer_by_phone": 0.28,
+    "tool:get_details_by_id": -0.57,
+    "tool:get_bills_for_customer": -0.35,
+    "tool:resume_line": -0.82,
+    "tool:send_payment_request": -0.93,
+    "tool:transfer_to_human_agents": -0.44
+  },
+  "best_action": "tool:check_status_bar",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "f0c15021-047d-4910-865d-5af339639746",
+    "termination_reason": "user_stop",
+    "selected_message_index": 1,
+    "message_count": 56,
+    "decision_rule": "Choose an opening troubleshooting turn where the user reports a device-visible symptom and no account identifiers have been provided yet.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Highest score goes to the diagnostic action that can immediately gather on-device signal clues without assuming billing or account context.",
+    "notes": [
+      "This sample uses a device-observation style action for diversity.",
+      "Account lookup is plausible but lower-scored because the user's problem statement foregrounds a visible status-bar symptom rather than account management.",
+      "The real episode later falls back to identity lookup after this diagnostic attempt, but the scoring here is based only on the visible state at the decision point."
+    ]
+  }
+}

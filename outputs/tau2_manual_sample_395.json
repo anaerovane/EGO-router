@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_49_step_15_manual_395",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "49",
+  "step_id": 15,
+  "query": "###TRANSFER###",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to cancel a flight due to illness and says insurance was purchased, so a refund should be available.\nassistant: The assistant asks for the user ID and reservation ID.\nuser: The user provides user ID anya_garcia_5901 and reservation 3RK2T9.\ntool: The reservation details show 3RK2T9 but do not show travel insurance.\nassistant: The assistant says the reservation does not appear to have travel insurance and asks whether this is the correct booking.\nuser: The user insists this is the correct reservation and asks the assistant to double-check because insurance was definitely purchased.\ntool: The user profile is retrieved and the assistant again concludes the system does not show travel insurance on the reservation.\nassistant: The assistant explains it cannot process an insurance-based refund and offers cancellation without that refund or a transfer to a human agent.\nuser: The user insists there must be a system mistake and asks to be transferred to a human agent so the insurance refund issue can be resolved.\nassistant: The assistant initiates the transfer.\ntool: Transfer successful.\nassistant: The assistant says the user is being transferred to a human agent and to hold.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "You’re now being connected to a human agent to review the disputed insurance issue."
+      },
+      {
+        "source": "think-refine",
+        "text": "The transfer has already been completed in the visible context, and the user’s final turn is only the transfer marker, so there is no further airline action to take."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.07,
+      "margin": 0.94,
+      "disagreement": 0.02,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 0
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": 0.99,
+    "think": -0.17,
+    "tool:book_reservation": -0.99,
+    "tool:calculate": -0.97,
+    "tool:cancel_reservation": -0.97,
+    "tool:get_flight_status": -0.97,
+    "tool:get_reservation_details": -0.96,
+    "tool:get_user_details": -0.95,
+    "tool:list_all_airports": -0.99,
+    "tool:search_direct_flight": -0.99,
+    "tool:search_onestop_flight": -0.99,
+    "tool:send_certificate": -0.97,
+    "tool:transfer_to_human_agents": -0.75,
+    "tool:update_reservation_baggages": -0.99,
+    "tool:update_reservation_flights": -0.99,
+    "tool:update_reservation_passengers": -0.99
+  },
+  "best_action": "stop",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "76b4e517-55a9-48e7-bb47-16c7a1480e99",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 16,
+    "decision_rule": "Use the later transfer marker because it is an exact source user message after the assistant has already escalated the insurance dispute, making stop the only grounded next action.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, even though it is the literal transfer marker",
+      "history_summary stops at the completed escalation and excludes any future human-agent handling",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "special case: transfer sentinel following a disputed missing-insurance record"
+    ]
+  }
+}

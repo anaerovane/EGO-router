@@ -1,0 +1,295 @@
+{
+  "config_path": "/Users/bytedance/Desktop/lunwen/aaai_agent_method/configs/experiment_benchmark_v3_deepseek_smoke5.json",
+  "mode": "real",
+  "avg_reward": 0.6,
+  "std_reward": 1.3564659966250536,
+  "first_action_accuracy": 0.0,
+  "reward_by_type": {
+    "math": 0.0,
+    "calc": 3.0,
+    "search": -1.0,
+    "code": 0.0,
+    "think": 1.0
+  },
+  "reward_by_difficulty": {
+    "easy": 0.6
+  },
+  "reward_by_split": {
+    "train": 0.6
+  },
+  "reward_by_evaluation_type": {
+    "rubric_judge": 0.5,
+    "numeric_exact": 3.0,
+    "substring_or_evidence_match": -1.0,
+    "reference_points_judge": 0.0
+  },
+  "first_action_accuracy_by_type": {
+    "math": 0.0,
+    "calc": 0.0,
+    "search": 0.0,
+    "code": 0.0,
+    "think": 0.0
+  },
+  "num_tasks": 5,
+  "trajectories": [
+    {
+      "id": "math_001",
+      "query": "Explain the role of budget-dependent stopping threshold in EGO.",
+      "task_type": "math",
+      "difficulty": "easy",
+      "split": "train",
+      "evaluation_type": "rubric_judge",
+      "best_action": "delegate:math",
+      "first_action": null,
+      "final_answer": "The budget-dependent stopping threshold in Efficient Global Optimization (EGO) dynamically adjusts the convergence criterion based on the remaining evaluation budget. As the budget depletes, the threshold typically decreases, making it harder to trigger a stop early but allowing termination when further expected improvement is negligible relative to the cost of remaining evaluations. This balances exploration vs. exploitation and avoids wasting evaluations on marginal gains.",
+      "stop_reason": "low_entropy_and_low_value_of_continuation",
+      "reward": 0.0,
+      "evaluation": {
+        "matched_reference": false,
+        "matched_points": 1,
+        "total_points": 4,
+        "details": {
+          "raw_judge_output": "{\n  \"score\": 0.0,\n  \"matched_points\": 1,\n  \"total_points\": 4,\n  \"short_reason\": \"The candidate correctly connects to EGO and mentions expected improvement, but makes a conceptual error: it states that the threshold decreases as budget depletes, contradicting the principle that more budget means more willingness to continue. This is inconsistent with the project narrative and conceptually incorrect.\"\n}"
+        }
+      },
+      "trajectory": []
+    },
+    {
+      "id": "calc_001",
+      "query": "Compute `0.08 + 0.75 / (1 + 1)`.",
+      "task_type": "calc",
+      "difficulty": "easy",
+      "split": "train",
+      "evaluation_type": "numeric_exact",
+      "best_action": "tool:calculator",
+      "first_action": null,
+      "final_answer": "0.455",
+      "stop_reason": "low_entropy_and_low_value_of_continuation",
+      "reward": 3.0,
+      "evaluation": {
+        "matched_reference": true,
+        "matched_points": 0,
+        "total_points": 0,
+        "details": {
+          "pred": 0.455,
+          "target": 0.455,
+          "abs_err": 0.0,
+          "rel_err": 0.0
+        }
+      },
+      "trajectory": []
+    },
+    {
+      "id": "search_001",
+      "query": "Which file defines the learned action scorer?",
+      "task_type": "search",
+      "difficulty": "easy",
+      "split": "train",
+      "evaluation_type": "substring_or_evidence_match",
+      "best_action": "tool:search",
+      "first_action": "delegate:math",
+      "final_answer": "The definition of the \"learned action scorer\" depends on the specific codebase or framework. Common implementations include:\n\n- **TRL library (Hugging Face)**:  \n  - For PPO’s value head: `trl/models/value_head.py` (class `ValueHead`).  \n  - For reward‑model‑based scoring: `trl/models/reward_model.py`.\n\n- **Original OpenAI “Learning to Summarize from Human Feedback” codebase**:  \n  - `reward.py`.\n\n- **Other frameworks** (e.g., RLHF in popular repos): often found in files named `reward_model.py`, `value_head.py`, or `scorer.py`.\n\nThe file `learned_action_scorer.py` is **not a standard name** in these widely used codebases. For a precise answer, specify the framework (e.g., TRL, OpenAI, stable‑baselines3, etc.).",
+      "stop_reason": "no_available_actions",
+      "reward": -1.0,
+      "evaluation": {
+        "matched_reference": false,
+        "matched_points": 0,
+        "total_points": 1,
+        "details": {
+          "reference_hit": false,
+          "point_fraction": 0.0
+        }
+      },
+      "trajectory": [
+        {
+          "step": 1,
+          "budget_before": 3,
+          "chosen_action": "delegate:math",
+          "action": "delegate:math",
+          "action_scores": [
+            {
+              "action_name": "delegate:math",
+              "score": 0.9301523874410643,
+              "estimated_gain": 1.021,
+              "action_cost": 0.1,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.3665023874410643
+            },
+            {
+              "action_name": "delegate:code",
+              "score": 0.9028746153975907,
+              "estimated_gain": 0.9969999999999999,
+              "action_cost": 0.11,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.36482461539759076
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 0.7839557586319634,
+              "estimated_gain": 0.83,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.36445575863196344
+            },
+            {
+              "action_name": "tool:search",
+              "score": 0.7224306830278032,
+              "estimated_gain": 0.8,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.3624306830278033
+            },
+            {
+              "action_name": "think",
+              "score": 0.6808564267133819,
+              "estimated_gain": 0.575,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.3571064267133819
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "budget_before": 2,
+          "chosen_action": "delegate:math",
+          "action": "delegate:math",
+          "action_scores": [
+            {
+              "action_name": "delegate:math",
+              "score": 1.0073444328662462,
+              "estimated_gain": 1.0125572206754296,
+              "action_cost": 0.1,
+              "predicted_reward": 0.34821471137922727,
+              "exploration_bonus": 0.10096752804798975
+            },
+            {
+              "action_name": "delegate:code",
+              "score": 0.8135721465086974,
+              "estimated_gain": 0.9885572206754296,
+              "action_cost": 0.11,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.28100995306966803
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 0.7047241123092897,
+              "estimated_gain": 0.8372203050513408,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.28053091402591807
+            },
+            {
+              "action_name": "tool:search",
+              "score": 0.6425881311702758,
+              "estimated_gain": 0.8072203050513408,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.27789493288690426
+            },
+            {
+              "action_name": "think",
+              "score": 0.5765331698517187,
+              "estimated_gain": 0.5471058520255194,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.27091436603513114
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "budget_before": 1,
+          "chosen_action": "delegate:code",
+          "action": "delegate:code",
+          "action_scores": [
+            {
+              "action_name": "delegate:code",
+              "score": 0.8429239219771357,
+              "estimated_gain": 1.1013501573785978,
+              "action_cost": 0.11,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.2370463196810472
+            },
+            {
+              "action_name": "delegate:math",
+              "score": 0.7726159624900896,
+              "estimated_gain": 1.1253501573785976,
+              "action_cost": 0.1,
+              "predicted_reward": 0.021817684786651165,
+              "exploration_bonus": 0.11932067540734986
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 0.7428047972036824,
+              "estimated_gain": 0.9635793198131063,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.23647823932516332
+            },
+            {
+              "action_name": "tool:search",
+              "score": 0.6801717049768233,
+              "estimated_gain": 0.9335793198131063,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.23334514709830417
+            },
+            {
+              "action_name": "think",
+              "score": 0.6763528341445001,
+              "estimated_gain": 0.7713327106700902,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.22498657220894144
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "code_001",
+      "query": "If you want to work on adding a new delegate expert action, which file should you edit first?",
+      "task_type": "code",
+      "difficulty": "easy",
+      "split": "train",
+      "evaluation_type": "reference_points_judge",
+      "best_action": "delegate:code",
+      "first_action": null,
+      "final_answer": "expert_actions.py",
+      "stop_reason": "non_positive_continuation_score",
+      "reward": 0.0,
+      "evaluation": {
+        "matched_reference": false,
+        "matched_points": 0,
+        "total_points": 3,
+        "details": {
+          "raw_judge_output": "{\n  \"score\": 0.0,\n  \"matched_points\": 0,\n  \"total_points\": 3,\n  \"short_reason\": \"Candidate answer provides a filename that is not the most relevant file for adding a delegate expert action; expected 'src/integrations/langchain_ego_adapter.py' with key components like ExpertSpec, _score_actions, _execute_action.\"\n}"
+        }
+      },
+      "trajectory": []
+    },
+    {
+      "id": "think_001",
+      "query": "Briefly explain the difference between stopping and routing in EGO.",
+      "task_type": "think",
+      "difficulty": "easy",
+      "split": "train",
+      "evaluation_type": "rubric_judge",
+      "best_action": "think",
+      "first_action": null,
+      "final_answer": "In EGO orchestration, **stopping** terminates an agent, process, or task, preventing further execution. **Routing** directs the flow of tasks, messages, or data to specific destinations (e.g., agents or channels) based on conditions or rules.",
+      "stop_reason": "low_entropy_and_low_value_of_continuation",
+      "reward": 1.0,
+      "evaluation": {
+        "matched_reference": false,
+        "matched_points": 2,
+        "total_points": 3,
+        "details": {
+          "raw_judge_output": "{\n  \"score\": 1.0,\n  \"matched_points\": 2,\n  \"total_points\": 3,\n  \"short_reason\": \"Candidate answer defines stopping as termination and routing as flow direction, but reference points indicate stopping is a decision to continue and routing is a decision of which action to take. The answer is conceptually coherent but does not fully align with the intended orchestration-specific semantics.\"\n}"
+        }
+      },
+      "trajectory": []
+    }
+  ]
+}

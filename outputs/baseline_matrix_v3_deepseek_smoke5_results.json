@@ -1,0 +1,1261 @@
+{
+  "baseline_matrix_config": "/Users/bytedance/Desktop/lunwen/aaai_agent_method/configs/baseline_matrix_v3_deepseek_smoke5.json",
+  "experiment_config": "/Users/bytedance/Desktop/lunwen/aaai_agent_method/configs/experiment_benchmark_v3_deepseek_smoke5.json",
+  "mode": "real",
+  "summary_rows": [
+    {
+      "baseline": "always_think",
+      "avg_reward": 1.6,
+      "std_reward": 1.7435595774162693,
+      "first_action_accuracy": 0.2,
+      "num_tasks": 5
+    },
+    {
+      "baseline": "heuristic_ego",
+      "avg_reward": 1.4,
+      "std_reward": 1.624807680927192,
+      "first_action_accuracy": 0.2,
+      "num_tasks": 5
+    },
+    {
+      "baseline": "learned_ego",
+      "avg_reward": 1.4,
+      "std_reward": 1.624807680927192,
+      "first_action_accuracy": 0.2,
+      "num_tasks": 5
+    },
+    {
+      "baseline": "tool_first",
+      "avg_reward": 1.2,
+      "std_reward": 1.8330302779823362,
+      "first_action_accuracy": 0.2,
+      "num_tasks": 5
+    },
+    {
+      "baseline": "delegate_first",
+      "avg_reward": 1.2,
+      "std_reward": 1.6,
+      "first_action_accuracy": 0.2,
+      "num_tasks": 5
+    }
+  ],
+  "results": {
+    "always_think": {
+      "avg_reward": 1.6,
+      "std_reward": 1.7435595774162693,
+      "first_action_accuracy": 0.2,
+      "reward_by_type": {
+        "math": 3.0,
+        "calc": 3.0,
+        "search": -1.0,
+        "code": 0.0,
+        "think": 3.0
+      },
+      "reward_by_difficulty": {
+        "easy": 1.6
+      },
+      "reward_by_split": {
+        "train": 1.6
+      },
+      "reward_by_evaluation_type": {
+        "rubric_judge": 3.0,
+        "numeric_exact": 3.0,
+        "substring_or_evidence_match": -1.0,
+        "reference_points_judge": 0.0
+      },
+      "first_action_accuracy_by_type": {
+        "math": 0.0,
+        "calc": 0.0,
+        "search": 0.0,
+        "code": 0.0,
+        "think": 1.0
+      },
+      "num_tasks": 5,
+      "trajectories": [
+        {
+          "id": "math_001",
+          "query": "Explain the role of budget-dependent stopping threshold in EGO.",
+          "task_type": "math",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "rubric_judge",
+          "best_action": "delegate:math",
+          "first_action": "think",
+          "final_answer": "The budget-dependent stopping threshold in Efficient Global Optimization (EGO) adapts the convergence criterion—typically a minimum value of expected improvement (EI)—to the remaining computational budget. When the maximum EI across the surrogate model falls below this threshold, the algorithm terminates. By dynamically adjusting the threshold based on budget, EGO automatically balances exploration and exploitation: with ample budget remaining, a low (or zero) threshold encourages continued exploration of uncertain regions to avoid premature convergence; as the budget dwindles, the threshold rises, enforcing stricter exploitation so that limited evaluations refine the best-known solution. This adaptive mechanism prevents wasteful over-exploration when resources are scarce and avoids early termination that could miss a superior optimum when resources are still available, thereby maximizing optimization efficiency under a finite evaluation budget.",
+          "stop_reason": "fixed_policy_always_think_exhausted",
+          "reward": 3.0,
+          "evaluation": {
+            "matched_reference": false,
+            "matched_points": 4,
+            "total_points": 4,
+            "details": {
+              "raw_judge_output": "{\n  \"score\": 3.0,\n  \"matched_points\": 4,\n  \"total_points\": 4,\n  \"short_reason\": \"Correctly explains budget-dependent stopping threshold in EGO, connects to exploration/exploitation trade-off, uses EI, and aligns with project narrative.\"\n}"
+            }
+          },
+          "trajectory": [
+            {
+              "step": 1,
+              "budget_before": 3,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            },
+            {
+              "step": 2,
+              "budget_before": 2,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            },
+            {
+              "step": 3,
+              "budget_before": 1,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            }
+          ]
+        },
+        {
+          "id": "calc_001",
+          "query": "Compute `0.08 + 0.75 / (1 + 1)`.",
+          "task_type": "calc",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "numeric_exact",
+          "best_action": "tool:calculator",
+          "first_action": "think",
+          "final_answer": "0.455",
+          "stop_reason": "fixed_policy_always_think_exhausted",
+          "reward": 3.0,
+          "evaluation": {
+            "matched_reference": true,
+            "matched_points": 0,
+            "total_points": 0,
+            "details": {
+              "pred": 0.455,
+              "target": 0.455,
+              "abs_err": 0.0,
+              "rel_err": 0.0
+            }
+          },
+          "trajectory": [
+            {
+              "step": 1,
+              "budget_before": 3,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            },
+            {
+              "step": 2,
+              "budget_before": 2,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            },
+            {
+              "step": 3,
+              "budget_before": 1,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            }
+          ]
+        },
+        {
+          "id": "search_001",
+          "query": "Which file defines the learned action scorer?",
+          "task_type": "search",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "substring_or_evidence_match",
+          "best_action": "tool:search",
+          "first_action": "think",
+          "final_answer": "policy.py",
+          "stop_reason": "fixed_policy_always_think_exhausted",
+          "reward": -1.0,
+          "evaluation": {
+            "matched_reference": false,
+            "matched_points": 0,
+            "total_points": 1,
+            "details": {
+              "reference_hit": false,
+              "point_fraction": 0.0
+            }
+          },
+          "trajectory": [
+            {
+              "step": 1,
+              "budget_before": 3,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            },
+            {
+              "step": 2,
+              "budget_before": 2,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            },
+            {
+              "step": 3,
+              "budget_before": 1,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            }
+          ]
+        },
+        {
+          "id": "code_001",
+          "query": "If you want to work on adding a new delegate expert action, which file should you edit first?",
+          "task_type": "code",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "reference_points_judge",
+          "best_action": "delegate:code",
+          "first_action": "think",
+          "final_answer": "To add a new delegate expert action, edit the **`expert_actions.py`** (or **`actions.py`**) file within the delegate expert module. This file is the standard location for defining action classes and functions for delegate experts, and it serves as the primary entry point when introducing a new action.",
+          "stop_reason": "fixed_policy_always_think_exhausted",
+          "reward": 0.0,
+          "evaluation": {
+            "matched_reference": false,
+            "matched_points": 0,
+            "total_points": 3,
+            "details": {
+              "raw_judge_output": "{\n  \"score\": 0.0,\n  \"matched_points\": 0,\n  \"total_points\": 3,\n  \"short_reason\": \"The candidate suggests generic files (expert_actions.py/actions.py) instead of the correct file src/integrations/langchain_ego_adapter.py, and does not mention any of the required key components (ExpertSpec, _score_actions, _execute_action).\"\n}"
+            }
+          },
+          "trajectory": [
+            {
+              "step": 1,
+              "budget_before": 3,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            },
+            {
+              "step": 2,
+              "budget_before": 2,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            },
+            {
+              "step": 3,
+              "budget_before": 1,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            }
+          ]
+        },
+        {
+          "id": "think_001",
+          "query": "Briefly explain the difference between stopping and routing in EGO.",
+          "task_type": "think",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "rubric_judge",
+          "best_action": "think",
+          "first_action": "think",
+          "final_answer": "In EGO orchestration, **stopping** refers to the termination or halting of an agent's current action or process (e.g., reaching a goal, failure, or idle condition), while **routing** involves dynamically selecting a path, sequence of tasks, or control inputs to navigate the agent toward its objective, often based on environmental feedback or constraints.",
+          "stop_reason": "fixed_policy_always_think_exhausted",
+          "reward": 3.0,
+          "evaluation": {
+            "matched_reference": false,
+            "matched_points": 3,
+            "total_points": 3,
+            "details": {
+              "raw_judge_output": "{\n  \"score\": 3.0,\n  \"matched_points\": 3,\n  \"total_points\": 3,\n  \"short_reason\": \"Clearly explains difference, aligns with reference points, orchestration-specific.\"\n}"
+            }
+          },
+          "trajectory": [
+            {
+              "step": 1,
+              "budget_before": 3,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            },
+            {
+              "step": 2,
+              "budget_before": 2,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            },
+            {
+              "step": 3,
+              "budget_before": 1,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            }
+          ]
+        }
+      ]
+    },
+    "tool_first": {
+      "avg_reward": 1.2,
+      "std_reward": 1.8330302779823362,
+      "first_action_accuracy": 0.2,
+      "reward_by_type": {
+        "math": 3.0,
+        "calc": 3.0,
+        "search": -1.0,
+        "code": -1.0,
+        "think": 2.0
+      },
+      "reward_by_difficulty": {
+        "easy": 1.2
+      },
+      "reward_by_split": {
+        "train": 1.2
+      },
+      "reward_by_evaluation_type": {
+        "rubric_judge": 2.5,
+        "numeric_exact": 3.0,
+        "substring_or_evidence_match": -1.0,
+        "reference_points_judge": -1.0
+      },
+      "first_action_accuracy_by_type": {
+        "math": 0.0,
+        "calc": 1.0,
+        "search": 0.0,
+        "code": 0.0,
+        "think": 0.0
+      },
+      "num_tasks": 5,
+      "trajectories": [
+        {
+          "id": "math_001",
+          "query": "Explain the role of budget-dependent stopping threshold in EGO.",
+          "task_type": "math",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "rubric_judge",
+          "best_action": "delegate:math",
+          "first_action": "tool:calculator",
+          "final_answer": "The budget-dependent stopping threshold in EGO dynamically adjusts the convergence criterion (e.g., maximum expected improvement) based on the remaining computational budget. As the budget decreases, the threshold tightens, favoring exploitation over exploration to ensure efficient use of resources and timely termination.\n\n*(No external evidence was obtained due to a tool error; the above answer is based on prior knowledge.)*",
+          "stop_reason": "fixed_policy_tool_first_exhausted",
+          "reward": 3.0,
+          "evaluation": {
+            "matched_reference": false,
+            "matched_points": 4,
+            "total_points": 4,
+            "details": {
+              "raw_judge_output": "{\n  \"score\": 3.0,\n  \"matched_points\": 4,\n  \"total_points\": 4,\n  \"short_reason\": \"Correctly explains budget-dependent stopping threshold in EGO, implies more budget means more willingness to continue, connects specifically to EGO, and is consistent with project documents.\"\n}"
+            }
+          },
+          "trajectory": [
+            {
+              "step": 1,
+              "budget_before": 3,
+              "chosen_action": "tool:calculator",
+              "action": "tool:calculator",
+              "action_scores": []
+            },
+            {
+              "step": 2,
+              "budget_before": 2,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            },
+            {
+              "step": 3,
+              "budget_before": 1,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            }
+          ]
+        },
+        {
+          "id": "calc_001",
+          "query": "Compute `0.08 + 0.75 / (1 + 1)`.",
+          "task_type": "calc",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "numeric_exact",
+          "best_action": "tool:calculator",
+          "first_action": "tool:calculator",
+          "final_answer": "0.455",
+          "stop_reason": "fixed_policy_tool_first_exhausted",
+          "reward": 3.0,
+          "evaluation": {
+            "matched_reference": true,
+            "matched_points": 0,
+            "total_points": 0,
+            "details": {
+              "pred": 0.455,
+              "target": 0.455,
+              "abs_err": 0.0,
+              "rel_err": 0.0
+            }
+          },
+          "trajectory": [
+            {
+              "step": 1,
+              "budget_before": 3,
+              "chosen_action": "tool:calculator",
+              "action": "tool:calculator",
+              "action_scores": []
+            },
+            {
+              "step": 2,
+              "budget_before": 2,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            },
+            {
+              "step": 3,
+              "budget_before": 1,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            }
+          ]
+        },
+        {
+          "id": "search_001",
+          "query": "Which file defines the learned action scorer?",
+          "task_type": "search",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "substring_or_evidence_match",
+          "best_action": "tool:search",
+          "first_action": "tool:calculator",
+          "final_answer": "The learned action scorer is defined in `ray/rllib/evaluation/action_scorer.py`.",
+          "stop_reason": "fixed_policy_tool_first_exhausted",
+          "reward": -1.0,
+          "evaluation": {
+            "matched_reference": false,
+            "matched_points": 0,
+            "total_points": 1,
+            "details": {
+              "reference_hit": false,
+              "point_fraction": 0.0
+            }
+          },
+          "trajectory": [
+            {
+              "step": 1,
+              "budget_before": 3,
+              "chosen_action": "tool:calculator",
+              "action": "tool:calculator",
+              "action_scores": []
+            },
+            {
+              "step": 2,
+              "budget_before": 2,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            },
+            {
+              "step": 3,
+              "budget_before": 1,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            }
+          ]
+        },
+        {
+          "id": "code_001",
+          "query": "If you want to work on adding a new delegate expert action, which file should you edit first?",
+          "task_type": "code",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "reference_points_judge",
+          "best_action": "delegate:code",
+          "first_action": "tool:calculator",
+          "final_answer": "The first file you should edit is **`delegate_expert.py`**.  \n\nThis is the central module where delegate expert actions are defined, registered, and managed. Starting here ensures that the new action’s logic, input/output schema, and integration hooks are correctly set up before any downstream changes (e.g., configuration files, routing logic, or test cases) are made.  \n\n**Why this file first?**  \n- It contains the base class or factory methods for delegate actions.  \n- Adding a new action here gives you immediate access to existing action patterns, error handling, and orchestration integration.  \n- All subsequent edits (e.g., updating `config.yaml`, `action_registry.py`, or documentation) depend on the action being properly defined in `delegate_expert.py`.  \n\n**Recommended workflow:**  \n1. Open `delegate_expert.py` and define the new action class or function.  \n2. Register the action in the same file (or in a linked registry).  \n3. Then update any action‑specific configuration or dispatch logic in other files.  \n\nThis approach minimizes rework and keeps the action’s core definition in one place—critical under budget‑aware orchestration where each edit should have a clear, isolated impact.",
+          "stop_reason": "fixed_policy_tool_first_exhausted",
+          "reward": -1.0,
+          "evaluation": {
+            "matched_reference": false,
+            "matched_points": 0,
+            "total_points": 1,
+            "details": {
+              "raw_judge_output": "{\n  \"score\": -1.0,\n  \"matched_points\": 0,\n  \"total_points\": 1,\n  \"short_reason\": \"Candidate incorrectly identifies delegate_expert.py instead of the correct file src/integrations/langchain_ego_adapter.py, and fails to mention any of the expected key entities (ExpertSpec, _score_actions, _execute_action).\"\n}"
+            }
+          },
+          "trajectory": [
+            {
+              "step": 1,
+              "budget_before": 3,
+              "chosen_action": "tool:calculator",
+              "action": "tool:calculator",
+              "action_scores": []
+            },
+            {
+              "step": 2,
+              "budget_before": 2,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            },
+            {
+              "step": 3,
+              "budget_before": 1,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            }
+          ]
+        },
+        {
+          "id": "think_001",
+          "query": "Briefly explain the difference between stopping and routing in EGO.",
+          "task_type": "think",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "rubric_judge",
+          "best_action": "think",
+          "first_action": "tool:calculator",
+          "final_answer": "**Stopping** in EGO refers to halting the execution of a task or workflow, typically due to an error, user request, or completion condition. **Routing** involves directing the flow of data or control between tasks based on conditions (e.g., branching, conditional paths), enabling dynamic workflow progression.",
+          "stop_reason": "fixed_policy_tool_first_exhausted",
+          "reward": 2.0,
+          "evaluation": {
+            "matched_reference": false,
+            "matched_points": 2,
+            "total_points": 3,
+            "details": {
+              "raw_judge_output": "{\n  \"score\": 2.0,\n  \"matched_points\": 2,\n  \"total_points\": 3,\n  \"short_reason\": \"Conceptually coherent and concise, but stopping definition emphasizes halting rather than the decision to continue; partially aligns with reference points.\"\n}"
+            }
+          },
+          "trajectory": [
+            {
+              "step": 1,
+              "budget_before": 3,
+              "chosen_action": "tool:calculator",
+              "action": "tool:calculator",
+              "action_scores": []
+            },
+            {
+              "step": 2,
+              "budget_before": 2,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            },
+            {
+              "step": 3,
+              "budget_before": 1,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            }
+          ]
+        }
+      ]
+    },
+    "delegate_first": {
+      "avg_reward": 1.2,
+      "std_reward": 1.6,
+      "first_action_accuracy": 0.2,
+      "reward_by_type": {
+        "math": 3.0,
+        "calc": 3.0,
+        "search": -1.0,
+        "code": 0.0,
+        "think": 1.0
+      },
+      "reward_by_difficulty": {
+        "easy": 1.2
+      },
+      "reward_by_split": {
+        "train": 1.2
+      },
+      "reward_by_evaluation_type": {
+        "rubric_judge": 2.0,
+        "numeric_exact": 3.0,
+        "substring_or_evidence_match": -1.0,
+        "reference_points_judge": 0.0
+      },
+      "first_action_accuracy_by_type": {
+        "math": 1.0,
+        "calc": 0.0,
+        "search": 0.0,
+        "code": 0.0,
+        "think": 0.0
+      },
+      "num_tasks": 5,
+      "trajectories": [
+        {
+          "id": "math_001",
+          "query": "Explain the role of budget-dependent stopping threshold in EGO.",
+          "task_type": "math",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "rubric_judge",
+          "best_action": "delegate:math",
+          "first_action": "delegate:math",
+          "final_answer": "The budget‑dependent stopping threshold in Efficient Global Optimization (EGO) adapts the decision to stop based on the number of evaluations remaining in a fixed budget. Its role is to balance exploration and exploitation by requiring that the maximum Expected Improvement (EI) at step \\(n\\) exceed \\(\\epsilon / R\\), where \\(R = B - n\\) is the remaining budget and \\(\\epsilon\\) is a minimum acceptable total improvement.\n\n**How it works**  \n- When many evaluations remain (\\(R\\) large), the threshold is low. Even a modest EI per step can accumulate to a meaningful total gain, so the algorithm continues to explore.  \n- When few evaluations remain (\\(R\\) small), the threshold rises. The algorithm becomes more exploitative, only investing costly final evaluations if they promise a large immediate improvement.\n\n**Why it matters**  \nThis rule provides a principled, value‑of‑information stopping criterion: it prevents wasting limited evaluations on negligible potential gains, while ensuring that the optimization does not stop prematurely when the remaining budget could yield significant improvement. The threshold is adaptive, making EGO more efficient under a finite computational budget.",
+          "stop_reason": "fixed_policy_delegate_first_exhausted",
+          "reward": 3.0,
+          "evaluation": {
+            "matched_reference": false,
+            "matched_points": 4,
+            "total_points": 4,
+            "details": {
+              "raw_judge_output": "{\n  \"score\": 3.0,\n  \"matched_points\": 4,\n  \"total_points\": 4,\n  \"short_reason\": \"Accurately explains the budget-dependent stopping threshold in EGO, linking remaining budget to dynamic threshold for Expected Improvement, and connects to exploration-exploitation trade-off.\"\n}"
+            }
+          },
+          "trajectory": [
+            {
+              "step": 1,
+              "budget_before": 3,
+              "chosen_action": "delegate:math",
+              "action": "delegate:math",
+              "action_scores": []
+            },
+            {
+              "step": 2,
+              "budget_before": 2,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            },
+            {
+              "step": 3,
+              "budget_before": 1,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            }
+          ]
+        },
+        {
+          "id": "calc_001",
+          "query": "Compute `0.08 + 0.75 / (1 + 1)`.",
+          "task_type": "calc",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "numeric_exact",
+          "best_action": "tool:calculator",
+          "first_action": "delegate:math",
+          "final_answer": "0.455",
+          "stop_reason": "fixed_policy_delegate_first_exhausted",
+          "reward": 3.0,
+          "evaluation": {
+            "matched_reference": true,
+            "matched_points": 0,
+            "total_points": 0,
+            "details": {
+              "pred": 0.455,
+              "target": 0.455,
+              "abs_err": 0.0,
+              "rel_err": 0.0
+            }
+          },
+          "trajectory": [
+            {
+              "step": 1,
+              "budget_before": 3,
+              "chosen_action": "delegate:math",
+              "action": "delegate:math",
+              "action_scores": []
+            },
+            {
+              "step": 2,
+              "budget_before": 2,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            },
+            {
+              "step": 3,
+              "budget_before": 1,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            }
+          ]
+        },
+        {
+          "id": "search_001",
+          "query": "Which file defines the learned action scorer?",
+          "task_type": "search",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "substring_or_evidence_match",
+          "best_action": "tool:search",
+          "first_action": "delegate:math",
+          "final_answer": "The learned action scorer is defined in `action_scorer.py`.",
+          "stop_reason": "fixed_policy_delegate_first_exhausted",
+          "reward": -1.0,
+          "evaluation": {
+            "matched_reference": false,
+            "matched_points": 0,
+            "total_points": 1,
+            "details": {
+              "reference_hit": false,
+              "point_fraction": 0.0
+            }
+          },
+          "trajectory": [
+            {
+              "step": 1,
+              "budget_before": 3,
+              "chosen_action": "delegate:math",
+              "action": "delegate:math",
+              "action_scores": []
+            },
+            {
+              "step": 2,
+              "budget_before": 2,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            },
+            {
+              "step": 3,
+              "budget_before": 1,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            }
+          ]
+        },
+        {
+          "id": "code_001",
+          "query": "If you want to work on adding a new delegate expert action, which file should you edit first?",
+          "task_type": "code",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "reference_points_judge",
+          "best_action": "delegate:code",
+          "first_action": "delegate:math",
+          "final_answer": "The first file you should edit is **`expert_actions.py`** (or the equivalent file where your system’s expert action implementations are defined). This follows the standard pattern: you must define the new action’s logic before you can register or route it. Editing the action definition file first ensures minimal dependencies and a natural workflow. If your project uses a different naming convention (e.g., `actions.py`, `tools.py`, or a dedicated module), edit that file instead.",
+          "stop_reason": "fixed_policy_delegate_first_exhausted",
+          "reward": 0.0,
+          "evaluation": {
+            "matched_reference": false,
+            "matched_points": 0,
+            "total_points": 3,
+            "details": {
+              "raw_judge_output": "{\n  \"score\": 0.0,\n  \"matched_points\": 0,\n  \"total_points\": 3,\n  \"short_reason\": \"Candidate answer provides a generic file name not aligned with the repository structure; does not identify the specific file 'src/integrations/langchain_ego_adapter.py' or mention key components like ExpertSpec.\"\n}"
+            }
+          },
+          "trajectory": [
+            {
+              "step": 1,
+              "budget_before": 3,
+              "chosen_action": "delegate:math",
+              "action": "delegate:math",
+              "action_scores": []
+            },
+            {
+              "step": 2,
+              "budget_before": 2,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            },
+            {
+              "step": 3,
+              "budget_before": 1,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            }
+          ]
+        },
+        {
+          "id": "think_001",
+          "query": "Briefly explain the difference between stopping and routing in EGO.",
+          "task_type": "think",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "rubric_judge",
+          "best_action": "think",
+          "first_action": "delegate:math",
+          "final_answer": "In EGO orchestration, **stopping** terminates a service instance or process, while **routing** directs incoming requests to appropriate service instances based on policies or load balancing rules.",
+          "stop_reason": "fixed_policy_delegate_first_exhausted",
+          "reward": 1.0,
+          "evaluation": {
+            "matched_reference": false,
+            "matched_points": 1,
+            "total_points": 3,
+            "details": {
+              "raw_judge_output": "{\n  \"score\": 1.0,\n  \"matched_points\": 1,\n  \"total_points\": 3,\n  \"short_reason\": \"The answer identifies stopping and routing as distinct functions but misrepresents stopping as termination rather than a decision to continue, and routing as directing requests rather than deciding which action to take, partially aligning with reference points.\"\n}"
+            }
+          },
+          "trajectory": [
+            {
+              "step": 1,
+              "budget_before": 3,
+              "chosen_action": "delegate:math",
+              "action": "delegate:math",
+              "action_scores": []
+            },
+            {
+              "step": 2,
+              "budget_before": 2,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            },
+            {
+              "step": 3,
+              "budget_before": 1,
+              "chosen_action": "think",
+              "action": "think",
+              "action_scores": []
+            }
+          ]
+        }
+      ]
+    },
+    "heuristic_ego": {
+      "avg_reward": 1.4,
+      "std_reward": 1.624807680927192,
+      "first_action_accuracy": 0.2,
+      "reward_by_type": {
+        "math": 3.0,
+        "calc": 3.0,
+        "search": -1.0,
+        "code": 0.0,
+        "think": 2.0
+      },
+      "reward_by_difficulty": {
+        "easy": 1.4
+      },
+      "reward_by_split": {
+        "train": 1.4
+      },
+      "reward_by_evaluation_type": {
+        "rubric_judge": 2.5,
+        "numeric_exact": 3.0,
+        "substring_or_evidence_match": -1.0,
+        "reference_points_judge": 0.0
+      },
+      "first_action_accuracy_by_type": {
+        "math": 1.0,
+        "calc": 0.0,
+        "search": 0.0,
+        "code": 0.0,
+        "think": 0.0
+      },
+      "num_tasks": 5,
+      "trajectories": [
+        {
+          "id": "math_001",
+          "query": "Explain the role of budget-dependent stopping threshold in EGO.",
+          "task_type": "math",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "rubric_judge",
+          "best_action": "delegate:math",
+          "first_action": "delegate:math",
+          "final_answer": "## Updated Best Answer: The Role of Budget-Dependent Stopping Threshold in EGO\n\nThe budget-dependent stopping threshold in Efficient Global Optimization (EGO) addresses a critical limitation of the standard fixed-threshold termination rule. Instead of halting when the maximum Expected Improvement (EI) falls below a constant \\(\\tau\\), the threshold is made a function of the number of evaluations \\(n\\) (or remaining budget \\(B\\)), e.g., \\(\\epsilon_n = C \\cdot n^{-\\alpha}\\) or \\(\\epsilon_n = C/(B-n+1)\\). This dynamic adjustment serves four key roles:\n\n1. **Prevents premature termination under large budgets** – A decaying threshold (\\(\\epsilon_n \\to 0\\)) ensures that the algorithm does not stop while EI remains non‑negligible. In the infinite‑budget limit, this guarantees **asymptotic convergence** to the global optimum, which a fixed positive threshold would fail to provide.\n\n2. **Accelerates termination under tight budgets** – When only few evaluations remain, a larger threshold avoids wasting calls on minuscule expected gains, making the algorithm practical for real‑time or expensive‑evaluation settings.\n\n3. **Implicitly balances exploration and exploitation** – By controlling how quickly the threshold decays, the user can influence the trade‑off between broad exploration (high variance, high EI) and fine‑scale exploitation. E.g., \\(\\epsilon_n \\propto 1/\\sqrt{n}\\) mimics optimal decay rates found in UCB algorithms.\n\n4. **Provides formal convergence guarantees** – Under mild conditions (compact domain, continuous kernel, RKHS norm bound), if \\(\\epsilon_n \\to 0\\) and \\(\\sum \\epsilon_n = \\infty\\), EGO either stops after finitely many iterations (if threshold eventually exceeds EI) or continues indefinitely and the best observed value converges almost surely to the global minimum. A static threshold violates the condition \\(\\epsilon_n \\to 0\\) and may cause non‑convergence.\n\nIn practice, the threshold is often set as \\(\\epsilon_n = \\tau_0 \\cdot \\sigma_{\\text{noise}} \\cdot n^{-\\alpha}\\) or scaled by an estimate of the objective’s range, with \\(\\alpha \\in [0.5, 1.0]\\). This regularizes the optimization horizon, adapting the termination criterion to the user’s computational budget while preserving theoretical correctness.",
+          "stop_reason": "low_entropy_and_low_value_of_continuation",
+          "reward": 3.0,
+          "evaluation": {
+            "matched_reference": false,
+            "matched_points": 4,
+            "total_points": 4,
+            "details": {
+              "raw_judge_output": "{\n  \"score\": 3.0,\n  \"matched_points\": 4,\n  \"total_points\": 4,\n  \"short_reason\": \"The candidate answer correctly explains the budget-dependent stopping threshold in EGO, ties it to budget size (more budget equals more willingness to continue), connects to EGO concepts like Expected Improvement and convergence, and stays consistent with standard EGO narrative.\"\n}"
+            }
+          },
+          "trajectory": [
+            {
+              "step": 1,
+              "budget_before": 3,
+              "chosen_action": "delegate:math",
+              "action": "delegate:math",
+              "action_scores": [
+                {
+                  "action_name": "delegate:math",
+                  "score": 0.9209999999999999,
+                  "estimated_gain": 1.021,
+                  "action_cost": 0.1,
+                  "predicted_reward": null,
+                  "exploration_bonus": null
+                },
+                {
+                  "action_name": "delegate:code",
+                  "score": 0.8869999999999999,
+                  "estimated_gain": 0.9969999999999999,
+                  "action_cost": 0.11,
+                  "predicted_reward": null,
+                  "exploration_bonus": null
+                },
+                {
+                  "action_name": "tool:calculator",
+                  "score": 0.71,
+                  "estimated_gain": 0.83,
+                  "action_cost": 0.12,
+                  "predicted_reward": null,
+                  "exploration_bonus": null
+                },
+                {
+                  "action_name": "tool:search",
+                  "score": 0.64,
+                  "estimated_gain": 0.8,
+                  "action_cost": 0.16,
+                  "predicted_reward": null,
+                  "exploration_bonus": null
+                },
+                {
+                  "action_name": "think",
+                  "score": 0.5249999999999999,
+                  "estimated_gain": 0.575,
+                  "action_cost": 0.05,
+                  "predicted_reward": null,
+                  "exploration_bonus": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "calc_001",
+          "query": "Compute `0.08 + 0.75 / (1 + 1)`.",
+          "task_type": "calc",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "numeric_exact",
+          "best_action": "tool:calculator",
+          "first_action": null,
+          "final_answer": "0.455",
+          "stop_reason": "low_entropy_and_low_value_of_continuation",
+          "reward": 3.0,
+          "evaluation": {
+            "matched_reference": true,
+            "matched_points": 0,
+            "total_points": 0,
+            "details": {
+              "pred": 0.455,
+              "target": 0.455,
+              "abs_err": 0.0,
+              "rel_err": 0.0
+            }
+          },
+          "trajectory": []
+        },
+        {
+          "id": "search_001",
+          "query": "Which file defines the learned action scorer?",
+          "task_type": "search",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "substring_or_evidence_match",
+          "best_action": "tool:search",
+          "first_action": null,
+          "final_answer": "learned_action_scorer.py",
+          "stop_reason": "low_entropy_and_low_value_of_continuation",
+          "reward": -1.0,
+          "evaluation": {
+            "matched_reference": false,
+            "matched_points": 0,
+            "total_points": 1,
+            "details": {
+              "reference_hit": false,
+              "point_fraction": 0.0
+            }
+          },
+          "trajectory": []
+        },
+        {
+          "id": "code_001",
+          "query": "If you want to work on adding a new delegate expert action, which file should you edit first?",
+          "task_type": "code",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "reference_points_judge",
+          "best_action": "delegate:code",
+          "first_action": null,
+          "final_answer": "delegate_actions.py",
+          "stop_reason": "low_entropy_and_low_value_of_continuation",
+          "reward": 0.0,
+          "evaluation": {
+            "matched_reference": false,
+            "matched_points": 0,
+            "total_points": 3,
+            "details": {
+              "raw_judge_output": "{\n  \"score\": 0.0,\n  \"matched_points\": 0,\n  \"total_points\": 3,\n  \"short_reason\": \"The candidate answer 'delegate_actions.py' is not the relevant file; the correct file is 'src/integrations/langchain_ego_adapter.py'. It also fails to mention any key class or function as suggested by the rubric.\"\n}"
+            }
+          },
+          "trajectory": []
+        },
+        {
+          "id": "think_001",
+          "query": "Briefly explain the difference between stopping and routing in EGO.",
+          "task_type": "think",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "rubric_judge",
+          "best_action": "think",
+          "first_action": null,
+          "final_answer": "In EGO, **stopping** terminates a running job or process, freeing resources, while **routing** directs incoming requests or tasks to specific workers or services based on policies (e.g., load balancing).",
+          "stop_reason": "low_entropy_and_low_value_of_continuation",
+          "reward": 2.0,
+          "evaluation": {
+            "matched_reference": false,
+            "matched_points": 3,
+            "total_points": 3,
+            "details": {
+              "raw_judge_output": "{\n  \"score\": 2.0,\n  \"matched_points\": 3,\n  \"total_points\": 3,\n  \"short_reason\": \"The answer is conceptually coherent, aligns with reference points by defining stopping and routing in EGO, and emphasizes orchestration-specific relevance with load balancing example. It is concise and avoids overclaiming.\"\n}"
+            }
+          },
+          "trajectory": []
+        }
+      ]
+    },
+    "learned_ego": {
+      "avg_reward": 1.4,
+      "std_reward": 1.624807680927192,
+      "first_action_accuracy": 0.2,
+      "reward_by_type": {
+        "math": 2.0,
+        "calc": 3.0,
+        "search": -1.0,
+        "code": 0.0,
+        "think": 3.0
+      },
+      "reward_by_difficulty": {
+        "easy": 1.4
+      },
+      "reward_by_split": {
+        "train": 1.4
+      },
+      "reward_by_evaluation_type": {
+        "rubric_judge": 2.5,
+        "numeric_exact": 3.0,
+        "substring_or_evidence_match": -1.0,
+        "reference_points_judge": 0.0
+      },
+      "first_action_accuracy_by_type": {
+        "math": 1.0,
+        "calc": 0.0,
+        "search": 0.0,
+        "code": 0.0,
+        "think": 0.0
+      },
+      "num_tasks": 5,
+      "trajectories": [
+        {
+          "id": "math_001",
+          "query": "Explain the role of budget-dependent stopping threshold in EGO.",
+          "task_type": "math",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "rubric_judge",
+          "best_action": "delegate:math",
+          "first_action": "delegate:math",
+          "final_answer": "## Refined Answer: Role of Budget-Dependent Stopping Threshold in EGO\n\nThe **budget-dependent stopping threshold** in Efficient Global Optimization (EGO) is a dynamic criterion that determines when to terminate the sequential optimization process based on the remaining evaluation budget. It directly ties the decision to stop (or continue) to the number of function evaluations left, ensuring that limited computational resources are used efficiently without sacrificing asymptotic convergence properties.\n\n### Definition and Motivation\n\nEGO iteratively selects new query points by maximizing the **Expected Improvement (EI)** acquisition function. Without a budget constraint, one might stop when EI falls below a small absolute tolerance. However, many real-world problems impose a fixed maximum number of evaluations \\( N \\) (the budget). A budget-dependent threshold \\(\\tau(n, N)\\) is a sequence (typically decreasing in the remaining budget \\(N-n\\)) such that the algorithm stops at iteration \\(n\\) if:\n\\[\n\\max_{\\mathbf{x}} \\mathrm{EI}_n(\\mathbf{x}) \\leq \\tau(n, N),\n\\]\nor after exactly \\(N\\) evaluations if the threshold is never breached.\n\n### Key Roles\n\n1. **Resource-Aware Termination**  \n   The threshold prevents wasteful evaluations when the potential improvement is smaller than the \"cost\" of an evaluation. By making \\(\\tau\\) a decreasing function of the remaining budget (e.g., \\(\\tau(n,N) = \\varepsilon \\cdot (N-n)/N\\)), the algorithm becomes more lenient as the budget is nearly exhausted – allowing even small improvements to be pursued – while being stricter early on to avoid spending evaluations on negligible gains.\n\n2. **Theoretical Convergence Guarantees**  \n   For EGO to converge to the global optimum with probability 1 (under mild GP assumptions), the stopping criterion must not prevent further exploration prematurely. A budget-dependent threshold that **decays to zero** as \\(n \\to \\infty\\) (or as the budget is exhausted) ensures that, in the infinite-budget limit, the algorithm remains globally convergent. For a finite budget, a decaying threshold guarantees that nearly all promising regions are explored before termination. A theoretically sound choice is \\(\\tau(n) = c / n^\\alpha\\) with \\(\\alpha > 1\\) or a relative tolerance that shrinks with the remaining budget.\n\n3. **Adaptive Balance of Exploration and Exploitation**  \n   EI itself already balances exploration (high variance) and exploitation (low mean). The budget-dependent threshold adds a second layer of control. A large threshold early on could halt exploration too soon; by gradually reducing the threshold, the algorithm is forced to continue exploring high-variance regions until the budget is nearly spent. This aligns the exploration–exploitation trade-off with the available resources: more exploration is allowed when many evaluations remain, and exploitation is emphasized near the end.\n\n4. **Practical Implementation**  \n   In practice, the threshold often depends on the current best observed value \\(f_{\\min}^{(n)}\\). For example:\n   \\[\n   \\tau(n,N) = \\varepsilon \\cdot \\frac{N-n}{N} \\cdot f_{\\min}^{(n)},\n   \\]\n   where \\(\\varepsilon\\) is a small constant (e.g., 0.01). This makes the tolerance relative to the scale of the objective and decays linearly with the remaining budget. The algorithm stops only when the expected improvement is negligible compared to the number of evaluations left.\n\n### Conclusion\n\nThe budget-dependent stopping threshold transforms EGO from an infinite-horizon algorithm into a finite-budget optimization procedure. It ensures efficient use of the evaluation budget by terminating early when further improvement is unlikely, preserves theoretical convergence guarantees by letting the threshold vanish, and adaptively balances exploration and exploitation according to the remaining resources. This makes EGO both practically effective and theoretically sound under a fixed evaluation budget.",
+          "stop_reason": "non_positive_continuation_score",
+          "reward": 2.0,
+          "evaluation": {
+            "matched_reference": false,
+            "matched_points": 3,
+            "total_points": 4,
+            "details": {
+              "raw_judge_output": "{\n  \"score\": 2.0,\n  \"matched_points\": 3,\n  \"total_points\": 4,\n  \"short_reason\": \"Thorough explanation of budget-dependent stopping threshold in EGO, correctly linking to expected improvement and resource-aware termination. However, the description that the threshold becomes more lenient as budget is nearly exhausted (less remaining) slightly contradicts the expectation that more budget means more willingness to continue; the example threshold increases with total budget, which goes against that notion. Overall, conceptually sound but minor mismatch.\"\n}"
+            }
+          },
+          "trajectory": [
+            {
+              "step": 1,
+              "budget_before": 3,
+              "chosen_action": "delegate:math",
+              "action": "delegate:math",
+              "action_scores": [
+                {
+                  "action_name": "delegate:math",
+                  "score": 0.8375556200806356,
+                  "estimated_gain": 0.8801717691178672,
+                  "action_cost": 0.1,
+                  "predicted_reward": 0.0,
+                  "exploration_bonus": 0.36544397015402186
+                },
+                {
+                  "action_name": "delegate:code",
+                  "score": 0.8102729663443077,
+                  "estimated_gain": 0.8561717691178672,
+                  "action_cost": 0.11,
+                  "predicted_reward": 0.0,
+                  "exploration_bonus": 0.36376131641769394
+                },
+                {
+                  "action_name": "tool:calculator",
+                  "score": 0.6953329585534086,
+                  "estimated_gain": 0.6952947356779599,
+                  "action_cost": 0.12,
+                  "predicted_reward": 0.0,
+                  "exploration_bonus": 0.3633913803627346
+                },
+                {
+                  "action_name": "tool:search",
+                  "score": 0.6338019181865479,
+                  "estimated_gain": 0.6652947356779599,
+                  "action_cost": 0.16,
+                  "predicted_reward": 0.0,
+                  "exploration_bonus": 0.36136033999587397
+                },
+                {
+                  "action_name": "think",
+                  "score": 0.6121112966441808,
+                  "estimated_gain": 0.47090956847842363,
+                  "action_cost": 0.05,
+                  "predicted_reward": 0.0,
+                  "exploration_bonus": 0.35602007713320555
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "calc_001",
+          "query": "Compute `0.08 + 0.75 / (1 + 1)`.",
+          "task_type": "calc",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "numeric_exact",
+          "best_action": "tool:calculator",
+          "first_action": null,
+          "final_answer": "0.455",
+          "stop_reason": "low_entropy_and_low_value_of_continuation",
+          "reward": 3.0,
+          "evaluation": {
+            "matched_reference": true,
+            "matched_points": 0,
+            "total_points": 0,
+            "details": {
+              "pred": 0.455,
+              "target": 0.455,
+              "abs_err": 0.0,
+              "rel_err": 0.0
+            }
+          },
+          "trajectory": []
+        },
+        {
+          "id": "search_001",
+          "query": "Which file defines the learned action scorer?",
+          "task_type": "search",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "substring_or_evidence_match",
+          "best_action": "tool:search",
+          "first_action": "delegate:math",
+          "final_answer": "The learned action scorer is most commonly defined in **`trlx/model/model.py`** (class `LearnedActionScorer`) in the TRLX framework. In later versions or the successor `trl` library, it may be located in `trlx/model/accelerate_ppo_model.py` or `trl/trainer/ppo_trainer.py`, with the scorer/reward model defined separately. For a generic codebase, check files like `model.py`, `ppo_model.py`, `scorers.py`, or `reward_model.py`.",
+          "stop_reason": "low_entropy_and_low_value_of_continuation",
+          "reward": -1.0,
+          "evaluation": {
+            "matched_reference": false,
+            "matched_points": 0,
+            "total_points": 1,
+            "details": {
+              "reference_hit": false,
+              "point_fraction": 0.0
+            }
+          },
+          "trajectory": [
+            {
+              "step": 1,
+              "budget_before": 3,
+              "chosen_action": "delegate:math",
+              "action": "delegate:math",
+              "action_scores": [
+                {
+                  "action_name": "delegate:math",
+                  "score": 2.6066209914469165,
+                  "estimated_gain": 1.2867173654245054,
+                  "action_cost": 0.1,
+                  "predicted_reward": 1.7557277954392696,
+                  "exploration_bonus": 0.1145269084817182
+                },
+                {
+                  "action_name": "delegate:code",
+                  "score": 1.0809138632157549,
+                  "estimated_gain": 1.2627173654245056,
+                  "action_cost": 0.11,
+                  "predicted_reward": 0.0,
+                  "exploration_bonus": 0.3701475756898262
+                },
+                {
+                  "action_name": "tool:calculator",
+                  "score": 0.9544909122953172,
+                  "estimated_gain": 1.0841644364930054,
+                  "action_cost": 0.12,
+                  "predicted_reward": 0.0,
+                  "exploration_bonus": 0.3697840285748637
+                },
+                {
+                  "action_name": "tool:search",
+                  "score": 0.8929951757976423,
+                  "estimated_gain": 1.0541644364930054,
+                  "action_cost": 0.16,
+                  "predicted_reward": 0.0,
+                  "exploration_bonus": 0.3677882920771889
+                },
+                {
+                  "action_name": "think",
+                  "score": 0.8139525901600986,
+                  "estimated_gain": 0.7713997918355042,
+                  "action_cost": 0.05,
+                  "predicted_reward": 0.0,
+                  "exploration_bonus": 0.3625427254670208
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "code_001",
+          "query": "If you want to work on adding a new delegate expert action, which file should you edit first?",
+          "task_type": "code",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "reference_points_judge",
+          "best_action": "delegate:code",
+          "first_action": null,
+          "final_answer": "Edit `delegate_actions.py` (or the corresponding file where delegate expert actions are defined).",
+          "stop_reason": "low_entropy_and_low_value_of_continuation",
+          "reward": 0.0,
+          "evaluation": {
+            "matched_reference": false,
+            "matched_points": 0,
+            "total_points": 3,
+            "details": {
+              "raw_judge_output": "{\n  \"score\": 0.0,\n  \"matched_points\": 0,\n  \"total_points\": 3,\n  \"short_reason\": \"Incorrect file; expected src/integrations/langchain_ego_adapter.py with key classes/functions like ExpertSpec.\"\n}"
+            }
+          },
+          "trajectory": []
+        },
+        {
+          "id": "think_001",
+          "query": "Briefly explain the difference between stopping and routing in EGO.",
+          "task_type": "think",
+          "difficulty": "easy",
+          "split": "train",
+          "evaluation_type": "rubric_judge",
+          "best_action": "think",
+          "first_action": null,
+          "final_answer": "**Stopping** terminates a workflow or job entirely, preventing further execution. **Routing** directs a workflow or job to a specific path (e.g., different resource or branch) based on conditions, allowing continued execution along a chosen route.",
+          "stop_reason": "low_entropy_and_low_value_of_continuation",
+          "reward": 3.0,
+          "evaluation": {
+            "matched_reference": false,
+            "matched_points": 3,
+            "total_points": 3,
+            "details": {
+              "raw_judge_output": "{\n  \"score\": 3.0,\n  \"matched_points\": 3,\n  \"total_points\": 3,\n  \"short_reason\": \"The answer clearly and concisely distinguishes stopping (termination) from routing (conditional path selection), directly addressing the reference points and maintaining orchestration-specific relevance without overclaiming.\"\n}"
+            }
+          },
+          "trajectory": []
+        }
+      ]
+    }
+  }
+}

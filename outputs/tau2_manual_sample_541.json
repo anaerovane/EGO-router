@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_usage_exceeded_user_abroad_roaming_enabled_off_persona_easy_step_13_manual_541",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 13,
+  "query": "Thanks for checking! Please go ahead and add 2GB of data to my plan. I really need to get back to excellent internet speed as soon as possible. Let me know if you need anything else from me.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that mobile data is not working well while abroad in France and wants excellent internet speed.\nassistant: The assistant asks for the phone number to identify the account.\nuser: The user provides phone number 555-123-2002.\nassistant: The assistant authenticates the account, checks the relevant line, and confirms roaming is enabled.\nassistant: The assistant checks usage and explains that the line has exceeded the 15.0 GB plan limit with 15.1 GB used.\nuser: The user authorizes adding 2GB of extra data to restore service.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood — you want to add 2GB of extra data, so I should verify the refueling price and then process the add-on for your line."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible state already establishes the diagnosed cause and the user has explicitly approved a 2GB top-up, so fetching the plan pricing needed to quote and execute the refuel is the clearest next move."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.19,
+      "margin": 0.63,
+      "disagreement": 0.07,
+      "verifier_confidence": 0.93,
+      "steps_remaining": 5
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:check_roaming_status",
+    "tool:get_network_status",
+    "tool:run_speed_test",
+    "tool:refuel_data",
+    "tool:change_plan",
+    "tool:restart_device",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.96,
+    "think": 0.11,
+    "tool:get_customer_by_phone": -0.88,
+    "tool:get_details_by_id": 0.72,
+    "tool:get_data_usage": -0.34,
+    "tool:check_roaming_status": -0.49,
+    "tool:get_network_status": -0.63,
+    "tool:run_speed_test": -0.7,
+    "tool:refuel_data": 0.58,
+    "tool:change_plan": -0.42,
+    "tool:restart_device": -0.76,
+    "tool:transfer_to_human_agents": -0.57
+  },
+  "best_action": "tool:get_details_by_id",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "d482947b-bc2a-479d-9084-e6cc9dceac7a",
+    "termination_reason": "user_stop",
+    "selected_message_index": 13,
+    "message_count": 38,
+    "decision_rule": "Choose a user turn where the root cause is already identified and the user approves a concrete data top-up, making plan-price retrieval the most defensible immediate action before execution.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores favor actions that preserve grounded billing context and avoid skipping over the visible need to retrieve pricing information for the requested 2GB add-on.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "The real trajectory retrieves plan details before quoting cost and executing the refuel, so get_details_by_id is scored above direct refuel execution."
+    ]
+  }
+}

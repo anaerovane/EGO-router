@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_airplane_mode_on_overdue_bill_suspension_step_13_manual_707",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|overdue_bill_suspension[PERSONA:None]",
+  "step_id": 13,
+  "query": "I've completed the payment for the overdue bill. What should I do next to get my service restored?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports a no-service problem.\nassistant: The assistant identifies the account by phone number, determines the line had an overdue-bill suspension, and guides the user through paying the bill.\nassistant: The environment then shows the payment request was completed successfully for the overdue bill.\nuser: The user reports that payment has been completed and asks what to do next to restore service.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for confirming the payment. I’ll resume your suspended line now so service can be restored."
+      },
+      {
+        "source": "think-refine",
+        "text": "The bill-payment prerequisite has been satisfied and the user is asking for restoration, so the grounded next move is line resumption rather than more troubleshooting."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.12,
+      "margin": 0.82,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.96,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:calculate",
+    "tool:change_plan",
+    "tool:check_device_settings",
+    "tool:get_customer_by_phone",
+    "tool:get_data_usage",
+    "tool:get_details_by_id",
+    "tool:refuel_data",
+    "tool:resume_line",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.86,
+    "think": 0.06,
+    "tool:calculate": -0.78,
+    "tool:change_plan": -0.93,
+    "tool:check_device_settings": -0.38,
+    "tool:get_customer_by_phone": -0.83,
+    "tool:get_data_usage": -0.9,
+    "tool:get_details_by_id": -0.32,
+    "tool:refuel_data": -0.88,
+    "tool:resume_line": 0.99,
+    "tool:send_payment_request": -0.95,
+    "tool:transfer_to_human_agents": -0.74
+  },
+  "best_action": "tool:resume_line",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom-workflow_op_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "5370ab77-8a96-4851-8ade-70ac54c0c959",
+    "termination_reason": "user_stop",
+    "selected_message_index": 13,
+    "message_count": 19,
+    "decision_rule": "Choose a post-payment state where the user asks for service restoration and the telecom policy allows lifting suspension after overdue bills are paid.",
+    "scoring_method": "Manual one-step proxy scoring from the visible decision point. Scores prefer immediate service restoration through line resumption and penalize repeating payment or unrelated diagnostics.",
+    "notes": [
+      "query is the visible user message immediately before the resume_line tool call",
+      "history_summary includes only prior visible facts needed to justify restoration and omits later success output",
+      "best_action is argmax and adds a distinct telecom operational action type",
+      "the trajectory comes from a workflow-op result file but the decision state remains grounded in visible user-facing context"
+    ]
+  }
+}

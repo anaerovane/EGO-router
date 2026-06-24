@@ -1,0 +1,70 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_airplane_mode_on_lock_sim_card_pin_persona_easy_step_9_manual_687",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|lock_sim_card_pin[PERSONA:Easy]",
+  "step_id": 9,
+  "query": "I’ve turned off Airplane Mode. Now, the status bar shows “No Signal” and “Data Disabled,” and there’s still no service. What should I try next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that the phone has shown No Service for hours.\nassistant: The assistant asks the user to inspect the status bar.\nuser: The status bar shows Airplane Mode.\nassistant: The assistant instructs the user to turn Airplane Mode off.\nuser: After turning it off, the status bar still shows No Signal and Data Disabled, and the user asks what to try next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for checking. Since turning off Airplane Mode didn’t restore service, the next step is to inspect the SIM status to see whether the phone reports the SIM as active, missing, or locked."
+      },
+      {
+        "source": "think-refine",
+        "text": "Airplane Mode has been ruled out, and the conversation now needs a more specific device-state diagnosis. A SIM-status check is the most grounded next troubleshooting step from visible context."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.23,
+      "margin": 0.58,
+      "disagreement": 0.09,
+      "verifier_confidence": 0.89,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:check_device_settings",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.87,
+    "think": 0.17,
+    "tool:get_customer_by_phone": -0.93,
+    "tool:get_details_by_id": -0.79,
+    "tool:get_data_usage": -0.96,
+    "tool:change_plan": -0.96,
+    "tool:refuel_data": -0.95,
+    "tool:check_device_settings": 0.98,
+    "tool:transfer_to_human_agents": -0.62,
+    "tool:calculate": -0.98
+  },
+  "best_action": "tool:check_device_settings",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom-workflow_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "service_airplane_then_sim_trial0",
+    "termination_reason": "user_stop",
+    "selected_message_index": 9,
+    "message_count": 16,
+    "decision_rule": "Choose an intermediate troubleshooting state where one plausible cause has just been eliminated and the next grounded diagnostic should narrow the failure further.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. check_device_settings dominates because the next helpful move is another on-device diagnostic rather than account lookup or escalation.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample is earlier in the trajectory than the transfer state used elsewhere and therefore captures a different decision point"
+    ]
+  }
+}

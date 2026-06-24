@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]_step_15_manual_775",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]",
+  "step_id": 15,
+  "query": "I definitely don’t want to change my plan, but I’m willing to refuel 2GB of data. Please go ahead and add 2GB so I can get back to excellent internet speed.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports mobile data that keeps stopping or slowing down and wants excellent speed.\nassistant: The assistant authenticates the telecom account, identifies the affected line 555-123-2002, and checks the line plus plan details.\nassistant: The assistant finds that the line has used 15.1 GB against a 15.0 GB data limit and explains that exceeding the limit is the visible cause of the slowdown.\nuser: The user declines a plan change and explicitly authorizes a 2GB data refuel.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. I’ll add 2GB of refuel data to your line now so we can restore service and then verify whether the connection improves."
+      },
+      {
+        "source": "think-refine",
+        "text": "The data cap overage has already been established from visible account state, and the user has explicitly approved the add-on, so refueling data is the most grounded next action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.09,
+      "margin": 0.89,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.98,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.88,
+    "think": 0.04,
+    "tool:get_customer_by_phone": -0.93,
+    "tool:get_customer_by_name": -0.98,
+    "tool:get_details_by_id": -0.41,
+    "tool:get_bills_for_customer": -0.86,
+    "tool:send_payment_request": -0.9,
+    "tool:check_payment_request": -0.97,
+    "tool:make_payment": -0.96,
+    "tool:resume_line": -0.71,
+    "tool:enable_roaming": -0.79,
+    "tool:refuel_data": 0.99,
+    "tool:transfer_to_human_agents": -0.66
+  },
+  "best_action": "tool:refuel_data",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "4a0eabe0-1325-4c3e-8918-3a09a02506a2",
+    "termination_reason": "user_transfer",
+    "selected_message_index": 15,
+    "message_count": 28,
+    "decision_rule": "Choose a user turn where the quota issue has already been established and the user explicitly selects a supported remediation rather than escalation or plan change.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Highest score goes to the single telecom action that directly remedies quota exhaustion under the user’s chosen constraint.",
+    "notes": [
+      "The query is taken verbatim from the visible user turn before any tool execution.",
+      "This sample diversifies telecom best_action types by using refuel_data instead of state inspection or escalation."
+    ]
+  }
+}

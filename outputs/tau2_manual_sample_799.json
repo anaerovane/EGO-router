@@ -1,0 +1,80 @@
+{
+  "sample_id": "tau2_airline_task_3_step_9_manual_799",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "3",
+  "step_id": 9,
+  "query": "I’m pretty sure I’m a Gold member, not Silver. Can you double-check that for me? If you still say I’m Silver, I’d like to speak to a supervisor, please.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user asks how many suitcases are allowed on an upcoming flight.\nassistant: The assistant requests a user ID and confirmation number.\nuser: The user provides user ID anya_garcia_5901 and reservation ID JMO1MG.\nassistant: The assistant retrieves the reservation and user profile, then explains baggage allowance based on a visible Silver membership record.\nuser: The user disputes the membership tier, asks the agent to double-check it, and requests a supervisor only if the result still shows Silver.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I can double-check that for you. I’ll verify the membership information on your account once more before deciding whether a transfer is needed."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user is explicitly asking for re-verification before escalation, so the grounded next action is to re-read the user account rather than transfer immediately."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.24,
+      "margin": 0.52,
+      "disagreement": 0.08,
+      "verifier_confidence": 0.9,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.91,
+    "think": 0.2,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.63,
+    "tool:cancel_reservation": -0.97,
+    "tool:get_flight_status": -0.86,
+    "tool:get_reservation_details": -0.21,
+    "tool:get_user_details": 0.95,
+    "tool:list_all_airports": -0.97,
+    "tool:search_direct_flight": -0.96,
+    "tool:search_onestop_flight": -0.96,
+    "tool:send_certificate": -0.95,
+    "tool:transfer_to_human_agents": 0.54,
+    "tool:update_reservation_baggages": -0.89,
+    "tool:update_reservation_flights": -0.98,
+    "tool:update_reservation_passengers": -0.98
+  },
+  "best_action": "tool:get_user_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_airline_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "3f0cac3f-344c-4503-8c57-98bd2c1e0cf8",
+    "termination_reason": "user_stop",
+    "selected_message_index": 9,
+    "message_count": 14,
+    "decision_rule": "Choose a user turn where the user requests a double-check first and escalation only conditionally, making account re-verification the most grounded next move.",
+    "scoring_method": "Manual one-step proxy scoring from visible state. Scores prioritize the action that directly answers the re-check request while keeping escalation as a secondary option if the record is unchanged.",
+    "notes": [
+      "This airline sample diversifies away from reservation lookup into account re-verification.",
+      "best_action is get_user_details because the user explicitly asked for a double-check before any transfer."
+    ]
+  }
+}

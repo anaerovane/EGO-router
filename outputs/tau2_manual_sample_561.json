@@ -1,0 +1,80 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_break_apn_lock_sim_overdue_step_22_manual_561",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]break_apn_settings|lock_sim_card_pin|overdue_bill_suspension[PERSONA:Easy]",
+  "step_id": 22,
+  "query": "I’ve just completed the payment for the overdue bill. What should I do next to get my service restored?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that their phone has shown No Service for hours and asks for help restoring service.\nassistant: The assistant requests identifying details for the affected line.\nuser: The user provides the name John Smith and phone number 555-123-2002.\nassistant: The assistant looks up the customer and the line, confirms that line 555-123-2002 is suspended, checks billing, and finds an overdue bill for $65.00 causing the suspension.\nassistant: The assistant offers to send a payment request for the overdue bill.\nuser: The user asks the assistant to send the payment request.\nassistant: The assistant sends the payment request and tells the user to complete it, then report back.\nuser: The user says they have completed the overdue-bill payment and asks what to do next to restore service.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for confirming the payment. I’ll verify that the overdue bill is now cleared and then restore the suspended line if everything looks good."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user says the payment was just completed, so the next grounded move is to re-check billing before attempting service restoration on the suspended line."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.24,
+      "margin": 0.41,
+      "disagreement": 0.09,
+      "verifier_confidence": 0.9,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_customer_by_id",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:reboot_device",
+    "tool:check_status_bar",
+    "tool:check_sim_status",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.95,
+    "think": 0.16,
+    "tool:get_customer_by_phone": -0.22,
+    "tool:get_customer_by_name": -0.51,
+    "tool:get_customer_by_id": -0.33,
+    "tool:get_details_by_id": 0.09,
+    "tool:get_bills_for_customer": 0.94,
+    "tool:send_payment_request": -0.88,
+    "tool:check_payment_request": 0.38,
+    "tool:make_payment": -0.91,
+    "tool:resume_line": 0.71,
+    "tool:reboot_device": -0.54,
+    "tool:check_status_bar": -0.36,
+    "tool:check_sim_status": -0.28,
+    "tool:transfer_to_human_agents": -0.63
+  },
+  "best_action": "tool:get_bills_for_customer",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_telecom_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "1add7ff9-86de-432c-b721-14acf939effd",
+    "termination_reason": "user_stop",
+    "selected_message_index": 22,
+    "message_count": 47,
+    "decision_rule": "Choose a user turn where a payment-dependent suspension can only be resolved after verifying that the bill status actually changed in the system.",
+    "scoring_method": "Manual one-step proxy scoring from the decision point. Scores favor actions that validate the newly completed payment using visible context before changing line state.",
+    "notes": [
+      "query comes directly from the selected user message, not hidden task text",
+      "history_summary stops at the decision point and excludes later bill refresh, line resume, and diagnostics",
+      "best_action is get_bills_for_customer because the user claims payment completion but the assistant still needs a fresh system check before resuming service",
+      "resume_line remains plausible but scores lower because it skips explicit verification of the payment state"
+    ]
+  }
+}

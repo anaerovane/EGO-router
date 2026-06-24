@@ -1,0 +1,75 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_bad_vpn_data_saver_roaming_step_17_manual_508",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]bad_vpn|data_saver_mode_on|user_abroad_roaming_disabled_on[PERSONA:None]",
+  "step_id": 17,
+  "query": "I’m currently abroad in France, so I am roaming. I haven’t made any recent changes to my phone settings, and I haven’t tried restarting my device yet. What should I do next to get excellent internet speed?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: Hi, I’m having trouble with my mobile data. The internet on my phone is either extremely slow or stops working altogether. I really need to get excellent internet speed on my phone—nothing less will do. Can you help me?\nassistant: After an initial failed lookup without a phone number, the assistant asks for the user’s phone number.\nuser: Sure, my phone number is 555-123-2002.\nassistant: The assistant retrieves the customer, the relevant line, the line’s plan, and current data usage.\nassistant: The assistant explains that the line is active, data usage is still below the plan limit, and service settings—not an exhausted plan—are the likely cause.\nuser: I’m currently abroad in France, so I am roaming. I haven’t made any recent changes to my phone settings, and I haven’t tried restarting my device yet. What should I do next to get excellent internet speed?",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Since you’re abroad and roaming right now, I’ll first make sure roaming is enabled on your line, because that has to be in place before deeper device troubleshooting will help."
+      },
+      {
+        "source": "think-refine",
+        "text": "The new visible information is that the user is currently roaming internationally, while the earlier line context showed service is active and data remains available, so enabling roaming is the strongest grounded next action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.19,
+      "margin": 0.67,
+      "disagreement": 0.07,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:toggle_data",
+    "tool:grant_app_permission",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.94,
+    "think": 0.12,
+    "tool:get_customer_by_phone": -0.9,
+    "tool:get_details_by_id": -0.21,
+    "tool:get_data_usage": -0.16,
+    "tool:refuel_data": -0.86,
+    "tool:send_payment_request": -0.97,
+    "tool:resume_line": -0.84,
+    "tool:enable_roaming": 0.96,
+    "tool:toggle_data": 0.18,
+    "tool:grant_app_permission": -0.93,
+    "tool:transfer_to_human_agents": -0.49
+  },
+  "best_action": "tool:enable_roaming",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "8ce14ca5-754f-42e6-b030-03cd0004490c",
+    "termination_reason": "user_stop",
+    "selected_message_index": 17,
+    "message_count": 35,
+    "decision_rule": "Choose a travel-context user turn where the international-roaming fact becomes visible and materially changes the next best telecom action beyond generic troubleshooting.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reward actions that directly address roaming-specific connectivity blockers using only visible conversation context.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample avoids trivial identification turns and captures a domain-specific roaming decision point.",
+      "Candidate answers do not mention later device checks, VPN, or speed-test outcomes."
+    ]
+  }
+}

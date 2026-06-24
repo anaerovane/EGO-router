@@ -1,0 +1,80 @@
+{
+  "sample_id": "tau2_telecom_task_data_saver_data_exceeded_step_25_manual_938",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_saver_mode_on|data_usage_exceeded[PERSONA:Easy]",
+  "step_id": 25,
+  "query": "I just ran a speed test, and it says my connection is \"Good\" with a download speed of 44 Mbps. However, I really need \"Excellent\" internet speed for my work. Is there anything else we can try to boost it from \"Good\" to \"Excellent\"? I want to make sure I’m getting the best possible speed.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports poor mobile data performance and needs excellent speed.\nassistant: The assistant asks for the phone number.\nuser: The user provides 555-123-2002 and confirms the affected line.\nassistant: The assistant verifies the account, identifies that the 15 GB data cap was exceeded, and refuels 2 GB.\nassistant: The assistant asks the user to test current speed.\nuser: The user runs a speed test and reports 44 Mbps, rated Good rather than Excellent, and asks what else can be tried.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for testing. Since the connection is working but underperforming, I should inspect device or network constraints that could be throttling speed before suggesting another change."
+      },
+      {
+        "source": "think-refine",
+        "text": "The problem has shifted from no-connection to suboptimal throughput, so the grounded next step is to check current network status rather than repeat the already-completed quota fix."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.24,
+      "margin": 0.5,
+      "disagreement": 0.1,
+      "verifier_confidence": 0.88,
+      "steps_remaining": 6
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_details",
+    "tool:find_line_by_phone",
+    "tool:get_plan_details",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:check_roaming_status",
+    "tool:toggle_data_roaming",
+    "tool:check_network_status",
+    "tool:toggle_airplane_mode",
+    "tool:toggle_mobile_data",
+    "tool:toggle_data_saver",
+    "tool:run_speed_test",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.9,
+    "think": 0.19,
+    "tool:get_customer_details": -0.82,
+    "tool:find_line_by_phone": -0.71,
+    "tool:get_plan_details": -0.69,
+    "tool:get_data_usage": -0.33,
+    "tool:refuel_data": -0.49,
+    "tool:check_roaming_status": -0.41,
+    "tool:toggle_data_roaming": -0.62,
+    "tool:check_network_status": 0.97,
+    "tool:toggle_airplane_mode": -0.59,
+    "tool:toggle_mobile_data": -0.55,
+    "tool:toggle_data_saver": -0.08,
+    "tool:run_speed_test": -0.42,
+    "tool:transfer_to_human_agents": -0.51
+  },
+  "best_action": "tool:check_network_status",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "88da5d0a-ebf1-404f-adf0-ab5a30a57ab1",
+    "termination_reason": "user_stop",
+    "selected_message_index": 25,
+    "message_count": 41,
+    "decision_rule": "Choose a state where service is restored but speed remains below the user’s target, making diagnosis of device-side throttles the key next step.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. check_network_status is highest because the assistant needs fresh device-state evidence to explain why speeds are only Good after data refueling.",
+    "notes": [
+      "query comes directly from the selected visible user message, not hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "toggle_data_saver remains plausible but scores below check_network_status because the saver state is not yet visible at this decision point"
+    ]
+  }
+}

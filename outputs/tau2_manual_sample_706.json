@@ -1,0 +1,70 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_mode_off_data_usage_exceeded_step_37_manual_706",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]",
+  "step_id": 37,
+  "query": "I definitely don’t want to change my plan, but I’m willing to add more data. Please add 2GB to my line so I can get back to excellent internet speed. Let me know once it’s done and what I should do next.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that mobile data is not working properly and insists on getting excellent internet speed.\nassistant: The assistant identifies the account by phone number, confirms the affected line, and guides the user through turning off Airplane Mode and enabling mobile data.\nassistant: After a failed speed test, the assistant checks the line and plan details and explains that line 555-123-2002 has used 15.1GB on a 15GB plan, so the data allowance has been exceeded. The assistant offers either plan change or data refuel up to 2GB.\nuser: The user rejects changing plans and explicitly asks to add 2GB of data to the line.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. Since you want to keep the current plan, I’ll add 2GB of refueled data to your line now."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has explicitly selected the supported remediation path for a data-limit problem, so the grounded next move is to refuel 2GB rather than continue diagnosis."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.14,
+      "margin": 0.79,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:calculate",
+    "tool:change_plan",
+    "tool:check_device_settings",
+    "tool:get_customer_by_phone",
+    "tool:get_data_usage",
+    "tool:get_details_by_id",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.87,
+    "think": 0.08,
+    "tool:calculate": -0.74,
+    "tool:change_plan": -0.93,
+    "tool:check_device_settings": -0.42,
+    "tool:get_customer_by_phone": -0.89,
+    "tool:get_data_usage": -0.58,
+    "tool:get_details_by_id": -0.61,
+    "tool:refuel_data": 0.99,
+    "tool:transfer_to_human_agents": -0.81
+  },
+  "best_action": "tool:refuel_data",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "35b053e7-42c1-4dc6-87c8-e280578decc2",
+    "termination_reason": "user_stop",
+    "selected_message_index": 37,
+    "message_count": 48,
+    "decision_rule": "Choose a state where the root cause has already been grounded as exceeded plan data and the user clearly selects the allowed 2GB refuel path.",
+    "scoring_method": "Manual one-step proxy scoring from visible telecom state. Scores prioritize the user-approved remediation action and downweight redundant account checks or disallowed plan changes.",
+    "notes": [
+      "query comes directly from the visible user turn after the assistant explained the exceeded-data diagnosis",
+      "history_summary stops before the refuel tool result and later reboot advice",
+      "best_action is argmax and matches the real next tool call refuel_data",
+      "this sample diversifies telecom with a concrete restoration action instead of authentication or escalation"
+    ]
+  }
+}

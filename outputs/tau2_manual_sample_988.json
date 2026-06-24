@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_airplane_mode_on_bad_network_preference_bad_vpn_data_saver_mode_on_user_abroad_roaming_disabled_on_step_21_manual_988",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_saver_mode_on|user_abroad_roaming_disabled_on[PERSONA:Easy]",
+  "step_id": 21,
+  "query": "Looking at my phone’s status bar, I see that Airplane Mode is enabled. There’s also a VPN icon, and my battery is at 80%. I don’t see any signal bars or network type indicators at the moment. What should I do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user says mobile data is failing while abroad in France and wants excellent internet speed.\nassistant: The assistant verifies the account, retrieves the affected line, identifies that roaming is disabled, and enables roaming for the line.\nassistant: The assistant asks the user to try mobile data again; it still fails, so the assistant asks the user to inspect the phone status bar.\nuser: The user reports that Airplane Mode is enabled, a VPN is connected, and there are no signal indicators yet.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Airplane Mode is the clearest blocker right now. The next grounded step is to have the user turn Airplane Mode off before troubleshooting the VPN or other settings."
+      },
+      {
+        "source": "think-refine",
+        "text": "Even though roaming was just enabled, the visible device state still shows Airplane Mode on, which prevents any cellular connection. Toggling Airplane Mode off is more urgent than checking downstream speed optimizations."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.16,
+      "margin": 0.71,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_customer_by_id",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:get_bills_for_customer",
+    "tool:check_service_status",
+    "tool:check_roaming_status",
+    "tool:enable_roaming",
+    "tool:disable_roaming",
+    "tool:refuel_data",
+    "tool:change_plan",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.89,
+    "think": 0.63,
+    "tool:get_customer_by_phone": -0.54,
+    "tool:get_customer_by_name": -0.9,
+    "tool:get_customer_by_id": -0.64,
+    "tool:get_details_by_id": -0.28,
+    "tool:get_data_usage": -0.76,
+    "tool:get_bills_for_customer": -0.81,
+    "tool:check_service_status": 0.08,
+    "tool:check_roaming_status": -0.21,
+    "tool:enable_roaming": -0.73,
+    "tool:disable_roaming": -0.94,
+    "tool:refuel_data": -0.88,
+    "tool:change_plan": -0.92,
+    "tool:send_payment_request": -0.96,
+    "tool:transfer_to_human_agents": -0.67
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "5678a9c5-60fc-427d-b964-75b3a67a2182",
+    "termination_reason": "user_stop",
+    "selected_message_index": 21,
+    "message_count": 41,
+    "decision_rule": "Choose a state where roaming has already been fixed at the account level, but the visible device-side blocker is Airplane Mode, so the assistant should respond with a specific next instruction rather than another backend tool call.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores reward issuing the most immediate device-side troubleshooting instruction when no further backend action is yet justified.",
+    "notes": [
+      "query comes directly from the selected visible user message",
+      "history_summary excludes later steps turning off Airplane Mode, adjusting network mode, disabling Data Saver, disconnecting VPN, and successful speed restoration",
+      "best_action is the argmax because the next move is instructional reasoning toward a user-side toggle, not a telecom backend tool invocation",
+      "this sample diversifies telecom best actions with a deliberate non-tool planning/response state"
+    ]
+  }
+}

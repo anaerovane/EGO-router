@@ -1,0 +1,75 @@
+{
+  "sample_id": "tau2_telecom_task_break_apn_lock_pin_step_23_manual_815",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]break_apn_settings|lock_sim_card_pin[PERSONA:None]",
+  "step_id": 23,
+  "query": "I’m not sure what my other PIN options are, and I don’t have the SIM packaging with me. I think it’s best if you transfer me to a human agent for help with the SIM security.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that the phone has shown No Service for hours and asks for help.\nassistant: The assistant asks for the phone number.\nuser: The user provides 555-123-2002.\nassistant: The assistant retrieves the customer and line details, verifies that line 555-123-2002 is active, and rules out an account suspension as the cause.\nassistant: The assistant asks the user to check the current network status on the device.\nuser: The device status shows Airplane Mode off but the SIM card status as locked_pin.\nassistant: The assistant explains that the SIM is PIN-locked and asks the user to try the PIN they remember, while warning them to be careful.\nuser: The user tries a remembered PIN, but the SIM remains locked.\nassistant: The assistant warns about remaining attempts and explains that further incorrect guesses could cause a PUK lock.\nuser: The user says they do not know other PIN options, do not have the SIM packaging, and explicitly asks to be transferred to a human agent.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. I’ll transfer you to a human agent who can help with the SIM security issue without risking additional failed PIN attempts."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user explicitly requests escalation after exhausting safe self-service troubleshooting for a locked SIM, so the grounded next step is to transfer to a human agent."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.05,
+      "margin": 0.94,
+      "disagreement": 0.01,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.92,
+    "think": 0.03,
+    "tool:get_customer_by_phone": -0.95,
+    "tool:get_customer_by_name": -0.98,
+    "tool:get_details_by_id": -0.83,
+    "tool:get_bills_for_customer": -0.96,
+    "tool:send_payment_request": -0.97,
+    "tool:check_payment_request": -0.97,
+    "tool:make_payment": -0.97,
+    "tool:resume_line": -0.95,
+    "tool:enable_roaming": -0.97,
+    "tool:refuel_data": -0.98,
+    "tool:transfer_to_human_agents": 0.99
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "2b37a4b6-e47f-4e4e-9d42-4d8037922ff2",
+    "termination_reason": "user_stop",
+    "selected_message_index": 23,
+    "message_count": 28,
+    "decision_rule": "Choose a user turn where device-level troubleshooting has narrowed the issue to SIM security, the user lacks the required recovery materials, and explicitly asks for escalation.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Highest score goes to transfer_to_human_agents because further self-service action risks locking the SIM more severely and the user explicitly requests human help.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "best_action is transfer_to_human_agents because the remaining safe path requires human-assisted SIM security recovery rather than another automated tool call"
+    ]
+  }
+}

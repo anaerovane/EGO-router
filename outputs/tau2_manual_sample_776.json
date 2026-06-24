@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]data_saver_mode_on|data_usage_exceeded[PERSONA:Easy]_step_27_manual_776",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_saver_mode_on|data_usage_exceeded[PERSONA:Easy]",
+  "step_id": 27,
+  "query": "Yes, I’m able to follow your instructions and perform checks on my phone. Please guide me step-by-step, and I’ll let you know what I see or what happens after each step. What should I check first?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports mobile data problems and wants excellent speed.\nassistant: The assistant authenticates the account, identifies the affected line, confirms the user exceeded the data limit, and adds a 2GB data refuel after authorization.\nassistant: The user later reports that a speed test still shows only good performance, and the assistant explains that phone settings may need to be checked next.\nuser: The user confirms they can follow guided diagnostics and asks what to check first.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Great — let’s start with the phone’s current network status so we can see signal strength, network type, and whether data is actually enabled before trying anything else."
+      },
+      {
+        "source": "think-refine",
+        "text": "At this point the billing-side remedy has already been applied, but the device-side cause is still unclear, so the next grounded move is structured inspection rather than another account action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.29,
+      "margin": 0.29,
+      "disagreement": 0.14,
+      "verifier_confidence": 0.82,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.81,
+    "think": 0.34,
+    "tool:get_customer_by_phone": -0.92,
+    "tool:get_customer_by_name": -0.98,
+    "tool:get_details_by_id": 0.58,
+    "tool:get_bills_for_customer": -0.91,
+    "tool:send_payment_request": -0.96,
+    "tool:check_payment_request": -0.97,
+    "tool:make_payment": -0.98,
+    "tool:resume_line": -0.63,
+    "tool:enable_roaming": -0.47,
+    "tool:refuel_data": -0.38,
+    "tool:transfer_to_human_agents": 0.11
+  },
+  "best_action": "tool:get_details_by_id",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_telecom_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "f18e01b4-ebd5-4dee-8cb2-d4dae3a9f778",
+    "termination_reason": "user_stop",
+    "selected_message_index": 27,
+    "message_count": 48,
+    "decision_rule": "Choose a state after the account-side fix has already been attempted, where the user explicitly agrees to guided diagnostics and the next step should gather more on-device state.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores favor additional line or device-state inspection because the remaining issue is diagnostic rather than billing or account access.",
+    "notes": [
+      "The available telecom tool set lacks a dedicated device setting toggle, so get_details_by_id is used as the closest grounded inspection primitive.",
+      "This sample intentionally has a lower margin than straightforward execution states to reflect residual uncertainty."
+    ]
+  }
+}

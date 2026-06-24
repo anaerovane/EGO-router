@@ -1,0 +1,84 @@
+{
+  "sample_id": "tau2_retail_task_17_step_11_manual_931",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "retail",
+  "task_id": "17",
+  "step_id": 11,
+  "query": "I just need the suite number changed to Suite 641. Everything else should stay the same.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to update the shipping address for a placed order.\nassistant: The assistant asks for the account email and the order ID.\nuser: The user does not remember the email but provides order #W8665881.\nassistant: The assistant requests name and ZIP for verification.\nuser: The user provides Fatima Johnson and ZIP 78712.\nassistant: The assistant verifies the account, retrieves order #W8665881, and shows the current pending shipping address ending in Suite 640.\nuser: The user says only the suite number should change from Suite 640 to Suite 641.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks — I have the exact address change. I can now update the pending order's shipping address from Suite 640 to Suite 641."
+      },
+      {
+        "source": "think-refine",
+        "text": "The requested edit is fully specified and the account plus order have already been verified, so the grounded next move is to modify the pending order address."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.22,
+      "margin": 0.56,
+      "disagreement": 0.08,
+      "verifier_confidence": 0.91,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_user_id_by_email",
+    "tool:find_user_id_by_name_zip",
+    "tool:get_user_details",
+    "tool:get_order_details",
+    "tool:get_product_details",
+    "tool:list_all_product_types",
+    "tool:modify_pending_order_items",
+    "tool:modify_pending_order_address",
+    "tool:modify_pending_order_payment",
+    "tool:cancel_pending_order",
+    "tool:return_delivered_order_items",
+    "tool:exchange_delivered_order_items",
+    "tool:modify_user_address",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.84,
+    "think": 0.16,
+    "tool:find_user_id_by_email": -0.97,
+    "tool:find_user_id_by_name_zip": -0.78,
+    "tool:get_user_details": -0.61,
+    "tool:get_order_details": -0.34,
+    "tool:get_product_details": -0.93,
+    "tool:list_all_product_types": -0.97,
+    "tool:modify_pending_order_items": -0.9,
+    "tool:modify_pending_order_address": 0.31,
+    "tool:modify_pending_order_payment": -0.96,
+    "tool:cancel_pending_order": -0.95,
+    "tool:return_delivered_order_items": -0.97,
+    "tool:exchange_delivered_order_items": -0.97,
+    "tool:modify_user_address": -0.94,
+    "tool:transfer_to_human_agents": -0.66,
+    "tool:calculate": -0.98
+  },
+  "best_action": "tool:modify_pending_order_address",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_retail_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "afacff65-f6a9-48f3-844e-fc047b271d71",
+    "termination_reason": "user_stop",
+    "selected_message_index": 11,
+    "message_count": 18,
+    "decision_rule": "Choose a user turn where retrieval is complete and the user specifies an exact shipping-address edit for a pending order.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. modify_pending_order_address is highest because the assistant already has the verified order and the precise address delta.",
+    "notes": [
+      "query comes directly from the selected visible user message, not hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "sample focuses on a concrete pending-order address change with all identifiers already verified"
+    ]
+  }
+}

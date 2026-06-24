@@ -1,0 +1,616 @@
+{
+  "file_count": 500,
+  "missing_expected_files": [],
+  "parse_failures": [],
+  "schema_failures": {
+    "missing_state:metrics": [
+      "tau2_manual_sample_201.json",
+      "tau2_manual_sample_301.json",
+      "tau2_manual_sample_302.json",
+      "tau2_manual_sample_303.json",
+      "tau2_manual_sample_304.json",
+      "tau2_manual_sample_305.json",
+      "tau2_manual_sample_306.json",
+      "tau2_manual_sample_307.json",
+      "tau2_manual_sample_308.json",
+      "tau2_manual_sample_309.json",
+      "tau2_manual_sample_310.json"
+    ],
+    "missing_metric:entropy": [
+      "tau2_manual_sample_201.json",
+      "tau2_manual_sample_301.json",
+      "tau2_manual_sample_302.json",
+      "tau2_manual_sample_303.json",
+      "tau2_manual_sample_304.json",
+      "tau2_manual_sample_305.json",
+      "tau2_manual_sample_306.json",
+      "tau2_manual_sample_307.json",
+      "tau2_manual_sample_308.json",
+      "tau2_manual_sample_309.json",
+      "tau2_manual_sample_310.json"
+    ],
+    "missing_metric:margin": [
+      "tau2_manual_sample_201.json",
+      "tau2_manual_sample_301.json",
+      "tau2_manual_sample_302.json",
+      "tau2_manual_sample_303.json",
+      "tau2_manual_sample_304.json",
+      "tau2_manual_sample_305.json",
+      "tau2_manual_sample_306.json",
+      "tau2_manual_sample_307.json",
+      "tau2_manual_sample_308.json",
+      "tau2_manual_sample_309.json",
+      "tau2_manual_sample_310.json"
+    ],
+    "missing_metric:disagreement": [
+      "tau2_manual_sample_201.json",
+      "tau2_manual_sample_301.json",
+      "tau2_manual_sample_302.json",
+      "tau2_manual_sample_303.json",
+      "tau2_manual_sample_304.json",
+      "tau2_manual_sample_305.json",
+      "tau2_manual_sample_306.json",
+      "tau2_manual_sample_307.json",
+      "tau2_manual_sample_308.json",
+      "tau2_manual_sample_309.json",
+      "tau2_manual_sample_310.json"
+    ],
+    "missing_metric:verifier_confidence": [
+      "tau2_manual_sample_201.json",
+      "tau2_manual_sample_301.json",
+      "tau2_manual_sample_302.json",
+      "tau2_manual_sample_303.json",
+      "tau2_manual_sample_304.json",
+      "tau2_manual_sample_305.json",
+      "tau2_manual_sample_306.json",
+      "tau2_manual_sample_307.json",
+      "tau2_manual_sample_308.json",
+      "tau2_manual_sample_309.json",
+      "tau2_manual_sample_310.json"
+    ],
+    "missing_metric:steps_remaining": [
+      "tau2_manual_sample_201.json",
+      "tau2_manual_sample_301.json",
+      "tau2_manual_sample_302.json",
+      "tau2_manual_sample_303.json",
+      "tau2_manual_sample_304.json",
+      "tau2_manual_sample_305.json",
+      "tau2_manual_sample_306.json",
+      "tau2_manual_sample_307.json",
+      "tau2_manual_sample_308.json",
+      "tau2_manual_sample_309.json",
+      "tau2_manual_sample_310.json"
+    ],
+    "candidate_not_dict": [
+      "tau2_manual_sample_201.json#0",
+      "tau2_manual_sample_201.json#1",
+      "tau2_manual_sample_301.json#0",
+      "tau2_manual_sample_301.json#1",
+      "tau2_manual_sample_302.json#0",
+      "tau2_manual_sample_302.json#1",
+      "tau2_manual_sample_303.json#0",
+      "tau2_manual_sample_303.json#1",
+      "tau2_manual_sample_304.json#0",
+      "tau2_manual_sample_304.json#1",
+      "tau2_manual_sample_305.json#0",
+      "tau2_manual_sample_305.json#1",
+      "tau2_manual_sample_306.json#0",
+      "tau2_manual_sample_306.json#1",
+      "tau2_manual_sample_307.json#0",
+      "tau2_manual_sample_307.json#1",
+      "tau2_manual_sample_308.json#0",
+      "tau2_manual_sample_308.json#1",
+      "tau2_manual_sample_309.json#0",
+      "tau2_manual_sample_309.json#1",
+      "tau2_manual_sample_310.json#0",
+      "tau2_manual_sample_310.json#1"
+    ]
+  },
+  "metric_range_issues": {
+    "margin_out_of_range_0_1": [
+      {
+        "file": "tau2_manual_sample_292.json",
+        "value": 1.11
+      },
+      {
+        "file": "tau2_manual_sample_299.json",
+        "value": 1.08
+      }
+    ]
+  },
+  "best_action_mismatch": [],
+  "best_action_ties": [],
+  "duplicate_sample_ids": [],
+  "duplicate_content_groups": [],
+  "leak_marker_hits": {
+    "You are ": [
+      {
+        "file": "tau2_manual_sample_099.json",
+        "field": "query"
+      },
+      {
+        "file": "tau2_manual_sample_131.json",
+        "field": "query"
+      },
+      {
+        "file": "tau2_manual_sample_172.json",
+        "field": "query"
+      },
+      {
+        "file": "tau2_manual_sample_190.json",
+        "field": "query"
+      },
+      {
+        "file": "tau2_manual_sample_317.json",
+        "field": "query"
+      },
+      {
+        "file": "tau2_manual_sample_323.json",
+        "field": "query"
+      },
+      {
+        "file": "tau2_manual_sample_329.json",
+        "field": "query"
+      },
+      {
+        "file": "tau2_manual_sample_450.json",
+        "field": "query"
+      },
+      {
+        "file": "tau2_manual_sample_481.json",
+        "field": "query"
+      }
+    ]
+  },
+  "summary": {
+    "domains": {
+      "airline": 500
+    },
+    "distinct_task_ids": 50,
+    "top_task_ids": [
+      [
+        "3",
+        21
+      ],
+      [
+        "40",
+        20
+      ],
+      [
+        "48",
+        18
+      ],
+      [
+        "49",
+        17
+      ],
+      [
+        "0",
+        15
+      ],
+      [
+        "28",
+        14
+      ],
+      [
+        "2",
+        13
+      ],
+      [
+        "26",
+        12
+      ],
+      [
+        "41",
+        12
+      ],
+      [
+        "47",
+        12
+      ],
+      [
+        "14",
+        12
+      ],
+      [
+        "36",
+        11
+      ],
+      [
+        "1",
+        11
+      ],
+      [
+        "42",
+        11
+      ],
+      [
+        "30",
+        11
+      ]
+    ],
+    "step_id_distribution": [
+      [
+        3,
+        248
+      ],
+      [
+        7,
+        59
+      ],
+      [
+        1,
+        27
+      ],
+      [
+        9,
+        19
+      ],
+      [
+        11,
+        19
+      ],
+      [
+        15,
+        19
+      ],
+      [
+        13,
+        16
+      ],
+      [
+        17,
+        13
+      ],
+      [
+        19,
+        13
+      ],
+      [
+        22,
+        8
+      ],
+      [
+        23,
+        7
+      ],
+      [
+        12,
+        6
+      ],
+      [
+        21,
+        5
+      ],
+      [
+        20,
+        5
+      ],
+      [
+        14,
+        4
+      ]
+    ],
+    "best_action_distribution": [
+      [
+        "tool:get_user_details",
+        163
+      ],
+      [
+        "tool:get_reservation_details",
+        129
+      ],
+      [
+        "stop",
+        55
+      ],
+      [
+        "tool:transfer_to_human_agents",
+        45
+      ],
+      [
+        "tool:update_reservation_flights",
+        23
+      ],
+      [
+        "think",
+        18
+      ],
+      [
+        "tool:cancel_reservation",
+        17
+      ],
+      [
+        "tool:search_direct_flight",
+        10
+      ],
+      [
+        "tool:book_reservation",
+        10
+      ],
+      [
+        "tool:update_reservation_passengers",
+        8
+      ],
+      [
+        "tool:get_flight_status",
+        8
+      ],
+      [
+        "tool:calculate",
+        8
+      ],
+      [
+        "tool:send_certificate",
+        3
+      ],
+      [
+        "tool:search_onestop_flight",
+        3
+      ]
+    ],
+    "source_type_distribution": [
+      [
+        "manual annotation from real tau2 episode",
+        500
+      ]
+    ],
+    "unique_available_action_lists": 1,
+    "most_common_available_action_list_count": [
+      [
+        [
+          "stop",
+          "think",
+          "tool:book_reservation",
+          "tool:calculate",
+          "tool:cancel_reservation",
+          "tool:get_flight_status",
+          "tool:get_reservation_details",
+          "tool:get_user_details",
+          "tool:list_all_airports",
+          "tool:search_direct_flight",
+          "tool:search_onestop_flight",
+          "tool:send_certificate",
+          "tool:transfer_to_human_agents",
+          "tool:update_reservation_baggages",
+          "tool:update_reservation_flights",
+          "tool:update_reservation_passengers"
+        ],
+        500
+      ]
+    ],
+    "duplicate_query_count": 58,
+    "duplicate_history_count": 15,
+    "most_common_score_signatures": [
+      [
+        [
+          -0.42,
+          0.08,
+          -0.97,
+          -0.88,
+          -0.94,
+          -0.8,
+          0.99,
+          -0.31,
+          -0.95,
+          -0.92,
+          -0.92,
+          -0.88,
+          -0.5,
+          -0.91,
+          -0.91,
+          -0.91
+        ],
+        41
+      ],
+      [
+        [
+          -0.44,
+          0.09,
+          -0.97,
+          -0.88,
+          -0.94,
+          -0.8,
+          -0.35,
+          0.99,
+          -0.95,
+          -0.92,
+          -0.92,
+          -0.88,
+          -0.48,
+          -0.91,
+          -0.91,
+          -0.91
+        ],
+        35
+      ],
+      [
+        [
+          -0.4,
+          -0.1,
+          -0.95,
+          -0.95,
+          -0.95,
+          -0.95,
+          0.99,
+          0.1,
+          -0.95,
+          -0.95,
+          -0.95,
+          -0.95,
+          -0.95,
+          -0.95,
+          -0.95,
+          -0.95
+        ],
+        14
+      ],
+      [
+        [
+          -0.4,
+          -0.1,
+          -0.95,
+          -0.95,
+          -0.95,
+          -0.95,
+          0.2,
+          0.99,
+          -0.95,
+          -0.95,
+          -0.95,
+          -0.95,
+          -0.95,
+          -0.95,
+          -0.95,
+          -0.95
+        ],
+        13
+      ],
+      [
+        [
+          -0.42,
+          0.08,
+          -0.97,
+          -0.81,
+          -0.92,
+          -0.8,
+          0.99,
+          -0.31,
+          -0.95,
+          -0.92,
+          -0.92,
+          -0.88,
+          -0.5,
+          -0.91,
+          -0.91,
+          -0.91
+        ],
+        8
+      ],
+      [
+        [
+          -0.42,
+          0.08,
+          -0.97,
+          -0.88,
+          -0.94,
+          -0.8,
+          0.99,
+          -0.31,
+          -0.95,
+          -0.9,
+          -0.89,
+          -0.88,
+          -0.5,
+          -0.91,
+          -0.89,
+          -0.91
+        ],
+        5
+      ],
+      [
+        [
+          -0.31,
+          0.13,
+          -0.98,
+          -0.84,
+          -0.93,
+          -0.76,
+          -0.45,
+          0.97,
+          -0.94,
+          -0.9,
+          -0.9,
+          -0.86,
+          -0.35,
+          -0.89,
+          -0.9,
+          -0.89
+        ],
+        4
+      ],
+      [
+        [
+          -0.41,
+          0.08,
+          -0.97,
+          -0.88,
+          -0.94,
+          -0.81,
+          -0.29,
+          0.99,
+          -0.95,
+          -0.92,
+          -0.92,
+          -0.88,
+          -0.54,
+          -0.91,
+          -0.91,
+          -0.91
+        ],
+        4
+      ],
+      [
+        [
+          -0.42,
+          0.08,
+          -0.97,
+          -0.88,
+          -0.94,
+          -0.8,
+          0.99,
+          -0.31,
+          -0.95,
+          -0.92,
+          -0.92,
+          -0.88,
+          -0.5,
+          -0.91,
+          -0.91,
+          -0.9
+        ],
+        3
+      ],
+      [
+        [
+          -0.42,
+          0.08,
+          -0.97,
+          -0.88,
+          -0.93,
+          -0.8,
+          0.99,
+          -0.31,
+          -0.95,
+          -0.92,
+          -0.92,
+          -0.88,
+          -0.5,
+          -0.91,
+          -0.91,
+          -0.91
+        ],
+        3
+      ]
+    ],
+    "schema_failure_counts": {
+      "missing_state:metrics": 11,
+      "missing_metric:entropy": 11,
+      "missing_metric:margin": 11,
+      "missing_metric:disagreement": 11,
+      "missing_metric:verifier_confidence": 11,
+      "missing_metric:steps_remaining": 11,
+      "candidate_not_dict": 22
+    },
+    "metric_issue_counts": {
+      "margin_out_of_range_0_1": 2
+    },
+    "best_action_mismatch_count": 0,
+    "best_action_tie_count": 0,
+    "duplicate_sample_id_count": 0,
+    "duplicate_content_group_count": 0,
+    "leak_marker_counts": {
+      "You are ": 9
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_2_step_19_manual_313",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "2",
+  "step_id": 19,
+  "query": "###STOP###",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user initially asks about booking a San Francisco to New York flight for three people, then pivots to a delayed most-recent reservation.\nassistant: The assistant retrieves the user's account and most recent reservation, confirms the delayed trip, and offers a certificate for the inconvenience.\nuser: The user accepts the certificate.\nassistant: The assistant issues the certificate, the user says they will call back later for the original booking, and the transcript reaches an explicit stop marker turn.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. I’ll stop here."
+      },
+      {
+        "source": "think-refine",
+        "text": "The transcript has already reached an explicit stop marker after the compensation issue is resolved, so the grounded next move is stop."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.06,
+      "margin": 0.93,
+      "disagreement": 0.02,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 0
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": 0.99,
+    "think": 0.08,
+    "tool:book_reservation": -0.95,
+    "tool:calculate": -0.9,
+    "tool:cancel_reservation": -0.97,
+    "tool:get_flight_status": -0.84,
+    "tool:get_reservation_details": -0.71,
+    "tool:get_user_details": -0.83,
+    "tool:list_all_airports": -0.97,
+    "tool:search_direct_flight": -0.95,
+    "tool:search_onestop_flight": -0.95,
+    "tool:send_certificate": -0.62,
+    "tool:transfer_to_human_agents": -0.72,
+    "tool:update_reservation_baggages": -0.97,
+    "tool:update_reservation_flights": -0.97,
+    "tool:update_reservation_passengers": -0.97
+  },
+  "best_action": "stop",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "521f9114-cdd3-4aea-990f-a923d4044dd1",
+    "termination_reason": "user_stop",
+    "selected_message_index": 19,
+    "message_count": 20,
+    "decision_rule": "Use the explicit stop-marker turn at the end of the interaction after the certificate has already been issued and the user has deferred the original booking request.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes any post-stop assistant content",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "this is an explicit stop-marker case after the delayed-flight issue has been resolved and the original booking request is deferred"
+    ]
+  }
+}

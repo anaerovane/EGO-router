@@ -1,0 +1,76 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_roaming_easy_step_22_manual_825",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_saver_mode_on|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 22,
+  "query": "Here’s what I found based on your phone’s current settings:  1. Your phone is connected to a 5G network with excellent signal strength, and your network mode is already set to prefer 4G/5G. 2. Data roaming is turned OFF. 3. Data Saver mode is ON. 4. The APN looks unchanged. What should I do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports very slow or non-working mobile data while abroad in France and wants excellent speed.\nassistant: The assistant identifies the customer by phone number 555-123-2002, verifies the affected line is active with roaming enabled at the carrier level, confirms remaining plan allowance, and then guides the user to inspect device settings.\nuser: The user reports the phone is on 5G with excellent signal, network preference is already 4G/5G, but device-level data roaming is OFF and Data Saver is ON while abroad.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Those two settings are the likely blockers. Please turn Data Roaming on and turn Data Saver off, then restart network services and test the connection again."
+      },
+      {
+        "source": "think-refine",
+        "text": "Carrier-side roaming is already enabled and the device has strong 5G signal, so the grounded next move is a device-setting intervention rather than more account checks. The visible blockers are data roaming being off and Data Saver being on."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.14,
+      "margin": 0.78,
+      "disagreement": 0.08,
+      "verifier_confidence": 0.93,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:enable_roaming",
+    "tool:toggle_data_roaming",
+    "tool:toggle_data_saver",
+    "tool:restart_network",
+    "tool:check_network_status",
+    "tool:check_data_saver",
+    "tool:check_roaming_status",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.92,
+    "think": 0.12,
+    "tool:get_customer_by_phone": -0.88,
+    "tool:get_details_by_id": -0.52,
+    "tool:get_data_usage": -0.47,
+    "tool:enable_roaming": -0.31,
+    "tool:toggle_data_roaming": 0.93,
+    "tool:toggle_data_saver": 0.84,
+    "tool:restart_network": 0.28,
+    "tool:check_network_status": -0.11,
+    "tool:check_data_saver": -0.2,
+    "tool:check_roaming_status": -0.24,
+    "tool:transfer_to_human_agents": -0.58
+  },
+  "best_action": "tool:toggle_data_roaming",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "94859ed5-ec56-4c15-a817-df006f807f07",
+    "termination_reason": "user_stop",
+    "selected_message_index": 22,
+    "message_count": 34,
+    "decision_rule": "Choose a device-diagnostic telecom state where account checks are complete and the user surfaces multiple concrete phone settings, creating a grounded decision point among several possible interventions.",
+    "scoring_method": "Manual one-step proxy scoring from the visible telecom state. Scores rank direct remediation of the clearest blocker highest: device-level data roaming is off while the user is abroad and carrier-side roaming is already enabled.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary excludes later tool outputs showing the settings being toggled and the improved speed test",
+      "available actions include plausible telecom checks and device-side remediation steps appropriate to the visible state",
+      "best_action is toggle_data_roaming because roaming must be enabled on the device before any subsequent optimization like disabling Data Saver can fully restore service abroad"
+    ]
+  }
+}

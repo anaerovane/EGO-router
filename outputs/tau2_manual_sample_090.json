@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_46_step_3_manual_090",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "46",
+  "step_id": 3,
+  "query": "I really don’t think that’s fair, since I’m not satisfied with the insurance service and I don’t want to cancel my whole trip—just the insurance part. Is there any way to escalate this or speak to someone who can help me get a refund for the insurance only?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user says they want a refund for travel insurance on an upcoming flight but want to keep the flight reservation itself.\nassistant: The assistant explains that travel insurance cannot be added or removed after the initial booking, so it cannot be canceled separately from the flight reservation, and offers other options or a transfer to a human agent.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I’m sorry this has been frustrating. I can transfer you to a human agent for further assistance, but I’m not able to remove or refund the insurance separately from the reservation on my end."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user requests escalation after being told the insurance cannot be refunded separately. The grounded next move is to transfer rather than retry the same blocked operation."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.18,
+      "margin": 0.74,
+      "disagreement": 0.06,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.27,
+    "think": 0.09,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.85,
+    "tool:cancel_reservation": -0.71,
+    "tool:get_flight_status": -0.6,
+    "tool:get_reservation_details": -0.49,
+    "tool:get_user_details": -0.53,
+    "tool:list_all_airports": -0.95,
+    "tool:search_direct_flight": -0.94,
+    "tool:search_onestop_flight": -0.94,
+    "tool:send_certificate": -0.88,
+    "tool:transfer_to_human_agents": 0.98,
+    "tool:update_reservation_baggages": -0.92,
+    "tool:update_reservation_flights": -0.92,
+    "tool:update_reservation_passengers": -0.92
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "cc49898a-68c9-4eee-93dd-7648032eae23",
+    "termination_reason": "user_stop",
+    "selected_message_index": 3,
+    "message_count": 8,
+    "decision_rule": "Choose a user turn where the requested insurance-only refund is policy-blocked and the user explicitly asks for escalation, making transfer the grounded next move.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user’s request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is transfer_to_human_agents because the user specifically asks to escalate after the assistant explains the policy limitation"
+    ]
+  }
+}

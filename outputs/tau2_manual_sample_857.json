@@ -1,0 +1,67 @@
+{
+  "sample_id": "tau2_telecom_task_bad_vpn_data_saver_roaming_disabled_step_17_manual_857",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]bad_vpn|data_saver_mode_on|user_abroad_roaming_disabled_on[PERSONA:None]",
+  "step_id": 17,
+  "query": "I’m currently abroad in France, so I am roaming. I haven’t made any recent changes to my phone settings, and I haven’t tried restarting my device yet. What should I do next to get excellent internet speed?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user says mobile data is extremely slow or stops working altogether and needs excellent speed without access to Wi-Fi.\nassistant: After an initial failed lookup attempt, the assistant asks for the phone number.\nuser: The user provides phone number 555-123-2002.\nassistant: The assistant retrieves the customer profile, checks the affected line, checks the plan, and verifies that the user still has ample data remaining this cycle.\nassistant: Because the data cap is not the problem, the assistant asks whether the user is traveling, changed phone settings, or tried restarting the device.\nuser: The user says they are roaming in France, have not changed settings, and have not restarted yet, and asks what to do next for excellent speed.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Since you’re abroad, I should first make sure roaming is enabled on your line before asking you to change device settings."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible account data already rules out data-limit problems, and the user has revealed they are roaming internationally, so the grounded next step is to inspect or enable roaming on the line rather than guess at device-side fixes first."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.28,
+      "margin": 0.44,
+      "disagreement": 0.1,
+      "verifier_confidence": 0.88,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:enable_roaming",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.79,
+    "think": 0.21,
+    "tool:get_customer_by_phone": -0.87,
+    "tool:get_details_by_id": -0.52,
+    "tool:get_data_usage": -0.57,
+    "tool:change_plan": -0.96,
+    "tool:refuel_data": -0.93,
+    "tool:enable_roaming": 0.98,
+    "tool:transfer_to_human_agents": -0.58
+  },
+  "best_action": "tool:enable_roaming",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "8ce14ca5-754f-42e6-b030-03cd0004490c",
+    "termination_reason": "user_stop",
+    "selected_message_index": 17,
+    "message_count": 35,
+    "decision_rule": "Choose the moment when ordinary data-usage diagnosis is complete and the user newly reveals they are roaming internationally, making roaming state the most salient next branch.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. enable_roaming is highest because the line details already showed roaming disabled, and turning it on is the most direct backend action to restore international mobile data service.",
+    "notes": [
+      "this sample differs from 856 by focusing on network-side roaming enablement rather than device-side data-roaming guidance",
+      "the decision point uses only visible evidence: international travel plus a line record showing roaming disabled",
+      "later device restart, Data Saver, and VPN cleanup steps are excluded from the state summary"
+    ]
+  }
+}

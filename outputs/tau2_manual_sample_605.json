@@ -1,0 +1,70 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_usage_exceeded_user_abroad_roaming_enabled_off_persona_easy_step_13_manual_605",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 13,
+  "query": "Thanks for checking! Please go ahead and add 2GB of data to my plan. I really need to get back to excellent internet speed as soon as possible. Let me know if you need anything else from me.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that mobile data is not working well while abroad in France and wants excellent internet speed.\nassistant: The assistant authenticates the account by phone number, retrieves the relevant line, and checks data usage.\nassistant: The assistant explains that line 555-123-2002 has used 15.1 GB against a 15.0 GB limit, so the user has exceeded the plan’s included data. The assistant offers options including adding 2 GB of refuel data.\nuser: The user declines a plan change and explicitly asks to add 2 GB of data now.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Got it. Since you’ve chosen the 2 GB refuel option, I can add that data to your line now."
+      },
+      {
+        "source": "think-refine",
+        "text": "The root cause has already been identified as hitting the data cap, and the user has explicitly authorized the available remedy, so the grounded next action is to refuel data."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.11,
+      "margin": 0.84,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:check_device_settings",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.93,
+    "think": 0.06,
+    "tool:get_customer_by_phone": -0.95,
+    "tool:get_details_by_id": -0.41,
+    "tool:get_data_usage": -0.18,
+    "tool:change_plan": -0.72,
+    "tool:refuel_data": 0.98,
+    "tool:check_device_settings": -0.46,
+    "tool:transfer_to_human_agents": -0.69,
+    "tool:calculate": -0.61
+  },
+  "best_action": "tool:refuel_data",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "d482947b-bc2a-479d-9084-e6cc9dceac7a",
+    "termination_reason": "user_stop",
+    "selected_message_index": 13,
+    "message_count": 38,
+    "decision_rule": "Choose a state where diagnostics have already identified data-cap exhaustion and the user explicitly selects the offered 2 GB refuel remedy.",
+    "scoring_method": "Manual one-step proxy scoring from the visible telecom troubleshooting state. Highest score goes to refuel_data because it directly addresses the identified capacity shortfall the user approved.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample is intentionally taken before later roaming troubleshooting so the state reflects only the visible reason-to-act at that step."
+    ]
+  }
+}

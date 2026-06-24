@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_17_step_20_manual_096",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "17",
+  "step_id": 20,
+  "query": "Yes, I confirm and agree with all of these changes. Please proceed.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to add 3 checked bags, change the passenger to themselves, and upgrade an upcoming New York to Chicago trip to economy.\nassistant: The assistant asks for the user ID and reservation ID.\nuser: The user provides user ID omar_rossi_1241 but does not know the reservation ID.\nassistant called tool: get_user_details for omar_rossi_1241.\nassistant: The assistant lists reservations UM3OG5, 5RJ7UH, FQ8APE, and QKRY03.\nuser: The user asks which one is the New York to Chicago trip.\nassistant called tools: get_reservation_details for UM3OG5, 5RJ7UH, FQ8APE, and QKRY03.\nassistant: The assistant identifies FQ8APE as the EWR to ORD reservation, notes it is currently basic economy with passenger Ivan Garcia, and says passenger change, cabin upgrade to economy, and baggage additions are possible.\nuser: The user asks to proceed with changing the passenger to Omar Rossi, upgrading to economy, and adding 3 checked bags.\nassistant: The assistant summarizes the allowed changes and asks the user to specify whether to use a credit card or gift card for the extra baggage fee.\nuser: The user chooses to use a gift card.\nassistant: The assistant lists gift_card_8190333 and gift_card_6490722.\nuser: The user chooses gift_card_8190333.\nassistant: The assistant restates the cabin change, passenger update, 3 checked bags with 1 paid bag, and use of gift_card_8190333 for the $50 fee, then asks for final confirmation.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. I’ll proceed with the cabin upgrade, passenger change, and baggage update using gift_card_8190333."
+      },
+      {
+        "source": "think-refine",
+        "text": "The reservation, payment method, and three requested modifications are fully summarized and explicitly confirmed. The grounded next move is to execute the reservation updates."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.14,
+      "margin": 0.79,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.96,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.34,
+    "think": 0.08,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.82,
+    "tool:cancel_reservation": -0.89,
+    "tool:get_flight_status": -0.56,
+    "tool:get_reservation_details": -0.4,
+    "tool:get_user_details": -0.45,
+    "tool:list_all_airports": -0.95,
+    "tool:search_direct_flight": -0.94,
+    "tool:search_onestop_flight": -0.94,
+    "tool:send_certificate": -0.88,
+    "tool:transfer_to_human_agents": -0.34,
+    "tool:update_reservation_baggages": 0.94,
+    "tool:update_reservation_flights": 0.99,
+    "tool:update_reservation_passengers": 0.96
+  },
+  "best_action": "tool:update_reservation_flights",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "b0c389ec-a84d-456f-832d-03437152886f",
+    "termination_reason": "user_stop",
+    "selected_message_index": 20,
+    "message_count": 27,
+    "decision_rule": "Choose a user turn where the reservation, gift card, passenger change, cabin upgrade, and baggage details have all been summarized and explicitly confirmed, making execution of the update bundle the grounded next move.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user’s request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is update_reservation_flights because the assistant's next bundled move begins by executing the confirmed cabin change before the passenger and baggage updates"
+    ]
+  }
+}

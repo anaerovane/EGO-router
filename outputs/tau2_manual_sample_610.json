@@ -1,0 +1,70 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_break_apn_settings_lock_sim_card_pin_persona_none_step_15_manual_610",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]break_apn_settings|lock_sim_card_pin[PERSONA:None]",
+  "step_id": 15,
+  "query": "I don’t remember my SIM PIN, so I think I’ll need the PUK code. Please go ahead and transfer me to a human agent for further assistance.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports a persistent No Service problem and asks for help restoring service.\nassistant: The assistant authenticates the account by phone number and name, then asks the user to inspect the device status.\nuser: The user first reports No Signal and Data Disabled in the status bar.\nassistant: The assistant asks for a deeper network-status check.\nuser: The user reports Airplane Mode OFF, no cellular signal, and SIM Card Status locked_pin.\nassistant: The assistant explains that a locked PIN means the SIM must be unlocked and that direct assistance with the SIM PIN is not available through the assistant.\nuser: The user says they do not remember the SIM PIN, mentions needing the PUK code, and explicitly requests transfer to a human agent.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. Since you need PUK-code assistance for a locked SIM, I’ll transfer you to a human agent now."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has already identified the locked-PIN obstacle and requested escalation for PUK help, so the grounded next move is transfer rather than continuing technical diagnostics."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.11,
+      "margin": 0.84,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:check_device_settings",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.9,
+    "think": 0.08,
+    "tool:get_customer_by_phone": -0.93,
+    "tool:get_details_by_id": -0.6,
+    "tool:get_data_usage": -0.92,
+    "tool:change_plan": -0.95,
+    "tool:refuel_data": -0.94,
+    "tool:check_device_settings": -0.37,
+    "tool:transfer_to_human_agents": 0.99,
+    "tool:calculate": -0.89
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom-workflow_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "1c12074f-88a2-4c66-aca0-f90e2d124327",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 20,
+    "decision_rule": "Choose a state where the user explicitly needs PUK-code help for a locked SIM and asks for a human transfer, making escalation the most direct grounded next action.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. transfer_to_human_agents is highest because the assistant has already reached the point where further device troubleshooting is blocked by SIM access.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample is similar in action type to 609 but comes from a different workflow trajectory with a deeper device-status check before escalation."
+    ]
+  }
+}

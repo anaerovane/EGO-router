@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_airplane_mode_on_bad_network_preference_data_mode_off_user_abroad_roaming_disabled_on_step_25_manual_990",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]airplane_mode_on|bad_network_preference|data_mode_off|user_abroad_roaming_disabled_on[PERSONA:Hard]",
+  "step_id": 25,
+  "query": "I can only do one action at a time. Which would you like me to do first: turn on mobile data, or switch to the faster network?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user says mobile data is unstable, wants excellent speed, and asks for simple guidance.\nassistant: The assistant verifies the account, retrieves the relevant line, and asks the user to run a network-status diagnostic.\nuser: The user reports Airplane Mode on, no service, and mobile data disabled.\nassistant: The assistant guides the user to turn Airplane Mode off; the user does so and now sees poor 2G signal with mobile data still disabled.\nassistant: The assistant suggests two next steps: enable mobile data and switch to a faster network.\nuser: The user says they can only do one action at a time and asks which should be done first.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Do mobile data first. Without it enabled, the phone still cannot use cellular data at all, so that should be toggled on before optimizing the network preference."
+      },
+      {
+        "source": "think-refine",
+        "text": "Both steps matter, but mobile data being off is the more immediate hard blocker. The assistant should answer with a single-step instruction to enable data first, then re-check status before moving on to network mode."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.2,
+      "margin": 0.57,
+      "disagreement": 0.08,
+      "verifier_confidence": 0.92,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_customer_by_id",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:get_bills_for_customer",
+    "tool:check_service_status",
+    "tool:check_roaming_status",
+    "tool:enable_roaming",
+    "tool:disable_roaming",
+    "tool:refuel_data",
+    "tool:change_plan",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.91,
+    "think": 0.74,
+    "tool:get_customer_by_phone": -0.69,
+    "tool:get_customer_by_name": -0.93,
+    "tool:get_customer_by_id": -0.72,
+    "tool:get_details_by_id": -0.24,
+    "tool:get_data_usage": -0.81,
+    "tool:get_bills_for_customer": -0.83,
+    "tool:check_service_status": 0.02,
+    "tool:check_roaming_status": -0.29,
+    "tool:enable_roaming": -0.41,
+    "tool:disable_roaming": -0.95,
+    "tool:refuel_data": -0.9,
+    "tool:change_plan": -0.94,
+    "tool:send_payment_request": -0.98,
+    "tool:transfer_to_human_agents": -0.62
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "2f0aefd2-be59-49a7-8e2e-2a421bc64eab",
+    "termination_reason": "user_stop",
+    "selected_message_index": 25,
+    "message_count": 46,
+    "decision_rule": "Choose a telecom instruction-ordering turn where the user can only perform one device action at a time, forcing the assistant to prioritize the most immediate blocker using visible device state.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores prioritize assistant reasoning that sequences user-side troubleshooting steps instead of invoking more backend tools.",
+    "notes": [
+      "query comes directly from the selected visible user message",
+      "history_summary excludes the later data toggle, network-mode change, speed test, and successful resolution",
+      "best_action is the argmax because the assistant should answer with a one-step instruction to enable mobile data first",
+      "this sample adds another telecom planning state with a different surface form and step depth from the other telecom examples"
+    ]
+  }
+}

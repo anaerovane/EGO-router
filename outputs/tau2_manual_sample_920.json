@@ -1,0 +1,88 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_badvpn_roaming_step_21_manual_920",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]bad_network_preference|bad_vpn|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 21,
+  "query": "Here’s what I see from the network status check:\n\n- Airplane Mode is OFF\n- SIM card is active\n- Cellular connection: connected\n- Signal strength: poor\n- Network type: 2G\n- Mobile data: enabled\n- Data roaming: enabled\n- Wi-Fi: off\n\nWhat would you like me to do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user says mobile data is not working or is extremely slow while abroad in France and wants excellent speed.\nassistant: The assistant asks for the phone number associated with the account.\nuser: The user provides phone number 555-123-2002.\nassistant: The assistant authenticates the account, finds the matching line, and verifies roaming support and available data on the carrier side.\nassistant: The assistant asks the user to verify phone setup while in France.\nuser: The user first reports a diagnostic showing Airplane Mode ON and Data Roaming OFF.\nassistant: The assistant instructs the user to turn Airplane Mode off and enable Data Roaming.\nuser: The user now reports the updated network status showing a connected but poor 2G connection with roaming enabled.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks — the connection is back, but you’re still stuck on a poor 2G network. The next best step is to change the phone’s network preference to favor 4G/5G and then recheck the status."
+      },
+      {
+        "source": "think-refine",
+        "text": "The hard blockers have already been cleared, and the remaining visible problem is the weak 2G network mode, so adjusting network preference is more direct than rechecking roaming or escalating."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.19,
+      "margin": 0.74,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.94,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_customer",
+    "tool:get_customer_details",
+    "tool:list_lines",
+    "tool:get_line_details",
+    "tool:get_plan_details",
+    "tool:get_device_details",
+    "tool:get_billing_details",
+    "tool:check_status_bar",
+    "tool:check_network_status",
+    "tool:set_airplane_mode",
+    "tool:set_data_roaming",
+    "tool:set_network_mode_preference",
+    "tool:check_sim_status",
+    "tool:reseat_sim_card",
+    "tool:transfer_to_human_agents",
+    "tool:pay_bill",
+    "tool:run_speed_test",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.86,
+    "think": 0.08,
+    "tool:find_customer": -0.95,
+    "tool:get_customer_details": -0.73,
+    "tool:list_lines": -0.69,
+    "tool:get_line_details": -0.4,
+    "tool:get_plan_details": -0.47,
+    "tool:get_device_details": -0.54,
+    "tool:get_billing_details": -0.95,
+    "tool:check_status_bar": -0.42,
+    "tool:check_network_status": -0.21,
+    "tool:set_airplane_mode": -0.66,
+    "tool:set_data_roaming": -0.58,
+    "tool:set_network_mode_preference": 0.98,
+    "tool:check_sim_status": -0.49,
+    "tool:reseat_sim_card": -0.8,
+    "tool:transfer_to_human_agents": -0.46,
+    "tool:pay_bill": -0.98,
+    "tool:run_speed_test": -0.62,
+    "tool:calculate": -0.97
+  },
+  "best_action": "tool:set_network_mode_preference",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "6fa2b6ff-f40e-44b8-b7eb-264b3ee06ddb",
+    "termination_reason": "user_stop",
+    "selected_message_index": 28,
+    "message_count": 39,
+    "decision_rule": "Choose a later telecom turn after initial blockers are removed, so the decision depends on interpreting the remaining degraded connection state rather than repeating earlier fixes.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Changing network preference is highest because the user is now connected but trapped on poor 2G service, making radio-mode selection the most direct lever for improving speed.",
+    "notes": [
+      "This reuses the same real episode as 912 but at a distinct later step with a different state, query, and best action.",
+      "The sample remains non-leaky because it stops before the user reports the successful 5G result."
+    ]
+  }
+}

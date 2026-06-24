@@ -1,0 +1,85 @@
+{
+  "summary": [
+    {
+      "file": "tau2_manual_sample_521.json",
+      "domain": "retail",
+      "task_id": "14",
+      "step_id": 3,
+      "best_action": "tool:find_user_id_by_email",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_522.json",
+      "domain": "retail",
+      "task_id": "6",
+      "step_id": 13,
+      "best_action": "tool:get_product_details",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_523.json",
+      "domain": "retail",
+      "task_id": "22",
+      "step_id": 17,
+      "best_action": "tool:modify_user_address",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_524.json",
+      "domain": "retail",
+      "task_id": "4",
+      "step_id": 25,
+      "best_action": "tool:modify_pending_order_items",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_525.json",
+      "domain": "retail",
+      "task_id": "2",
+      "step_id": 27,
+      "best_action": "tool:return_delivered_order_items",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_526.json",
+      "domain": "retail",
+      "task_id": "19",
+      "step_id": 19,
+      "best_action": "tool:calculate",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_527.json",
+      "domain": "telecom",
+      "task_id": "[service_issue]break_apn_settings|lock_sim_card_pin|overdue_bill_suspension[PERSONA:Easy]",
+      "step_id": 1,
+      "best_action": "tool:check_status_bar",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_528.json",
+      "domain": "telecom",
+      "task_id": "[mobile_data_issue]data_saver_mode_on|data_usage_exceeded[PERSONA:Easy]",
+      "step_id": 19,
+      "best_action": "tool:run_speed_test",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_529.json",
+      "domain": "telecom",
+      "task_id": "[mobile_data_issue]airplane_mode_on|bad_network_preference|bad_vpn|data_saver_mode_on|data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:None]",
+      "step_id": 70,
+      "best_action": "tool:reset_apn_settings",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_530.json",
+      "domain": "telecom",
+      "task_id": "[service_issue]break_apn_settings|lock_sim_card_pin[PERSONA:None]",
+      "step_id": 23,
+      "best_action": "tool:transfer_to_human_agents",
+      "issue_count": 0
+    }
+  ],
+  "issues": []
+}

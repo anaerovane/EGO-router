@@ -1,0 +1,69 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_saver_mode_on_data_usage_exceeded_persona_easy_step_9_manual_717",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_saver_mode_on|data_usage_exceeded[PERSONA:Easy]",
+  "step_id": 9,
+  "query": "I've turned Data Saver mode off as you requested. What would you like me to do next to help improve my mobile data speed?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports mobile data that is not working or is extremely slow and says they need excellent speed.\nassistant: The assistant asks for identifying information.\nuser: The user provides John Smith and phone number 555-123-2002.\nassistant: The assistant authenticates the account and asks the user to turn Data Saver mode off as an initial troubleshooting step.\nuser: The user reports that Data Saver mode is now off and asks what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for turning Data Saver off. The visible state now shows the initial device-side restriction has been cleared, but the data-speed issue itself is still unresolved."
+      },
+      {
+        "source": "think-refine",
+        "text": "At this decision point the account is already identified and one obvious on-device limiter has been removed, leaving the next step to come from the remaining telecom-side context rather than from repeated identity checks."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.29,
+      "margin": 0.47,
+      "disagreement": 0.12,
+      "verifier_confidence": 0.86,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:toggle_data_saver_mode",
+    "tool:refuel_data",
+    "tool:reboot_device",
+    "tool:run_speed_test",
+    "tool:get_data_usage",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.88,
+    "think": 0.19,
+    "tool:get_customer_by_phone": -0.92,
+    "tool:toggle_data_saver_mode": -0.73,
+    "tool:refuel_data": 0.78,
+    "tool:reboot_device": 0.21,
+    "tool:run_speed_test": -0.09,
+    "tool:get_data_usage": 0.17,
+    "tool:transfer_to_human_agents": -0.61,
+    "tool:calculate": -0.9
+  },
+  "best_action": "tool:refuel_data",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_op_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "8529815d-2d88-481b-b471-9baf7051813e",
+    "termination_reason": "user_stop",
+    "selected_message_index": 9,
+    "message_count": 22,
+    "decision_rule": "Choose a mid-troubleshooting user turn where the first device setting has been corrected and the agent must decide the next account- or device-level intervention from the current visible state.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. refuel_data is scored highest because this trajectory moves from clearing Data Saver to adding high-speed data, while reboot or speed test are plausible but weaker immediate moves.",
+    "notes": [
+      "This sample intentionally sits at a less obvious decision point than simple final confirmation turns",
+      "Scores reflect a realistic alternative set, with reboot and data-usage inspection remaining plausible but not best",
+      "The state avoids future leakage about later speed-test success"
+    ]
+  }
+}

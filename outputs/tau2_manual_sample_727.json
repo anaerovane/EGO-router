@@ -1,0 +1,70 @@
+{
+  "sample_id": "tau2_telecom_task_mms_issue_bad_network_preference_user_abroad_roaming_disabled_on_persona_none_step_9_manual_727",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mms_issue]bad_network_preference|user_abroad_roaming_disabled_on[PERSONA:None]",
+  "step_id": 9,
+  "query": "I've set my network mode to \"4G/5G Preferred\" as you requested. What should I do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports an MMS sending problem.\nassistant: The assistant authenticates the account by phone number and name, then asks the user to change the device network preference to 4G/5G Preferred.\nuser: The user confirms that the network mode has been changed to 4G/5G Preferred and asks for the next step.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Great, thanks for making that change. The next grounded step is to enable roaming on the line and then have you test MMS again."
+      },
+      {
+        "source": "think-refine",
+        "text": "The device network preference issue has been addressed, so the most useful next move is an account-side MMS-enabling action rather than re-checking identity or stopping."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.14,
+      "margin": 0.78,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.96,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:check_device_settings",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.9,
+    "think": 0.27,
+    "tool:get_customer_by_phone": -0.88,
+    "tool:get_details_by_id": 0.93,
+    "tool:get_data_usage": -0.83,
+    "tool:change_plan": -0.94,
+    "tool:refuel_data": -0.92,
+    "tool:check_device_settings": -0.18,
+    "tool:transfer_to_human_agents": -0.71,
+    "tool:calculate": -0.9
+  },
+  "best_action": "tool:get_details_by_id",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_op_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "3546a15e-f4c0-467c-bb02-039d46503ea7",
+    "termination_reason": "user_stop",
+    "selected_message_index": 9,
+    "message_count": 18,
+    "decision_rule": "Choose a state where the user has completed the requested device-network adjustment and the next grounded step is an account-side line action to support MMS.",
+    "scoring_method": "Manual one-step proxy scoring from visible context. get_details_by_id is highest because the assistant needs the line context to apply the next carrier-side setting after the user-side network preference fix.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample broadens telecom coverage to MMS troubleshooting rather than generic data or voice service issues."
+    ]
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_roaming_airplane_step_21_manual_912",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]airplane_mode_on|bad_network_preference|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 21,
+  "query": "Here’s what I see from the network status check:\n\n- Airplane Mode is ON\n- SIM card is active\n- Cellular connection: no service (no signal)\n- Mobile data is enabled\n- Data roaming is currently OFF\n- Wi-Fi is off and not connected\n\nWhat would you like me to do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user says mobile data is not working or is extremely slow while abroad in France and wants excellent speed.\nassistant: The assistant asks for the phone number to inspect the line and roaming settings.\nuser: The user provides phone number 555-123-2002.\nassistant: The assistant authenticates the account, finds the matching line, verifies roaming is enabled on the carrier side and that there is still data available, and then asks the user to run a device network-status diagnostic.\nuser: The user reports the diagnostic output showing Airplane Mode ON, SIM active, no service, mobile data enabled, data roaming OFF, and Wi-Fi disconnected.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks — that network check is very helpful. The first thing to do is turn Airplane Mode off, and after that we can recheck the connection and roaming state."
+      },
+      {
+        "source": "think-refine",
+        "text": "Two device-side issues are visible, but Airplane Mode is the hard blocker because it disables the radios entirely; it should be addressed before changing other settings."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.24,
+      "margin": 0.61,
+      "disagreement": 0.08,
+      "verifier_confidence": 0.9,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_customer",
+    "tool:get_customer_details",
+    "tool:list_lines",
+    "tool:get_line_details",
+    "tool:get_plan_details",
+    "tool:get_device_details",
+    "tool:get_billing_details",
+    "tool:check_status_bar",
+    "tool:check_network_status",
+    "tool:set_airplane_mode",
+    "tool:set_data_roaming",
+    "tool:set_network_mode_preference",
+    "tool:check_sim_status",
+    "tool:reseat_sim_card",
+    "tool:transfer_to_human_agents",
+    "tool:pay_bill",
+    "tool:run_speed_test",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.89,
+    "think": 0.12,
+    "tool:find_customer": -0.95,
+    "tool:get_customer_details": -0.78,
+    "tool:list_lines": -0.74,
+    "tool:get_line_details": -0.46,
+    "tool:get_plan_details": -0.52,
+    "tool:get_device_details": -0.58,
+    "tool:get_billing_details": -0.94,
+    "tool:check_status_bar": -0.39,
+    "tool:check_network_status": -0.31,
+    "tool:set_airplane_mode": 0.94,
+    "tool:set_data_roaming": 0.61,
+    "tool:set_network_mode_preference": -0.49,
+    "tool:check_sim_status": -0.43,
+    "tool:reseat_sim_card": -0.69,
+    "tool:transfer_to_human_agents": -0.57,
+    "tool:pay_bill": -0.97,
+    "tool:run_speed_test": -0.81,
+    "tool:calculate": -0.96
+  },
+  "best_action": "tool:set_airplane_mode",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "6fa2b6ff-f40e-44b8-b7eb-264b3ee06ddb",
+    "termination_reason": "user_stop",
+    "selected_message_index": 21,
+    "message_count": 39,
+    "decision_rule": "Choose a state where the user has already run a telecom diagnostic and reported multiple settings, creating a genuine prioritization decision among available troubleshooting actions.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Airplane Mode is scored above enabling roaming because no radio connection can recover until Airplane Mode is turned off, while roaming can be handled immediately after.",
+    "notes": [
+      "This sample emphasizes action prioritization when more than one visible issue exists.",
+      "No future leakage: the state ends before the user applies any fixes or reports improved service."
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "sample_id": "tau2_telecom_task_data_mode_off_data_usage_exceeded_step_15_manual_855",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]",
+  "step_id": 15,
+  "query": "I definitely don’t want to change my plan, but I’m willing to refuel 2GB of data. Please go ahead and add 2GB so I can get back to excellent internet speed.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that mobile data is stopping or becoming very slow and wants excellent phone internet speed.\nassistant: The assistant asks for the account phone number.\nuser: The user provides phone number 555-123-2002 and confirms that same number is the affected line.\nassistant: The assistant retrieves the customer profile, identifies the matching line, checks the line details, and checks plan details.\nassistant: The assistant explains that the line has exceeded its 15GB data limit and offers two remedies: refuel data or change to a plan with a higher limit.\nuser: The user rejects a plan change and explicitly asks to refuel 2GB immediately.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. I’ll add 2GB of data to your current line so you can get your service back without changing plans."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has chosen a specific refuel amount within the allowed limit and declined a plan change, so the grounded next step is to execute the refuel rather than continue discussing alternatives."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.12,
+      "margin": 0.83,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:enable_roaming",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.91,
+    "think": 0.09,
+    "tool:get_customer_by_phone": -0.88,
+    "tool:get_details_by_id": -0.34,
+    "tool:get_data_usage": -0.45,
+    "tool:change_plan": -0.95,
+    "tool:refuel_data": 0.99,
+    "tool:enable_roaming": -0.8,
+    "tool:transfer_to_human_agents": -0.62
+  },
+  "best_action": "tool:refuel_data",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "4a0eabe0-1325-4c3e-8918-3a09a02506a2",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 28,
+    "decision_rule": "Choose the post-diagnosis decision point where overage has already been identified and the user commits to a precise refuel amount instead of changing plans.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. refuel_data is highest because the user has selected an allowed amount and the account context already contains the customer and affected line needed to apply it.",
+    "notes": [
+      "domain-appropriate actions use the telecom toolset visible in the episode",
+      "best_action is refuel_data because discussing plan changes or re-checking usage would be redundant after explicit user authorization",
+      "history_summary excludes the later failed speed test and subsequent troubleshooting branch"
+    ]
+  }
+}

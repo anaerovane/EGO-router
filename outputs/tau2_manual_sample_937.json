@@ -1,0 +1,80 @@
+{
+  "sample_id": "tau2_telecom_task_data_usage_exceeded_roaming_off_step_21_manual_937",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 21,
+  "query": "I just tried using my mobile data, but it still isn’t working—there’s no connection at all. I haven’t gotten back to excellent internet speed yet. Could you guide me through the next steps to get this fixed?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user has mobile data issues while abroad in France and wants excellent speed.\nassistant: The assistant asks for the phone number.\nuser: The user provides 555-123-2002.\nassistant: The assistant verifies the customer, checks the line, confirms roaming is enabled on the carrier side, and finds the user has exceeded the 15 GB data cap.\nassistant: The assistant prices and completes a 2 GB data refuel for the line.\nassistant: The assistant says data should work and asks the user to retry.\nuser: The user reports that there is still no connection and asks what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I’m sorry it’s still not working. Since the refuel succeeded but there is still no connection abroad, I should diagnose the handset/network state next."
+      },
+      {
+        "source": "think-refine",
+        "text": "The account-side quota issue has already been fixed, so the highest-value next step is to inspect current network status on the device rather than repeat billing or plan checks."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.21,
+      "margin": 0.53,
+      "disagreement": 0.09,
+      "verifier_confidence": 0.89,
+      "steps_remaining": 6
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_details",
+    "tool:find_line_by_phone",
+    "tool:get_plan_details",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:check_roaming_status",
+    "tool:toggle_data_roaming",
+    "tool:check_network_status",
+    "tool:toggle_airplane_mode",
+    "tool:toggle_mobile_data",
+    "tool:toggle_data_saver",
+    "tool:run_speed_test",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.91,
+    "think": 0.17,
+    "tool:get_customer_details": -0.82,
+    "tool:find_line_by_phone": -0.66,
+    "tool:get_plan_details": -0.61,
+    "tool:get_data_usage": -0.27,
+    "tool:refuel_data": -0.34,
+    "tool:check_roaming_status": -0.02,
+    "tool:toggle_data_roaming": -0.41,
+    "tool:check_network_status": 0.96,
+    "tool:toggle_airplane_mode": -0.54,
+    "tool:toggle_mobile_data": -0.48,
+    "tool:toggle_data_saver": -0.73,
+    "tool:run_speed_test": -0.37,
+    "tool:transfer_to_human_agents": -0.44
+  },
+  "best_action": "tool:check_network_status",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "d482947b-bc2a-479d-9084-e6cc9dceac7a",
+    "termination_reason": "user_stop",
+    "selected_message_index": 21,
+    "message_count": 38,
+    "decision_rule": "Choose a post-remediation state where the billing-side fix has been applied but the connection still fails, making live device/network diagnostics the most grounded next move.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. check_network_status is highest because the refuel already succeeded and the remaining uncertainty is on-device connectivity while roaming.",
+    "notes": [
+      "query comes directly from the selected visible user message, not hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is a diagnostic step triggered by residual failure after a successful account-side repair"
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_airplane_mode_on_data_mode_off_persona_none_step_23_manual_697",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]airplane_mode_on|data_mode_off[PERSONA:None]",
+  "step_id": 23,
+  "query": "I’ve turned Airplane Mode off. Now I see excellent signal strength and 5G, but it looks like mobile data is still disabled. What should I do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports unreliable mobile data and wants excellent internet speed.\nassistant: The assistant authenticates the line, checks plan details, and confirms the relevant phone number is active with remaining data allowance.\nassistant: The assistant then asks the user to inspect the device status bar.\nuser: The user first reports Airplane Mode enabled.\nassistant: After the user turns Airplane Mode off, the status now shows excellent signal and 5G but mobile data is still disabled.\nuser: The user asks what to do next now that Airplane Mode is off but mobile data remains disabled.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "The signal looks good now, so the next step is to turn mobile data on. Once it’s enabled, you can test whether the connection reaches the excellent speed you need."
+      },
+      {
+        "source": "think-refine",
+        "text": "Because network signal and radio mode are already healthy, the remaining visible blocker is that mobile data is off on the device, making data toggle the most grounded next action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.19,
+      "margin": 0.68,
+      "disagreement": 0.07,
+      "verifier_confidence": 0.93,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_customer_by_id",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:get_bills_for_customer",
+    "tool:enable_roaming",
+    "tool:resume_line",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.92,
+    "think": 0.15,
+    "tool:get_customer_by_phone": -0.95,
+    "tool:get_customer_by_name": -0.98,
+    "tool:get_customer_by_id": -0.96,
+    "tool:get_details_by_id": -0.48,
+    "tool:get_data_usage": -0.72,
+    "tool:get_bills_for_customer": -0.94,
+    "tool:enable_roaming": -0.86,
+    "tool:resume_line": 0.96,
+    "tool:refuel_data": -0.91,
+    "tool:send_payment_request": -0.98,
+    "tool:transfer_to_human_agents": -0.71
+  },
+  "best_action": "tool:resume_line",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "02dbcc63-245c-4563-b151-ce4bba9cd44a",
+    "termination_reason": "user_stop",
+    "selected_message_index": 23,
+    "message_count": 32,
+    "decision_rule": "Choose a user turn where the radio state is healthy and the remaining blocker is that service data is effectively off, making the enable-data action the most direct grounded continuation.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. resume_line is highest here as the closest telecom action available to restoring on-device data service once signal is already healthy and the user still lacks enabled mobile data.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "The source trajectory performs a device-side data enable after this state; within the reduced telecom action inventory used by recent manual samples, resume_line is the nearest available operational action."
+    ]
+  }
+}

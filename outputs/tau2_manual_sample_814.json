@@ -1,0 +1,75 @@
+{
+  "sample_id": "tau2_telecom_task_data_mode_off_data_usage_exceeded_step_15_manual_814",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]",
+  "step_id": 15,
+  "query": "I definitely don’t want to change my plan, but I’m willing to refuel 2GB of data. Please go ahead and add 2GB so I can get back to excellent internet speed.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that mobile data is not working properly and says they need excellent internet speed.\nassistant: The assistant asks for the phone number.\nuser: The user provides 555-123-2002.\nassistant: The assistant retrieves the customer account, asks which line has the issue, and the user confirms the affected line is 555-123-2002.\nassistant: The assistant checks line details and then the plan details for that line.\nassistant: The assistant explains that line 555-123-2002 has used 15.1 GB against a 15.0 GB Premium Plan limit, which is causing the slowdown and intermittent stoppage.\nassistant: The assistant presents options such as refueling data or changing the plan.\nuser: The user declines a plan change and explicitly asks to add 2GB of data instead.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood — I’ll add 2GB of data to line 555-123-2002 so your connection can start working again."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has chosen a specific top-up amount after the data-limit diagnosis, so the grounded next step is to refuel the line rather than revisit plan details."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.08,
+      "margin": 0.9,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.95,
+    "think": 0.07,
+    "tool:get_customer_by_phone": -0.92,
+    "tool:get_customer_by_name": -0.98,
+    "tool:get_details_by_id": -0.44,
+    "tool:get_bills_for_customer": -0.88,
+    "tool:send_payment_request": -0.91,
+    "tool:check_payment_request": -0.93,
+    "tool:make_payment": -0.86,
+    "tool:resume_line": -0.89,
+    "tool:enable_roaming": -0.9,
+    "tool:refuel_data": 0.99,
+    "tool:transfer_to_human_agents": -0.74
+  },
+  "best_action": "tool:refuel_data",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "4a0eabe0-1325-4c3e-8918-3a09a02506a2",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 28,
+    "decision_rule": "Choose a user turn after the root cause has been identified as data-cap exhaustion and the user makes a concrete choice between top-up and plan change.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Highest score goes to refuel_data because the user requested a specific 2GB top-up on the affected line and no further disambiguation is needed.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "best_action is refuel_data because the user explicitly rejects a plan change and authorizes a concrete data top-up amount"
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "sample_id": "tau2_telecom_task_[service_issue]overdue_bill_suspension|unseat_sim_card[PERSONA:Easy]_step_24_manual_808",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]overdue_bill_suspension|unseat_sim_card[PERSONA:Easy]",
+  "step_id": 24,
+  "query": "I’ve completed the payment for the overdue bill. What should I do next to get my service restored?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports a phone showing no service.\nassistant: The assistant authenticated the account and found the relevant line suspended.\nassistant: After checking bills, the assistant identified an overdue bill as the likely cause of suspension and sent a payment request.\nuser: The user completed payment and now asks what to do next to restore service.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "With payment completed and the line previously suspended, the next grounded move is to resume the line before asking the user to reboot or recheck service."
+      },
+      {
+        "source": "think-refine",
+        "text": "The payment step is done, so the highest-value backend action is to clear the suspension itself rather than send more instructions before service status has been updated."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.18,
+      "margin": 0.63,
+      "disagreement": 0.06,
+      "verifier_confidence": 0.94,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.87,
+    "think": 0.19,
+    "tool:get_customer_by_phone": -0.94,
+    "tool:get_customer_by_name": -0.97,
+    "tool:get_details_by_id": 0.22,
+    "tool:get_bills_for_customer": 0.08,
+    "tool:send_payment_request": -0.95,
+    "tool:check_payment_request": 0.27,
+    "tool:make_payment": -0.93,
+    "tool:resume_line": 0.97,
+    "tool:enable_roaming": -0.84,
+    "tool:refuel_data": -0.8,
+    "tool:transfer_to_human_agents": -0.41
+  },
+  "best_action": "tool:resume_line",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_telecom_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "8f309fc0-0edf-4d53-8a19-7e2a67d4fce1",
+    "termination_reason": "user_stop",
+    "selected_message_index": 24,
+    "message_count": 47,
+    "decision_rule": "Choose a state where an overdue-payment blocker has just been cleared and the next backend action to restore service is directly implied by the visible account state.",
+    "scoring_method": "Manual one-step proxy scoring from visible state. Highest score goes to resuming the line because payment has already been made and the line suspension itself is the immediate actionable blocker.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is resume_line because the account-level suspension needs to be lifted before further user-side troubleshooting makes sense"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_37_step_13_manual_092",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "37",
+  "step_id": 13,
+  "query": "Yes, my credit card ending in 7334 is saved in my profile. Please use it for all charges.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to cancel reservations IFOYYZ and NQNU5R and upgrade reservation M20IZO to business class.\nassistant: The assistant asks for the user ID and reservation IDs.\nuser: The user provides user ID aarav_ahmed_6699 and the three reservation IDs, then says both cancellations are for a change of plan and confirms the full upgrade to business class.\nassistant called tools: get_reservation_details for IFOYYZ, NQNU5R, and M20IZO.\nassistant: The assistant summarizes the two cancellations and the business-class upgrade request and asks for confirmation.\nuser: The user confirms and says to use a credit card ending in 7334 for any charges.\nassistant: The assistant asks the user to confirm that this saved card is in the profile.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. I’ll proceed with canceling IFOYYZ and NQNU5R and upgrading M20IZO to business class using the saved card ending in 7334."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has now confirmed the saved payment method after the full action bundle was summarized. The grounded next move is to execute the cancellations and upgrade."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.14,
+      "margin": 0.79,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.96,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.34,
+    "think": 0.09,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.82,
+    "tool:cancel_reservation": 0.92,
+    "tool:get_flight_status": -0.57,
+    "tool:get_reservation_details": -0.41,
+    "tool:get_user_details": -0.43,
+    "tool:list_all_airports": -0.95,
+    "tool:search_direct_flight": -0.94,
+    "tool:search_onestop_flight": -0.94,
+    "tool:send_certificate": -0.88,
+    "tool:transfer_to_human_agents": -0.29,
+    "tool:update_reservation_baggages": -0.92,
+    "tool:update_reservation_flights": 0.95,
+    "tool:update_reservation_passengers": -0.92
+  },
+  "best_action": "tool:update_reservation_flights",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "98c1276f-8cee-4851-bec8-9966b67d708a",
+    "termination_reason": "user_stop",
+    "selected_message_index": 13,
+    "message_count": 23,
+    "decision_rule": "Choose a user turn where the combined cancellations and upgrade are already confirmed and the only remaining blocker is payment-method confirmation, making execution of the upgrade bundle the grounded next step.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user’s request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is update_reservation_flights because the assistant's next bundled move begins by executing the business-class upgrade, alongside the already-confirmed cancellations"
+    ]
+  }
+}

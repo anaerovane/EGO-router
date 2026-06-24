@@ -1,0 +1,68 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_step_21_manual_848",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|break_apn_settings|lock_sim_card_pin[PERSONA:None]",
+  "step_id": 21,
+  "query": "It looks like my SIM card is locked with a PIN code. What should I do to unlock it?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that the phone has shown No Service for hours.\nassistant: The assistant authenticates the account and identifies the affected line.\nassistant: A device status check reveals Airplane Mode is on, and the user turns it off.\nuser: Service still does not return, so the assistant asks for the SIM status.\nuser: The SIM status now indicates that the SIM card is locked with a PIN code, and the user asks how to unlock it.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "A SIM PIN lock usually requires secure account handling that I can’t clear directly in this flow. The next step is to hand you over to a human agent or store channel that can verify identity and help with the unlock process."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible state has moved from network troubleshooting into a protected SIM-lock scenario, so escalation is the safest grounded next action rather than attempting unsupported unlock steps."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.03,
+      "margin": 0.97,
+      "disagreement": 0.01,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_details",
+    "tool:get_line_details",
+    "tool:check_status_bar",
+    "tool:toggle_airplane_mode",
+    "tool:check_sim_status",
+    "tool:reseat_sim_card",
+    "tool:reset_apn_settings",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.97,
+    "think": 0.03,
+    "tool:get_customer_details": -0.86,
+    "tool:get_line_details": -0.71,
+    "tool:check_status_bar": -0.42,
+    "tool:toggle_airplane_mode": -0.78,
+    "tool:check_sim_status": -0.19,
+    "tool:reseat_sim_card": -0.74,
+    "tool:reset_apn_settings": -0.88,
+    "tool:transfer_to_human_agents": 0.99
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "26f41c9b-fa8f-4ea6-9677-f83c31826b9b",
+    "termination_reason": "user_transfer",
+    "selected_message_index": 21,
+    "message_count": 24,
+    "decision_rule": "Choose a telecom decision point where ordinary service troubleshooting has narrowed the issue to a SIM PIN lock, which cannot be safely resolved in the current automated flow.",
+    "scoring_method": "Manual one-step proxy scoring from visible state. Human transfer is highest because the user’s problem is no longer a generic connectivity issue but a protected SIM-unlock case requiring escalation.",
+    "notes": [
+      "This sample deliberately makes transfer_to_human_agents the argmax to diversify telecom best-action types.",
+      "The history stops before the later explicit transfer request, preserving the pre-escalation decision state."
+    ]
+  }
+}

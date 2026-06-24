@@ -1,0 +1,76 @@
+{
+  "sample_id": "tau2_telecom_task_[service_issue]break_apn_settings|contract_end_suspension|lock_sim_card_pin[PERSONA:Hard]_step_12_manual_810",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]break_apn_settings|contract_end_suspension|lock_sim_card_pin[PERSONA:Hard]",
+  "step_id": 12,
+  "query": "Oh, I see. If that’s what needs to happen, then yes, please transfer me to a real person who can help. I just want my phone to work again. Thank you.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that the phone has shown \"No Service\" for hours.\nassistant: The assistant authenticated the account, found the correct line, and identified that the contract has ended, leaving the line suspended in a way the assistant cannot directly resolve.\nassistant: The assistant explained that a human agent is needed for the next step and asked whether the user wanted a transfer.\nuser: The user explicitly agrees to the transfer request and asks to be connected to a real person.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "The user has accepted escalation, so the next step is to transfer the case to a human agent rather than continue troubleshooting."
+      },
+      {
+        "source": "think-refine",
+        "text": "No further self-service action is visible here because the assistant has already determined the issue needs human resolution and the user consented to escalation."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.09,
+      "margin": 0.9,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.77,
+    "think": 0.06,
+    "tool:get_customer_by_phone": -0.96,
+    "tool:get_customer_by_name": -0.97,
+    "tool:get_details_by_id": -0.41,
+    "tool:get_bills_for_customer": -0.85,
+    "tool:send_payment_request": -0.93,
+    "tool:check_payment_request": -0.95,
+    "tool:make_payment": -0.97,
+    "tool:resume_line": -0.91,
+    "tool:enable_roaming": -0.89,
+    "tool:refuel_data": -0.88,
+    "tool:transfer_to_human_agents": 0.99
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_telecom_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "b7d89f96-85db-41bf-85d7-879a2e476eb7",
+    "termination_reason": "user_stop",
+    "selected_message_index": 12,
+    "message_count": 17,
+    "decision_rule": "Choose a state where the assistant has already established that only escalation can resolve the contract-ended suspension and the user explicitly consents to transfer.",
+    "scoring_method": "Manual one-step proxy scoring from visible state. Highest score goes to transfer_to_human_agents because escalation is both necessary and explicitly authorized by the user.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is transfer_to_human_agents because both problem ownership and user consent are already settled at this decision point"
+    ]
+  }
+}

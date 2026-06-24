@@ -1,0 +1,84 @@
+{
+  "sample_id": "tau2_manual_sample_307_step_32_manual_e15faa27-41af-4d4f-a649-b3147bac269a",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "35",
+  "selected_message_index": 32,
+  "step_id": 32,
+  "query": "Yes, all the details are correct. Please go ahead and book the flight. Let me know once it’s confirmed.",
+  "state": {
+    "history_summary": "The user asked to book a flight and the assistant searched options, gathered traveler details, and summarized the exact itinerary, passenger, baggage, insurance, payment card, and total price. After that full recap, the user confirms all details are correct and asks the assistant to book the flight. The booking decision point has been reached.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "All necessary booking details are already confirmed, so the next step is to book the reservation."
+      },
+      {
+        "source": "think-refine",
+        "text": "Since the user approved the exact itinerary and payment details, the grounded next action is to create the booking."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.11,
+      "margin": 0.87,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.48,
+    "think": 0.08,
+    "tool:book_reservation": 0.99,
+    "tool:calculate": -0.81,
+    "tool:cancel_reservation": -0.96,
+    "tool:get_flight_status": -0.88,
+    "tool:get_reservation_details": -0.44,
+    "tool:get_user_details": -0.5,
+    "tool:list_all_airports": -0.95,
+    "tool:search_direct_flight": -0.64,
+    "tool:search_onestop_flight": -0.9,
+    "tool:send_certificate": -0.72,
+    "tool:transfer_to_human_agents": -0.73,
+    "tool:update_reservation_baggages": -0.91,
+    "tool:update_reservation_flights": -0.94,
+    "tool:update_reservation_passengers": -0.94
+  },
+  "best_action": "tool:book_reservation",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "e15faa27-41af-4d4f-a649-b3147bac269a",
+    "termination_reason": "user_stop",
+    "selected_message_index": 32,
+    "message_count": 37,
+    "decision_rule": "Choose a user turn where all booking details, passenger details, and payment method are already visible and the user explicitly confirms booking.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user request using only visible conversation evidence.",
+    "notes": [
+      "manual / non-leaky annotation based only on transcript content visible before or at the selected user turn",
+      "query exactly matches the selected user message from the current source transcript file",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are grounded only in visible context from the transcript up to this turn",
+      "best_action is the argmax of action_scores"
+    ]
+  }
+}

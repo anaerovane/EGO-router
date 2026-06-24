@@ -1,0 +1,76 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]_step_13_manual_809",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 13,
+  "query": "Yes, please go ahead and check the network status and run a speed test on my phone. Let me know if you need anything from my side.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports mobile data problems while abroad in France and wants excellent speed.\nassistant: The assistant authenticated the account, inspected the account lines, and identified the provided line as active with roaming enabled but with a remaining issue.\nassistant: The assistant said the next step was to check network status and run a speed test, then asked the user for permission to proceed.\nuser: The user explicitly authorizes those diagnostic checks and offers to help with any phone-side actions needed.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for confirming. I should start the diagnostic flow by gathering more device or line details and then guide the user through the phone checks."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has approved diagnostics, but the available telecom actions do not include a direct speed-test tool, so the most grounded backend move is to inspect the line and device state further before giving instructions."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.31,
+      "margin": 0.32,
+      "disagreement": 0.13,
+      "verifier_confidence": 0.81,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.84,
+    "think": 0.27,
+    "tool:get_customer_by_phone": -0.9,
+    "tool:get_customer_by_name": -0.96,
+    "tool:get_details_by_id": 0.59,
+    "tool:get_bills_for_customer": -0.77,
+    "tool:send_payment_request": -0.95,
+    "tool:check_payment_request": -0.95,
+    "tool:make_payment": -0.97,
+    "tool:resume_line": -0.68,
+    "tool:enable_roaming": -0.57,
+    "tool:refuel_data": -0.39,
+    "tool:transfer_to_human_agents": 0.12
+  },
+  "best_action": "tool:get_details_by_id",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_telecom_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "1d080c32-9ead-4551-a0e8-405c76cfe7db",
+    "termination_reason": "user_stop",
+    "selected_message_index": 13,
+    "message_count": 20,
+    "decision_rule": "Choose a state where the user has granted diagnostic permission but the available telecom tool set still requires an additional line-or-device detail check before guided troubleshooting can proceed.",
+    "scoring_method": "Manual one-step proxy scoring from visible state. The top score goes to get_details_by_id because it is the most relevant available primitive for inspecting the active line or device before moving into user-guided diagnostics.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "this sample intentionally uses a lower-confidence diagnostic branch to diversify action types and certainty levels within the batch"
+    ]
+  }
+}

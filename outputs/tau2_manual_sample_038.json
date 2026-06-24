@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_2_step_13_manual_038",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "2",
+  "step_id": 13,
+  "query": "Yes, I’d appreciate that. Thank you for offering the certificate—it would help a bit with the frustration from the delay.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user first asks about booking a flight from San Francisco to New York for three people.\nassistant: The assistant asks for the user ID.\nuser: The user provides user ID noah_muller_9847 but then asks to discuss a delayed flight on the most recent reservation first.\nassistant: The assistant asks for the reservation ID or details of the delayed flight.\nuser: The user says they do not remember the reservation number and asks the assistant to look up the last reservation using the user ID.\nassistant called tools: get_user_details and get_reservation_details.\nassistant: The assistant identifies the most recent reservation 4OG6T3 and asks which flight was delayed.\nuser: The user explains that the Boston to Las Vegas flight was delayed and that the experience was frustrating.\nassistant: The assistant says that, because the reservation is basic economy and the user is gold with travel insurance, it can check whether a certificate can be offered for the inconvenience.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. I’ll send the certificate now as a gesture for the inconvenience caused by the delayed flight."
+      },
+      {
+        "source": "think-refine",
+        "text": "The delayed-flight context and compensation offer are already visible, and the user explicitly accepts the offered certificate. The grounded next move is to send the certificate."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.15,
+      "margin": 0.75,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.24,
+    "think": 0.12,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.84,
+    "tool:cancel_reservation": -0.82,
+    "tool:get_flight_status": -0.46,
+    "tool:get_reservation_details": -0.32,
+    "tool:get_user_details": -0.37,
+    "tool:list_all_airports": -0.94,
+    "tool:search_direct_flight": -0.91,
+    "tool:search_onestop_flight": -0.91,
+    "tool:send_certificate": 0.98,
+    "tool:transfer_to_human_agents": -0.28,
+    "tool:update_reservation_baggages": -0.89,
+    "tool:update_reservation_flights": -0.89,
+    "tool:update_reservation_passengers": -0.89
+  },
+  "best_action": "tool:send_certificate",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "521f9114-cdd3-4aea-990f-a923d4044dd1",
+    "termination_reason": "user_stop",
+    "selected_message_index": 13,
+    "message_count": 20,
+    "decision_rule": "Choose a user turn where the compensation offer is already grounded in visible context and the user explicitly accepts it.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user’s request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is supported by the real next assistant action, which sends the certificate"
+    ]
+  }
+}

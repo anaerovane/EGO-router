@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_33_step_17_manual_379",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "33",
+  "step_id": 17,
+  "query": "Yes, please change my outgoing flight to HAT068 on 2024-05-20 and my return flight to HAT278 on 2024-05-24. \n\nI’m the only passenger, and I’d like to keep that the same. \n\nHowever, I do want to add 2 checked bags to my reservation as well. \n\nCan you let me know if there are any fees for these changes? I have travel insurance, so I believe the change fees should be waived according to your policy.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to modify reservation HXDUBJ.\nassistant: The assistant asks for user and reservation details.\nuser: The user provides user ID yara_garcia_1905 and reservation ID HXDUBJ.\ntool: Reservation HXDUBJ is retrieved and shows a round trip in economy for one passenger with travel insurance and no checked bags.\nassistant: The assistant asks what changes are needed.\nuser: The user asks to move the outgoing flight to the next day and the return flight back by one day within an 8am-9pm window.\nassistant: The assistant first searches the wrong dates, and the user corrects the request to 2024-05-20 outbound and 2024-05-24 return.\ntool: New direct-flight searches show HAT068 for the outgoing and HAT278 for the return as the relevant nonstop options within the requested window.\nassistant: The assistant presents those options and asks the user to confirm the flights and whether passenger and baggage details stay the same.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. You want to move the outbound to HAT068 on May 20, move the return to HAT278 on May 24, keep the same passenger, and add two checked bags."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has now specified the replacement flights plus the added-baggage request and is asking for cost implications, so the grounded next step is to calculate the fare difference and applicable baggage fees before any update."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.11,
+      "margin": 0.87,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.98,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.83,
+    "think": 0.11,
+    "tool:book_reservation": -0.99,
+    "tool:calculate": 0.99,
+    "tool:cancel_reservation": -0.99,
+    "tool:get_flight_status": -0.94,
+    "tool:get_reservation_details": -0.75,
+    "tool:get_user_details": -0.95,
+    "tool:list_all_airports": -0.99,
+    "tool:search_direct_flight": -0.68,
+    "tool:search_onestop_flight": -0.98,
+    "tool:send_certificate": -0.99,
+    "tool:transfer_to_human_agents": -0.96,
+    "tool:update_reservation_baggages": -0.88,
+    "tool:update_reservation_flights": -0.59,
+    "tool:update_reservation_passengers": -0.99
+  },
+  "best_action": "tool:calculate",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "5387fb07-9c0b-4c8d-826e-9c5a15b43010",
+    "termination_reason": "user_stop",
+    "selected_message_index": 17,
+    "message_count": 39,
+    "decision_rule": "Use the user's turn that combines concrete new flight selections with a request for fees, because the next grounded action is to calculate the fare difference and baggage charges before execution.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message",
+      "history_summary stops before any fare calculation results, upgrade checks, or payment handling",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "the user's insurance-based fee-waiver belief is visible but not yet validated, so calculation remains necessary"
+    ]
+  }
+}

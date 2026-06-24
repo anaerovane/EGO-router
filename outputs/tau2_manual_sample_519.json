@@ -1,0 +1,72 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_airplane_roaming_step_24_manual_519",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]airplane_mode_on|user_abroad_roaming_enabled_off[PERSONA:None]",
+  "step_id": 24,
+  "query": "I’ve checked my phone’s settings as you suggested. Here’s what I found:  - My network mode is already set to prefer 4G/5G. - Data Saver is turned off. - VPN is not active. - However, I noticed that Airplane Mode is enabled, and Data Roaming is currently turned off. What should I do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: Reports very slow or non-working mobile data while traveling abroad and wants excellent speed.\nassistant: Verified the account by phone number, found the relevant line, and confirmed line-side roaming and plan details were sufficient.\nassistant: Asked the user to inspect device settings while abroad.\nuser: Reported that network preference is already 4G/5G, Data Saver is off, VPN is inactive, but Airplane Mode is enabled and Data Roaming is off.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "The first thing to fix is Airplane Mode, since it blocks the radio entirely. After that, turn on Data Roaming so the phone can use partner networks abroad."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible device state shows two misconfigurations, but Airplane Mode is the immediate blocker because no mobile connection can recover until the radio itself is turned back on."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.26,
+      "margin": 0.52,
+      "disagreement": 0.1,
+      "verifier_confidence": 0.9,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:toggle_data",
+    "tool:grant_app_permission",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.9,
+    "think": 0.21,
+    "tool:get_customer_by_phone": -0.96,
+    "tool:get_details_by_id": -0.63,
+    "tool:get_data_usage": -0.82,
+    "tool:refuel_data": -0.94,
+    "tool:send_payment_request": -0.99,
+    "tool:resume_line": 0.43,
+    "tool:enable_roaming": 0.94,
+    "tool:toggle_data": 0.28,
+    "tool:grant_app_permission": -0.95,
+    "tool:transfer_to_human_agents": -0.27
+  },
+  "best_action": "tool:enable_roaming",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "ffffcf7e-5b61-4268-92f8-e01da356cdc0",
+    "termination_reason": "user_stop",
+    "selected_message_index": 24,
+    "message_count": 34,
+    "decision_rule": "Choose a user report where the assistant has already narrowed the issue to device-side settings abroad and the user reveals the remaining blockers directly.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. The available telecom actions do not include an explicit airplane-mode toggle, so enable_roaming receives the top score as the strongest represented connectivity-restoration action, while the provenance notes the action-space limitation.",
+    "notes": [
+      "In the source episode, the assistant instructs the user to turn off Airplane Mode and enable Data Roaming.",
+      "Because the benchmark action set omits a dedicated airplane-mode action, the manual label uses the closest available connectivity-enabling tool and documents the gap explicitly."
+    ]
+  }
+}

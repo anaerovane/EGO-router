@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_5_step_3_manual_437",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "5",
+  "step_id": 3,
+  "query": "Sure, I can provide that. The flight was scheduled for today.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user says flight HAT045 from Phoenix to Seattle was delayed, says they are extremely upset, and asks to discuss compensation for the inconvenience.\nassistant: The assistant says it can help and asks for the date of flight HAT045.\nuser: The user says the flight was scheduled for today.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thank you for that information. I’ll check the status of flight HAT045 for today first."
+      },
+      {
+        "source": "think-refine",
+        "text": "The assistant already has the flight number from the earlier user turn and now has the travel date as today, so the grounded next move is to check the flight status before discussing compensation."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.1,
+      "margin": 0.88,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.98,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.42,
+    "think": 0.08,
+    "tool:book_reservation": -0.97,
+    "tool:calculate": -0.88,
+    "tool:cancel_reservation": -0.95,
+    "tool:get_flight_status": 0.99,
+    "tool:get_reservation_details": -0.36,
+    "tool:get_user_details": -0.47,
+    "tool:list_all_airports": -0.95,
+    "tool:search_direct_flight": -0.92,
+    "tool:search_onestop_flight": -0.92,
+    "tool:send_certificate": -0.88,
+    "tool:transfer_to_human_agents": -0.56,
+    "tool:update_reservation_baggages": -0.91,
+    "tool:update_reservation_flights": -0.91,
+    "tool:update_reservation_passengers": -0.91
+  },
+  "best_action": "tool:get_flight_status",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_airline_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "8ce24287-47f3-472b-a134-d704ce3c9023",
+    "termination_reason": "user_stop",
+    "selected_message_index": 3,
+    "message_count": 30,
+    "decision_rule": "Choose a user turn where the user supplies the missing flight date, making flight-status lookup the most direct grounded next action.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is get_flight_status because the assistant first needs to verify the delay before discussing compensation"
+    ]
+  }
+}

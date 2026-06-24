@@ -1,0 +1,75 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]data_saver_mode_on|data_usage_exceeded[PERSONA:Easy]_step_29_manual_766",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_saver_mode_on|data_usage_exceeded[PERSONA:Easy]",
+  "step_id": 29,
+  "query": "The diagnostic shows that Data Saver mode is ON right now. Could this be what’s slowing down my connection? What should I do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports poor or missing mobile data and wants excellent speed.\nassistant: The assistant authenticates the line, checks usage, and sees the line had already exceeded the monthly data cap.\nassistant: The assistant refuels 2 GB of data, then a speed test improves only to Good rather than Excellent.\nassistant: The assistant checks the network mode preference and finds it is already set to 4G/5G preferred.\nassistant: The assistant then requests a data-restriction diagnostic.\nuser: The user reports that Data Saver mode is ON and asks what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes, Data Saver could easily be limiting your throughput. The next step is to disable it and then re-test the connection."
+      },
+      {
+        "source": "think-refine",
+        "text": "After refueling data and confirming the network mode is already appropriate, the new visible bottleneck is Data Saver being on, so the most grounded next action is to remove that restriction."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.23,
+      "margin": 0.48,
+      "disagreement": 0.1,
+      "verifier_confidence": 0.88,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.88,
+    "think": 0.21,
+    "tool:get_customer_by_phone": -0.9,
+    "tool:get_customer_by_name": -0.95,
+    "tool:get_details_by_id": 0.56,
+    "tool:get_bills_for_customer": -0.66,
+    "tool:send_payment_request": -0.93,
+    "tool:check_payment_request": -0.89,
+    "tool:make_payment": -0.91,
+    "tool:resume_line": -0.86,
+    "tool:enable_roaming": -0.74,
+    "tool:refuel_data": -0.52,
+    "tool:transfer_to_human_agents": -0.24
+  },
+  "best_action": "tool:get_details_by_id",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "99c27d16-85b4-45f1-901c-3fa7f9e81b07",
+    "termination_reason": "user_stop",
+    "selected_message_index": 29,
+    "message_count": 52,
+    "decision_rule": "Choose a later-stage diagnostic turn where refuel has already happened, network mode has already been checked, and the user newly reports that Data Saver is on.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. The listed actions do not include a direct Data Saver toggle, so get_details_by_id is scored highest as the closest available diagnostic primitive after the user surfaces a new on-device restriction.",
+    "notes": [
+      "query is the visible user message after the Data Saver diagnostic result and before any later follow-up",
+      "history_summary stops at the point where Data Saver being on is the new visible fact",
+      "best_action remains the argmax among the provided actions, not an ideal action outside the inventory"
+    ]
+  }
+}

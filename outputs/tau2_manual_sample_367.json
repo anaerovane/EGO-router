@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_29_step_9_manual_367",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "29",
+  "step_id": 9,
+  "query": "Almost correct! For the return flight, I actually want to leave on the 19th, not the 20th. Everything else is right. Please go ahead and look for the flights that fit those requirements.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to change an upcoming roundtrip booking.\nassistant: The assistant asks for the user ID and reservation ID.\nuser: The user provides user ID raj_brown_5782 and reservation ID VA5SGQ.\nassistant: The assistant retrieves the reservation and asks what changes are needed.\nuser: The user requests replacing DTW-LGA and back with nonstop DTW-JFK and JFK-DTW flights on the same dates, with early arrivals before 7 AM and the cheapest economy fare that is not basic economy.\nassistant: The assistant summarizes the constraints back.\nuser: The user corrects the return date to the 19th instead of the 20th and asks the assistant to go ahead and look for flights that fit those requirements.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for clarifying the return date. I’ll search for nonstop options that match your updated dates and the same early-arrival, economy-only requirements."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has now finalized the date correction, so the grounded next action is to search direct flights using the updated constraint set."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.18,
+      "margin": 0.85,
+      "disagreement": 0.07,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 5
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.54,
+    "think": 0.14,
+    "tool:book_reservation": -0.96,
+    "tool:calculate": -0.84,
+    "tool:cancel_reservation": -0.98,
+    "tool:get_flight_status": -0.94,
+    "tool:get_reservation_details": -0.34,
+    "tool:get_user_details": -0.92,
+    "tool:list_all_airports": -0.99,
+    "tool:search_direct_flight": 0.99,
+    "tool:search_onestop_flight": -0.86,
+    "tool:send_certificate": -0.96,
+    "tool:transfer_to_human_agents": -0.71,
+    "tool:update_reservation_baggages": -0.9,
+    "tool:update_reservation_flights": -0.23,
+    "tool:update_reservation_passengers": -0.98
+  },
+  "best_action": "tool:search_direct_flight",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "e93d52f9-b426-421e-abf6-3baf80583e9b",
+    "termination_reason": "user_stop",
+    "selected_message_index": 9,
+    "message_count": 23,
+    "decision_rule": "Use the corrected-return-date user turn, because that is the first grounded point where the assistant has the finalized search constraints for the requested nonstop alternatives.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops before later pricing, fee-waiver, and update-confirmation steps",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is search_direct_flight because the user is asking the assistant to find matching nonstop options under the revised date"
+    ]
+  }
+}

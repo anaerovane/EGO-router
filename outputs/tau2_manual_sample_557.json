@@ -1,0 +1,98 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_saver_mode_on_user_abroad_roaming_enabled_off_step_29_manual_557",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_saver_mode_on|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 29,
+  "query": "I’ve enabled data roaming as you instructed. I then ran a speed test, and the result was 55.00 Mbps, which is labeled as \"Good\"—but not \"Excellent.\" I really need to get excellent internet speed. What should I try next?",
+  "state": {
+    "history_summary": "assistant: The assistant verifies that the carrier side already allows roaming and asks the user to run a network-status diagnostic while abroad in France.\nuser: The diagnostic shows 5G connectivity with mobile data on but data roaming off.\nassistant: The assistant instructs the user to turn data roaming on and then run a speed test.\nuser: After enabling roaming, the speed test improves to 55 Mbps (Good) but still does not reach the excellent speed the user explicitly needs.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for testing that. Since roaming is now on but the speed is still only good, the next thing to check is whether any data-saving restriction on the phone is throttling performance."
+      },
+      {
+        "source": "think-refine",
+        "text": "The roaming blocker has already been removed and the network is now functional, so the next grounded diagnostic is to inspect device-side restrictions such as Data Saver before trying more disruptive steps."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.2,
+      "margin": 0.52,
+      "disagreement": 0.09,
+      "verifier_confidence": 0.9,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_customer",
+    "tool:get_customer_details",
+    "tool:get_line_details",
+    "tool:list_invoices",
+    "tool:get_plan_details",
+    "tool:check_service_status",
+    "tool:check_data_balance",
+    "tool:check_outage",
+    "tool:refuel_data",
+    "tool:change_plan",
+    "tool:toggle_airplane_mode",
+    "tool:toggle_mobile_data",
+    "tool:toggle_data_roaming",
+    "tool:check_network_status",
+    "tool:check_network_mode_preference",
+    "tool:toggle_data_saver_mode",
+    "tool:check_data_restriction_status",
+    "tool:check_vpn_status",
+    "tool:disconnect_vpn",
+    "tool:reboot_device",
+    "tool:run_speed_test",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.86,
+    "think": 0.16,
+    "tool:find_customer": -0.99,
+    "tool:get_customer_details": -0.88,
+    "tool:get_line_details": -0.67,
+    "tool:list_invoices": -0.94,
+    "tool:get_plan_details": -0.83,
+    "tool:check_service_status": -0.81,
+    "tool:check_data_balance": -0.72,
+    "tool:check_outage": -0.78,
+    "tool:refuel_data": -0.84,
+    "tool:change_plan": -0.96,
+    "tool:toggle_airplane_mode": -0.74,
+    "tool:toggle_mobile_data": -0.62,
+    "tool:toggle_data_roaming": -0.91,
+    "tool:check_network_status": -0.28,
+    "tool:check_network_mode_preference": -0.41,
+    "tool:toggle_data_saver_mode": 0.19,
+    "tool:check_data_restriction_status": 0.94,
+    "tool:check_vpn_status": 0.22,
+    "tool:disconnect_vpn": -0.58,
+    "tool:reboot_device": -0.37,
+    "tool:run_speed_test": -0.53,
+    "tool:transfer_to_human_agents": -0.75
+  },
+  "best_action": "tool:check_data_restriction_status",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "2417b86e-68b3-4c89-8fe9-2568559e4953",
+    "termination_reason": "user_stop",
+    "selected_message_index": 29,
+    "message_count": 42,
+    "decision_rule": "Choose a telecom state where connectivity is restored after turning on roaming, but the user still needs a higher performance tier, making the next move a targeted diagnosis for local throttling rather than another account action.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Checking data restrictions scores highest because it is the least invasive diagnostic that directly tests a plausible device-side cause of the remaining speed cap.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample broadens telecom coverage with a post-fix optimization decision rather than a binary service/no-service branch."
+    ]
+  }
+}

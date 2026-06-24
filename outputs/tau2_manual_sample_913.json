@@ -1,0 +1,88 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_sim_locked_step_21_manual_913",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|break_apn_settings|lock_sim_card_pin[PERSONA:None]",
+  "step_id": 21,
+  "query": "It looks like my SIM card is locked with a PIN code. What should I do to unlock it?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user says the phone has shown \"No Service\" for hours and cannot make calls or use mobile data.\nassistant: The assistant asks for identifying account information.\nuser: The user provides phone number 555-123-2002 and the name John Smith.\nassistant: The assistant authenticates the account, finds the matching active line, asks the user to inspect the status bar, and the user reports Airplane Mode.\nassistant: The assistant has the user turn Airplane Mode off, but the phone still shows no signal.\nassistant: The assistant asks the user to check SIM-card status.\nuser: The user reports that the SIM card is locked with a PIN code and asks what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Because the SIM is PIN-locked, I can’t safely resolve that directly here. The right next step is to transfer you to a human agent or store support who can help verify and unlock the SIM securely."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user-visible state has moved from general connectivity troubleshooting into a security-sensitive SIM lock case, so escalation is more appropriate than further device diagnostics."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.16,
+      "margin": 0.8,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.96,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_customer",
+    "tool:get_customer_details",
+    "tool:list_lines",
+    "tool:get_line_details",
+    "tool:get_plan_details",
+    "tool:get_device_details",
+    "tool:get_billing_details",
+    "tool:check_status_bar",
+    "tool:check_network_status",
+    "tool:set_airplane_mode",
+    "tool:set_data_roaming",
+    "tool:set_network_mode_preference",
+    "tool:check_sim_status",
+    "tool:reseat_sim_card",
+    "tool:transfer_to_human_agents",
+    "tool:pay_bill",
+    "tool:run_speed_test",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.88,
+    "think": 0.04,
+    "tool:find_customer": -0.97,
+    "tool:get_customer_details": -0.84,
+    "tool:list_lines": -0.82,
+    "tool:get_line_details": -0.55,
+    "tool:get_plan_details": -0.87,
+    "tool:get_device_details": -0.73,
+    "tool:get_billing_details": -0.96,
+    "tool:check_status_bar": -0.74,
+    "tool:check_network_status": -0.78,
+    "tool:set_airplane_mode": -0.65,
+    "tool:set_data_roaming": -0.81,
+    "tool:set_network_mode_preference": -0.85,
+    "tool:check_sim_status": -0.33,
+    "tool:reseat_sim_card": -0.7,
+    "tool:transfer_to_human_agents": 0.99,
+    "tool:pay_bill": -0.99,
+    "tool:run_speed_test": -0.96,
+    "tool:calculate": -0.98
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "26f41c9b-fa8f-4ea6-9677-f83c31826b9b",
+    "termination_reason": "user_stop",
+    "selected_message_index": 21,
+    "message_count": 24,
+    "decision_rule": "Choose a troubleshooting turn where the next best action is not another standard diagnostic but an escalation triggered by a security-sensitive blocker visible to the user.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Transfer is highest because a PIN-locked SIM requires secure assisted recovery; ordinary troubleshooting or hardware reseating does not address the lock state.",
+    "notes": [
+      "Best action type is escalation rather than a direct fix, increasing label diversity in the batch.",
+      "The summary includes only already-visible conversation and excludes the actual transfer completion that happens later."
+    ]
+  }
+}

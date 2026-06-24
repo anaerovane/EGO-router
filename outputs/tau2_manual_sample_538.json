@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_mms_issue_post_data_enable_step_20_manual_538",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mms_issue]break_app_sms_permission|data_mode_off[PERSONA:None]",
+  "step_id": 20,
+  "query": "Mobile data is now enabled on my phone. What should I do next to try sending MMS messages?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: Reports trouble sending MMS messages.\nassistant: Identified the account and device context, then asked the user to check the phone status bar.\nuser: Reported that the status bar shows strong signal and 5G, but mobile data is disabled.\nassistant: Instructed the user to enable mobile data.\nuser: Confirmed that mobile data is now enabled and asked what to do next to get MMS working.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Great — with mobile data back on, I want to verify that your line still has usable data service before moving on to app-level MMS checks."
+      },
+      {
+        "source": "think-refine",
+        "text": "The next grounded backend check is line data usage and limit status, because MMS depends on working mobile data and that can be confirmed before deeper device troubleshooting."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.22,
+      "margin": 0.61,
+      "disagreement": 0.08,
+      "verifier_confidence": 0.92,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:toggle_data",
+    "tool:grant_app_permission",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.88,
+    "think": 0.18,
+    "tool:get_customer_by_phone": -0.36,
+    "tool:get_details_by_id": -0.41,
+    "tool:get_data_usage": 0.95,
+    "tool:refuel_data": -0.57,
+    "tool:send_payment_request": -0.95,
+    "tool:resume_line": -0.92,
+    "tool:enable_roaming": -0.9,
+    "tool:toggle_data": -0.74,
+    "tool:grant_app_permission": -0.33,
+    "tool:transfer_to_human_agents": -0.66
+  },
+  "best_action": "tool:get_data_usage",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_telecom_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "a086e4d4-089c-4bcb-b297-e126881d31f4",
+    "termination_reason": "user_stop",
+    "selected_message_index": 20,
+    "message_count": 45,
+    "decision_rule": "Choose a post-device-toggle state where the most informative remaining backend check is whether the line still has usable mobile data capacity before proceeding to permissions or app-level causes.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores prioritize confirming data availability because the user has just restored data mode and asks what to try next for MMS.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample captures an intermediate troubleshooting checkpoint distinct from both initial diagnosis and final app-permission repair."
+    ]
+  }
+}

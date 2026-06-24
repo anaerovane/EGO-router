@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_15_step_12_manual_345",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "15",
+  "step_id": 12,
+  "query": "Yes, that’s correct—I’d like to change reservation M05KNL to the cheapest economy flight for the day after my original booking, and I’m fine with arriving at either Philadelphia or Newark, whichever is less expensive. Please go ahead and check the options for me.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to change an Atlanta to Philadelphia trip to the cheapest economy option on the following day and is open to Philadelphia or Newark.\nassistant: The assistant asks for the user ID and reservation ID.\nuser: The user provides user ID aarav_garcia_1177 and asks the assistant to locate the booking from the account.\nassistant: The assistant retrieves the account, lists the candidate reservations, and then shows details for the matching reservation M05KNL.\nuser: The user confirms M05KNL is the booking to change and asks for the cheapest next-day economy options to either Philadelphia or Newark.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood — I’ll check the cheapest next-day economy options for reservation M05KNL, looking at both Philadelphia and Newark."
+      },
+      {
+        "source": "think-refine",
+        "text": "The correct reservation is now identified and the traveler has specified the acceptable destination set, so the grounded next move is to search direct replacement flights for the next day."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.08,
+      "margin": 0.92,
+      "disagreement": 0.02,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 6
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.61,
+    "think": 0.07,
+    "tool:book_reservation": -0.97,
+    "tool:calculate": -0.81,
+    "tool:cancel_reservation": -0.95,
+    "tool:get_flight_status": -0.9,
+    "tool:get_reservation_details": -0.43,
+    "tool:get_user_details": -0.56,
+    "tool:list_all_airports": -0.96,
+    "tool:search_direct_flight": 0.99,
+    "tool:search_onestop_flight": 0.74,
+    "tool:send_certificate": -0.94,
+    "tool:transfer_to_human_agents": -0.69,
+    "tool:update_reservation_baggages": -0.97,
+    "tool:update_reservation_flights": -0.84,
+    "tool:update_reservation_passengers": -0.97
+  },
+  "best_action": "tool:search_direct_flight",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "d3c1beed-d498-4f8b-b9f6-c5e60dc2bb66",
+    "termination_reason": "user_stop",
+    "selected_message_index": 12,
+    "message_count": 29,
+    "decision_rule": "Use the turn where the traveler confirms reservation M05KNL and authorizes a cheapest-next-day search to either Philadelphia or Newark, because that is the first grounded search point after the correct booking is identified.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops before any flight-search results are shown",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "selected_message_index is 12 because this is the first turn that both identifies the reservation and requests the next-day option search"
+    ]
+  }
+}

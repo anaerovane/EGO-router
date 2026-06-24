@@ -1,0 +1,88 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_airplane_badnet_step_25_manual_911",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]airplane_mode_on|bad_network_preference[PERSONA:Hard]",
+  "step_id": 25,
+  "query": "It looks like my phone is showing the Airplane Mode icon at the top, and the battery is at 80%. What should I do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that mobile data keeps stopping or is very slow and says excellent phone internet is important because there is no home Wi-Fi.\nassistant: The assistant asks for the phone number to look up the line and run diagnostics.\nuser: The user provides phone number 555-123-2002.\nassistant: The assistant authenticates the account, finds the matching line, checks the plan and device, and then asks the user to run a status-bar diagnostic and report the visible icons.\nuser: The user reports that the phone is showing the Airplane Mode icon and battery at 80%.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks — that confirms Airplane Mode is on, which would block cellular service and data. Please turn Airplane Mode off first, then tell me whether signal bars or mobile data return."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible diagnostic result already identifies a concrete device-side blocker, so the next grounded move is to disable Airplane Mode rather than gather more account data or escalate."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.2,
+      "margin": 0.72,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.94,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_customer",
+    "tool:get_customer_details",
+    "tool:list_lines",
+    "tool:get_line_details",
+    "tool:get_plan_details",
+    "tool:get_device_details",
+    "tool:get_billing_details",
+    "tool:check_status_bar",
+    "tool:check_network_status",
+    "tool:set_airplane_mode",
+    "tool:set_data_roaming",
+    "tool:set_network_mode_preference",
+    "tool:check_sim_status",
+    "tool:reseat_sim_card",
+    "tool:transfer_to_human_agents",
+    "tool:pay_bill",
+    "tool:run_speed_test",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.91,
+    "think": 0.09,
+    "tool:find_customer": -0.96,
+    "tool:get_customer_details": -0.83,
+    "tool:list_lines": -0.8,
+    "tool:get_line_details": -0.54,
+    "tool:get_plan_details": -0.72,
+    "tool:get_device_details": -0.63,
+    "tool:get_billing_details": -0.97,
+    "tool:check_status_bar": -0.41,
+    "tool:check_network_status": -0.36,
+    "tool:set_airplane_mode": 0.98,
+    "tool:set_data_roaming": -0.44,
+    "tool:set_network_mode_preference": -0.67,
+    "tool:check_sim_status": -0.48,
+    "tool:reseat_sim_card": -0.76,
+    "tool:transfer_to_human_agents": -0.58,
+    "tool:pay_bill": -0.99,
+    "tool:run_speed_test": -0.88,
+    "tool:calculate": -0.97
+  },
+  "best_action": "tool:set_airplane_mode",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "8b56de43-5c22-4171-9f94-f839b7cfeb3f",
+    "termination_reason": "user_stop",
+    "selected_message_index": 25,
+    "message_count": 34,
+    "decision_rule": "Choose a later diagnostic turn where a user-visible device status directly reveals the immediate root blocker and the next state-changing action can be chosen from visible evidence alone.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Disabling Airplane Mode is highest because the user has already surfaced the exact icon showing the radio is off, making this the most direct fix before any deeper troubleshooting.",
+    "notes": [
+      "State is anchored at the user-facing diagnostic result, not hidden scenario metadata.",
+      "Available telecom actions are domain-appropriate and include both diagnostic and remediation options, but scores favor the single device change justified by the reported icon."
+    ]
+  }
+}

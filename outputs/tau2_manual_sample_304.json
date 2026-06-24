@@ -1,0 +1,84 @@
+{
+  "sample_id": "tau2_manual_sample_304_step_9_manual_44a44d47-10e1-440f-8b8b-c69e3edcbe3a",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "37",
+  "selected_message_index": 9,
+  "step_id": 9,
+  "query": "The reason for canceling both IFOYYZ and NQNU5R is a change in my travel plans. And yes, please go ahead and check the price difference for upgrading M20IZO to business class.",
+  "state": {
+    "history_summary": "The user needs help with several reservations. After the assistant identified the relevant reservations and summarized which ones could be canceled or changed, the user instructed the assistant to cancel two reservations and asked to check the price difference for upgrading reservation M20IZO to business class. The user is requesting price lookup before any update is made.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Before making any change to M20IZO, I need to look up the live business-class option and price difference the user asked about."
+      },
+      {
+        "source": "think-refine",
+        "text": "The grounded next step is a flight search for the requested upgrade pricing on reservation M20IZO."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.17,
+      "margin": 0.72,
+      "disagreement": 0.07,
+      "verifier_confidence": 0.91,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.33,
+    "think": 0.12,
+    "tool:book_reservation": -0.97,
+    "tool:calculate": -0.28,
+    "tool:cancel_reservation": -0.22,
+    "tool:get_flight_status": -0.69,
+    "tool:get_reservation_details": -0.41,
+    "tool:get_user_details": -0.45,
+    "tool:list_all_airports": -0.95,
+    "tool:search_direct_flight": 0.99,
+    "tool:search_onestop_flight": -0.63,
+    "tool:send_certificate": -0.87,
+    "tool:transfer_to_human_agents": -0.48,
+    "tool:update_reservation_baggages": -0.92,
+    "tool:update_reservation_flights": -0.84,
+    "tool:update_reservation_passengers": -0.92
+  },
+  "best_action": "tool:search_direct_flight",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "44a44d47-10e1-440f-8b8b-c69e3edcbe3a",
+    "termination_reason": "user_stop",
+    "selected_message_index": 9,
+    "message_count": 46,
+    "decision_rule": "Choose a user turn where the assistant has already identified the relevant reservations and the user explicitly asks to check the price for a nonstop replacement option.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user request using only visible conversation evidence.",
+    "notes": [
+      "manual / non-leaky annotation based only on transcript content visible before or at the selected user turn",
+      "query exactly matches the selected user message from the current source transcript file",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are grounded only in visible context from the transcript up to this turn",
+      "best_action is the argmax of action_scores"
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_airplane_mode_on_data_mode_off_step_7_manual_710",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]airplane_mode_on|data_mode_off[PERSONA:None]",
+  "step_id": 7,
+  "query": "Yes, it’s the number I provided—555-123-2002—that’s having the issue.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that mobile data is unreliable and wants excellent internet speed.\nassistant: The assistant identifies the customer by phone number and notices there may be multiple lines on the account, then asks the user to confirm which number is affected.\nuser: The user confirms that the affected number is 555-123-2002.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for confirming the affected number. I’ll pull the details for that line so I can troubleshoot the mobile-data issue on the correct service."
+      },
+      {
+        "source": "think-refine",
+        "text": "Now that the user has identified the affected line, the next grounded action is retrieving that line’s details before giving further troubleshooting steps."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.24,
+      "margin": 0.49,
+      "disagreement": 0.08,
+      "verifier_confidence": 0.88,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:calculate",
+    "tool:change_plan",
+    "tool:check_device_settings",
+    "tool:get_customer_by_phone",
+    "tool:get_data_usage",
+    "tool:get_details_by_id",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.83,
+    "think": 0.16,
+    "tool:calculate": -0.75,
+    "tool:change_plan": -0.87,
+    "tool:check_device_settings": 0.31,
+    "tool:get_customer_by_phone": -0.86,
+    "tool:get_data_usage": -0.22,
+    "tool:get_details_by_id": 0.8,
+    "tool:refuel_data": -0.8,
+    "tool:transfer_to_human_agents": -0.78
+  },
+  "best_action": "tool:get_details_by_id",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "02dbcc63-245c-4563-b151-ce4bba9cd44a",
+    "termination_reason": "user_stop",
+    "selected_message_index": 7,
+    "message_count": 32,
+    "decision_rule": "Choose a state where account identity is known but the affected line has just been disambiguated, making line-detail retrieval the most direct grounded next action.",
+    "scoring_method": "Manual one-step proxy scoring from the visible decision point. Scores favor line inspection before device guidance and keep broader troubleshooting actions below targeted state retrieval.",
+    "notes": [
+      "query is the visible line-confirmation message before the assistant retrieves line details",
+      "history_summary stops before any later device checks or speed-test evidence",
+      "best_action is argmax and rounds out the batch with an early-stage telecom retrieval decision",
+      "the source trajectory later succeeds, but no future-only evidence is used in this state annotation"
+    ]
+  }
+}

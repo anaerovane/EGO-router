@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_26_step_7_manual_366",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "26",
+  "step_id": 7,
+  "query": "I’m not sure which one it is, but both of those reservations should be under my name. Can you check which one is for the MCO to CLT flights and cancel that one? I really want to make sure I get my refund.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user asks to cancel MCO-to-CLT flights and get a refund.\nassistant: The assistant asks for the user ID and reservation details.\nuser: The user provides user ID amelia_sanchez_4739, says they do not know the reservation ID, and asks for help canceling the trip.\nassistant: The assistant retrieves the user profile, identifies two reservations, and asks which booking is for the MCO-to-CLT flights.\nuser: The user says they are not sure which one it is, asks the assistant to identify the MCO-to-CLT booking, and says they want to cancel that one and get a refund.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes — I’ll check which of those reservations contains the MCO to CLT flights so we can identify the correct booking to cancel."
+      },
+      {
+        "source": "think-refine",
+        "text": "The account lookup has already surfaced candidate reservations, so the grounded next step is to inspect their details to find the matching itinerary."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.14,
+      "margin": 0.88,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.5,
+    "think": 0.1,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.95,
+    "tool:cancel_reservation": -0.92,
+    "tool:get_flight_status": -0.89,
+    "tool:get_reservation_details": 0.99,
+    "tool:get_user_details": -0.43,
+    "tool:list_all_airports": -0.99,
+    "tool:search_direct_flight": -0.97,
+    "tool:search_onestop_flight": -0.97,
+    "tool:send_certificate": -0.97,
+    "tool:transfer_to_human_agents": -0.56,
+    "tool:update_reservation_baggages": -0.99,
+    "tool:update_reservation_flights": -0.99,
+    "tool:update_reservation_passengers": -0.99
+  },
+  "best_action": "tool:get_reservation_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "c08e6800-8b51-40a1-aee3-433e3bb141b7",
+    "termination_reason": "user_stop",
+    "selected_message_index": 7,
+    "message_count": 21,
+    "decision_rule": "Use the user turn where they ask the assistant to identify which visible reservation is the MCO-to-CLT trip, because that is the earliest grounded point where reservation-detail lookup becomes necessary.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops before later cancellation confirmation and policy discussion",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is get_reservation_details because the assistant must first determine which booking matches the route before canceling it"
+    ]
+  }
+}

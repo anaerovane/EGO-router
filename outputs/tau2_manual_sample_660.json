@@ -1,0 +1,69 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_contract_end_suspension_unseat_sim_card_step_35_manual_660",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]contract_end_suspension|unseat_sim_card[PERSONA:Hard]",
+  "step_id": 35,
+  "query": "I checked, and it looks like my phone says there’s no SIM card detected. What should I do about that? Is that bad?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports No Service on phone number 555-123-2002.\nassistant: The assistant identifies a suspension caused by an overdue bill, sends a payment request, the user pays, and the assistant resumes the line.\nassistant: After a reboot still leaves the phone without signal, the assistant has the user check network and SIM status.\nuser: The user reports that the phone says no SIM card is detected.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "That explains why you still have no service even though the line is active. The next step is to reseat the SIM card so the phone can recognize it again."
+      },
+      {
+        "source": "think-refine",
+        "text": "The network-side suspension has already been cleared, and the newly visible device-side blocker is missing SIM detection, so reseating the SIM is the most grounded intervention."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.04,
+      "margin": 0.95,
+      "disagreement": 0.01,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_details_by_id",
+    "tool:resume_line",
+    "tool:reboot_device",
+    "tool:check_network_status",
+    "tool:check_sim_status",
+    "tool:reseat_sim_card",
+    "tool:reset_apn_settings",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.98,
+    "think": 0.03,
+    "tool:get_details_by_id": -0.82,
+    "tool:resume_line": -0.95,
+    "tool:reboot_device": -0.27,
+    "tool:check_network_status": -0.11,
+    "tool:check_sim_status": -0.06,
+    "tool:reseat_sim_card": 0.99,
+    "tool:reset_apn_settings": -0.74,
+    "tool:transfer_to_human_agents": -0.69
+  },
+  "best_action": "tool:reseat_sim_card",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "task_service_issue_contract_end_suspension_unseat_sim_card_trial_0",
+    "termination_reason": "user_stop",
+    "selected_message_index": 35,
+    "message_count": 44,
+    "decision_rule": "Choose a late-state telecom episode where account and billing issues have already been resolved and the remaining blocker is an explicit device report that no SIM card is detected.",
+    "scoring_method": "Manual one-step proxy scoring from the visible telecom state. Scores prioritize the direct physical-SIM intervention over unrelated resets because the user has just surfaced a specific SIM-recognition failure.",
+    "notes": [
+      "This sample diversifies telecom best-action types by focusing on a hardware-adjacent remediation step.",
+      "history_summary excludes the later successful reseat and final user confirmation.",
+      "best_action is reseat_sim_card because the visible state directly points to SIM recognition as the remaining cause of No Service."
+    ]
+  }
+}

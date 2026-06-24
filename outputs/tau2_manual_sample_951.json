@@ -1,0 +1,84 @@
+{
+  "sample_id": "tau2_retail_task_17_step_3_manual_951",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "retail",
+  "task_id": "17",
+  "step_id": 3,
+  "query": "I don’t remember the email I used, but my name is Fatima Johnson and my zip code is 78712. The order number is W8665881.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: Hi, I need to update the delivery address for an order I placed. I want it delivered to Suite 641 instead.\nassistant: The assistant says it can help update the delivery address, asks to verify identity, and requests either the email or the customer name and zip code along with the order ID.\nuser: The user cannot provide the email, but gives the name Fatima Johnson, zip code 78712, and order number W8665881.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks — that gives me enough to verify your account by name and ZIP before I touch order W8665881."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has supplied exactly the fallback identity fields the assistant asked for, so the most grounded next step is to look up the user ID by name and ZIP before modifying or even inspecting the order."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.24,
+      "margin": 0.55,
+      "disagreement": 0.08,
+      "verifier_confidence": 0.9,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:calculate",
+    "tool:cancel_pending_order",
+    "tool:exchange_delivered_order_items",
+    "tool:find_user_id_by_email",
+    "tool:find_user_id_by_name_zip",
+    "tool:get_order_details",
+    "tool:get_product_details",
+    "tool:get_user_details",
+    "tool:list_all_product_types",
+    "tool:modify_pending_order_address",
+    "tool:modify_pending_order_items",
+    "tool:modify_pending_order_payment",
+    "tool:modify_user_address",
+    "tool:return_delivered_order_items",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.88,
+    "think": 0.21,
+    "tool:calculate": -0.64,
+    "tool:cancel_pending_order": -0.86,
+    "tool:exchange_delivered_order_items": -0.84,
+    "tool:find_user_id_by_email": -0.62,
+    "tool:find_user_id_by_name_zip": 0.96,
+    "tool:get_order_details": 0.52,
+    "tool:get_product_details": -0.79,
+    "tool:get_user_details": 0.14,
+    "tool:list_all_product_types": -0.93,
+    "tool:modify_pending_order_address": -0.74,
+    "tool:modify_pending_order_items": -0.83,
+    "tool:modify_pending_order_payment": -0.9,
+    "tool:modify_user_address": -0.81,
+    "tool:return_delivered_order_items": -0.9,
+    "tool:transfer_to_human_agents": -0.57
+  },
+  "best_action": "tool:find_user_id_by_name_zip",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_retail_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "3cb14cf3-dc95-426a-a6b9-4e7a59622a67",
+    "termination_reason": "user_stop",
+    "selected_message_index": 3,
+    "message_count": 16,
+    "decision_rule": "Choose a user turn where the customer provides the requested fallback identity fields and the order identifier, making identity lookup the most grounded next move before any order operation.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores prioritize actions that safely authenticate the user and advance the address-change request without assuming hidden account details.",
+    "notes": [
+      "query comes directly from the selected visible user message, not hidden task text",
+      "history_summary stops at the decision point and excludes future tool results or assistant messages",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is find_user_id_by_name_zip because the assistant explicitly requested name plus ZIP as the fallback verification path"
+    ]
+  }
+}

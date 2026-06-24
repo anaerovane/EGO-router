@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_11_step_11_manual_342",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "11",
+  "step_id": 11,
+  "query": "Yes, please proceed and remove Sophia Johansson from the reservation GV1N64. I confirm that I want the $1900 refund for her ticket for both flights, and I want the refund processed back to the original gift card payment method. Please do this as quickly as possible. Let me know once it’s done.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to remove Sophia from an upcoming Las Vegas to Denver round trip and receive the refund.\nassistant: The assistant asks for identifying details for the booking.\nuser: The user provides user ID james_patel_9828 and asks for help locating the reservation.\nassistant: The assistant retrieves the account, the user later provides reservation GV1N64, and the assistant checks that booking.\nassistant: The assistant explains that Sophia Johansson can be removed and quotes a $1900 refund to the original payment method for her ticket across both flights.\nuser: The user confirms the removal of Sophia from reservation GV1N64 and approves the $1900 refund to the original payment method.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for confirming — I can go ahead and remove Sophia Johansson from reservation GV1N64 and process the $1900 refund back to the original payment method."
+      },
+      {
+        "source": "think-refine",
+        "text": "The assistant has already surfaced the exact refundable amount and the user has explicitly approved the passenger removal, so the grounded next move is to update the reservation passengers."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.08,
+      "margin": 0.91,
+      "disagreement": 0.02,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 6
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.58,
+    "think": 0.07,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.81,
+    "tool:cancel_reservation": -0.95,
+    "tool:get_flight_status": -0.92,
+    "tool:get_reservation_details": -0.39,
+    "tool:get_user_details": -0.57,
+    "tool:list_all_airports": -0.96,
+    "tool:search_direct_flight": -0.94,
+    "tool:search_onestop_flight": -0.94,
+    "tool:send_certificate": -0.93,
+    "tool:transfer_to_human_agents": -0.71,
+    "tool:update_reservation_baggages": -0.97,
+    "tool:update_reservation_flights": -0.88,
+    "tool:update_reservation_passengers": 0.99
+  },
+  "best_action": "tool:update_reservation_passengers",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "591223ff-5fe7-42e5-8680-1892a78ed179",
+    "termination_reason": "user_stop",
+    "selected_message_index": 11,
+    "message_count": 33,
+    "decision_rule": "Use the explicit confirmation turn where the traveler authorizes removing Sophia from reservation GV1N64 and approves the quoted refund, because this is the first grounded execution point for the passenger-removal action.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops before any later fallback discussion about downgrading all passengers",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "selected_message_index is 11 because the user has already been shown the removal terms and is now authorizing execution"
+    ]
+  }
+}

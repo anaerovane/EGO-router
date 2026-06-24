@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_7_step_10_manual_325",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "7",
+  "step_id": 10,
+  "query": "Yes, keep the same flights and use the same credit card for the upgrade. Go ahead.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to cancel reservations XEHM4B and 59XX6W.\nassistant: The assistant asks for the user ID and reason.\nuser: The user provides user ID daiki_muller_1116 and says the reason is a change of plan.\nassistant: The assistant retrieves both reservations and explains their status.\nuser: The user says XEHM4B should be upgraded from basic economy to economy before canceling it, that both reservations should then be canceled, and that the assistant should later check for any other upcoming flights and their total cost.\nassistant: The assistant asks the user to confirm that the XEHM4B upgrade should keep the same flights and use the same credit card on file.\nuser: The user confirms the same flights and same credit card for the upgrade and says to go ahead.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood — I’ll use the same flights and the same card for the XEHM4B upgrade and then continue with the rest of the requested workflow."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has now supplied the concrete upgrade parameters, so the grounded next move is to update XEHM4B rather than ask again."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.11,
+      "margin": 0.88,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.98,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.78,
+    "think": 0.09,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.87,
+    "tool:cancel_reservation": 0.43,
+    "tool:get_flight_status": -0.92,
+    "tool:get_reservation_details": -0.78,
+    "tool:get_user_details": -0.82,
+    "tool:list_all_airports": -0.98,
+    "tool:search_direct_flight": -0.97,
+    "tool:search_onestop_flight": -0.97,
+    "tool:send_certificate": -0.97,
+    "tool:transfer_to_human_agents": -0.91,
+    "tool:update_reservation_baggages": -0.96,
+    "tool:update_reservation_flights": 0.99,
+    "tool:update_reservation_passengers": -0.96
+  },
+  "best_action": "tool:update_reservation_flights",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "803887dd-8e46-44c3-9474-2c6660d8c55b",
+    "termination_reason": "user_stop",
+    "selected_message_index": 10,
+    "message_count": 28,
+    "decision_rule": "Use the mid-workflow confirmation turn where the user supplies the exact upgrade parameters, because updating the reservation is the immediate enabling action for the later cancellations and accounting request.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes later confirmation shorthand, tool calls, and stop turn",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "this is a sequencing case: the upgrade must precede the requested cancellation of XEHM4B"
+    ]
+  }
+}

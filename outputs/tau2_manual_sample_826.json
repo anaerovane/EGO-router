@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_network_pref_step_19_manual_826",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]bad_network_preference|user_abroad_roaming_enabled_off[PERSONA:Hard]",
+  "step_id": 19,
+  "query": "I checked, and it says my phone is set to \"2G only\" for the network mode. What should I do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports poor or intermittent mobile data while in France and wants excellent speed.\nassistant: The assistant identifies the account using phone number 555-123-2002, verifies the line is active with carrier-side roaming enabled and available plan data, and then asks the user to inspect device settings step by step.\nuser: The user checks the phone settings and reports that the preferred network mode is currently set to 2G only.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "That setting is the problem. Please switch the preferred network mode from 2G only to 4G/5G preferred, then test the connection again."
+      },
+      {
+        "source": "think-refine",
+        "text": "Given the user’s explicit report that the device is locked to 2G only, the grounded next intervention is to update network preference before checking any subtler causes like roaming or data saver settings."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.11,
+      "margin": 0.82,
+      "disagreement": 0.06,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:check_network_preference",
+    "tool:set_network_preference",
+    "tool:check_network_status",
+    "tool:toggle_data_roaming",
+    "tool:toggle_data_saver",
+    "tool:restart_network",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.93,
+    "think": 0.1,
+    "tool:get_customer_by_phone": -0.87,
+    "tool:get_details_by_id": -0.49,
+    "tool:get_data_usage": -0.43,
+    "tool:check_network_preference": -0.54,
+    "tool:set_network_preference": 0.94,
+    "tool:check_network_status": -0.18,
+    "tool:toggle_data_roaming": 0.19,
+    "tool:toggle_data_saver": -0.22,
+    "tool:restart_network": 0.15,
+    "tool:transfer_to_human_agents": -0.61
+  },
+  "best_action": "tool:set_network_preference",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "81a8049a-f92a-4358-88f3-2681b1a7519e",
+    "termination_reason": "user_stop",
+    "selected_message_index": 19,
+    "message_count": 41,
+    "decision_rule": "Choose a telecom troubleshooting state where the user reveals a concrete, fixable device misconfiguration and the next action should directly address it.",
+    "scoring_method": "Manual one-step proxy scoring from the visible telecom state. Scores prioritize correcting the clearly harmful 2G-only network preference over less immediate checks or later-stage optimizations.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary excludes the later network-mode change, follow-up diagnostics, and successful speed restoration",
+      "best_action is set_network_preference because the user has just surfaced the strongest visible root cause of poor data speed",
+      "action_scores cover all listed actions and make the argmax explicit"
+    ]
+  }
+}

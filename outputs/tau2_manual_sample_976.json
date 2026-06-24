@@ -1,0 +1,75 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]airplane_mode_on|user_abroad_roaming_enabled_off[PERSONA:None]_step_24_manual_976",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]airplane_mode_on|user_abroad_roaming_enabled_off[PERSONA:None]",
+  "step_id": 24,
+  "query": "I’ve checked my phone’s settings as you suggested. Here’s what I found: - My network mode is already set to prefer 4G/5G. - Data Saver is turned off. - VPN is not active. - However, I noticed that Airplane Mode is ON, and Data Roaming is OFF. What should I do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports mobile data trouble and later clarifies they are traveling in France.\nassistant: The assistant authenticates the account, checks the affected line, confirms roaming is enabled at the carrier level, and rules out quota exhaustion.\nassistant: The assistant asks the user to inspect phone settings related to connectivity while abroad.\nuser: The user reports that network preference is already optimized but Airplane Mode is ON and Data Roaming is OFF, and asks what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Those two settings explain the problem. The next step is to guide the user to turn off Airplane Mode and then enable Data Roaming on the device."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible user report already isolates the device-side blockers, and none of the available backend telecom tools can flip those phone settings directly, so planning the instruction sequence is the most grounded next move."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.18,
+      "margin": 0.52,
+      "disagreement": 0.07,
+      "verifier_confidence": 0.9,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.8,
+    "think": 0.96,
+    "tool:get_customer_by_phone": -0.98,
+    "tool:get_customer_by_name": -0.99,
+    "tool:get_details_by_id": -0.58,
+    "tool:get_bills_for_customer": -0.93,
+    "tool:send_payment_request": -0.98,
+    "tool:check_payment_request": -0.99,
+    "tool:make_payment": -0.99,
+    "tool:resume_line": -0.85,
+    "tool:enable_roaming": -0.44,
+    "tool:refuel_data": -0.92,
+    "tool:transfer_to_human_agents": -0.36
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "ffffcf7e-5b61-4268-92f8-e01da356cdc0",
+    "termination_reason": "user_stop",
+    "selected_message_index": 24,
+    "message_count": 34,
+    "decision_rule": "Choose a user turn where the decisive evidence is user-reported device state rather than backend account state, so the correct next step is reasoning through instructions instead of calling another backend telecom tool.",
+    "scoring_method": "Manual one-step proxy scoring from the visible telecom state. think is highest because the agent should now respond with device-specific guidance, not repeat already completed carrier-side checks.",
+    "notes": [
+      "query is copied from the visible device-status report",
+      "future successful fixes are excluded from the history summary",
+      "this sample contrasts with roaming-enabled account actions by focusing on instruction planning from user-supplied diagnostics"
+    ]
+  }
+}

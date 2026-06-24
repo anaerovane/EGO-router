@@ -1,0 +1,139 @@
+{
+  "expected_files": 1000,
+  "present_files": 1000,
+  "missing_count": 0,
+  "missing_examples": [],
+  "schema_issue_count": 0,
+  "argmax_issue_count": 0,
+  "metric_issue_count": 0,
+  "domain_distribution": {
+    "airline": 513,
+    "retail": 238,
+    "telecom": 249
+  },
+  "top_best_actions": [
+    [
+      "tool:get_user_details",
+      169
+    ],
+    [
+      "tool:get_reservation_details",
+      131
+    ],
+    [
+      "tool:transfer_to_human_agents",
+      94
+    ],
+    [
+      "think",
+      68
+    ],
+    [
+      "stop",
+      59
+    ],
+    [
+      "tool:return_delivered_order_items",
+      40
+    ],
+    [
+      "tool:modify_pending_order_items",
+      40
+    ],
+    [
+      "tool:refuel_data",
+      25
+    ],
+    [
+      "tool:get_details_by_id",
+      24
+    ],
+    [
+      "tool:modify_pending_order_address",
+      24
+    ],
+    [
+      "tool:update_reservation_flights",
+      23
+    ],
+    [
+      "tool:calculate",
+      22
+    ],
+    [
+      "tool:exchange_delivered_order_items",
+      20
+    ],
+    [
+      "tool:cancel_reservation",
+      19
+    ],
+    [
+      "tool:modify_pending_order_payment",
+      19
+    ],
+    [
+      "tool:enable_roaming",
+      18
+    ],
+    [
+      "tool:get_order_details",
+      16
+    ],
+    [
+      "tool:find_user_id_by_name_zip",
+      15
+    ],
+    [
+      "tool:resume_line",
+      14
+    ],
+    [
+      "tool:get_product_details",
+      11
+    ],
+    [
+      "tool:check_device_settings",
+      11
+    ],
+    [
+      "tool:search_direct_flight",
+      10
+    ],
+    [
+      "tool:book_reservation",
+      10
+    ],
+    [
+      "tool:cancel_pending_order",
+      9
+    ],
+    [
+      "tool:get_customer_by_phone",
+      9
+    ],
+    [
+      "tool:update_reservation_passengers",
+      8
+    ],
+    [
+      "tool:get_flight_status",
+      8
+    ],
+    [
+      "tool:send_payment_request",
+      8
+    ],
+    [
+      "tool:toggle_data_saver_mode",
+      7
+    ],
+    [
+      "tool:set_network_mode_preference",
+      7
+    ]
+  ],
+  "schema_issue_examples": [],
+  "argmax_issue_examples": [],
+  "metric_issue_examples": []
+}

@@ -1,0 +1,75 @@
+{
+  "sample_id": "tau2_telecom_task_overdue_bill_suspension_step_17_manual_816",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]break_apn_settings|lock_sim_card_pin|overdue_bill_suspension[PERSONA:Easy]",
+  "step_id": 17,
+  "query": "I'm ready to make the payment to restore my service. Could you please send me the payment request so I can proceed?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports a No Service problem.\nassistant: The assistant first tries a status-bar check that fails, then falls back to account lookup by phone number.\nuser: The user provides 555-123-2002.\nassistant: The assistant retrieves the customer and line details, finds that line 555-123-2002 is suspended, and checks the billing records.\nassistant: The assistant identifies overdue bill B1234321 for $65.00 as the reason the line was suspended.\nassistant: A payment-request check shows that no payment request currently exists.\nuser: The user says they are ready to pay and explicitly asks the assistant to send the payment request.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Absolutely — I’ll send the payment request for the overdue bill now so you can complete it and restore service."
+      },
+      {
+        "source": "think-refine",
+        "text": "The suspension cause is already confirmed and there is no active payment request yet, so the grounded next step is to send one rather than attempt payment processing directly."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.09,
+      "margin": 0.89,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.98,
+      "steps_remaining": 5
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.9,
+    "think": 0.06,
+    "tool:get_customer_by_phone": -0.94,
+    "tool:get_customer_by_name": -0.98,
+    "tool:get_details_by_id": -0.61,
+    "tool:get_bills_for_customer": -0.53,
+    "tool:send_payment_request": 0.99,
+    "tool:check_payment_request": -0.42,
+    "tool:make_payment": -0.68,
+    "tool:resume_line": -0.93,
+    "tool:enable_roaming": -0.98,
+    "tool:refuel_data": -0.97,
+    "tool:transfer_to_human_agents": -0.69
+  },
+  "best_action": "tool:send_payment_request",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "f0c15021-047d-4910-865d-5af339639746",
+    "termination_reason": "user_stop",
+    "selected_message_index": 17,
+    "message_count": 56,
+    "decision_rule": "Choose a user turn where billing root cause has been established, the system has already shown that no payment request exists, and the user explicitly asks for one to be sent.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Highest score goes to send_payment_request because that is the direct prerequisite for user payment in the current workflow.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "make_payment scores below send_payment_request because the workflow evidence visible to the user first establishes that no payment request exists yet"
+    ]
+  }
+}

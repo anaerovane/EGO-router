@@ -1,0 +1,81 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_mode_off_data_usage_exceeded_step_15_manual_834",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]",
+  "step_id": 15,
+  "query": "I definitely don’t want to change my plan, but I’m willing to refuel 2GB of data. Please go ahead and add 2GB so I can get back to excellent mobile data speed.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: Hi, my mobile data isn’t working properly. Sometimes it just stops, and other times it’s really slow. I need to get excellent internet speed on my phone—nothing less will do. Can you help me fix this?\nassistant: I'd be happy to help you troubleshoot your mobile data issues. To better assist you, I'll need to identify your account first. Could you please provide your phone number so I can look up your account information?\nuser: Sure, my phone number is 555-123-2002.\nassistant: The assistant calls get_customer_by_phone.\ntool: {\"customer_id\": \"C1001\", \"full_name\": \"John Smith\", \"date_of_birth\": \"1985-06-15\", \"email\": \"john.smith@example.com\", \"phone_number\": \"555-123-2002\", \"address\": {\"street\": \"123 ...\nassistant: Thank you for providing your phone number, Mr. Smith. I can now help you troubleshoot your mobile data issues. I'll need to check which line is having the issue. I see you have multiple lines associated with your account. Could you please confirm which phone number is experiencing the mobile data problems?\nuser: The number that’s having the issue is 555-123-2002—the one I’m using right now.\nassistant: The assistant calls get_details_by_id.\ntool: {\"line_id\": \"L1001\", \"phone_number\": \"555-123-2001\", \"status\": \"Active\", \"plan_id\": \"P1001\", \"device_id\": \"D1001\", \"data_used_gb\": 3.2, \"data_refueling_gb\": 0.0, \"roaming_enable...\nassistant: The assistant calls get_details_by_id.\ntool: {\"line_id\": \"L1002\", \"phone_number\": \"555-123-2002\", \"status\": \"Active\", \"plan_id\": \"P1002\", \"device_id\": \"D1002\", \"data_used_gb\": 15.1, \"data_refueling_gb\": 0.0, \"roaming_enabl...\nassistant: The assistant calls get_details_by_id.\ntool: {\"plan_id\": \"P1002\", \"name\": \"Premium Plan\", \"data_limit_gb\": 15.0, \"price_per_month\": 65.0, \"data_refueling_price_per_gb\": 2.0}\nassistant: I've found the issue with your mobile data. Your line (555-123-2002) has used 15.1 GB of data, which exceeds your Premium Plan's data limit of 15.0 GB. This is why your data connection is stopping or slowing down. To fix this issue, you have two options: 1. Refuel your data (add more data to your current plan) 2. Change to a plan with a higher data limit Would you like to refuel your data? I can add up to 2GB at a cost of $2.00 per GB based on your current plan.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Got it. You want to keep your current plan and add a 2GB data refuel, so I can send the purchase request now."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible account state shows the line and usage situation, and the user has explicitly authorized a 2GB top-up instead of a plan change, making payment-request initiation the grounded next action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.14,
+      "margin": 0.73,
+      "disagreement": 0.06,
+      "verifier_confidence": 0.94,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:send_payment_request",
+    "tool:resume_line",
+    "tool:reboot_device",
+    "tool:check_network_status",
+    "tool:check_sim_status",
+    "tool:reseat_sim_card",
+    "tool:toggle_airplane_mode",
+    "tool:toggle_data_roaming",
+    "tool:toggle_data_saver",
+    "tool:reset_apn_settings",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.91,
+    "think": 0.08,
+    "tool:get_customer_by_phone": -0.97,
+    "tool:get_details_by_id": -0.36,
+    "tool:get_data_usage": -0.21,
+    "tool:send_payment_request": 0.89,
+    "tool:resume_line": -0.88,
+    "tool:reboot_device": -0.84,
+    "tool:check_network_status": -0.67,
+    "tool:check_sim_status": -0.75,
+    "tool:reseat_sim_card": -0.89,
+    "tool:toggle_airplane_mode": -0.77,
+    "tool:toggle_data_roaming": -0.85,
+    "tool:toggle_data_saver": -0.66,
+    "tool:reset_apn_settings": -0.79,
+    "tool:transfer_to_human_agents": -0.42
+  },
+  "best_action": "tool:send_payment_request",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "4a0eabe0-1325-4c3e-8918-3a09a02506a2",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 28,
+    "decision_rule": "Choose a telecom user turn where usage diagnosis is complete and the user explicitly authorizes a paid data refuel instead of a plan change.",
+    "scoring_method": "Manual one-step proxy scoring from visible telecom state. Highest score goes to the action that operationalizes the user-approved purchase while avoiding unrelated troubleshooting.",
+    "notes": [
+      "The decision point is anchored on explicit user consent to a paid refuel.",
+      "history_summary excludes the later purchase completion and device-side checks.",
+      "best_action is send_payment_request because the system still needs the payment authorization flow before any top-up can be applied."
+    ]
+  }
+}

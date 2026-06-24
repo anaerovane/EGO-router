@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_4_step_15_manual_316",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "4",
+  "step_id": 15,
+  "query": "No, I always use this account for all my bookings, and I’m certain it was a business class ticket. Maybe there’s a mistake in your system? Regardless, the flight was canceled by your airline, and I missed a crucial meeting because of it. I really need you to process some kind of compensation for the trouble this has caused me. Isn’t there any way you can help?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user is upset about a canceled business flight earlier in the month and wants compensation.\nassistant: The assistant asks for user and reservation details.\nuser: The user provides user ID sophia_silva_7557 and asks the assistant to check the account.\nassistant: The assistant retrieves the user's reservations and asks which one corresponds to the canceled business flight.\nuser: The user says they do not know the reservation ID but that it was an earlier-month business flight canceled by the airline.\nassistant: The assistant says none of the visible reservations are business class and asks whether the booking may have been under another user ID or reservation.\nuser: The user insists the booking was under this account, says the system may be mistaken, and asks for compensation or escalation.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I’m not able to verify that business-class cancellation from the visible reservations, so I can transfer you to a human agent for further review."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible account data does not support the claimed itinerary and the user is now explicitly requesting escalation, so transfer is the grounded next action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.1,
+      "margin": 0.89,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.98,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.6,
+    "think": 0.11,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.94,
+    "tool:cancel_reservation": -0.97,
+    "tool:get_flight_status": -0.83,
+    "tool:get_reservation_details": -0.62,
+    "tool:get_user_details": -0.74,
+    "tool:list_all_airports": -0.98,
+    "tool:search_direct_flight": -0.97,
+    "tool:search_onestop_flight": -0.97,
+    "tool:send_certificate": -0.81,
+    "tool:transfer_to_human_agents": 0.99,
+    "tool:update_reservation_baggages": -0.98,
+    "tool:update_reservation_flights": -0.98,
+    "tool:update_reservation_passengers": -0.98
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "7067bc7a-45f1-409b-b3a2-16424e9409a7",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 20,
+    "decision_rule": "Use the later turn where the traveler disputes the system mismatch and explicitly requests compensation or escalation, because the visible evidence no longer supports further autonomous resolution.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes the later transfer tool call",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "this is a mismatch-and-escalation case where the claimed business itinerary is not found in the visible account data"
+    ]
+  }
+}

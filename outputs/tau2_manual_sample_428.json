@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_44_step_3_manual_428",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "44",
+  "step_id": 3,
+  "query": "Sure, my user ID is sophia_silva_7557.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: Hi! I’d like some help managing my upcoming reservations. I want to cancel all my future bookings that have any flights longer than 4 hours. For the flights that are 3 hours or less, I’d like to upgrade to business class wherever possible. Can you help me with that?\nassistant: To assist you with managing your upcoming reservations, I will need your user ID to locate your bookings. Could you please provide your user ID?\nuser: Sure, my user ID is sophia_silva_7557.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks. I’ll look up your account details first so I can find the right booking or options."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user supplied or confirmed only account-level information, so the grounded next step is to fetch the user profile before acting on any reservation."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.12,
+      "margin": 0.72,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.94,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.4,
+    "think": -0.1,
+    "tool:book_reservation": -0.95,
+    "tool:calculate": -0.95,
+    "tool:cancel_reservation": -0.95,
+    "tool:get_flight_status": -0.95,
+    "tool:get_reservation_details": 0.2,
+    "tool:get_user_details": 0.99,
+    "tool:list_all_airports": -0.95,
+    "tool:search_direct_flight": -0.95,
+    "tool:search_onestop_flight": -0.95,
+    "tool:send_certificate": -0.95,
+    "tool:transfer_to_human_agents": -0.95,
+    "tool:update_reservation_baggages": -0.95,
+    "tool:update_reservation_flights": -0.95,
+    "tool:update_reservation_passengers": -0.95
+  },
+  "best_action": "tool:get_user_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "a5f2da63-8bab-4596-be76-ff159077bdee",
+    "termination_reason": "user_stop",
+    "selected_message_index": 3,
+    "message_count": 51,
+    "decision_rule": "Choose a real user turn where the visible context makes the next grounded action clear without using future information.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected real user message",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is tool:get_user_details because it is the most grounded next step from the visible conversation state"
+    ]
+  }
+}

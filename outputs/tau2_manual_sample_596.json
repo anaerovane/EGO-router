@@ -1,0 +1,72 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_data_usage_exceeded_roaming_off_step_17_manual_596",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 17,
+  "query": "I’d like to refuel 2 GB of data, please. I don’t want to change my plan—just add the extra data for now. What do I need to do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that mobile data is not working well while abroad in France and says excellent speed is required.\nassistant: The assistant asks for the phone number tied to the account.\nuser: The user provides phone number 555-123-2002.\nassistant: The assistant retrieves the customer, line, billing, and plan details.\nassistant: The assistant determines that roaming is already enabled but the line has used 15.1 GB out of a 15 GB allowance, so data access has effectively been cut off.\nassistant: The assistant explains that the user can either refuel extra data or change plans.\nuser: The user says they do not want to change plans and instead wants to refuel 2 GB of data.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood — since you chose a 2 GB refuel instead of a plan change, I can quote the charge and ask for final approval before adding it."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has selected a concrete refuel amount, but has not yet explicitly authorized the charge, so the grounded next step is to calculate and present the immediate cost rather than execute the refuel."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.28,
+      "margin": 0.37,
+      "disagreement": 0.12,
+      "verifier_confidence": 0.86,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents",
+    "tool:enable_roaming"
+  ],
+  "action_scores": {
+    "stop": -0.84,
+    "think": 0.91,
+    "tool:get_customer_by_phone": -0.96,
+    "tool:get_details_by_id": -0.66,
+    "tool:get_bills_for_customer": -0.88,
+    "tool:get_data_usage": -0.58,
+    "tool:change_plan": -0.74,
+    "tool:refuel_data": 0.49,
+    "tool:send_payment_request": -0.83,
+    "tool:transfer_to_human_agents": -0.57,
+    "tool:enable_roaming": -0.79
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "eea0f4dd-71fa-4e3c-9c6d-0f7a1dba7b1d",
+    "termination_reason": "assistant_stop",
+    "selected_message_index": 17,
+    "message_count": 35,
+    "decision_rule": "Choose a user turn where the user chooses a paid add-on option but has not yet explicitly approved the charge, making cost-grounding and confirmation more appropriate than immediate execution.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores rank think above refuel_data because the assistant should first convert the selected amount into a concrete charge and ask permission to bill it.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample captures a telecom payment-consent decision point rather than a completed execution state."
+    ]
+  }
+}

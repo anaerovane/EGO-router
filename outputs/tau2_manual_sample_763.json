@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_retail_task_97_step_15_manual_763",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "retail",
+  "task_id": "97",
+  "step_id": 15,
+  "query": "Yes, that’s correct. Please go ahead with just those two changes—exchange the Bluetooth Speaker for the cheapest green one and update the delivery address to my NYC address. Thank you!",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user asks for two changes on a pending order: exchange a Bluetooth Speaker for the cheapest green variant and move delivery from Los Angeles to a New York address already present in another order.\nassistant: The assistant authenticates the account with name and ZIP code, retrieves the pending Los Angeles order, fetches product details for the Bluetooth Speaker, and retrieves a separate order tied to the New York address.\nassistant: The assistant summarizes the exact two feasible changes: switch the pending speaker to the cheapest available green variant and change the pending order address to the NYC address from the other order.\nuser: The user confirms that only those two changes should be made.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for confirming. I can now apply both requested updates to the pending order: the green speaker exchange and the address change to the New York location."
+      },
+      {
+        "source": "think-refine",
+        "text": "Both requested changes have been grounded against visible order and product data, so the next step is to execute the item and address modifications rather than reopen discovery."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.2,
+      "margin": 0.41,
+      "disagreement": 0.09,
+      "verifier_confidence": 0.9,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_user_id_by_email",
+    "tool:find_user_id_by_name_zip",
+    "tool:get_user_details",
+    "tool:get_order_details",
+    "tool:get_product_details",
+    "tool:list_all_product_types",
+    "tool:modify_pending_order_items",
+    "tool:modify_pending_order_address",
+    "tool:modify_pending_order_payment",
+    "tool:cancel_pending_order",
+    "tool:return_delivered_order_items",
+    "tool:exchange_delivered_order_items",
+    "tool:modify_user_address",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.93,
+    "think": 0.11,
+    "tool:find_user_id_by_email": -0.98,
+    "tool:find_user_id_by_name_zip": -0.96,
+    "tool:get_user_details": -0.78,
+    "tool:get_order_details": -0.33,
+    "tool:get_product_details": -0.37,
+    "tool:list_all_product_types": -0.98,
+    "tool:modify_pending_order_items": 0.88,
+    "tool:modify_pending_order_address": 0.91,
+    "tool:modify_pending_order_payment": -0.74,
+    "tool:cancel_pending_order": -0.9,
+    "tool:return_delivered_order_items": -0.97,
+    "tool:exchange_delivered_order_items": -0.57,
+    "tool:modify_user_address": -0.69,
+    "tool:transfer_to_human_agents": -0.46,
+    "tool:calculate": -0.71
+  },
+  "best_action": "tool:modify_pending_order_address",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_retail_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "9a5fda53-2b27-4edc-8d2d-49883e5e8c02",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 21,
+    "decision_rule": "Choose a state where a multi-change pending-order request has been fully grounded and confirmed, but several execution primitives remain plausible; prefer the action that completes one of the explicitly approved changes without requiring new discovery.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Both pending-order execution actions are strong, but address modification is scored slightly higher because the NYC destination has already been validated from another order and can be applied directly from the visible context.",
+    "notes": [
+      "This sample intentionally preserves some ambiguity by scoring both pending-order execution actions positively, while still enforcing a unique argmax.",
+      "The underlying episode executed item and address changes together, but the manual sample remains one-step and selects the slightly stronger single next action."
+    ]
+  }
+}

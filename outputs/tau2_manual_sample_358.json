@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_20_step_11_manual_358",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "20",
+  "step_id": 11,
+  "query": "I don’t want to fly before 11am EST. Are there any flights that depart after 11am? And I do not want travel insurance.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to book a one-way New York to Seattle flight on May 20.\nassistant: The assistant asks for the user ID.\nuser: The user provides user ID mia_li_3668.\nassistant: The assistant asks for cabin preference.\nuser: The user chooses economy.\nassistant: The assistant asks for passenger details.\nuser: The user says it is just Mia Li and that the date of birth is in the user profile.\nassistant: The assistant retrieves the user profile, checks direct flights, and presents only direct options that depart before 11 AM, then asks whether to check one-stop flights.\nuser: The user says they do not want to fly before 11 AM, do not want travel insurance, and asks whether there are flights after 11 AM.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "There aren’t qualifying direct options after 11 AM, so I’ll check one-stop flights that depart later in the day and keep travel insurance off."
+      },
+      {
+        "source": "think-refine",
+        "text": "The assistant has already exhausted direct-flight options against the user’s time constraint, making one-stop search the grounded next action from the visible context."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.15,
+      "margin": 0.87,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 5
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.48,
+    "think": 0.12,
+    "tool:book_reservation": -0.89,
+    "tool:calculate": -0.91,
+    "tool:cancel_reservation": -0.98,
+    "tool:get_flight_status": -0.98,
+    "tool:get_reservation_details": -0.83,
+    "tool:get_user_details": -0.55,
+    "tool:list_all_airports": -0.99,
+    "tool:search_direct_flight": -0.26,
+    "tool:search_onestop_flight": 0.99,
+    "tool:send_certificate": -0.97,
+    "tool:transfer_to_human_agents": -0.72,
+    "tool:update_reservation_baggages": -0.98,
+    "tool:update_reservation_flights": -0.96,
+    "tool:update_reservation_passengers": -0.98
+  },
+  "best_action": "tool:search_onestop_flight",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "6070973b-a33c-4a47-a286-bd1b62614326",
+    "termination_reason": "user_stop",
+    "selected_message_index": 11,
+    "message_count": 28,
+    "decision_rule": "Use the user turn where they reject all early direct departures and ask for later options, because the conversation has already established that direct search is exhausted.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops before the later one-stop search, booking selection, and payment discussion",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is search_onestop_flight because the user is now asking for a different search space after direct options fail"
+    ]
+  }
+}

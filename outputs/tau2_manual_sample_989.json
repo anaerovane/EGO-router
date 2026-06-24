@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_mode_off_data_usage_exceeded_user_abroad_roaming_disabled_off_step_28_manual_989",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:Hard]",
+  "step_id": 28,
+  "query": "Okay, here’s what I see:\n\n- Airplane Mode is off, and I have excellent signal with 5G showing at the top of my screen.\n- But it looks like mobile data is turned off.\n\nWhat should I do next? I’m a bit nervous about changing settings—will this mess up anything on my phone?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports mobile-data failures and wants excellent internet speed.\nassistant: The assistant verifies the line, sees that the user has exceeded plan data, explains the option to refuel 2 GB for $4, and the user approves the refuel.\nassistant: The refuel is completed, but the user still has no connection, so the assistant asks the user to inspect basic phone settings.\nuser: The user reports that Airplane Mode is already off and 5G signal is excellent, but mobile data itself is turned off, and asks what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "That device state points to a simple next fix: mobile data needs to be turned on. The assistant should reassure the user and instruct them to enable mobile data rather than invoke a billing or backend action."
+      },
+      {
+        "source": "think-refine",
+        "text": "The account-side refuel has already been done, and the visible blocker is now a phone setting. A brief natural-language instruction is the grounded next step, not another telecom tool call."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.22,
+      "margin": 0.49,
+      "disagreement": 0.09,
+      "verifier_confidence": 0.9,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_customer_by_id",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:get_bills_for_customer",
+    "tool:check_service_status",
+    "tool:check_roaming_status",
+    "tool:enable_roaming",
+    "tool:disable_roaming",
+    "tool:refuel_data",
+    "tool:change_plan",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.9,
+    "think": 0.68,
+    "tool:get_customer_by_phone": -0.66,
+    "tool:get_customer_by_name": -0.92,
+    "tool:get_customer_by_id": -0.71,
+    "tool:get_details_by_id": -0.18,
+    "tool:get_data_usage": -0.79,
+    "tool:get_bills_for_customer": -0.82,
+    "tool:check_service_status": 0.04,
+    "tool:check_roaming_status": -0.36,
+    "tool:enable_roaming": -0.88,
+    "tool:disable_roaming": -0.95,
+    "tool:refuel_data": -0.74,
+    "tool:change_plan": -0.93,
+    "tool:send_payment_request": -0.97,
+    "tool:transfer_to_human_agents": -0.58
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "0340d1a4-da82-473f-98c6-22f838954b87",
+    "termination_reason": "user_stop",
+    "selected_message_index": 28,
+    "message_count": 55,
+    "decision_rule": "Choose a post-refuel telecom state where the backend account action is complete but the user-visible blocker is a disabled phone setting, making instruction generation preferable to another backend tool call.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores favor an assistant planning/response step when the right next move is to tell the user to enable mobile data and reassure them.",
+    "notes": [
+      "query comes directly from the selected visible user message",
+      "history_summary excludes the later mistaken payment-request tool call and subsequent escalation sequence",
+      "best_action is the argmax because the visible state supports a direct user instruction rather than another backend operation",
+      "this sample intentionally labels the correct decision-point action rather than copying an erroneous real next tool call"
+    ]
+  }
+}

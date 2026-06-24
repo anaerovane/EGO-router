@@ -1,0 +1,83 @@
+{
+  "sample_id": "tau2_airline_task_28_step_13_manual_268",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "28",
+  "step_id": 13,
+  "query": "Yes, please transfer me to a human agent. I really need someone who can actually help me get at least some of my money back, whether it’s a voucher, gift card, or even a partial refund. Thank you. \n\n###TRANSFER###",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to cancel reservation SI5UKW and get a refund.\nassistant: The assistant asks for the user ID and cancellation reason.\nuser: The user provides user ID amelia_rossi_1297, says the reason is a change of plans, and asks to proceed.\nassistant: The assistant retrieves the reservation details and explains that the booking is basic economy, older than 24 hours, and lacks travel insurance, so a refund is not guaranteed.\nuser: The user still wants to proceed with cancellation and asks for compensation if a full refund is unavailable.\nassistant: The assistant proceeds with cancellation and then says the reservation has been canceled and that a refund will be processed to the original payment method.\nuser: The user asks whether the refund will really be full, asks about voucher or gift-card alternatives, and pushes for more compensation.\nassistant: The assistant says full refunds are generally not guaranteed under the policy and declines vouchers, gift cards, and negotiated partial refunds.\nuser: The user explicitly asks to be transferred to a human agent and includes the transfer marker.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. Since you want human review for the refund outcome and compensation options, I’ll transfer you to a human agent now."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has explicitly requested a human agent after the assistant declined the available refund alternatives, so transfer is the clearest grounded next action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.08,
+      "margin": 0.93,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.98,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.89,
+    "think": 0.05,
+    "tool:book_reservation": -0.99,
+    "tool:calculate": -0.96,
+    "tool:cancel_reservation": -0.98,
+    "tool:get_flight_status": -0.97,
+    "tool:get_reservation_details": -0.74,
+    "tool:get_user_details": -0.95,
+    "tool:list_all_airports": -0.99,
+    "tool:search_direct_flight": -0.98,
+    "tool:search_onestop_flight": -0.98,
+    "tool:send_certificate": -0.92,
+    "tool:transfer_to_human_agents": 0.99,
+    "tool:update_reservation_baggages": -0.99,
+    "tool:update_reservation_flights": -0.99,
+    "tool:update_reservation_passengers": -0.99
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "764b3beb-e513-4fe2-a7ea-249b40719bc7",
+    "termination_reason": "user_stop",
+    "selected_message_index": 13,
+    "message_count": 14,
+    "decision_rule": "Use the final user turn where the assistant has already refused the available refund alternatives and the user explicitly requests human escalation with the transfer marker.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query exactly matches the selected user message at index 13, including the transfer marker",
+      "history_summary stops at the decision point and excludes any hypothetical post-transfer assistant or tool output",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "selected_message_index is 13 because this is the explicit human-escalation turn and its provenance tuple is unused elsewhere",
+      "special case: the conversation contains inconsistent refund signals, but by this point the user has directly chosen transfer over further self-service handling"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_26_step_3_manual_473",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "26",
+  "step_id": 3,
+  "query": "Sure! My user ID is amelia_sanchez_4739. I don’t have my reservation ID handy right now, but I definitely want to cancel because my plans have changed. Can you still help me with the cancellation and refund?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user asks to cancel flights from MCO to CLT and wants a refund.\nassistant: The assistant says it can help, asks for the user ID, reservation ID, and cancellation reason.\nuser: The user provides user ID amelia_sanchez_4739, says the reason is a change of plans, and says the reservation ID is not handy.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for providing your user ID and the cancellation reason. I’ll look up your account first so I can locate the MCO to CLT reservation and review the refund options."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has supplied an account identifier and cancellation reason but no reservation code, so the grounded next move is to retrieve the user record before locating the booking to cancel."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.11,
+      "margin": 0.86,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.41,
+    "think": 0.08,
+    "tool:book_reservation": -0.97,
+    "tool:calculate": -0.82,
+    "tool:cancel_reservation": -0.93,
+    "tool:get_flight_status": -0.8,
+    "tool:get_reservation_details": -0.29,
+    "tool:get_user_details": 0.99,
+    "tool:list_all_airports": -0.95,
+    "tool:search_direct_flight": -0.92,
+    "tool:search_onestop_flight": -0.92,
+    "tool:send_certificate": -0.88,
+    "tool:transfer_to_human_agents": -0.54,
+    "tool:update_reservation_baggages": -0.91,
+    "tool:update_reservation_flights": -0.91,
+    "tool:update_reservation_passengers": -0.91
+  },
+  "best_action": "tool:get_user_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_airline_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "701a4a68-59bb-46bf-b5a3-5ea5df53b65f",
+    "termination_reason": "user_stop",
+    "selected_message_index": 3,
+    "message_count": 18,
+    "decision_rule": "Choose a user turn where the user provides the account identifier and cancellation reason but not the reservation code, making account lookup the most direct grounded next action toward the cancellation request.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is get_user_details because the assistant must first locate the MCO-CLT reservation before it can review cancellation and refund eligibility"
+    ]
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "sample_id": "tau2_manual_sample_201_step_15_manual_37b79050-d39a-4e8b-8488-e37b10bb474d",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "1",
+  "selected_message_index": 15,
+  "step_id": 15,
+  "query": "Yes, please go ahead and cancel the reservation. Thank you for confirming the refund!",
+  "state": {
+    "history_summary": "The user wants to cancel a reservation but did not know the reservation ID. After the assistant looked up the user account and found reservation Q69X3R for a Philadelphia-to-LaGuardia trip, the user asked whether cancellation would be refundable. The assistant confirmed the booking was made within 24 hours and is eligible for a refund. The user now explicitly authorizes canceling reservation Q69X3R.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I can cancel reservation Q69X3R now and the refund should follow based on the eligibility we just confirmed."
+      },
+      {
+        "source": "think-refine",
+        "text": "Since you confirmed you want to proceed after hearing the refund policy, the next step is to cancel reservation Q69X3R."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.12,
+      "margin": 0.84,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.96,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.34,
+    "think": 0.08,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.84,
+    "tool:cancel_reservation": 0.99,
+    "tool:get_flight_status": -0.62,
+    "tool:get_reservation_details": -0.39,
+    "tool:get_user_details": -0.44,
+    "tool:list_all_airports": -0.95,
+    "tool:search_direct_flight": -0.93,
+    "tool:search_onestop_flight": -0.93,
+    "tool:send_certificate": -0.87,
+    "tool:transfer_to_human_agents": -0.31,
+    "tool:update_reservation_baggages": -0.9,
+    "tool:update_reservation_flights": -0.9,
+    "tool:update_reservation_passengers": -0.9
+  },
+  "best_action": "tool:cancel_reservation",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "37b79050-d39a-4e8b-8488-e37b10bb474d",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 22,
+    "decision_rule": "Choose a user turn where the correct reservation has already been located, refund eligibility has been confirmed from visible booking facts, and the user explicitly authorizes cancellation.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user request using only visible conversation evidence.",
+    "notes": [
+      "manual / non-leaky annotation based only on transcript content visible before or at the selected user turn",
+      "query exactly matches the selected user message from the current source transcript file",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are grounded only in visible context from the transcript up to this turn",
+      "best_action is the argmax of action_scores"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_13_step_17_manual_344",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "13",
+  "step_id": 17,
+  "query": "I’d prefer the 08:00 EST flight, HAT178. Can you let me know the total cost to upgrade and make this change? I’m willing to pay up to $100 in fees.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to change a return flight from a one-stop Atlanta to Los Angeles itinerary to a nonstop Atlanta to Las Vegas option instead.\nassistant: The assistant asks for account details, reviews reservation XEWRD9, and explains that an economy-cabin change might be possible.\nuser: The user asks to see nonstop Atlanta to Las Vegas options close to the original schedule.\nassistant: The assistant checks the original departure time, presents candidate nonstop flights, and the user selects HAT178 at 08:00 EST.\nuser: The user asks for the total cost to upgrade and make that change, with a fee tolerance up to $100.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Absolutely — I’ll total up the fare and change impact for switching to HAT178 in economy so you can see whether it stays within your $100 limit."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has already chosen a specific replacement flight and asked for the price before authorizing the change, so the grounded next move is to calculate the total cost."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.08,
+      "margin": 0.91,
+      "disagreement": 0.02,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 5
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.63,
+    "think": 0.08,
+    "tool:book_reservation": -0.97,
+    "tool:calculate": 0.99,
+    "tool:cancel_reservation": -0.95,
+    "tool:get_flight_status": -0.88,
+    "tool:get_reservation_details": -0.42,
+    "tool:get_user_details": -0.6,
+    "tool:list_all_airports": -0.96,
+    "tool:search_direct_flight": -0.71,
+    "tool:search_onestop_flight": -0.93,
+    "tool:send_certificate": -0.94,
+    "tool:transfer_to_human_agents": -0.69,
+    "tool:update_reservation_baggages": -0.97,
+    "tool:update_reservation_flights": -0.84,
+    "tool:update_reservation_passengers": -0.97
+  },
+  "best_action": "tool:calculate",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "25dcaadb-f655-4e8d-9686-fabbaa72487d",
+    "termination_reason": "user_stop",
+    "selected_message_index": 17,
+    "message_count": 34,
+    "decision_rule": "Use the user turn where the traveler selects flight HAT178 and asks for the total cost before confirming the change, because that is the first grounded pricing decision point after a concrete flight option has been chosen.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops before any quoted totals, refund details, or update confirmation",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "selected_message_index is 17 because the replacement flight is fixed and the next needed step is cost calculation"
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_saver_mode_on_user_abroad_roaming_enabled_off_persona_easy_step_15_manual_729",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_saver_mode_on|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 15,
+  "query": "I’m using an Android phone. Could you walk me through how to check if Data Roaming is enabled and make sure my network settings are optimized for the best possible speed? I want to be sure I’m getting excellent internet speed, so I’d appreciate step-by-step instructions.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports poor mobile data while abroad in France and wants excellent speed.\nassistant: The assistant authenticates the account, checks the line, confirms international roaming is enabled on the carrier side, and verifies that the plan still has remaining data allowance.\nassistant: The assistant tells the user that account-side roaming is already enabled and the issue likely depends on device settings.\nuser: The user asks for step-by-step Android instructions to check Data Roaming and optimize network settings for the best possible speed.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Absolutely — the next useful step is to inspect the phone’s current roaming and network settings so I can guide you based on the actual device state."
+      },
+      {
+        "source": "think-refine",
+        "text": "Carrier-side conditions are already verified as acceptable, so the grounded next move is device-setting inspection rather than more line lookup or add-on changes."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.17,
+      "margin": 0.72,
+      "disagreement": 0.06,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:check_device_settings",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.9,
+    "think": 0.29,
+    "tool:get_customer_by_phone": -0.9,
+    "tool:get_details_by_id": -0.46,
+    "tool:get_data_usage": -0.68,
+    "tool:change_plan": -0.92,
+    "tool:refuel_data": -0.9,
+    "tool:check_device_settings": 0.97,
+    "tool:transfer_to_human_agents": -0.7,
+    "tool:calculate": -0.88
+  },
+  "best_action": "tool:check_device_settings",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "94859ed5-ec56-4c15-a817-df006f807f07",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 34,
+    "decision_rule": "Choose a state where the carrier-side checks are already complete and the user explicitly asks for device-setting guidance, making device inspection the most grounded next action.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. check_device_settings is highest because the remaining uncertainty is entirely in on-device roaming and speed-related configuration.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample captures an earlier instructional decision point before the user runs the actual Android checks."
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]airplane_mode_on|user_abroad_roaming_enabled_off[PERSONA:None]_step_57_manual_770",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]airplane_mode_on|user_abroad_roaming_enabled_off[PERSONA:None]",
+  "step_id": 57,
+  "query": "I reseated the SIM card and powered the phone back on. My status bar still shows excellent signal, 5G, and data enabled, but the speed test still says “No Connection.” What should I try next? This is getting pretty frustrating—I really need excellent internet speed.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports mobile data trouble and wants excellent speed.\nassistant: The assistant authenticates the line and confirms the user has not hit the data cap.\nassistant: The assistant diagnoses Airplane Mode as the first blocker and has the user turn it off.\nassistant: Even after Airplane Mode is off, speed tests still fail with no connection, so the assistant walks through APN reset, data-saver and VPN checks, network-mode verification, and SIM-status checks.\nassistant: The user then reseats the SIM card and retests.\nuser: Despite excellent 5G signal, enabled data, and a reseated SIM, the speed test still reports no connection and the user expresses frustration.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "You’ve already completed the standard carrier-supported troubleshooting steps, so the next appropriate move is to escalate this to a human agent for deeper investigation."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible state shows repeated failure after multiple radio, APN, SIM, and device checks, making escalation more grounded than repeating the same diagnostics again."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.24,
+      "margin": 0.39,
+      "disagreement": 0.1,
+      "verifier_confidence": 0.9,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.86,
+    "think": 0.17,
+    "tool:get_customer_by_phone": -0.94,
+    "tool:get_customer_by_name": -0.98,
+    "tool:get_details_by_id": 0.22,
+    "tool:get_bills_for_customer": -0.83,
+    "tool:send_payment_request": -0.96,
+    "tool:check_payment_request": -0.95,
+    "tool:make_payment": -0.97,
+    "tool:resume_line": -0.51,
+    "tool:enable_roaming": -0.63,
+    "tool:refuel_data": -0.88,
+    "tool:transfer_to_human_agents": 0.61
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "b0dab8e1-cb69-4823-b799-e474b81df1fc",
+    "termination_reason": "user_stop",
+    "selected_message_index": 57,
+    "message_count": 62,
+    "decision_rule": "Choose a late-stage failure state where many grounded troubleshooting steps have already been exhausted and the user is still blocked.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Transfer earns the highest score because repeated no-connection failures persist after APN reset, reboot, network-mode checks, and SIM reseating, leaving escalation as the most defensible next action.",
+    "notes": [
+      "This sample broadens best_action diversity by including a true escalation case.",
+      "The history summary stops before the actual transfer action, avoiding future leakage while still documenting the exhausted troubleshooting context."
+    ]
+  }
+}

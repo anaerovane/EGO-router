@@ -1,0 +1,98 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_saver_mode_on_data_usage_exceeded_step_29_manual_558",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_saver_mode_on|data_usage_exceeded[PERSONA:Easy]",
+  "step_id": 29,
+  "query": "The diagnostic shows that Data Saver mode is ON right now. Could this be what’s slowing down my connection? What should I do next?",
+  "state": {
+    "history_summary": "assistant: The assistant identifies that the line has exceeded its monthly data limit, and the user chooses a 2 GB data refuel instead of changing plans.\nassistant: After the refuel, the user still sees only good—not excellent—speeds.\nassistant: The assistant checks whether the phone is already using 4G/5G preferred mode; it is.\nassistant: The assistant then asks for the device data-restriction status.\nuser: The diagnostic shows Data Saver mode is ON, and the user asks whether that is causing the slowdown and what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes, Data Saver could definitely be limiting your speeds. The next step is to turn it off and test again."
+      },
+      {
+        "source": "think-refine",
+        "text": "The preferred network mode is already in place and the new diagnostic has identified an active throttling feature on the device, so the grounded next move is to disable Data Saver rather than keep probing unrelated settings."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.13,
+      "margin": 0.83,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_customer",
+    "tool:get_customer_details",
+    "tool:get_line_details",
+    "tool:list_invoices",
+    "tool:get_plan_details",
+    "tool:check_service_status",
+    "tool:check_data_balance",
+    "tool:check_outage",
+    "tool:refuel_data",
+    "tool:change_plan",
+    "tool:toggle_airplane_mode",
+    "tool:toggle_mobile_data",
+    "tool:toggle_data_roaming",
+    "tool:check_network_status",
+    "tool:check_network_mode_preference",
+    "tool:toggle_data_saver_mode",
+    "tool:check_data_restriction_status",
+    "tool:check_vpn_status",
+    "tool:disconnect_vpn",
+    "tool:reboot_device",
+    "tool:run_speed_test",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.88,
+    "think": 0.07,
+    "tool:find_customer": -0.99,
+    "tool:get_customer_details": -0.86,
+    "tool:get_line_details": -0.69,
+    "tool:list_invoices": -0.93,
+    "tool:get_plan_details": -0.79,
+    "tool:check_service_status": -0.82,
+    "tool:check_data_balance": -0.65,
+    "tool:check_outage": -0.8,
+    "tool:refuel_data": -0.87,
+    "tool:change_plan": -0.96,
+    "tool:toggle_airplane_mode": -0.78,
+    "tool:toggle_mobile_data": -0.61,
+    "tool:toggle_data_roaming": -0.92,
+    "tool:check_network_status": -0.44,
+    "tool:check_network_mode_preference": -0.57,
+    "tool:toggle_data_saver_mode": 0.99,
+    "tool:check_data_restriction_status": 0.18,
+    "tool:check_vpn_status": -0.29,
+    "tool:disconnect_vpn": -0.51,
+    "tool:reboot_device": -0.42,
+    "tool:run_speed_test": -0.58,
+    "tool:transfer_to_human_agents": -0.77
+  },
+  "best_action": "tool:toggle_data_saver_mode",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "99c27d16-85b4-45f1-901c-3fa7f9e81b07",
+    "termination_reason": "user_stop",
+    "selected_message_index": 29,
+    "message_count": 52,
+    "decision_rule": "Choose a state where the assistant has already ruled out plan choice and network mode, and a device diagnostic explicitly identifies Data Saver as active before the user asks what to do next.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Disabling Data Saver is the top action because it directly addresses the newly observed device-side bottleneck and is safer than escalation or unrelated account changes.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample captures a concrete device-setting remediation after both carrier and network-mode issues have already been handled."
+    ]
+  }
+}

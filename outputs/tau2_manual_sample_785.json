@@ -1,0 +1,76 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]_step_13_manual_785",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 13,
+  "query": "Yes, please go ahead and check the network status and run a speed test on my phone. Let me know if you need anything from my side.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports very poor mobile data while abroad in France and wants excellent speed.\nassistant: The assistant asks for the phone number to identify the account and affected line.\nuser: The user provides phone number 555-123-2002.\nassistant: The assistant retrieves the account and line information, finds that the specified line is active, and notes that roaming is enabled on the line.\nassistant: The assistant asks for permission to inspect the phone’s network status and run a speed test to diagnose the issue more precisely.\nuser: The user explicitly authorizes those diagnostic checks on the phone.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for approving the diagnostics. The next step is to gather the current network state from the affected phone so the issue can be narrowed down."
+      },
+      {
+        "source": "think-refine",
+        "text": "The line-level lookup is already done, but the root cause of the roaming data problem is still unresolved from visible evidence, so additional device and line-state inspection is the best grounded next move rather than billing or escalation."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.31,
+      "margin": 0.23,
+      "disagreement": 0.17,
+      "verifier_confidence": 0.8,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.84,
+    "think": 0.29,
+    "tool:get_customer_by_phone": -0.9,
+    "tool:get_customer_by_name": -0.97,
+    "tool:get_details_by_id": 0.52,
+    "tool:get_bills_for_customer": -0.79,
+    "tool:send_payment_request": -0.96,
+    "tool:check_payment_request": -0.95,
+    "tool:make_payment": -0.98,
+    "tool:resume_line": -0.68,
+    "tool:enable_roaming": -0.59,
+    "tool:refuel_data": -0.37,
+    "tool:transfer_to_human_agents": 0.16
+  },
+  "best_action": "tool:get_details_by_id",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_telecom_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "id=[mobile_data_issue]data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy] trial=0",
+    "termination_reason": "user_stop",
+    "selected_message_index": 13,
+    "message_count": 20,
+    "decision_rule": "Choose a telecom state where the user has already approved on-device diagnostics after line identification, but the visible evidence still does not reveal whether the remaining issue is roaming configuration, device mode, or network preference.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores prefer additional detail inspection because it is the closest available telecom primitive to diagnostic state gathering; escalation remains possible but premature.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is tool:get_details_by_id because more state inspection is the most grounded available action after the user authorizes diagnostics"
+    ]
+  }
+}

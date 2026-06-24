@@ -1,0 +1,84 @@
+{
+  "sample_id": "tau2_retail_task_26_step_11_manual_934",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "retail",
+  "task_id": "26",
+  "step_id": 11,
+  "query": "I don’t have the order number with me, so if you could look up my orders and find the one that was shipped to Texas, that would be great.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user needs the tracking number for an order sent to Texas by mistake and wants to return everything in that order except the pet bed.\nassistant: The assistant asks for the account email.\nuser: The user does not remember the email.\nassistant: The assistant requests name and ZIP.\nuser: The user provides Isabella Johansson and ZIP 32286.\nassistant: The assistant verifies the account and retrieves the user profile.\nassistant: The assistant asks for the order ID of the Texas shipment but offers to inspect orders if the ID is unavailable.\nuser: The user says the order number is unavailable and asks the assistant to find the order shipped to Texas.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I can do that. Since the account is already verified, I should inspect the user’s orders to find the one with the Texas shipping address."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has provided the account identity and the distinguishing property of the target order, so the grounded next move is to retrieve order details and identify the Texas shipment."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.15,
+      "margin": 0.76,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_user_id_by_email",
+    "tool:find_user_id_by_name_zip",
+    "tool:get_user_details",
+    "tool:get_order_details",
+    "tool:get_product_details",
+    "tool:list_all_product_types",
+    "tool:modify_pending_order_items",
+    "tool:modify_pending_order_address",
+    "tool:modify_pending_order_payment",
+    "tool:cancel_pending_order",
+    "tool:return_delivered_order_items",
+    "tool:exchange_delivered_order_items",
+    "tool:modify_user_address",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.86,
+    "think": 0.13,
+    "tool:find_user_id_by_email": -0.98,
+    "tool:find_user_id_by_name_zip": -0.81,
+    "tool:get_user_details": -0.36,
+    "tool:get_order_details": 0.99,
+    "tool:get_product_details": -0.77,
+    "tool:list_all_product_types": -0.98,
+    "tool:modify_pending_order_items": -0.96,
+    "tool:modify_pending_order_address": -0.95,
+    "tool:modify_pending_order_payment": -0.95,
+    "tool:cancel_pending_order": -0.93,
+    "tool:return_delivered_order_items": -0.88,
+    "tool:exchange_delivered_order_items": -0.95,
+    "tool:modify_user_address": -0.97,
+    "tool:transfer_to_human_agents": -0.58,
+    "tool:calculate": -0.98
+  },
+  "best_action": "tool:get_order_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_retail_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "4a4a5ec5-31c7-47a3-99cd-87f4c2c09502",
+    "termination_reason": "user_stop",
+    "selected_message_index": 11,
+    "message_count": 24,
+    "decision_rule": "Choose a state where user authentication is complete and the target order can be discriminated by visible shipping-location clues rather than a provided order ID.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. get_order_details is highest because the assistant must inspect the user’s orders to locate the one shipped to Texas before handling tracking or returns.",
+    "notes": [
+      "query comes directly from the selected visible user message, not hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "sample focuses on order identification by shipping destination instead of direct order-number lookup"
+    ]
+  }
+}

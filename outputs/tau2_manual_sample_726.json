@@ -1,0 +1,70 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_usage_exceeded_user_abroad_roaming_enabled_off_persona_easy_step_19_manual_726",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 19,
+  "query": "Yes, please go ahead and refuel 2 GB for $4 on my line. Thank you!",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports mobile data failure while abroad in France and wants excellent speed.\nassistant: The assistant authenticates the account, checks the relevant line, confirms roaming is already enabled, and inspects plan data limits.\nassistant: The assistant explains that the line has used 15.1 GB of a 15 GB plan allowance and that refueling 2 GB would cost $4 total.\nuser: The user declines a plan change and explicitly authorizes a 2 GB data refuel for $4 on the affected line.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood — I have your approval to add 2 GB for $4, so I can process the refuel on your line now."
+      },
+      {
+        "source": "think-refine",
+        "text": "The data-overage cause is already established and the user has explicitly approved the quoted add-on charge, so immediate refueling is the grounded next action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.07,
+      "margin": 0.92,
+      "disagreement": 0.02,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:check_device_settings",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.95,
+    "think": 0.04,
+    "tool:get_customer_by_phone": -0.94,
+    "tool:get_details_by_id": -0.7,
+    "tool:get_data_usage": -0.59,
+    "tool:change_plan": -0.86,
+    "tool:refuel_data": 0.99,
+    "tool:check_device_settings": -0.52,
+    "tool:transfer_to_human_agents": -0.81,
+    "tool:calculate": -0.62
+  },
+  "best_action": "tool:refuel_data",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "2d66d764-c5b6-4f86-a255-ce4ded06ef59",
+    "termination_reason": "user_stop",
+    "selected_message_index": 19,
+    "message_count": 40,
+    "decision_rule": "Choose a state where the assistant has already diagnosed data exhaustion, quoted the exact price for a top-up, and the user explicitly authorizes the purchase.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. refuel_data is highest because the user has approved a concrete add-on that directly addresses the identified service limitation.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample complements other telecom cases by capturing a straightforward add-on execution decision rather than diagnostics or escalation."
+    ]
+  }
+}

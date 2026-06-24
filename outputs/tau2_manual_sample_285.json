@@ -1,0 +1,83 @@
+{
+  "sample_id": "tau2_airline_task_25_step_13_manual_285",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "25",
+  "step_id": 13,
+  "query": "Since more than $100 would be left unused, I’d prefer to use my gift card and credit card for this booking instead. Please proceed with those payment methods.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to book a matching flight for friend Ivan Smith based on the user's current reservation.\nassistant: The assistant asks for the user ID and reservation ID.\nuser: The user provides user ID ivan_muller_7015 and asks for the reservation to be looked up from the account.\nassistant: The assistant retrieves the account and reservation G72NSF, then summarizes the existing itinerary and asks what should differ for Ivan Smith's booking.\nuser: The user says the new booking should exclude checked bags and travel insurance, and asks whether using the visible $500 travel certificate would leave more than $100 unused.\nassistant: The assistant calculates that the flight total is $299 and that using the certificate would leave $201 unused, then asks whether to proceed with the certificate or instead use the gift card and credit card.\nuser: The user chooses the gift card and credit card option and asks the assistant to proceed with those payment methods.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. I’ll prepare the booking using your gift card first and your credit card for any remaining balance, with no checked bags or travel insurance for Ivan Smith."
+      },
+      {
+        "source": "think-refine",
+        "text": "The payment decision has now been made, but the exact split between the available gift card balance and credit card charge still needs to be determined from the visible account amounts."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.17,
+      "margin": 0.63,
+      "disagreement": 0.06,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.54,
+    "think": 0.2,
+    "tool:book_reservation": -0.61,
+    "tool:calculate": 0.99,
+    "tool:cancel_reservation": -0.96,
+    "tool:get_flight_status": -0.92,
+    "tool:get_reservation_details": -0.31,
+    "tool:get_user_details": -0.27,
+    "tool:list_all_airports": -0.95,
+    "tool:search_direct_flight": -0.9,
+    "tool:search_onestop_flight": -0.9,
+    "tool:send_certificate": -0.73,
+    "tool:transfer_to_human_agents": -0.52,
+    "tool:update_reservation_baggages": -0.88,
+    "tool:update_reservation_flights": -0.9,
+    "tool:update_reservation_passengers": -0.9
+  },
+  "best_action": "tool:calculate",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "b6eb1422-96f4-4237-89c6-c37253f623d1",
+    "termination_reason": "user_stop",
+    "selected_message_index": 13,
+    "message_count": 28,
+    "decision_rule": "Use the later user turn after the certificate-leftover calculation, where the traveler chooses gift card plus credit card but the exact payment allocation still must be computed before booking.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops before later assistant confirmations that reveal the exact gift-card and credit-card split",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "selected_message_index is 13 because this later user turn makes the payment-method choice after the certificate comparison has already been resolved",
+      "best_action is calculate because the assistant still needs to work out how much of the $299 fare can be covered by the gift card before charging the remainder to the credit card"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_47_step_3_manual_434",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "47",
+  "step_id": 3,
+  "query": "My user ID is sophia_silva_7557, and my confirmation number is H8Q05L. The reason I need to cancel is because the flight is on the same day as my best friend's birthday. But again, I only want to cancel if I can get a full refund.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user says they may need to cancel a flight, but only if a full refund is available.\nassistant: The assistant says it can check refund eligibility and asks for the user ID, reservation ID if available, and the cancellation reason.\nuser: The user provides user ID sophia_silva_7557, reservation ID H8Q05L, gives the reason for cancellation, and repeats that they only want to cancel if a full refund is possible.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thank you for providing your information. I’ll check your account and reservation details to determine whether a full refund is available."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has supplied both the account identifier and reservation number for a refund-eligibility question. The grounded next move is to retrieve the user record first so the assistant can inspect account context before deciding whether a full refund is available."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.11,
+      "margin": 0.85,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.41,
+    "think": 0.08,
+    "tool:book_reservation": -0.97,
+    "tool:calculate": -0.86,
+    "tool:cancel_reservation": -0.9,
+    "tool:get_flight_status": -0.82,
+    "tool:get_reservation_details": -0.18,
+    "tool:get_user_details": 0.99,
+    "tool:list_all_airports": -0.95,
+    "tool:search_direct_flight": -0.92,
+    "tool:search_onestop_flight": -0.92,
+    "tool:send_certificate": -0.88,
+    "tool:transfer_to_human_agents": -0.56,
+    "tool:update_reservation_baggages": -0.91,
+    "tool:update_reservation_flights": -0.91,
+    "tool:update_reservation_passengers": -0.91
+  },
+  "best_action": "tool:get_user_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_airline_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "e120b573-2965-441a-bee5-91b873bd5847",
+    "termination_reason": "user_stop",
+    "selected_message_index": 3,
+    "message_count": 20,
+    "decision_rule": "Choose a user turn where the user provides the account identifier, reservation number, and refund-eligibility question, making account lookup the most direct grounded next action from the visible conversation state.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is get_user_details because the assistant next needs the account record to evaluate refund eligibility in context"
+    ]
+  }
+}

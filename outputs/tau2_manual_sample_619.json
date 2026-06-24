@@ -1,0 +1,76 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_break_apn_settings_lock_sim_card_pin_step_26_manual_619",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]break_apn_settings|lock_sim_card_pin[PERSONA:None]",
+  "step_id": 26,
+  "query": "I checked the SIM status, and it says the SIM card is locked with a PIN code. What should I do to unlock it?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports a persistent \"No Service\" problem and provides phone number 555-123-2002.\nassistant: The assistant retrieves the customer, confirms the affected line is active, and guides the user through on-device diagnostics.\nuser: The user checks network status, confirms Airplane Mode is off, then runs a SIM status check.\nuser: The SIM status result shows the SIM card is locked with a PIN code, and the user asks what to do next to unlock it.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "A locked SIM PIN can block service, so the next step is to guide the user to unlock it or escalate if they can’t complete that safely on their own."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible diagnostic has isolated a SIM lock issue that the system cannot directly clear with account-side tools, so handing off to human support is the safest grounded action among the available environment actions."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.28,
+      "margin": 0.43,
+      "disagreement": 0.12,
+      "verifier_confidence": 0.88,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_customer_by_id",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:get_bills_for_customer",
+    "tool:enable_roaming",
+    "tool:resume_line",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.81,
+    "think": 0.24,
+    "tool:get_customer_by_phone": -0.88,
+    "tool:get_customer_by_name": -0.95,
+    "tool:get_customer_by_id": -0.91,
+    "tool:get_details_by_id": -0.18,
+    "tool:get_data_usage": -0.93,
+    "tool:get_bills_for_customer": -0.91,
+    "tool:enable_roaming": -0.96,
+    "tool:resume_line": -0.73,
+    "tool:refuel_data": -0.95,
+    "tool:send_payment_request": -0.97,
+    "tool:transfer_to_human_agents": 0.67
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_telecom_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "7de0c6a5-98d2-4e9f-bb51-95dad3794976",
+    "termination_reason": "agent_stop",
+    "selected_message_index": 26,
+    "message_count": 31,
+    "decision_rule": "Choose a troubleshooting state where the user-visible device diagnostic identifies a SIM lock that cannot be directly fixed through the benchmark’s carrier-side tool set.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. transfer_to_human_agents is highest because SIM PIN/PUK assistance is the most appropriate supported escalation path, while billing and line-management actions do not address the discovered blocker.",
+    "notes": [
+      "The selected query is a direct visible user question after the SIM-status result.",
+      "history_summary stops before the real transfer occurs and contains no future tool outputs.",
+      "think receives a modest positive score because explanation is useful, but transfer is the best supported environment action.",
+      "This sample contributes a telecom escalation decision rather than a self-service execution action."
+    ]
+  }
+}

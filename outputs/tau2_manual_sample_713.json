@@ -1,0 +1,83 @@
+{
+  "sample_id": "tau2_retail_task_44_step_11_manual_713",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "retail",
+  "task_id": "44",
+  "step_id": 11,
+  "query": "Yes, please go ahead and make the swap to the cheapest Desk Lamp and put the $17.99 refund on a gift card. That’s the only change I want to make to this order.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to swap the Desk Lamp in a pending order for the cheapest Desk Lamp available and asks how much refund would be issued to a gift card.\nassistant: The assistant asks to authenticate by email or name and zip code.\nuser: The user provides name Aarav Anderson, zip code 19031, and order ID #W9300146.\nassistant: The assistant authenticates the user by name and zip code, retrieves order #W9300146, and checks Desk Lamp product variants.\nassistant: The assistant reports that the current lamp costs $153.23, the cheapest available Desk Lamp variant costs $135.24, and the swap would generate a $17.99 refund.\nuser: The user confirms the swap to the cheapest Desk Lamp and requests the $17.99 refund on a gift card.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. The visible details now include the requested replacement, the refund amount, and the preferred refund destination for this pending order."
+      },
+      {
+        "source": "think-refine",
+        "text": "At this point the order has been identified, the cheaper Desk Lamp option has already been surfaced, and the user has confirmed both the swap and the gift-card refund preference."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.12,
+      "margin": 0.86,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_user_id_by_email",
+    "tool:find_user_id_by_name_zip",
+    "tool:get_user_details",
+    "tool:get_order_details",
+    "tool:get_product_details",
+    "tool:list_all_product_types",
+    "tool:modify_pending_order_items",
+    "tool:modify_pending_order_address",
+    "tool:modify_pending_order_payment",
+    "tool:cancel_pending_order",
+    "tool:return_delivered_order_items",
+    "tool:exchange_delivered_order_items",
+    "tool:modify_user_address",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.92,
+    "think": 0.05,
+    "tool:find_user_id_by_email": -0.97,
+    "tool:find_user_id_by_name_zip": -0.93,
+    "tool:get_user_details": -0.71,
+    "tool:get_order_details": -0.48,
+    "tool:get_product_details": -0.36,
+    "tool:list_all_product_types": -0.95,
+    "tool:modify_pending_order_items": 0.99,
+    "tool:modify_pending_order_address": -0.97,
+    "tool:modify_pending_order_payment": -0.75,
+    "tool:cancel_pending_order": -0.85,
+    "tool:return_delivered_order_items": -0.94,
+    "tool:exchange_delivered_order_items": -0.68,
+    "tool:modify_user_address": -0.97,
+    "tool:transfer_to_human_agents": -0.42,
+    "tool:calculate": -0.58
+  },
+  "best_action": "tool:modify_pending_order_items",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_retail_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "1005448f-435c-4bdf-9717-910629df3560",
+    "termination_reason": "user_stop",
+    "selected_message_index": 11,
+    "message_count": 16,
+    "decision_rule": "Choose a user turn where a pending-order modification has been fully specified, including the replacement target and refund handling, making execution the most direct next move.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. modify_pending_order_items is highest because the requested swap is already priced and confirmed; additional lookup would only repeat completed work.",
+    "notes": [
+      "This sample captures a pending-order modification rather than a delivered-order return",
+      "The refund amount is visible in the conversation, so no separate calculate call is needed at this state",
+      "The best action differs from surrounding return-focused retail samples to diversify action type"
+    ]
+  }
+}

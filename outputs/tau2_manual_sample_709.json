@@ -1,0 +1,72 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_bad_vpn_data_saver_mode_on_user_abroad_roaming_disabled_on_step_11_manual_709",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]bad_vpn|data_saver_mode_on|user_abroad_roaming_disabled_on[PERSONA:None]",
+  "step_id": 11,
+  "query": "Data Saver mode is now turned off on my phone. What would you like me to do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that mobile data is not working properly while abroad and wants excellent speed.\nassistant: The assistant identifies the account and has the user disconnect a problematic VPN, then asks the user to turn off Data Saver mode.\nuser: The user says Data Saver mode is now turned off and asks for the next step.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks. Since you’re abroad and the previous blockers have been cleared, I’ll enable roaming on your line next."
+      },
+      {
+        "source": "think-refine",
+        "text": "Visible context now points to roaming as the remaining telecom-side blocker for an abroad mobile-data issue, so enabling roaming is the most grounded next action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.15,
+      "margin": 0.76,
+      "disagreement": 0.06,
+      "verifier_confidence": 0.94,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:calculate",
+    "tool:change_plan",
+    "tool:check_device_settings",
+    "tool:enable_roaming",
+    "tool:get_customer_by_phone",
+    "tool:get_data_usage",
+    "tool:get_details_by_id",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.85,
+    "think": 0.12,
+    "tool:calculate": -0.77,
+    "tool:change_plan": -0.9,
+    "tool:check_device_settings": -0.28,
+    "tool:enable_roaming": 0.97,
+    "tool:get_customer_by_phone": -0.88,
+    "tool:get_data_usage": -0.55,
+    "tool:get_details_by_id": -0.33,
+    "tool:refuel_data": -0.63,
+    "tool:transfer_to_human_agents": -0.79
+  },
+  "best_action": "tool:enable_roaming",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom-workflow_op_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "4be9a1d8-b46c-4eb6-bb81-d33227aa8c8c",
+    "termination_reason": "user_stop",
+    "selected_message_index": 11,
+    "message_count": 23,
+    "decision_rule": "Choose a troubleshooting turn where the user is abroad, device-side blockers have been cleared, and roaming enablement is the next grounded carrier-side action.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores favor enabling roaming as the remaining plausible fix and penalize restarting already-completed earlier checks.",
+    "notes": [
+      "query is the visible user turn after Data Saver is disabled and before enable_roaming",
+      "history_summary excludes the later roaming success result and speed-test follow-up",
+      "best_action is argmax and adds telecom diversity with a roaming-enablement decision point",
+      "the state uses only visible conversation facts, including the abroad context and cleared device settings"
+    ]
+  }
+}

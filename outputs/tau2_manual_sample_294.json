@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_25_step_15_manual_294",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "25",
+  "step_id": 15,
+  "query": "Yes, that’s correct. Please go ahead and make the booking for Ivan Smith with those details and payment methods. Thank you!",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to book a trip for friend Ivan Smith matching the user’s current reservation.\nassistant: The assistant asks for the user ID and reservation ID.\nuser: The user provides user ID ivan_muller_7015 and asks the assistant to look up the current reservation from the account.\nassistant/tool: The assistant retrieves the account and reservation G72NSF, showing a one-way economy trip from DTW to SEA on May 17 with flights HAT097 and HAT251.\nuser: The user asks to copy those flights for Ivan Smith but with no checked bags or travel insurance, and asks whether using the $500 certificate would leave more than $100 unused.\nassistant/tool: The assistant calculates the flight total as $299 and reports that certificate use would leave $201.\nuser: The user chooses gift card and credit card instead of the certificate.\nassistant: The assistant restates the intended booking details, exclusions, and payment methods, and asks for final confirmation.\nuser: The user confirms to proceed with the booking for Ivan Smith using those details and payment methods.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for confirming. I’ll go ahead and book Ivan Smith on the same DTW to SEA itinerary without checked bags or travel insurance, using your gift card and credit card."
+      },
+      {
+        "source": "think-refine",
+        "text": "The itinerary, passenger, exclusions, and payment choice are all fully specified and confirmed, so the next grounded action is to create the reservation."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.1,
+      "margin": 0.95,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.98,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.62,
+    "think": 0.04,
+    "tool:book_reservation": 0.99,
+    "tool:calculate": -0.81,
+    "tool:cancel_reservation": -0.97,
+    "tool:get_flight_status": -0.95,
+    "tool:get_reservation_details": -0.52,
+    "tool:get_user_details": -0.73,
+    "tool:list_all_airports": -0.98,
+    "tool:search_direct_flight": -0.9,
+    "tool:search_onestop_flight": -0.9,
+    "tool:send_certificate": -0.88,
+    "tool:transfer_to_human_agents": -0.83,
+    "tool:update_reservation_baggages": -0.77,
+    "tool:update_reservation_flights": -0.84,
+    "tool:update_reservation_passengers": -0.86
+  },
+  "best_action": "tool:book_reservation",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "7abcb421-a6da-48f4-9e0f-4639faf6aa54",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 34,
+    "decision_rule": "Choose the explicit final-confirmation turn after payment and exclusions are settled; at that point the booking can be executed immediately without further retrieval or calculation.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "selected_message_index is 15 because it is the final user confirmation immediately before the booking should be created"
+    ]
+  }
+}

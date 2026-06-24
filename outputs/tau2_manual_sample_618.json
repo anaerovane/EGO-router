@@ -1,0 +1,76 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_break_apn_settings_lock_sim_card_pin_overdue_bill_suspension_step_22_manual_618",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]break_apn_settings|lock_sim_card_pin|overdue_bill_suspension[PERSONA:Easy]",
+  "step_id": 22,
+  "query": "I’ve just completed the payment for the overdue bill. What should I do next to get my service restored?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports a phone showing \"No Service\" and provides identity details including phone number 555-123-2002.\nassistant: The assistant retrieves the customer and both line records, identifies that line L1002 is suspended because of an overdue $65.00 bill, and sends a payment request.\nuser: The user checks the payment request, completes the payment, and then asks what should happen next to restore service.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks — the next step is for me to verify the bill status and then reactivate the suspended line if the payment has posted."
+      },
+      {
+        "source": "think-refine",
+        "text": "Because the user has already paid and the line suspension is billing-related, the grounded next move is to resume the line rather than restart troubleshooting from the device side."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.24,
+      "margin": 0.58,
+      "disagreement": 0.09,
+      "verifier_confidence": 0.91,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_customer_by_id",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:get_bills_for_customer",
+    "tool:enable_roaming",
+    "tool:resume_line",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.9,
+    "think": 0.19,
+    "tool:get_customer_by_phone": -0.86,
+    "tool:get_customer_by_name": -0.94,
+    "tool:get_customer_by_id": -0.9,
+    "tool:get_details_by_id": 0.22,
+    "tool:get_data_usage": -0.93,
+    "tool:get_bills_for_customer": 0.31,
+    "tool:enable_roaming": -0.95,
+    "tool:resume_line": 0.89,
+    "tool:refuel_data": -0.94,
+    "tool:send_payment_request": -0.85,
+    "tool:transfer_to_human_agents": -0.44
+  },
+  "best_action": "tool:resume_line",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_telecom_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "1add7ff9-db9f-4ec9-9300-a186d58b76ce",
+    "termination_reason": "agent_stop",
+    "selected_message_index": 22,
+    "message_count": 47,
+    "decision_rule": "Choose the state immediately after the user reports completing payment for a billing suspension, where reactivation is the most useful grounded next step.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. resume_line receives the highest score because the causal blocker is a paid overdue-bill suspension; bill rechecks are still plausible but secondary to service restoration.",
+    "notes": [
+      "The query is taken verbatim from the visible user message after payment completion.",
+      "history_summary excludes later post-resume device diagnostics so there is no future leakage about the SIM lock branch.",
+      "get_bills_for_customer and get_details_by_id retain positive but lower scores because some agents may verify payment first, yet direct reactivation is the strongest single next action category.",
+      "This sample broadens telecom best-action diversity with a service-resumption case."
+    ]
+  }
+}

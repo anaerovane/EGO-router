@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_airplane_mode_on_unseat_sim_card_step_21_manual_544",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|unseat_sim_card[PERSONA:None]",
+  "step_id": 21,
+  "query": "My phone says that there is no SIM card detected. What should I do about this?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: Reports a No Service problem and provides phone number 555-123-2002 with name John Smith.\nassistant: Authenticated the account and confirmed the line is active.\nassistant: Had the user inspect the status bar, where Airplane Mode was found to be enabled.\nassistant: Told the user to turn Airplane Mode off.\nuser: After disabling Airplane Mode, the phone still showed no signal.\nassistant: Asked the user to check whether the SIM card was recognized.\nuser: Reported that no SIM card is detected and asked what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "If the phone cannot detect the SIM card, the next grounded step is to instruct the user to reseat the SIM card carefully and then recheck service."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible state points to a physical SIM-recognition issue after Airplane Mode was ruled out, so a guided device troubleshooting response is more appropriate than another backend lookup."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.14,
+      "margin": 0.74,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.96,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:check_roaming_status",
+    "tool:get_network_status",
+    "tool:run_speed_test",
+    "tool:refuel_data",
+    "tool:change_plan",
+    "tool:restart_device",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.92,
+    "think": 0.98,
+    "tool:get_customer_by_phone": -0.96,
+    "tool:get_details_by_id": -0.84,
+    "tool:get_data_usage": -0.95,
+    "tool:check_roaming_status": -0.9,
+    "tool:get_network_status": -0.68,
+    "tool:run_speed_test": -0.86,
+    "tool:refuel_data": -0.98,
+    "tool:change_plan": -0.97,
+    "tool:restart_device": 0.29,
+    "tool:transfer_to_human_agents": -0.2
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "53c02981-3701-46b2-bb27-97bc3dbf921f",
+    "termination_reason": "user_stop",
+    "selected_message_index": 21,
+    "message_count": 28,
+    "decision_rule": "Choose a user turn where the next step is a device-handling instruction rather than a backend operation, capturing a state-level guidance decision.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores prefer the response-planning action because the assistant should explain how to reseat the SIM card rather than invoke another system tool immediately.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "restart_device receives a positive but lower score because powering down may be part of the instruction, yet the immediate action is to formulate the reseat guidance."
+    ]
+  }
+}

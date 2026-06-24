@@ -1,0 +1,72 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_airplane_unseat_sim_step_21_manual_515",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|unseat_sim_card[PERSONA:None]",
+  "step_id": 21,
+  "query": "My phone says that there is no SIM card detected. What should I do about this?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports a persistent “No Service” problem.\nassistant: The assistant verifies the account using phone number 555-123-2002, finds the active line, and begins device troubleshooting.\nassistant: A status-bar check shows Airplane Mode enabled, and the user turns Airplane Mode off as instructed.\nassistant: After Airplane Mode is disabled, the phone still shows no signal, so the assistant asks the user to check SIM card status.\nuser: The user reports that the device now says no SIM card is detected.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "If the phone is showing no SIM card detected, the next step is to reseat the SIM card so we can restore contact between the device and the line."
+      },
+      {
+        "source": "think-refine",
+        "text": "Given the visible troubleshooting path, a missing-SIM indication points most directly to a local SIM seating problem, so a device-side remediation step is better than unrelated account or billing actions."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.28,
+      "margin": 0.49,
+      "disagreement": 0.1,
+      "verifier_confidence": 0.89,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:toggle_data",
+    "tool:grant_app_permission",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.91,
+    "think": 0.36,
+    "tool:get_customer_by_phone": -0.94,
+    "tool:get_details_by_id": -0.41,
+    "tool:get_data_usage": -0.96,
+    "tool:refuel_data": -0.98,
+    "tool:send_payment_request": -0.99,
+    "tool:resume_line": 0.82,
+    "tool:enable_roaming": -0.88,
+    "tool:toggle_data": -0.73,
+    "tool:grant_app_permission": -0.97,
+    "tool:transfer_to_human_agents": 0.18
+  },
+  "best_action": "tool:resume_line",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "53c02981-3701-46b2-bb27-97bc3dbf921f",
+    "termination_reason": "user_stop",
+    "selected_message_index": 21,
+    "message_count": 28,
+    "decision_rule": "Choose a mid-troubleshooting user turn where the user surfaces a concrete device symptom (“no SIM card detected”) that narrows the next action to SIM reseating guidance within the available telecom action set.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Manual one-step proxy scoring from the visible state. The transcript indicates a device-side SIM problem after Airplane Mode was ruled out, so the best-scored action is the closest available recovery action in the telecom tool set, with transfer kept as a fallback if self-service guidance fails.",
+    "notes": [
+      "This is a state-level manual proxy label: the real assistant response gives reseat-SIM instructions even though the benchmark action vocabulary lacks a dedicated sim_reseat tool.",
+      "The chosen best_action therefore represents the nearest operational action in the constrained telecom action set, documented explicitly to preserve provenance transparency."
+    ]
+  }
+}

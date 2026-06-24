@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_41_step_22_manual_396",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "41",
+  "step_id": 22,
+  "query": "Thank you for your help! That’s all I needed. Have a great day! \n\n###STOP###",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to cancel all upcoming reservations that have only one passenger on the booking.\nassistant: The assistant asks for the user ID.\nuser: The user provides user ID amelia_davis_8890 and asks for help finding the relevant reservations.\ntool: The assistant retrieves the user profile and then checks several reservation records.\nassistant: Based on the retrieved reservations, the assistant identifies UDMOP1 and 4XGCCM as the upcoming reservations with only one passenger and asks whether to proceed, requesting a cancellation reason.\nuser: The user says to cancel both reservations for other reasons.\nassistant: The assistant asks for final confirmation.\nuser: The user confirms the cancellations.\ntool: Both reservations are canceled.\nassistant: The assistant confirms both cancellations and says refunds will be processed.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "You’re welcome. Both qualifying reservations have already been canceled, so everything is complete."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible context shows the requested multi-reservation cancellations have already been completed and the user is simply ending the conversation."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.05,
+      "margin": 0.96,
+      "disagreement": 0.01,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 0
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": 0.99,
+    "think": -0.24,
+    "tool:book_reservation": -0.99,
+    "tool:calculate": -0.98,
+    "tool:cancel_reservation": -0.9,
+    "tool:get_flight_status": -0.98,
+    "tool:get_reservation_details": -0.96,
+    "tool:get_user_details": -0.96,
+    "tool:list_all_airports": -0.99,
+    "tool:search_direct_flight": -0.99,
+    "tool:search_onestop_flight": -0.99,
+    "tool:send_certificate": -0.98,
+    "tool:transfer_to_human_agents": -0.95,
+    "tool:update_reservation_baggages": -0.99,
+    "tool:update_reservation_flights": -0.99,
+    "tool:update_reservation_passengers": -0.99
+  },
+  "best_action": "stop",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "9b88c40c-e0f7-46e0-8787-722e248afa90",
+    "termination_reason": "user_stop",
+    "selected_message_index": 22,
+    "message_count": 23,
+    "decision_rule": "Use the later closing user turn because it is an exact source user message after the requested qualifying reservations have already been canceled, so stop is the only grounded next action.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message including the stop marker",
+      "history_summary stops at the completed cancellation confirmation and excludes future content",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "special case: final stop turn after cancellation of two filtered reservations"
+    ]
+  }
+}

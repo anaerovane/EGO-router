@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_10_step_15_manual_341",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "10",
+  "step_id": 15,
+  "query": "Yes, please go ahead and change the IAH to SEA flight to May 24 and upgrade all passengers to business class for that segment. For now, I’d like to keep the return flights as they are—no changes to those. Can you let me know the total extra cost for these changes before proceeding?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to move an upcoming IAH to SEA flight from May 23 to May 24 and upgrade all passengers on that flight to business class.\nassistant: The assistant asks for the user ID and reservation ID for the booking.\nuser: The user provides user ID liam_khan_2521 and asks the assistant to look up the reservation using that user ID.\nassistant: The assistant retrieves the user profile, identifies the relevant reservation with the May 23 IAH to SEA itinerary, and asks the user to confirm changing that outbound segment.\nuser: The user confirms they want the IAH to SEA flight moved to May 24 and all passengers on that segment upgraded to business class, while keeping the return flights unchanged for now.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood — I’ll look for May 24 options for that outbound itinerary and check what business class availability looks like while leaving the return alone."
+      },
+      {
+        "source": "think-refine",
+        "text": "The reservation and requested modification are now grounded, and because the trip uses a connecting itinerary the next move is to search one-stop replacement flights for the changed outbound date."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.08,
+      "margin": 0.92,
+      "disagreement": 0.02,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 6
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.62,
+    "think": 0.08,
+    "tool:book_reservation": -0.97,
+    "tool:calculate": -0.78,
+    "tool:cancel_reservation": -0.95,
+    "tool:get_flight_status": -0.9,
+    "tool:get_reservation_details": -0.41,
+    "tool:get_user_details": -0.53,
+    "tool:list_all_airports": -0.96,
+    "tool:search_direct_flight": 0.73,
+    "tool:search_onestop_flight": 0.99,
+    "tool:send_certificate": -0.94,
+    "tool:transfer_to_human_agents": -0.7,
+    "tool:update_reservation_baggages": -0.97,
+    "tool:update_reservation_flights": -0.72,
+    "tool:update_reservation_passengers": -0.97
+  },
+  "best_action": "tool:search_onestop_flight",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "05d3167d-aa73-48a1-b49b-890b8fce9e1d",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 71,
+    "decision_rule": "Use the confirmation turn where the traveler authorizes moving the outbound IAH-to-SEA itinerary to May 24 with business upgrades while leaving the return unchanged, because that is the first grounded flight-search decision point after the correct reservation is identified.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops before any replacement flight search results or pricing outputs are shown",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "selected_message_index is 15 because this is the first turn that authorizes searching replacement outbound options after the reservation has been identified"
+    ]
+  }
+}

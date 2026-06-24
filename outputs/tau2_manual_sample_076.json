@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_49_step_7_manual_076",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "49",
+  "step_id": 7,
+  "query": "I’m sure this is the correct reservation—I specifically remember adding insurance when I booked the flight. Could you please double-check your system? I definitely purchased the insurance and would like to proceed with the refund.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user asks to cancel a flight because they are sick and says they purchased insurance, so they want a refund.\nassistant: The assistant asks for the user ID and reservation ID.\nuser: The user provides user ID anya_garcia_5901 and reservation ID 3RK2T9.\nassistant called tool: get_reservation_details for reservation 3RK2T9.\nassistant: The assistant says the reservation does not show travel insurance and asks whether this is the correct reservation.\nuser: The user insists this is the correct reservation, says they specifically remember purchasing insurance, and asks for the system to be double-checked.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I’ll double-check the account details and reservation record for you to make sure there isn’t a mismatch before we decide what to do next."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user disputes the reservation's displayed insurance status and asks for another check. The grounded next move is to inspect the user record before reassessing the reservation."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.15,
+      "margin": 0.77,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.18,
+    "think": 0.11,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.87,
+    "tool:cancel_reservation": -0.94,
+    "tool:get_flight_status": -0.74,
+    "tool:get_reservation_details": 0.41,
+    "tool:get_user_details": 0.99,
+    "tool:list_all_airports": -0.96,
+    "tool:search_direct_flight": -0.94,
+    "tool:search_onestop_flight": -0.94,
+    "tool:send_certificate": -0.9,
+    "tool:transfer_to_human_agents": -0.27,
+    "tool:update_reservation_baggages": -0.93,
+    "tool:update_reservation_flights": -0.93,
+    "tool:update_reservation_passengers": -0.93
+  },
+  "best_action": "tool:get_user_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "3684ba9c-862c-47bb-9a5d-a776432de80a",
+    "termination_reason": "user_stop",
+    "selected_message_index": 7,
+    "message_count": 18,
+    "decision_rule": "Choose a user turn where the reservation record conflicts with the user's claim about insurance and the user asks for the system to be double-checked.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is supported by the real next assistant action, which checks the user record before reassessing the reservation"
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]airplane_mode_on|data_mode_off[PERSONA:None]_step_25_manual_769",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]airplane_mode_on|data_mode_off[PERSONA:None]",
+  "step_id": 25,
+  "query": "I’ve turned off Airplane Mode and rebooted my phone. Now, I see excellent signal bars and the 5G icon, but it still shows that mobile data is disabled. What should I do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports mobile data that stops working or becomes slow and wants excellent speed.\nassistant: The assistant authenticates the line and checks plan details, then asks the user to inspect the phone status bar.\nassistant: The status bar shows Airplane Mode is on.\nassistant: The assistant has the user turn Airplane Mode off and reboot the phone.\nuser: After rebooting, the user reports excellent signal and 5G, but the phone still shows that mobile data itself is disabled.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "That means the radio path is back, but the mobile-data switch is still off. The next step is to turn mobile data back on and then test the connection again."
+      },
+      {
+        "source": "think-refine",
+        "text": "Because the visible blocker is now explicitly that mobile data remains disabled, the most grounded next move is to restore data service on-device rather than escalate or revisit account lookups."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.17,
+      "margin": 0.63,
+      "disagreement": 0.06,
+      "verifier_confidence": 0.92,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.9,
+    "think": 0.19,
+    "tool:get_customer_by_phone": -0.93,
+    "tool:get_customer_by_name": -0.97,
+    "tool:get_details_by_id": 0.64,
+    "tool:get_bills_for_customer": -0.8,
+    "tool:send_payment_request": -0.96,
+    "tool:check_payment_request": -0.93,
+    "tool:make_payment": -0.95,
+    "tool:resume_line": -0.52,
+    "tool:enable_roaming": -0.61,
+    "tool:refuel_data": -0.84,
+    "tool:transfer_to_human_agents": -0.21
+  },
+  "best_action": "tool:get_details_by_id",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "b6e09637-0261-473d-9c2a-d07708448584",
+    "termination_reason": "user_stop",
+    "selected_message_index": 25,
+    "message_count": 40,
+    "decision_rule": "Choose a step where one device-side blocker has been removed but a second visible blocker remains, yielding a clean state-level follow-up decision.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Since the telecom action inventory lacks a direct mobile-data toggle primitive, the best available listed action is additional device/line inspection via get_details_by_id, with resume_line kept somewhat competitive because service restoration is conceptually adjacent but less grounded than the user-reported phone state.",
+    "notes": [
+      "This sample intentionally differs from the roaming/data-cap telecom cases by focusing on a local data-toggle problem after Airplane Mode is cleared.",
+      "The user query is copied from the visible conversation and excludes the later success signal."
+    ]
+  }
+}

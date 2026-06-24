@@ -1,0 +1,70 @@
+{
+  "sample_id": "tau2_telecom_task_service_resume_step_19_manual_828",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|overdue_bill_suspension[PERSONA:None]",
+  "step_id": 19,
+  "query": "I've just completed the payment for the overdue bill. What should I do next to get my service restored?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that the phone shows No Service.\nassistant: The assistant identifies the account with phone number 555-123-2002, finds that line L1002 is suspended because of an overdue bill, retrieves the relevant billing records, and sends a payment request for the outstanding bill.\nuser: The user completes the payment and asks what to do next to get service restored.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for taking care of the payment. I’ll verify the bill status and resume the line so your service can come back."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible account-side blocker was suspension for nonpayment, and the user has now reported payment completion, so the grounded next step is to resume the line rather than continue device troubleshooting."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.1,
+      "margin": 0.84,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.96,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:resume_line",
+    "tool:reboot_device",
+    "tool:check_network_status",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.94,
+    "think": 0.09,
+    "tool:get_customer_by_phone": -0.89,
+    "tool:get_details_by_id": 0.26,
+    "tool:get_bills_for_customer": -0.41,
+    "tool:send_payment_request": -0.87,
+    "tool:resume_line": 0.95,
+    "tool:reboot_device": 0.18,
+    "tool:check_network_status": -0.22,
+    "tool:transfer_to_human_agents": -0.6
+  },
+  "best_action": "tool:resume_line",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "e18a58db-a91f-412c-9ae7-905ef9e25aca",
+    "termination_reason": "user_stop",
+    "selected_message_index": 19,
+    "message_count": 36,
+    "decision_rule": "Choose a telecom state where the account-level cause of No Service has been identified and the user has just reported completing the required payment.",
+    "scoring_method": "Manual one-step proxy scoring from the visible telecom state. Scores prioritize restoring the line because the account suspension, not device settings, is the active blocker explicitly resolved by the new payment.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary excludes the later bill verification, line-resume tool output, and airplane-mode follow-up",
+      "available actions remain domain-appropriate to telecom account remediation and basic troubleshooting",
+      "best_action is resume_line because payment completion makes service restoration the most direct grounded next action"
+    ]
+  }
+}

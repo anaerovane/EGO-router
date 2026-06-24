@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_4_step_5_manual_241",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "4",
+  "step_id": 5,
+  "query": "The flight was supposed to be on June 7th, from New York to Chicago. I booked it specifically for a business meeting that day, and the cancellation completely ruined my plans. I really hope you can do something to make up for this, because it caused me a lot of trouble.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user is upset about a canceled business flight and wants compensation for the inconvenience and missing an important meeting.\nassistant: The assistant asks for the user ID and reservation ID and notes it needs identifying details.\nuser: The user provides user ID sophia_silva_7557 and says the reservation ID is not available.\nassistant: The assistant asks for the date and route of the canceled flight so it can help locate the reservation.\nuser: The user says the canceled flight was on June 7th from New York to Chicago and explains the missed business meeting impact.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks, that helps. I’ll check your account for a June 7 New York to Chicago reservation so I can identify the canceled trip tied to your compensation request."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user still lacks the reservation ID, but now has provided enough grounded trip details for the assistant to retrieve the account and search the reservation list for a matching itinerary."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.12,
+      "margin": 0.86,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.45,
+    "think": 0.08,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.9,
+    "tool:cancel_reservation": -0.95,
+    "tool:get_flight_status": -0.74,
+    "tool:get_reservation_details": -0.22,
+    "tool:get_user_details": 0.99,
+    "tool:list_all_airports": -0.95,
+    "tool:search_direct_flight": -0.89,
+    "tool:search_onestop_flight": -0.88,
+    "tool:send_certificate": -0.9,
+    "tool:transfer_to_human_agents": -0.41,
+    "tool:update_reservation_baggages": -0.93,
+    "tool:update_reservation_flights": -0.92,
+    "tool:update_reservation_passengers": -0.93
+  },
+  "best_action": "tool:get_user_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "763ba26d-28ca-4192-891a-9ee194a3ea75",
+    "termination_reason": "user_stop",
+    "selected_message_index": 5,
+    "message_count": 26,
+    "decision_rule": "Use the later user turn where the traveler supplies the date and route after saying the reservation ID is unavailable; this is the first grounded decision point that narrows which canceled trip should be located.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "selected_message_index is 5 rather than 3 because this later user turn adds the route-and-date evidence needed to search sophia_silva_7557's account for the specific canceled business flight."
+    ]
+  }
+}

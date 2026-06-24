@@ -1,0 +1,83 @@
+{
+  "sample_id": "tau2_airline_task_49_step_1_manual_279",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "49",
+  "step_id": 1,
+  "query": "Hi, I need to cancel my flight because I’m not feeling well. I also bought insurance when I booked, so I’d like to get a refund, please.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user says they need to cancel a flight because they are sick and want a refund based on purchased travel insurance.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I’m sorry you’re not feeling well. Please share your user ID and reservation ID so I can look up the booking and check the cancellation and insurance details for you."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user wants a cancellation and insurance-based refund, but there is not yet any reservation or account information in view, so the grounded next step is to gather the identifiers needed to inspect the booking."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.13,
+      "margin": 0.85,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 5
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.66,
+    "think": 0.2,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.91,
+    "tool:cancel_reservation": -0.57,
+    "tool:get_flight_status": -0.92,
+    "tool:get_reservation_details": -0.52,
+    "tool:get_user_details": -0.5,
+    "tool:list_all_airports": -0.96,
+    "tool:search_direct_flight": -0.96,
+    "tool:search_onestop_flight": -0.96,
+    "tool:send_certificate": -0.94,
+    "tool:transfer_to_human_agents": -0.74,
+    "tool:update_reservation_baggages": -0.97,
+    "tool:update_reservation_flights": -0.97,
+    "tool:update_reservation_passengers": -0.97
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "76b4e517-55a9-48e7-bb47-16c7a1480e99",
+    "termination_reason": "user_stop",
+    "selected_message_index": 1,
+    "message_count": 16,
+    "decision_rule": "Use the opening user turn before any booking identifiers, reservation data, or insurance records are visible, so the grounded next move is to request the account and reservation information needed to assess cancellation and refund options.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes all later assistant, tool, and user turns",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "selected_message_index is 1 and matches the source simulation's initial cancellation-and-insurance request exactly",
+      "this provenance tuple is unused across the existing tau2_manual_sample_*.json files, so it no longer collides with sample 010 or any other manual sample"
+    ]
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "sample_id": "tau2_airline_task_22_step_18_manual_300",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "22",
+  "step_id": 18,
+  "query": "Yes, that’s correct. Please go ahead and check the options for me.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user says there is an upcoming New York to Chicago trip and they want to make changes to the booking.\nassistant: The assistant asks for the user ID and reservation ID, offering to locate the booking if needed.\nuser: The user provides user ID omar_rossi_1241 and says the reservation ID is unknown.\nassistant/tool: The assistant retrieves the user profile and lists reservations UM3OG5, 5RJ7UH, FQ8APE, and QKRY03.\nassistant: The assistant asks for more details to identify the New York to Chicago booking.\nuser: The user says the trip from New York to Chicago is on June 18th.\nassistant/tool: The assistant retrieves all four reservation details and determines that FQ8APE is the only Newark to Chicago trip it can find.\nassistant: The assistant asks whether FQ8APE is the booking the user wants to modify.\nuser: The user confirms that FQ8APE is the reservation to modify.\nassistant: The assistant asks what changes are needed.\nuser: The user says they want to change the passenger to Omar Rossi, upgrade from basic economy to economy, and add 3 checked bags.\nassistant: The assistant summarizes those requested modifications and asks for confirmation before checking options.\nuser: The user confirms that those requested changes are correct and asks the assistant to check the available options.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. I’ll check the available flight options for reservation FQ8APE with Omar Rossi as the passenger, economy cabin, and 3 checked bags."
+      },
+      {
+        "source": "think-refine",
+        "text": "The reservation and requested modifications are now fully specified, so searching for available flight options on the same route and date is the most direct grounded next step."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.11,
+      "margin": 0.9,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.55,
+    "think": 0.07,
+    "tool:book_reservation": -0.93,
+    "tool:calculate": -0.89,
+    "tool:cancel_reservation": -0.97,
+    "tool:get_flight_status": -0.94,
+    "tool:get_reservation_details": -0.36,
+    "tool:get_user_details": -0.62,
+    "tool:list_all_airports": -0.98,
+    "tool:search_direct_flight": 0.99,
+    "tool:search_onestop_flight": 0.21,
+    "tool:send_certificate": -0.96,
+    "tool:transfer_to_human_agents": -0.88,
+    "tool:update_reservation_baggages": -0.65,
+    "tool:update_reservation_flights": -0.57,
+    "tool:update_reservation_passengers": -0.61
+  },
+  "best_action": "tool:search_direct_flight",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "084ff2c9-3aad-471c-942f-cd392521e5d2",
+    "termination_reason": "user_stop",
+    "selected_message_index": 18,
+    "message_count": 23,
+    "decision_rule": "Use the later user turn where the target reservation and requested modifications are fully specified and the user explicitly authorizes the assistant to check available options.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "selected_message_index is 18 because this later turn is the first point where the reservation, passenger change, cabin upgrade, and baggage request are all explicitly confirmed and the user asks the assistant to check options",
+      "best_action is search_direct_flight because the next grounded step is to look for direct same-route availability before considering other flight-search paths"
+    ]
+  }
+}

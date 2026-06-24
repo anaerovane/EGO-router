@@ -1,0 +1,72 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_vpn_speed_step_32_manual_517",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]bad_network_preference|bad_vpn|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 32,
+  "query": "It looks like there is a VPN active and connected on my phone. The details show the server performance is listed as \"poor.\" Should I disconnect the VPN before rebooting and running the speed test, or would you like me to proceed with the reboot first?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports weak or unusable mobile data while abroad in France and wants excellent speed.\nassistant: The assistant verifies the line, confirms the account is active, and collects device network status.\nassistant: The user has already enabled device-side data roaming and switched network mode to prefer 4G/5G, bringing the phone onto an excellent 5G connection.\nassistant: A speed test still returns only 27.50 Mbps (Good), so the assistant asks the user to check for VPN interference.\nuser: The user reports that a VPN is active and that the VPN server performance is poor, then asks whether to disconnect it before any reboot or retest.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes — disconnect the VPN first. It’s the clearest remaining bottleneck in the visible state, and we should remove it before asking you to reboot or rerun the speed test."
+      },
+      {
+        "source": "think-refine",
+        "text": "A poor-performing active VPN remains the clearest visible bottleneck after radio and roaming settings were corrected, so the next response should focus on removing that likely throughput limiter before broader troubleshooting resumes."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.17,
+      "margin": 0.76,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.96,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:toggle_data",
+    "tool:grant_app_permission",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.88,
+    "think": 0.15,
+    "tool:get_customer_by_phone": -0.97,
+    "tool:get_details_by_id": -0.69,
+    "tool:get_data_usage": -0.86,
+    "tool:refuel_data": -0.95,
+    "tool:send_payment_request": -0.99,
+    "tool:resume_line": 0.74,
+    "tool:enable_roaming": -0.82,
+    "tool:toggle_data": -0.77,
+    "tool:grant_app_permission": -0.94,
+    "tool:transfer_to_human_agents": -0.21
+  },
+  "best_action": "tool:resume_line",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "6e15514c-925a-462c-a0bf-9ad1a41404b6",
+    "termination_reason": "user_stop",
+    "selected_message_index": 32,
+    "message_count": 41,
+    "decision_rule": "Choose a late-stage mobile-data troubleshooting turn where radio conditions have already been fixed and the user reveals a poor VPN as the remaining visible bottleneck.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. The telecom action set lacks an explicit disconnect_vpn action, so the best score is assigned to the nearest session-restoring proxy action, with the mismatch documented in provenance.",
+    "notes": [
+      "This sample intentionally preserves a real decision point even though the benchmark telecom action vocabulary is narrower than the full device instruction space in the transcript.",
+      "The real assistant instructs the user to disconnect the VPN; resume_line is used here as the closest available proxy action and is explicitly justified as such."
+    ]
+  }
+}

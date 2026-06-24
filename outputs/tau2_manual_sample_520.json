@@ -1,0 +1,72 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_data_limit_refuel_step_15_manual_520",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]",
+  "step_id": 15,
+  "query": "I definitely don’t want to change my plan, but I’m willing to refuel 2GB of data. Please go ahead and add 2GB so I can get back to excellent internet speed.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: Reports that mobile data is stopping or running very slowly and wants excellent internet speed.\nassistant: Verified the account by phone number and identified the affected line 555-123-2002.\nassistant: Checked usage and found the line had exceeded its plan data limit.\nassistant: Explained that a plan change was optional but a 2 GB data refuel was available immediately to restore service and asked whether the user wanted to proceed.\nuser: Declined a plan change and explicitly authorized a 2 GB refuel.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood — I’ll add the 2 GB refuel now so you can get your mobile data working again without changing your plan."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has explicitly chosen the offered 2 GB top-up as the remedy for exhausted data, so the grounded next step is to perform the refuel instead of reopening plan discussions."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.14,
+      "margin": 0.83,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:toggle_data",
+    "tool:grant_app_permission",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.94,
+    "think": 0.1,
+    "tool:get_customer_by_phone": -0.97,
+    "tool:get_details_by_id": -0.74,
+    "tool:get_data_usage": -0.32,
+    "tool:refuel_data": 0.98,
+    "tool:send_payment_request": -0.76,
+    "tool:resume_line": -0.43,
+    "tool:enable_roaming": -0.89,
+    "tool:toggle_data": -0.84,
+    "tool:grant_app_permission": -0.97,
+    "tool:transfer_to_human_agents": -0.39
+  },
+  "best_action": "tool:refuel_data",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "4a0eabe0-1325-4c3e-8918-3a09a02506a2",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 28,
+    "decision_rule": "Choose a user authorization turn where the exceeded-data diagnosis has already been surfaced and the user explicitly accepts the offered 2 GB remedy.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores reward immediate execution of the approved refuel and suppress alternative troubleshooting or escalation actions that ignore the freshly authorized fix.",
+    "notes": [
+      "This sample provides a telecom action type not present in 510 by labeling a direct commercial remediation step rather than escalation.",
+      "The visible state is sufficient because the user is responding to a previously offered, grounded 2 GB refuel option."
+    ]
+  }
+}

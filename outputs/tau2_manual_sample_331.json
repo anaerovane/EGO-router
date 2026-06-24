@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_10_step_7_manual_331",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "10",
+  "step_id": 7,
+  "query": "I’m not sure which one it is—could you tell me which reservation has the IAH to SEA flight on May 23? That’s the one I want to change.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to move an upcoming IAH to SEA flight from May 23 to May 24 and upgrade all passengers on that flight to business class.\nassistant: The assistant asks for the user ID and reservation ID for the booking.\nuser: The user provides user ID liam_khan_2521 and says the reservation ID is not handy, asking to look it up by user ID.\nassistant: The assistant retrieves the user profile and sees reservations 4NQLHD, KHIK97, NO6SVK, AJVCTQ, and ZB7LBX, then asks which reservation includes the target flight.\nuser: The user says they are not sure which reservation contains the May 23 IAH to SEA flight and asks the assistant to identify it.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes — I’ll check the listed reservations to find which one includes the IAH to SEA flight on May 23 so we can work on the change you want."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has already supplied the account identity and the candidate reservation IDs are now visible, so the grounded next move is to inspect those reservation records to identify the correct booking."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.14,
+      "margin": 0.83,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 5
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.48,
+    "think": 0.1,
+    "tool:book_reservation": -0.97,
+    "tool:calculate": -0.91,
+    "tool:cancel_reservation": -0.95,
+    "tool:get_flight_status": -0.74,
+    "tool:get_reservation_details": 0.99,
+    "tool:get_user_details": -0.46,
+    "tool:list_all_airports": -0.96,
+    "tool:search_direct_flight": -0.88,
+    "tool:search_onestop_flight": -0.9,
+    "tool:send_certificate": -0.94,
+    "tool:transfer_to_human_agents": -0.58,
+    "tool:update_reservation_baggages": -0.96,
+    "tool:update_reservation_flights": -0.89,
+    "tool:update_reservation_passengers": -0.96
+  },
+  "best_action": "tool:get_reservation_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "a9a6363f-58bf-4352-b38e-ee57d477fe6d",
+    "termination_reason": "user_stop",
+    "selected_message_index": 7,
+    "message_count": 31,
+    "decision_rule": "Use the later user turn where the traveler asks the assistant to identify which listed reservation contains the target IAH-to-SEA flight, because that is the first grounded point where reservation inspection becomes the direct next step.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes later reservation-detail, flight-option, and pricing outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "selected_message_index is 7 rather than 3 because only this later turn asks the assistant to identify the matching reservation among the visible account bookings"
+    ]
+  }
+}

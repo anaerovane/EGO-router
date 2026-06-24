@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_mode_off_data_usage_exceeded_persona_none_step_21_manual_550",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]",
+  "step_id": 21,
+  "query": "I just tried using my mobile data, but it still isn’t working—there’s no connection at all. I really need excellent internet speed, so can you help me get this fixed?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: Reports that mobile data is stopping or very slow and provides phone number 555-123-2002.\nassistant: Authenticated the account, identified the affected line, checked the plan, and determined the user had exceeded the 15.0 GB data cap.\nuser: Declined a plan change and asked to add 2GB of extra data.\nassistant: Processed the 2GB data refuel successfully.\nuser: After trying again, reported there was still no connection and asked for further help.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I’m sorry the top-up didn’t restore service. The next grounded move is to verify the account-side data status and then continue troubleshooting the device-side connection."
+      },
+      {
+        "source": "think-refine",
+        "text": "Because the user still has no connection after a successful data refuel, the best immediate action is to re-check current usage and refuel state before deciding whether the problem is now entirely device-side."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.24,
+      "margin": 0.47,
+      "disagreement": 0.1,
+      "verifier_confidence": 0.89,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:check_roaming_status",
+    "tool:get_network_status",
+    "tool:run_speed_test",
+    "tool:refuel_data",
+    "tool:change_plan",
+    "tool:restart_device",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.95,
+    "think": 0.14,
+    "tool:get_customer_by_phone": -0.9,
+    "tool:get_details_by_id": 0.96,
+    "tool:get_data_usage": 0.72,
+    "tool:check_roaming_status": -0.46,
+    "tool:get_network_status": -0.21,
+    "tool:run_speed_test": -0.37,
+    "tool:refuel_data": -0.81,
+    "tool:change_plan": -0.67,
+    "tool:restart_device": -0.52,
+    "tool:transfer_to_human_agents": -0.33
+  },
+  "best_action": "tool:get_details_by_id",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "4a0eabe0-1325-4c3e-8918-3a09a02506a2",
+    "termination_reason": "user_stop",
+    "selected_message_index": 21,
+    "message_count": 28,
+    "decision_rule": "Choose a post-remediation state where a successful backend data top-up did not restore service, so verifying current line usage status is the most defensible immediate check before escalation.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores favor retrieving current line details and usage information to confirm that the refuel registered before pivoting to device-side troubleshooting or transfer.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "The source trajectory re-checks account-side data state after the failed retry, so get_details_by_id is scored above direct transfer or additional refuel attempts."
+    ]
+  }
+}

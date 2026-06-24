@@ -1,0 +1,77 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]_step_15_manual_626",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]",
+  "step_id": 15,
+  "query": "I definitely don’t want to change my plan, but I’m willing to refuel 2GB of data. Please go ahead and add 2GB so I can get back to excellent internet speed.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that mobile data is not working well and wants better speed without changing plans.\nassistant: The assistant authenticates the account, finds the line matching phone number 555-123-2002, and checks the plan details.\nassistant: The assistant explains that the line has exceeded the 15.0 GB plan limit and offers either a data refuel or a plan change.\nuser: The user declines a plan change and explicitly approves adding 2GB of extra data.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood — you want to keep your current plan and add 2GB of data. That matches the refuel option that was just discussed."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible context identifies the over-limit data usage and presents a 2GB refuel as the accepted remedy, so refuel_data is the grounded next action without assuming a specific speed outcome."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.08,
+      "margin": 0.91,
+      "disagreement": 0.02,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.96,
+    "think": 0.05,
+    "tool:get_customer_by_phone": -0.93,
+    "tool:get_customer_by_name": -0.98,
+    "tool:get_details_by_id": -0.56,
+    "tool:get_bills_for_customer": -0.94,
+    "tool:send_payment_request": -0.79,
+    "tool:check_payment_request": -0.92,
+    "tool:make_payment": -0.96,
+    "tool:resume_line": -0.88,
+    "tool:enable_roaming": -0.73,
+    "tool:refuel_data": 0.99,
+    "tool:transfer_to_human_agents": -0.84
+  },
+  "best_action": "tool:refuel_data",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "4a0eabe0-1325-4c3e-8918-3a09a02506a2",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 24,
+    "decision_rule": "Choose a state where the assistant has already grounded the data overage cause and offered a specific remediation, and the user has explicitly accepted the 2GB top-up.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores favor directly applying the approved data add-on instead of revisiting diagnosis or offering unrelated billing operations.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "The visible user turn includes both the refusal to change plans and affirmative consent for the 2GB refuel.",
+      "This sample diversifies the batch with a telecom execution step that is neither lookup nor transfer."
+    ]
+  }
+}

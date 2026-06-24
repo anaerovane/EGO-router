@@ -1,0 +1,75 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_post_restart_failure_step_45_manual_510",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:Hard]",
+  "step_id": 45,
+  "query": "I went ahead and restarted my phone like you suggested, but I still can’t get a connection when I try to check my internet speed. It still says there’s no connection. I’m starting to get a bit frustrated—what else can I do?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: Hello, I’m having trouble with my mobile data. It keeps stopping or is just really slow, and I need it to work perfectly. I want to get excellent internet speed on my phone, nothing less. Can you help me fix this? I’m also traveling abroad right now.\nassistant: The assistant asks for the phone number, identifies the account, and confirms the affected line is 555-123-2002.\nassistant: The assistant finds the line has exceeded its plan data limit, recommends a 2 GB refuel, and the user authorizes that refuel.\nassistant: After the refuel, the user still cannot connect. The assistant checks the status bar and discovers mobile data is disabled, then has the user enable mobile data.\nassistant: Even after mobile data is enabled, a speed test still shows no connection, so the assistant recommends restarting the device as the next troubleshooting step.\nuser: I went ahead and restarted my phone like you suggested, but I still can’t get a connection when I try to check my internet speed. It still says there’s no connection. I’m starting to get a bit frustrated—what else can I do?",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I’m sorry that didn’t fix it. Since the refuel, data enablement, and restart steps still haven’t restored connectivity, the best next step is to escalate this to a human agent for deeper network investigation."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible troubleshooting path has already covered the most direct self-service fixes and the user is still offline, so escalation is more appropriate than looping on the same device checks again."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.21,
+      "margin": 0.63,
+      "disagreement": 0.08,
+      "verifier_confidence": 0.94,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:toggle_data",
+    "tool:grant_app_permission",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.88,
+    "think": 0.17,
+    "tool:get_customer_by_phone": -0.92,
+    "tool:get_details_by_id": -0.29,
+    "tool:get_data_usage": 0.22,
+    "tool:refuel_data": -0.83,
+    "tool:send_payment_request": -0.97,
+    "tool:resume_line": -0.9,
+    "tool:enable_roaming": -0.31,
+    "tool:toggle_data": -0.41,
+    "tool:grant_app_permission": -0.95,
+    "tool:transfer_to_human_agents": 0.95
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "0286093c-6a97-4bcd-ad07-4a7d0ecdcc54",
+    "termination_reason": "user_stop",
+    "selected_message_index": 45,
+    "message_count": 50,
+    "decision_rule": "Choose a late troubleshooting turn where multiple grounded fixes have already been attempted without success, making escalation a substantively better choice than repeating prior steps.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores prioritize human escalation when visible evidence suggests self-service troubleshooting has been exhausted.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample intentionally captures a terminal escalation decision point for action diversity.",
+      "Summary stops before the actual transfer and excludes future messages."
+    ]
+  }
+}

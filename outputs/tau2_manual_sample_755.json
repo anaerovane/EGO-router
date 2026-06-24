@@ -1,0 +1,76 @@
+{
+  "sample_id": "tau2_telecom_task_[service_issue]airplane_mode_on|overdue_bill_suspension[PERSONA:None]_step_19_manual_755",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|overdue_bill_suspension[PERSONA:None]",
+  "step_id": 19,
+  "query": "I've just completed the payment for the overdue bill. What should I do next to get my service restored?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that the phone has shown \u001cNo Service\u001d for hours and asks for help restoring service.\nassistant: The assistant identifies the account by phone number and name, inspects the relevant line, finds that the line is suspended due to an overdue bill, and sends a payment request.\nuser: The user completes the payment and asks what should happen next to restore service.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for confirming the payment. Now that the overdue bill is paid, the next step is to restore the suspended line on the account."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible cause of the outage is a paid overdue-bill suspension, so resuming the affected line is more grounded than asking for more diagnostics or transferring the user."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.21,
+      "margin": 0.68,
+      "disagreement": 0.07,
+      "verifier_confidence": 0.94,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.92,
+    "think": 0.09,
+    "tool:get_customer_by_phone": -0.88,
+    "tool:get_customer_by_name": -0.9,
+    "tool:get_details_by_id": -0.54,
+    "tool:get_bills_for_customer": -0.37,
+    "tool:send_payment_request": -0.95,
+    "tool:check_payment_request": 0.12,
+    "tool:make_payment": -0.97,
+    "tool:resume_line": 0.97,
+    "tool:enable_roaming": -0.93,
+    "tool:refuel_data": -0.89,
+    "tool:transfer_to_human_agents": -0.41
+  },
+  "best_action": "tool:resume_line",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "e18a58db-a91f-412c-9ae7-905ef9e25aca",
+    "termination_reason": "user_stop",
+    "selected_message_index": 19,
+    "message_count": 36,
+    "decision_rule": "Choose a user turn where the user reports that the payment requested by the assistant has already been completed, removing the billing blocker and making service restoration the immediate grounded next step.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores favor line restoration because the suspension cause is known and the user has just cleared it.",
+    "notes": [
+      "query is copied from the selected visible user turn",
+      "history_summary stops before the assistant resumes the line or asks the user to reboot",
+      "best_action is the argmax because the line was previously identified as suspended for nonpayment and payment is now complete",
+      "the source reward_info includes a successful assistant resume_line action after make_payment"
+    ]
+  }
+}

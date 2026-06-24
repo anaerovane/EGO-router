@@ -1,0 +1,70 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_overdue_bill_suspension_unseat_sim_card_persona_easy_step_25_manual_688",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]overdue_bill_suspension|unseat_sim_card[PERSONA:Easy]",
+  "step_id": 25,
+  "query": "I’ve just completed the payment for the overdue bill. What should I do next to get my service restored?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports a No Service issue.\nassistant: The assistant authenticates with name and phone number, checks status-bar details, and retrieves line information showing the affected line is suspended.\nassistant: The assistant retrieves billing records, finds an overdue $65 bill, and sends a payment request.\nuser: The user completes the bill payment and asks what should happen next to restore service.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for confirming the payment. The next step is to resume your line so service can be restored, and then you can reboot the phone if needed."
+      },
+      {
+        "source": "think-refine",
+        "text": "The suspension root cause has just been resolved by payment, so the grounded next action is line reactivation rather than more device troubleshooting or another billing lookup."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.11,
+      "margin": 0.84,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.96,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:check_device_settings",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.86,
+    "think": 0.07,
+    "tool:get_customer_by_phone": -0.92,
+    "tool:get_details_by_id": 0.98,
+    "tool:get_data_usage": -0.94,
+    "tool:change_plan": -0.96,
+    "tool:refuel_data": -0.95,
+    "tool:check_device_settings": -0.49,
+    "tool:transfer_to_human_agents": -0.74,
+    "tool:calculate": -0.97
+  },
+  "best_action": "tool:get_details_by_id",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "service_bill_resume_trial0",
+    "termination_reason": "user_stop",
+    "selected_message_index": 25,
+    "message_count": 46,
+    "decision_rule": "Choose a state immediately after the user resolves an account-level suspension cause, where the assistant should now act on the line record rather than continue generic troubleshooting.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. get_details_by_id is highest because the assistant needs the up-to-date line details needed to resume the service path; account lookup and billing discovery are already complete.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "Within this telecom action set, get_details_by_id is the closest grounded operational step for retrieving the line object needed for service restoration"
+    ]
+  }
+}

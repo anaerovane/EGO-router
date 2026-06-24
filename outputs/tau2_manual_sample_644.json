@@ -1,0 +1,72 @@
+{
+  "sample_id": "tau2_telecom_task_bad_vpn_data_saver_roaming_disabled_none_step_9_manual_644",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]bad_vpn|data_saver_mode_on|user_abroad_roaming_disabled_on[PERSONA:None]",
+  "step_id": 9,
+  "query": "Data Saver mode is now turned off. What would you like me to do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports mobile data that is extremely slow or intermittently failing and wants excellent speed without Wi-Fi.\nassistant: The assistant first instructs the user to disconnect any active VPN.\nuser: The user disconnects the VPN successfully.\nassistant: The assistant then asks the user to disable Data Saver mode.\nuser: The user reports that Data Saver mode is now off and asks for the next step.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks — with the VPN disconnected and Data Saver off, the next grounded account-side step is for me to enable roaming on your line."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible troubleshooting sequence has already cleared two device-side blockers, so the next useful telecom action is to enable roaming rather than re-ask for the same checks."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.12,
+      "margin": 0.8,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.96,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents",
+    "tool:enable_roaming"
+  ],
+  "action_scores": {
+    "stop": -0.95,
+    "think": 0.09,
+    "tool:get_customer_by_phone": -0.92,
+    "tool:get_details_by_id": -0.63,
+    "tool:get_bills_for_customer": -0.87,
+    "tool:get_data_usage": -0.34,
+    "tool:change_plan": -0.71,
+    "tool:refuel_data": -0.42,
+    "tool:send_payment_request": -0.9,
+    "tool:transfer_to_human_agents": -0.61,
+    "tool:enable_roaming": 0.98
+  },
+  "best_action": "tool:enable_roaming",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_op_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "2d9b6ee1-4b3f-4f18-a343-bc6fe5185281",
+    "termination_reason": "user_stop",
+    "selected_message_index": 9,
+    "message_count": 18,
+    "decision_rule": "Choose a mid-troubleshooting state where two device-side blockers have already been cleared and the next grounded operator-side remediation is enabling roaming.",
+    "scoring_method": "Manual one-step proxy scoring from the visible telecom state. Scores favor enabling roaming after VPN and Data Saver issues are resolved, without relying on future speed-test success as evidence.",
+    "notes": [
+      "query comes from the visible post-check user turn, not from hidden task metadata",
+      "history_summary excludes later speed-test results and assistant closure",
+      "best_action is enable_roaming because the current state already reflects completion of the prior device steps",
+      "this sample provides a non-lookup, non-transfer telecom operator action distinct from refuel_data"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_42_step_23_manual_397",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "42",
+  "step_id": 23,
+  "query": "That’s perfect, thank you for your help! I don’t need anything else right now.###STOP###",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user suspects multiple same-day flight conflicts and says the intended plan is to arrive in New York from Dallas on May 17 and be in Boston on May 22.\nassistant: The assistant asks for the user ID.\nuser: The user provides user ID sophia_martin_4574.\ntool: The assistant retrieves the user profile and multiple reservation details.\nassistant: The assistant lists reservations relevant to May 17 and May 22 and notes which ones align or conflict with the stated plan.\nuser: The user asks to cancel the conflicting reservations SE9KEL, FDZ0T5, and HSR97W for a change of plan.\nassistant: The assistant says it will proceed with those cancellations.\ntool: The three listed conflicting reservations are canceled.\nassistant: The assistant confirms the conflicting reservations have been canceled.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "You’re welcome. The conflicting reservations have already been canceled, so your itinerary is now aligned with the plan you described."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible context shows the requested cleanup of conflicting bookings has already been completed and the user is simply ending the conversation."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.05,
+      "margin": 0.96,
+      "disagreement": 0.01,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 0
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": 0.99,
+    "think": -0.23,
+    "tool:book_reservation": -0.99,
+    "tool:calculate": -0.98,
+    "tool:cancel_reservation": -0.9,
+    "tool:get_flight_status": -0.98,
+    "tool:get_reservation_details": -0.95,
+    "tool:get_user_details": -0.95,
+    "tool:list_all_airports": -0.99,
+    "tool:search_direct_flight": -0.99,
+    "tool:search_onestop_flight": -0.99,
+    "tool:send_certificate": -0.98,
+    "tool:transfer_to_human_agents": -0.95,
+    "tool:update_reservation_baggages": -0.99,
+    "tool:update_reservation_flights": -0.99,
+    "tool:update_reservation_passengers": -0.99
+  },
+  "best_action": "stop",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "09c819c9-13ef-42a8-8b94-434c8efe8ce8",
+    "termination_reason": "user_stop",
+    "selected_message_index": 23,
+    "message_count": 24,
+    "decision_rule": "Use the later closing user turn because it is an exact source user message after the conflicting reservations have already been canceled, so stop is the only grounded next action.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message including the stop marker",
+      "history_summary stops at the completed cancellation result and excludes future content",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "special case: terminal stop turn after itinerary-conflict cleanup across multiple reservations"
+    ]
+  }
+}

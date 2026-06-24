@@ -1,0 +1,71 @@
+{
+  "sample_id": "tau2_telecom_task_mms_issue_bad_network_preference_user_abroad_roaming_disabled_off_persona_none_step_15_manual_679",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mms_issue]bad_network_preference|user_abroad_roaming_disabled_off[PERSONA:None]",
+  "step_id": 15,
+  "query": "Here are the results from the network status check:\n\n- Signal strength: Poor\n- Network type: 2G\n- Mobile data: Enabled\n- Data roaming: Not enabled\n\nWhat should I do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user is troubleshooting an MMS issue.\nassistant: The assistant asks the user to run a network-status diagnostic to see whether the phone currently has a sufficient mobile-data connection for MMS.\nuser: The user reports poor signal, a 2G network type, mobile data enabled, and roaming disabled.\nuser: The user asks what to do next based on those device findings.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Your phone is still on 2G, which is typically not enough for MMS. The next step is to change the network preference so the device can connect to 3G, 4G, or 5G and then re-check the status."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible blocker is the network mode itself: the phone has mobile data enabled but is stuck on 2G. Device-settings guidance to move to a higher preferred network mode is more grounded than any billing or account action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.2,
+      "margin": 0.61,
+      "disagreement": 0.07,
+      "verifier_confidence": 0.91,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:check_device_settings",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.9,
+    "think": 0.16,
+    "tool:get_customer_by_phone": -0.88,
+    "tool:get_details_by_id": -0.51,
+    "tool:get_data_usage": -0.47,
+    "tool:change_plan": -0.86,
+    "tool:refuel_data": -0.8,
+    "tool:check_device_settings": 0.95,
+    "tool:transfer_to_human_agents": -0.42,
+    "tool:calculate": -0.82
+  },
+  "best_action": "tool:check_device_settings",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "9ebd8097-3108-4d58-92d4-b649980c6436",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 57,
+    "decision_rule": "Choose a user turn where the device diagnostic clearly points to an inadequate network mode for MMS, making guided handset reconfiguration the most direct grounded next action.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. check_device_settings is highest because the conversation evidence supports changing the phone’s preferred network mode rather than querying account state again.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "The user has not asked for escalation, and there is a clear actionable device-side remediation path visible in the state.",
+      "This sample increases telecom diversity by focusing on MMS delivery and network-mode preference instead of roaming enablement alone."
+    ]
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "sample_id": "tau2_airline_task_14_step_22_manual_293",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "14",
+  "step_id": 22,
+  "query": "Thank you for clarifying. Yes, please proceed with changing the reservation from New York (JFK) to San Francisco (SFO) on May 26th to May 28th. I’d like to see the cheapest business class round trip options for those dates, regardless of whether the flights are direct or have connections.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user asks to check gift card and certificate balances.\nassistant: The assistant asks for the user ID.\nuser: The user provides user ID mohamed_silva_9265.\nassistant/tool: The assistant retrieves the profile and reveals visible balances on two gift cards and three certificates.\nuser: The user asks for totals across gift cards and certificates.\nassistant/tool: The assistant totals them and reports $327 in gift cards and $1000 in certificates.\nuser: The user then asks to book the cheapest business class round trip from JFK to LHR for June 18 to June 25.\nassistant: The assistant says it needs the existing reservation ID if the user wants to match or change a current trip.\nuser: The user asks the assistant to locate the reservation from the account instead.\nassistant/tool: The assistant retrieves reservation K1NW8N and reports it is actually a May 26 to May 28 round trip from JFK to SFO with connections, not a June London trip.\nassistant: The assistant asks whether to proceed with changing this reservation or a different one.\nuser: The user confirms they want to proceed with changing the visible JFK to SFO May 26 to May 28 reservation and asks to see the cheapest business class round-trip options, allowing connections.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. I’ll look for the cheapest business class round-trip options for JFK to SFO on May 26 to May 28, including connecting itineraries."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has confirmed the actual route and dates and explicitly allows connections, so searching one-stop business options is the most direct next step."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.1,
+      "margin": 0.58,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.98,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.71,
+    "think": 0.08,
+    "tool:book_reservation": -0.86,
+    "tool:calculate": -0.92,
+    "tool:cancel_reservation": -0.95,
+    "tool:get_flight_status": -0.9,
+    "tool:get_reservation_details": -0.42,
+    "tool:get_user_details": -0.61,
+    "tool:list_all_airports": -0.96,
+    "tool:search_direct_flight": 0.41,
+    "tool:search_onestop_flight": 0.99,
+    "tool:send_certificate": -0.95,
+    "tool:transfer_to_human_agents": -0.78,
+    "tool:update_reservation_baggages": -0.97,
+    "tool:update_reservation_flights": -0.66,
+    "tool:update_reservation_passengers": -0.97
+  },
+  "best_action": "tool:search_onestop_flight",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "439245f7-9091-4dcb-8a53-5d657de0f3c6",
+    "termination_reason": "user_stop",
+    "selected_message_index": 22,
+    "message_count": 53,
+    "decision_rule": "Use the later user turn where the route confusion is resolved and the user explicitly requests the cheapest business options while permitting connections, making a one-stop flight search the best grounded next action.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "selected_message_index is 22 because this is the first turn that clearly authorizes a business-flight search on the corrected JFK-SFO May 26-28 itinerary",
+      "special case: although direct flights would also be relevant later, the request explicitly allows connections and asks for the cheapest option, so search_onestop_flight gets the highest score"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_8_step_25_manual_322",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "8",
+  "step_id": 25,
+  "query": "Yes, please proceed with the booking as listed.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to book the same May 26 ORD-to-PHL flight as a prior May 10 trip.\nassistant: The assistant asks for the user ID.\nuser: The user provides user ID sophia_silva_7557 and asks the assistant to inspect booking history to identify the matching May 10 trip.\nassistant: The assistant retrieves the user profile and past reservation details, identifies flight HAT271 as the matching prior ORD-to-PHL flight, and later confirms that the same May 26 flight is available in economy.\nuser: The user asks to book two passengers, Sophia Silva and Kevin Smith, with no checked bags, no travel insurance, and seats together, then selects the $500 certificate for payment after hearing the total price.\nassistant: The assistant summarizes the full booking details for confirmation, including both passengers, no baggage, no insurance, and payment by the $500 travel certificate.\nuser: The user says to proceed with the booking as listed.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Confirmed — I’ll proceed with booking the two seats on HAT271 using your $500 certificate under the details we just summarized."
+      },
+      {
+        "source": "think-refine",
+        "text": "All booking parameters and the payment method are now explicitly confirmed, so the grounded next move is to invoke the booking tool."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.08,
+      "margin": 0.91,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.74,
+    "think": 0.1,
+    "tool:book_reservation": 0.99,
+    "tool:calculate": -0.86,
+    "tool:cancel_reservation": -0.98,
+    "tool:get_flight_status": -0.9,
+    "tool:get_reservation_details": -0.83,
+    "tool:get_user_details": -0.85,
+    "tool:list_all_airports": -0.98,
+    "tool:search_direct_flight": -0.78,
+    "tool:search_onestop_flight": -0.97,
+    "tool:send_certificate": -0.93,
+    "tool:transfer_to_human_agents": -0.91,
+    "tool:update_reservation_baggages": -0.97,
+    "tool:update_reservation_flights": -0.95,
+    "tool:update_reservation_passengers": -0.96
+  },
+  "best_action": "tool:book_reservation",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "76797414-a37f-4139-aa51-02846e915b7b",
+    "termination_reason": "user_stop",
+    "selected_message_index": 25,
+    "message_count": 30,
+    "decision_rule": "Use the explicit final booking-confirmation turn after the assistant has summarized all visible booking parameters and payment details, because that is the first grounded point where booking can be executed safely.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes the later booking tool output and final stop turn",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "this is a late confirmation case with all material booking fields already visible in-context"
+    ]
+  }
+}

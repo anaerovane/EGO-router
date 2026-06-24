@@ -1,0 +1,65 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_data_saver_usage_step_19_manual_528",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_saver_mode_on|data_usage_exceeded[PERSONA:Easy]",
+  "step_id": 19,
+  "query": "Thanks for adding the data! Before I restart my phone, I want to make sure I’m actually getting excellent internet speed. Can you guide me through checking my current mobile data speed? I want to confirm it’s working properly before I do anything else.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports mobile data problems and wants excellent internet speed.\nassistant: The assistant identifies the account and affected line, finds the user has exceeded plan data, and successfully adds a 2 GB refuel after the user approves it.\nassistant: The assistant says the refuel should restore data service.\nuser: Before restarting the device, the user asks how to check the current mobile data speed and wants to confirm service quality first.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Sure — the next step is to run a mobile-data speed test so we can see whether the refuel actually restored usable service."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user is explicitly asking for a current-speed check after refueling, so the grounded next action is the speed-test path rather than more billing or line-state operations."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.24,
+      "margin": 0.61,
+      "disagreement": 0.08,
+      "verifier_confidence": 0.92,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:run_speed_test",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.9,
+    "think": 0.17,
+    "tool:get_customer_by_phone": -0.86,
+    "tool:get_details_by_id": -0.22,
+    "tool:get_data_usage": 0.13,
+    "tool:refuel_data": -0.79,
+    "tool:run_speed_test": 0.93,
+    "tool:transfer_to_human_agents": -0.51
+  },
+  "best_action": "tool:run_speed_test",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "88da5d0a-ebf1-404f-adf0-ab5a30a57ab1",
+    "termination_reason": "user_stop",
+    "selected_message_index": 19,
+    "message_count": 41,
+    "decision_rule": "Choose a post-refuel troubleshooting turn where the user explicitly requests a speed check before attempting any restart or further steps.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Highest score goes to the diagnostic action that directly answers the user's request to assess current mobile data speed.",
+    "notes": [
+      "This sample preserves the visible user wording and does not use hidden task metadata to infer extra constraints.",
+      "get_data_usage is mildly relevant but weaker because remaining usage is not the same as observed service quality.",
+      "The underlying trajectory includes a tool error later, but this annotation scores the immediate next action from the pre-error state."
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:Hard]_step_45_manual_748",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:Hard]",
+  "step_id": 45,
+  "query": "I went ahead and restarted my phone like you suggested, but I still can’t get a connection when I try to check my internet speed. It still says there’s no connection. I really need this fixed and I’m getting worried.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports mobile data problems and wants excellent speed.\nassistant: The assistant authenticates the account, checks the affected line, and finds the user is over the data cap with mobile data turned off. The assistant recommends a 2GB refuel, which the user approves, and the refuel is completed.\nassistant: The user then follows several troubleshooting steps, including turning mobile data back on, running speed tests, and rebooting the device.\nuser: Even after refueling, enabling mobile data, and restarting, the user still reports no connection and explicitly asks for the issue to be fixed.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for trying those steps. Since the connection is still failing after the supported billing and device checks, the next step is to escalate this to a human agent for deeper troubleshooting."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible automation path has already consumed the natural self-service remediations without restoring service, so escalation is more grounded than repeating the same checks again."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.29,
+      "margin": 0.39,
+      "disagreement": 0.14,
+      "verifier_confidence": 0.84,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.91,
+    "think": 0.22,
+    "tool:get_customer_by_phone": -0.9,
+    "tool:get_customer_by_name": -0.98,
+    "tool:get_details_by_id": 0.27,
+    "tool:get_bills_for_customer": -0.87,
+    "tool:send_payment_request": -0.99,
+    "tool:check_payment_request": -0.99,
+    "tool:make_payment": -0.99,
+    "tool:resume_line": -0.81,
+    "tool:enable_roaming": -0.26,
+    "tool:refuel_data": -0.72,
+    "tool:transfer_to_human_agents": 0.93
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "0286093c-6a97-4bcd-ad07-4a7d0ecdcc54",
+    "termination_reason": "user_stop",
+    "selected_message_index": 45,
+    "message_count": 50,
+    "decision_rule": "Choose a late-stage failure state after multiple visible self-service fixes have been attempted and the user still has no connection.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Highest score goes to escalation because the obvious automated actions have already been used without resolving the issue.",
+    "notes": [
+      "the visible record already includes refuel, data toggle, repeated speed tests, and a reboot before this state",
+      "history_summary excludes the actual transfer action",
+      "best_action is transfer_to_human_agents because continued scripted checks would be repetitive and less grounded than escalation"
+    ]
+  }
+}

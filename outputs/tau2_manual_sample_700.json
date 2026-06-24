@@ -1,0 +1,76 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_airplane_mode_on_unseat_sim_card_persona_none_step_21_manual_700",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|unseat_sim_card[PERSONA:None]",
+  "step_id": 21,
+  "query": "I removed and re-inserted the SIM card as you suggested. Now the status bar shows excellent signal strength, 5G, and data is enabled. It looks like the service is back!",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports a No Service issue.\nassistant: The assistant authenticates the account and begins device troubleshooting.\nuser: The user first reports Airplane Mode enabled, then turns it off but still sees No Signal and Data Disabled.\nassistant: The assistant next asks about SIM status.\nuser: The user reports that no SIM card is detected.\nassistant: The assistant instructs the user to reseat the SIM card and check the status again.\nuser: After reseating the SIM, the user now reports excellent signal strength, 5G, and enabled data, and says the service appears restored.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "That’s great news — the reseated SIM appears to have restored service, so the right next move is to stop troubleshooting and confirm that the issue is resolved."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user reports full restoration of signal and data after the last troubleshooting step, so no further account or device action is warranted at this decision point."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.09,
+      "margin": 0.87,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.98,
+      "steps_remaining": 0
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_customer_by_id",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:get_bills_for_customer",
+    "tool:enable_roaming",
+    "tool:resume_line",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": 0.99,
+    "think": -0.18,
+    "tool:get_customer_by_phone": -0.97,
+    "tool:get_customer_by_name": -0.98,
+    "tool:get_customer_by_id": -0.97,
+    "tool:get_details_by_id": -0.81,
+    "tool:get_data_usage": -0.95,
+    "tool:get_bills_for_customer": -0.96,
+    "tool:enable_roaming": -0.94,
+    "tool:resume_line": -0.69,
+    "tool:refuel_data": -0.97,
+    "tool:send_payment_request": -0.99,
+    "tool:transfer_to_human_agents": -0.72
+  },
+  "best_action": "stop",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "53c02981-3701-46b2-bb27-97bc3dbf921f",
+    "termination_reason": "user_stop",
+    "selected_message_index": 21,
+    "message_count": 28,
+    "decision_rule": "Choose a user turn where the previously suggested corrective action visibly resolves the service issue, making further intervention unnecessary.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. stop is highest because the user confirms that service is restored and no additional tool action is needed.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample adds outcome-state diversity by labeling a successful terminal resolution rather than another mid-troubleshooting action."
+    ]
+  }
+}

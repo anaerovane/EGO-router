@@ -1,0 +1,98 @@
+{
+  "sample_id": "tau2_telecom_task_airplane_roaming_network_step_28_manual_907",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]airplane_mode_on|bad_network_preference|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 28,
+  "query": "I’ve turned Airplane Mode off and enabled Data Roaming. Here’s the updated network status:\n\n- Airplane Mode: OFF\n- SIM card: active\n- Cellular connection: connected\n- Signal strength: poor\n- Network type: 2G\n- Mobile data: enabled\n- Data roaming: enabled\n- Wi-Fi: off\n\nWhat would you like me to do next? Should I go ahead and run the speed test now?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user says mobile data is not working well while abroad in France and they need excellent internet speed.\nassistant: The assistant asks for the phone number on the account.\nuser: The user provides phone number 555-123-2002.\nassistant: The assistant retrieves the customer account, identifies the affected line, confirms the line has remaining data, and concludes the issue is likely on the device side.\nassistant: The assistant asks the user to run a network-status diagnostic.\nuser: The user reports that Airplane Mode is on, there is no cellular service, mobile data is enabled, and device-side data roaming is off.\nassistant: The assistant instructs the user to turn off Airplane Mode and enable Data Roaming.\nuser: The user reports back that Airplane Mode is now off and Data Roaming is enabled, but the phone is still on a poor-signal 2G connection and asks what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Good progress — the phone is connected again, but 2G will still feel slow. The next step is to switch your network preference to 4G/5G before running another speed test."
+      },
+      {
+        "source": "think-refine",
+        "text": "The obvious blockers of Airplane Mode and roaming have already been fixed, and the visible bottleneck is now the device sitting on 2G, so network-mode adjustment is the most grounded next action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.18,
+      "margin": 0.73,
+      "disagreement": 0.06,
+      "verifier_confidence": 0.94,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:refuel_data",
+    "tool:enable_roaming",
+    "tool:check_network_status",
+    "tool:check_network_mode_preference",
+    "tool:set_network_mode_preference",
+    "tool:check_data_restriction_status",
+    "tool:toggle_data_saver_mode",
+    "tool:check_roaming_status",
+    "tool:toggle_roaming",
+    "tool:check_data_usage",
+    "tool:check_status_bar",
+    "tool:toggle_airplane_mode",
+    "tool:toggle_data",
+    "tool:reboot_device",
+    "tool:run_speed_test",
+    "tool:check_apn_settings",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.8,
+    "think": 0.1,
+    "tool:get_customer_by_phone": -0.9,
+    "tool:get_customer_by_name": -0.95,
+    "tool:get_details_by_id": -0.71,
+    "tool:get_bills_for_customer": -0.98,
+    "tool:send_payment_request": -0.99,
+    "tool:refuel_data": -0.96,
+    "tool:enable_roaming": -0.46,
+    "tool:check_network_status": -0.31,
+    "tool:check_network_mode_preference": -0.19,
+    "tool:set_network_mode_preference": 0.98,
+    "tool:check_data_restriction_status": -0.55,
+    "tool:toggle_data_saver_mode": -0.73,
+    "tool:check_roaming_status": -0.63,
+    "tool:toggle_roaming": -0.88,
+    "tool:check_data_usage": -0.97,
+    "tool:check_status_bar": -0.7,
+    "tool:toggle_airplane_mode": -0.97,
+    "tool:toggle_data": -0.84,
+    "tool:reboot_device": -0.44,
+    "tool:run_speed_test": -0.22,
+    "tool:check_apn_settings": -0.58,
+    "tool:transfer_to_human_agents": -0.77
+  },
+  "best_action": "tool:set_network_mode_preference",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "6fa2b6ff-f40e-44b8-b7eb-264b3ee06ddb",
+    "termination_reason": "user_stop",
+    "selected_message_index": 28,
+    "message_count": 39,
+    "decision_rule": "Choose a post-fix diagnostic state where initial connectivity blockers have been removed, revealing a narrower device configuration issue that is directly actionable from the visible status.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. set_network_mode_preference is highest because the device is still stuck on 2G with poor signal after Airplane Mode and roaming were fixed, so shifting to 4G/5G preference is the clearest next intervention.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "run_speed_test is plausible but lower because the status already explains why speed would be poor: the phone is on 2G, so a test now would confirm a problem already visible rather than resolve it",
+      "This sample diversifies best_action away from account-side telecom tools and toward device-side network configuration"
+    ]
+  }
+}

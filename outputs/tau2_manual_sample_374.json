@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_30_step_19_manual_374",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "30",
+  "step_id": 19,
+  "query": "Thank you for your help! That’s all I needed. Have a great day! \n\n###STOP###",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to change a Las Vegas to Houston itinerary to a nonstop flight and asked about removing a checked bag.\nassistant: The assistant collects booking details and explains the checked bag cannot be removed.\nuser: The user provides reservation details and confirms a search for nonstop options.\ntool: Direct LAS to IAH options are found.\nassistant: The assistant presents nonstop flights and the user chooses HAT266.\nassistant: The assistant summarizes the selected nonstop replacement, notes the checked bag and return flight stay the same, and says there will be a refund for the fare difference.\nuser: The user confirms the change and agrees to use the same gift card for the refund.\ntool: The reservation is updated successfully to outbound flight HAT266, and the refund is processed to the gift card.\nassistant: The assistant reports that the flight change is complete and asks if any further help is needed.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "You’re all set. Have a great day as well."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user's final message includes the stop marker after successful completion of the requested change, so no additional airline action is needed."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.05,
+      "margin": 0.96,
+      "disagreement": 0.01,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 0
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": 0.99,
+    "think": -0.22,
+    "tool:book_reservation": -0.99,
+    "tool:calculate": -0.98,
+    "tool:cancel_reservation": -0.99,
+    "tool:get_flight_status": -0.98,
+    "tool:get_reservation_details": -0.98,
+    "tool:get_user_details": -0.98,
+    "tool:list_all_airports": -0.99,
+    "tool:search_direct_flight": -0.99,
+    "tool:search_onestop_flight": -0.99,
+    "tool:send_certificate": -0.98,
+    "tool:transfer_to_human_agents": -0.98,
+    "tool:update_reservation_baggages": -0.99,
+    "tool:update_reservation_flights": -0.97,
+    "tool:update_reservation_passengers": -0.99
+  },
+  "best_action": "stop",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "9c964235-e7e0-4583-a870-3023611f6a25",
+    "termination_reason": "user_stop",
+    "selected_message_index": 19,
+    "message_count": 20,
+    "decision_rule": "Use the final user stop turn after the change has already been completed, because that makes stop the only grounded action remaining.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message including the stop marker",
+      "history_summary includes only completed in-episode actions and stops before any nonexistent future content",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "special case: final user satisfaction turn after successful completion, so best_action is stop"
+    ]
+  }
+}

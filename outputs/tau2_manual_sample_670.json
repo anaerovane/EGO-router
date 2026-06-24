@@ -1,0 +1,69 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_bad_vpn_data_saver_mode_on_user_abroad_roaming_disabled_on_persona_none_step_57_manual_670",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]bad_vpn|data_saver_mode_on|user_abroad_roaming_disabled_on[PERSONA:None]",
+  "step_id": 57,
+  "query": "Yes, please go ahead and send me the payment request for the $150.00 bill. I want to get this resolved and have excellent internet speed on my phone again as soon as possible.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports severe mobile-data failure and wants excellent internet speed.\nassistant: The assistant authenticates the account, inspects the plan and device status, and walks through network-mode correction, Data Saver off, VPN disconnect, APN reset, mobile-data toggle, and SIM reseat.\nuser: After each of those steps, the speed test still reports No Connection.\nassistant: The assistant identifies an overdue $150 bill as the remaining account-side issue and asks whether the user wants a payment request sent.\nuser: The user explicitly authorizes sending the $150 payment request so service can be restored quickly.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. I’ll send the $150 payment request now so you can complete it and we can continue restoring the line."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has accepted the identified account-side remedy after multiple failed device-side fixes, so the grounded next move is to initiate the payment-request workflow."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.13,
+      "margin": 0.78,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.96,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:check_device_settings",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.92,
+    "think": 0.09,
+    "tool:get_customer_by_phone": -0.95,
+    "tool:get_details_by_id": -0.55,
+    "tool:get_data_usage": -0.89,
+    "tool:change_plan": -0.96,
+    "tool:refuel_data": -0.95,
+    "tool:check_device_settings": -0.49,
+    "tool:transfer_to_human_agents": -0.38,
+    "tool:calculate": 0.98
+  },
+  "best_action": "tool:calculate",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom-workflow_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "4a4fa9d5-1c05-4b0e-b3c2-118447a7f5dc",
+    "termination_reason": "user_stop",
+    "selected_message_index": 57,
+    "message_count": 78,
+    "decision_rule": "Choose a state where many device-side interventions have failed and the user explicitly approves the remaining account-side recovery action.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. calculate is used as the schema-compatible proxy label for the payment-request step because the allowed telecom action list in existing manual files does not expose a dedicated billing-request action.",
+    "notes": [
+      "This sample intentionally diversifies late-stage telecom states by using a different trajectory than sample 666.",
+      "The visible query contains the user's authorization but no future confirmation of payment completion.",
+      "best_action is the clear argmax among the schema-allowed actions."
+    ]
+  }
+}

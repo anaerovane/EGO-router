@@ -1,0 +1,70 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_airplane_mode_on_lock_sim_card_pin_step_31_manual_708",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|lock_sim_card_pin[PERSONA:Easy]",
+  "step_id": 31,
+  "query": "Yes, please transfer me to a human agent who can help with unlocking my SIM card. Thank you!",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports a service problem.\nassistant: The assistant identifies the account, guides the user through device checks, and learns from the SIM-status check that the SIM card is locked with a PIN code.\nassistant: The assistant explains that SIM PIN or PUK help cannot be provided directly and offers transfer to a human agent for SIM-security assistance.\nuser: The user explicitly asks to be transferred to a human agent for help unlocking the SIM card.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. I’ll transfer you to a human agent now for SIM unlock and PUK-related assistance."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user accepted the offered escalation for a locked-SIM issue that is outside direct assistant scope, so transfer is the grounded next move."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.09,
+      "margin": 0.88,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.98,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:calculate",
+    "tool:change_plan",
+    "tool:check_device_settings",
+    "tool:get_customer_by_phone",
+    "tool:get_data_usage",
+    "tool:get_details_by_id",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.89,
+    "think": 0.04,
+    "tool:calculate": -0.84,
+    "tool:change_plan": -0.96,
+    "tool:check_device_settings": -0.41,
+    "tool:get_customer_by_phone": -0.9,
+    "tool:get_data_usage": -0.95,
+    "tool:get_details_by_id": -0.72,
+    "tool:refuel_data": -0.95,
+    "tool:transfer_to_human_agents": 0.99
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "83c5de28-6e05-497d-8dff-6d4332ae12ee",
+    "termination_reason": "user_stop",
+    "selected_message_index": 31,
+    "message_count": 36,
+    "decision_rule": "Choose a state where the assistant has already determined the issue is a SIM lock requiring escalation and the user explicitly requests transfer.",
+    "scoring_method": "Manual one-step proxy scoring from visible state. Scores strongly favor escalation because SIM unlock assistance is outside the assistant's direct tool scope at this point.",
+    "notes": [
+      "query is the visible transfer-acceptance turn directly preceding transfer_to_human_agents",
+      "history_summary excludes the transfer success output and closing transfer notice",
+      "best_action is argmax and provides a telecom escalation example distinct from restoration and refuel actions",
+      "state remains grounded only in visible troubleshooting and user-requested escalation"
+    ]
+  }
+}

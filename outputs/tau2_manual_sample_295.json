@@ -1,0 +1,83 @@
+{
+  "sample_id": "tau2_airline_task_18_step_31_manual_295",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "18",
+  "step_id": 31,
+  "query": "Yes, please go ahead and downgrade all of them to economy. I just want the refunds sent back to my original payment method. Thank you for helping with this—it’s been a really stressful time.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to downgrade all business class bookings to economy and learn the total savings, without changing flights or passengers.\nassistant: The assistant asks for the user ID and reservation IDs.\nuser: The user provides user ID omar_davis_3817 and asks the assistant to look up the reservations from the account.\nassistant/tool: The assistant retrieves the profile, lists business-class reservations, retrieves each reservation, searches current economy availability for the same flight legs, and calculates total savings of $14,908 from downgrading reservations JG7FMM, 2FBBAH, X7BYG1, EQ1G6C, and BOH180.\nassistant: The assistant asks for confirmation to proceed with downgrading all of those reservations to economy.\nuser: The user confirms to downgrade all of them to economy and says refunds should go back to the original payment method.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. I’ll update those reservations to economy class only and keep the existing flights and passengers unchanged, with refunds going back to the original payment methods."
+      },
+      {
+        "source": "think-refine",
+        "text": "The savings have already been calculated and the user has now confirmed execution, so the grounded next move is to update the reservation flights to the lower cabin class."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.1,
+      "margin": 0.96,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.98,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.58,
+    "think": 0.03,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.74,
+    "tool:cancel_reservation": -0.97,
+    "tool:get_flight_status": -0.94,
+    "tool:get_reservation_details": -0.49,
+    "tool:get_user_details": -0.71,
+    "tool:list_all_airports": -0.98,
+    "tool:search_direct_flight": -0.96,
+    "tool:search_onestop_flight": -0.96,
+    "tool:send_certificate": -0.96,
+    "tool:transfer_to_human_agents": -0.82,
+    "tool:update_reservation_baggages": -0.95,
+    "tool:update_reservation_flights": 0.99,
+    "tool:update_reservation_passengers": -0.96
+  },
+  "best_action": "tool:update_reservation_flights",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "2d91ebed-4b24-4642-9cf1-5a6d9a488e54",
+    "termination_reason": "user_stop",
+    "selected_message_index": 31,
+    "message_count": 43,
+    "decision_rule": "Use the post-confirmation user turn after lookup and savings calculation are complete; the next grounded step is to apply the cabin-class downgrade to the existing reservations.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "selected_message_index is 31 because the user explicitly authorizes execution only here",
+      "special case: although the request mentions refunds, there is no separate refund tool, so updating reservation flights is the operational action that implements the downgrade and implied repricing"
+    ]
+  }
+}

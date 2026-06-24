@@ -1,0 +1,76 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_bad_network_preference_bad_vpn_data_mode_off_data_saver_mode_on_step_39_manual_579",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]bad_network_preference|bad_vpn|data_mode_off|data_saver_mode_on[PERSONA:None]",
+  "step_id": 39,
+  "query": "Could you please let me know which step you’d like me to start with? I can only perform one action at a time, so just let me know which one to do first.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user says mobile data is unreliable and wants excellent internet speed on the phone.\nassistant: The assistant verifies the line by phone number and confirms the plan and device are active.\nassistant: The assistant asks the user to run several phone diagnostics.\nuser: The user reports that the phone is stuck on 2G, mobile data is disabled, Data Saver is on, VPN is connected with poor server performance, and the speed test fails due to no connection.\nassistant: The assistant synthesizes those results into a multi-step remediation plan: enable mobile data, switch network mode away from 2G-only, turn off Data Saver, and disconnect the poor VPN.\nuser: The user says they can only perform one action at a time and asks which step to start with first.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Start by turning on mobile data. Without mobile data enabled, the other improvements cannot restore an actual cellular data session."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible device diagnostics show several blockers, but mobile data being off is the most immediate prerequisite, so the next move is to choose the first instruction rather than make a backend tool call."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.14,
+      "margin": 0.63,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_customer_by_id",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:enable_roaming",
+    "tool:resume_line",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.73,
+    "think": 0.94,
+    "tool:get_customer_by_phone": -0.95,
+    "tool:get_customer_by_name": -0.99,
+    "tool:get_customer_by_id": -0.84,
+    "tool:get_details_by_id": -0.51,
+    "tool:get_bills_for_customer": -0.89,
+    "tool:get_data_usage": -0.77,
+    "tool:refuel_data": -0.88,
+    "tool:enable_roaming": -0.79,
+    "tool:resume_line": -0.93,
+    "tool:send_payment_request": -0.97,
+    "tool:transfer_to_human_agents": -0.42
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_telecom_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "1c11ce44-2131-4c86-9328-b3427143581e",
+    "termination_reason": "user_stop",
+    "selected_message_index": 39,
+    "message_count": 62,
+    "decision_rule": "Choose a state where the problem decomposition is already visible and the assistant must prioritize one user-facing remediation step among several, not call another system tool.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Think is highest because the next job is to rank and communicate the remediation sequence, starting with the most blocking device-side issue.",
+    "notes": [
+      "the visible query explicitly requests step prioritization, which makes a reasoning action more appropriate than backend access",
+      "history_summary excludes later successful execution of the step sequence and the final speed-test recovery",
+      "this sample strengthens diversity by using a later-step telecom decision point with many visible device findings",
+      "all action scores are present even though most telecom tools are clearly irrelevant at this point"
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_airplane_mode_on_lock_sim_card_pin_step_18_manual_577",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|lock_sim_card_pin[PERSONA:Easy]",
+  "step_id": 18,
+  "query": "Yes, please go ahead! I’m ready to follow your instructions. Let me know what you’d like me to check or do first.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that the phone has shown No Service for hours and asks for help restoring calls and data.\nassistant: The assistant asks for line verification details.\nuser: The user provides the name John Smith and phone number 555-123-2002.\nassistant: The assistant looks up the customer, inspects the relevant line and device, confirms that the line is active, and reports that the contract and plan are both in good standing.\nassistant: The assistant says the next step is to guide the user through on-device diagnostics for the No Service issue.\nuser: The user agrees to follow instructions and asks what to check first.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks — the line and device look fine on the account side, so the next step is to start the phone-side diagnosis with the simplest visible check, such as the status bar."
+      },
+      {
+        "source": "think-refine",
+        "text": "Because account-side suspension has already been ruled out and the user is ready to troubleshoot, the grounded next move is to choose which diagnostic instruction to give first rather than call another backend tool."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.16,
+      "margin": 0.56,
+      "disagreement": 0.06,
+      "verifier_confidence": 0.93,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_customer_by_id",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:enable_roaming",
+    "tool:resume_line",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.77,
+    "think": 0.9,
+    "tool:get_customer_by_phone": -0.92,
+    "tool:get_customer_by_name": -0.97,
+    "tool:get_customer_by_id": -0.8,
+    "tool:get_details_by_id": -0.41,
+    "tool:get_bills_for_customer": -0.58,
+    "tool:get_data_usage": -0.72,
+    "tool:refuel_data": -0.89,
+    "tool:enable_roaming": -0.83,
+    "tool:resume_line": -0.9,
+    "tool:send_payment_request": -0.96,
+    "tool:transfer_to_human_agents": -0.37
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_telecom_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "69eeffae-fb11-4b98-9181-5f410a0a6a36",
+    "termination_reason": "user_stop",
+    "selected_message_index": 18,
+    "message_count": 37,
+    "decision_rule": "Choose a state after account-side checks are complete but before phone-side diagnostics begin, so the next move depends on choosing a good troubleshooting instruction rather than another lookup.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Think is highest because the decision point is about selecting the first diagnostic instruction, not about retrieving more backend data.",
+    "notes": [
+      "the visible user query is a readiness signal that invites the assistant to choose the first diagnostic step",
+      "history_summary excludes the later status-bar output and SIM-pin discovery",
+      "this sample gives telecom another non-tool best_action, but in a different task family from sample 576",
+      "tool:get_details_by_id remains plausible but suboptimal because the key missing information is on-device, not in the backend"
+    ]
+  }
+}

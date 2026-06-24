@@ -1,0 +1,81 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_saver_roaming_off_step_15_manual_835",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_saver_mode_on|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 15,
+  "query": "I’m using an Android phone. Could you walk me through how to check if Data Roaming is enabled and make sure my network settings are optimized for the best possible speed? I want to be sure I’m getting excellent internet while I’m here.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: Hi there! I’m having trouble with my mobile data while I’m abroad in France. The internet on my phone is either not working at all or is extremely slow. I really need to get excellent internet speed on my phone—nothing less will do. Can you help me fix this?\nassistant: I'd be happy to help you with your mobile data issues while you're abroad in France. To assist you effectively, I need to identify your account first. Could you please provide your phone number so I can look up your account information?\nuser: Sure, my phone number is 555-123-2002. Let me know what you need me to do next!\nassistant: The assistant calls get_customer_by_phone.\ntool: {\"customer_id\": \"C1001\", \"full_name\": \"John Smith\", \"date_of_birth\": \"1985-06-15\", \"email\": \"john.smith@example.com\", \"phone_number\": \"555-123-2002\", \"address\": {\"street\": \"123 ...\nassistant: The assistant calls get_details_by_id.\ntool: {\"line_id\": \"L1001\", \"phone_number\": \"555-123-2001\", \"status\": \"Active\", \"plan_id\": \"P1001\", \"device_id\": \"D1001\", \"data_used_gb\": 3.2, \"data_refueling_gb\": 0.0, \"roaming_enable...\nassistant: The assistant calls get_details_by_id.\ntool: {\"line_id\": \"L1002\", \"phone_number\": \"555-123-2002\", \"status\": \"Active\", \"plan_id\": \"P1002\", \"device_id\": \"D1002\", \"data_used_gb\": 8.7, \"data_refueling_gb\": 0.0, \"roaming_enable...\nassistant: The assistant calls get_data_usage.\ntool: {\"line_id\": \"L1002\", \"data_used_gb\": \"8.7\", \"data_limit_gb\": \"15.0\", \"data_refueling_gb\": \"0.0\", \"cycle_end_date\": \"2025-02-28\"}\nassistant: The assistant calls get_details_by_id.\ntool: {\"plan_id\": \"P1002\", \"name\": \"Premium Plan\", \"data_limit_gb\": 15.0, \"price_per_month\": 65.0, \"data_refueling_price_per_gb\": 2.0}\nassistant: Thank you for your patience. I've checked your account and found the following: 1. Your line (555-123-2002) is active and has international roaming enabled. 2. You're on the Premium Plan with a 15GB data limit. 3. You've used 8.7GB of your 15GB allowance, so you haven't exceeded your data limit. Since you're experiencing slow internet speeds while abroad in France, here are some recommendations to help improve your connection: 1. Make sure your phone's network settings are optimized for international use. Your phone might be connecting to a slower network type while abroad. 2. Check if your phone has Data Roaming enabled in its settings. Even though your line is roaming-enabled on our end, your phone's settings also need to have Data Roaming turned on. 3. Try restarting your phone, which can help establish a better connection to the local networks in France. 4. If possible, check which carrier your phone is connecting to in France. Some carriers might provide better coverage than others. Would you like me to provide more specific instructions for any of these steps based on your phone type (Android or iPhone)?",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Absolutely. I’ll guide you through checking the phone settings that matter most for roaming speed, starting with the current network and roaming status."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user is asking for device-setting guidance while abroad, so the grounded next move is to inspect the current network and roaming-related phone status before prescribing changes."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.23,
+      "margin": 0.51,
+      "disagreement": 0.1,
+      "verifier_confidence": 0.88,
+      "steps_remaining": 5
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:send_payment_request",
+    "tool:resume_line",
+    "tool:reboot_device",
+    "tool:check_network_status",
+    "tool:check_sim_status",
+    "tool:reseat_sim_card",
+    "tool:toggle_airplane_mode",
+    "tool:toggle_data_roaming",
+    "tool:toggle_data_saver",
+    "tool:reset_apn_settings",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.9,
+    "think": 0.19,
+    "tool:get_customer_by_phone": -0.96,
+    "tool:get_details_by_id": -0.34,
+    "tool:get_data_usage": -0.22,
+    "tool:send_payment_request": -0.82,
+    "tool:resume_line": -0.93,
+    "tool:reboot_device": -0.58,
+    "tool:check_network_status": 0.86,
+    "tool:check_sim_status": 0.17,
+    "tool:reseat_sim_card": -0.71,
+    "tool:toggle_airplane_mode": -0.47,
+    "tool:toggle_data_roaming": -0.29,
+    "tool:toggle_data_saver": -0.18,
+    "tool:reset_apn_settings": -0.16,
+    "tool:transfer_to_human_agents": -0.44
+  },
+  "best_action": "tool:check_network_status",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "94859ed5-ec56-4c15-a817-df006f807f07",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 34,
+    "decision_rule": "Choose a telecom roaming user turn where account lookup is done but the user is asking how to inspect phone-side settings before any concrete fix is known.",
+    "scoring_method": "Manual one-step proxy scoring from visible state. The top score reflects obtaining the device/network-status evidence needed to give grounded instructions rather than toggling settings blindly.",
+    "notes": [
+      "This is a pre-remediation diagnostic sample rather than a post-diagnosis execution sample.",
+      "Visible context supports a network-status inspection because the user explicitly asks how to verify roaming and speed-related settings.",
+      "best_action is check_network_status because it surfaces roaming, signal, network mode, and related status needed for the next explanation."
+    ]
+  }
+}

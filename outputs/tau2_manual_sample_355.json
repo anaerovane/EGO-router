@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_29_step_10_manual_355",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "29",
+  "step_id": 10,
+  "query": "Thanks for the options! I’d like to stick with flights that arrive before 7am at the destination for both legs, and I want the cheapest Economy (not Basic Economy) fares that fit that. Could you let me know which flights work best for that? Also, my return should be on the 19th, not the 20th.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to change a roundtrip booking from DTW-LGA to nonstop DTW-JFK and JFK-DTW on the same dates, keeping one checked bag and looking for the cheapest economy fare arriving before 7 AM on both legs.\nassistant: The assistant asks for the user ID and reservation ID.\nuser: The user provides user ID raj_brown_5782 and reservation ID VA5SGQ.\nassistant: The assistant retrieves the reservation and asks follow-up questions about timing, cabin, baggage, and whether to keep insurance.\nuser: The user says they want flights that arrive before 7 AM at the destination for both legs and the cheapest economy, not basic economy, options that fit those constraints.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. I’ll look for nonstop DTW-JFK and JFK-DTW options on your current dates that arrive before 7 AM and use the cheapest eligible economy fares."
+      },
+      {
+        "source": "think-refine",
+        "text": "The reservation is already identified and the user has now specified the concrete search constraints, so the grounded next action is to search direct flights rather than modify the booking immediately."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.19,
+      "margin": 0.84,
+      "disagreement": 0.07,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 5
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.56,
+    "think": 0.15,
+    "tool:book_reservation": -0.95,
+    "tool:calculate": -0.84,
+    "tool:cancel_reservation": -0.98,
+    "tool:get_flight_status": -0.93,
+    "tool:get_reservation_details": -0.3,
+    "tool:get_user_details": -0.91,
+    "tool:list_all_airports": -0.99,
+    "tool:search_direct_flight": 0.99,
+    "tool:search_onestop_flight": -0.84,
+    "tool:send_certificate": -0.95,
+    "tool:transfer_to_human_agents": -0.7,
+    "tool:update_reservation_baggages": -0.88,
+    "tool:update_reservation_flights": -0.22,
+    "tool:update_reservation_passengers": -0.98
+  },
+  "best_action": "tool:search_direct_flight",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "bb71030b-518f-45dc-bd9d-732d67fea499",
+    "termination_reason": "user_stop",
+    "selected_message_index": 10,
+    "message_count": 22,
+    "decision_rule": "Use the user turn where they specify the final flight-search constraints, because only then does direct-flight search become the grounded next action.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops before any flight-option search results or pricing calculations",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is search_direct_flight because the user is requesting candidate nonstop options under stated timing and cabin constraints"
+    ]
+  }
+}

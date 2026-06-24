@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_contract_end_step_12_manual_537",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|break_apn_settings|contract_end_suspension|lock_sim_card_pin[PERSONA:None]",
+  "step_id": 12,
+  "query": "Yes, please transfer me to a human agent so I can get this sorted out. Thank you.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: Reports a persistent \"No Service\" issue.\nassistant: Identified the customer by phone number, inspected the line, and found the affected line suspended with a contract end date already in the past.\nassistant: Explained that policy does not allow self-service restoration for a contract-end suspension and that human assistance is needed.\nuser: Explicitly asked to be transferred to a human agent.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood — since this suspension needs manual help, I’ll transfer you to a human agent now."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user requested escalation after a policy-blocked suspension finding, so immediate transfer is more appropriate than additional troubleshooting."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.09,
+      "margin": 0.9,
+      "disagreement": 0.02,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:toggle_data",
+    "tool:grant_app_permission",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.94,
+    "think": 0.05,
+    "tool:get_customer_by_phone": -0.93,
+    "tool:get_details_by_id": -0.47,
+    "tool:get_data_usage": -0.96,
+    "tool:refuel_data": -0.98,
+    "tool:send_payment_request": -0.89,
+    "tool:resume_line": -0.96,
+    "tool:enable_roaming": -0.97,
+    "tool:toggle_data": -0.95,
+    "tool:grant_app_permission": -0.99,
+    "tool:transfer_to_human_agents": 0.99
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_telecom_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "8c4d9558-d31e-4428-96f6-641aa89fc7f0",
+    "termination_reason": "user_stop",
+    "selected_message_index": 12,
+    "message_count": 17,
+    "decision_rule": "Choose a decision point where policy has already ruled out self-service restoration and the user explicitly requests escalation.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Highest score goes to transfer because it is both requested by the user and required by the policy-limited suspension state.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample adds explicit user-requested escalation diversity within telecom service restoration."
+    ]
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "sample_id": "tau2_retail_task_44_step_11_manual_721",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "retail",
+  "task_id": "44",
+  "step_id": 11,
+  "query": "Yes, please go ahead and make the swap to the cheapest Desk Lamp and put the $17.99 refund on a gift card. That’s the only change I want to make to this order.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to change the Desk Lamp in a pending order to the cheapest Desk Lamp variant and wants to know the refund difference on a gift card.\nassistant: The assistant authenticates the account with name, zip code, and order ID, retrieves the pending order, and checks Desk Lamp product variants.\nassistant: The assistant reports that the current lamp in order #W9300146 costs $153.23, identifies the cheapest available Desk Lamp variant at $135.24, computes a $17.99 refund difference, and asks whether to proceed with the swap and gift-card refund.\nuser: The user confirms the change to the cheapest Desk Lamp and confirms the refund should go to a gift card.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for confirming. I have the target lamp variant and the refund destination, so I can update the pending order now."
+      },
+      {
+        "source": "think-refine",
+        "text": "The order, replacement variant, and refund method are already grounded in the visible context, so the next step is to modify the pending order rather than ask for more details."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.08,
+      "margin": 0.9,
+      "disagreement": 0.02,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_user_id_by_email",
+    "tool:find_user_id_by_name_zip",
+    "tool:get_user_details",
+    "tool:get_order_details",
+    "tool:get_product_details",
+    "tool:list_all_product_types",
+    "tool:modify_pending_order_items",
+    "tool:modify_pending_order_address",
+    "tool:modify_pending_order_payment",
+    "tool:cancel_pending_order",
+    "tool:return_delivered_order_items",
+    "tool:exchange_delivered_order_items",
+    "tool:modify_user_address",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.96,
+    "think": 0.03,
+    "tool:find_user_id_by_email": -0.98,
+    "tool:find_user_id_by_name_zip": -0.91,
+    "tool:get_user_details": -0.74,
+    "tool:get_order_details": -0.28,
+    "tool:get_product_details": -0.62,
+    "tool:list_all_product_types": -0.97,
+    "tool:modify_pending_order_items": 0.99,
+    "tool:modify_pending_order_address": -0.98,
+    "tool:modify_pending_order_payment": -0.85,
+    "tool:cancel_pending_order": -0.94,
+    "tool:return_delivered_order_items": -0.97,
+    "tool:exchange_delivered_order_items": -0.89,
+    "tool:modify_user_address": -0.99,
+    "tool:transfer_to_human_agents": -0.8,
+    "tool:calculate": -0.77
+  },
+  "best_action": "tool:modify_pending_order_items",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_retail_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "1005448f-435c-4bdf-9717-910629df3560",
+    "termination_reason": "user_stop",
+    "selected_message_index": 11,
+    "message_count": 16,
+    "decision_rule": "Choose a user turn where the assistant has already identified the exact cheaper variant and refund delta, so the user confirmation makes order modification the most direct grounded next action.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Highest score goes to modify_pending_order_items because the change request is fully specified and executable without additional lookup.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This retail sample captures a pending-order variant swap with a gift-card refund destination, distinct from return-processing cases."
+    ]
+  }
+}

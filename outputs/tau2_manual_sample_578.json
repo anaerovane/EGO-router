@@ -1,0 +1,76 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_break_apn_settings_contract_end_suspension_lock_sim_card_pin_step_12_manual_578",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]break_apn_settings|contract_end_suspension|lock_sim_card_pin[PERSONA:Hard]",
+  "step_id": 12,
+  "query": "Oh, I see. If that’s what needs to happen, then yes, please transfer me to a real person who can help. I just want my phone to work again. Thank you.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports a No Service problem and wants the phone working again.\nassistant: The assistant asks for verification details.\nuser: The user provides the name John Smith and phone number 555-123-2002.\nassistant: The assistant retrieves the customer and checks the relevant line.\nassistant: The assistant explains that the line associated with phone number 555-123-2002 is currently suspended and that the contract end date is already in the past, so the assistant cannot lift the suspension directly under policy.\nuser: The user accepts that a person is needed and explicitly asks to be transferred to a human agent.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. Since the issue requires human handling to address the suspended line, I’ll transfer you to a human agent now."
+      },
+      {
+        "source": "think-refine",
+        "text": "The backend state already shows a policy-blocked suspension case, and the user has explicitly requested escalation, so a human transfer is the grounded next action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.07,
+      "margin": 0.92,
+      "disagreement": 0.01,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_customer_by_id",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:enable_roaming",
+    "tool:resume_line",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.9,
+    "think": 0.05,
+    "tool:get_customer_by_phone": -0.96,
+    "tool:get_customer_by_name": -0.97,
+    "tool:get_customer_by_id": -0.85,
+    "tool:get_details_by_id": -0.62,
+    "tool:get_bills_for_customer": -0.79,
+    "tool:get_data_usage": -0.91,
+    "tool:refuel_data": -0.97,
+    "tool:enable_roaming": -0.98,
+    "tool:resume_line": -0.99,
+    "tool:send_payment_request": -0.96,
+    "tool:transfer_to_human_agents": 0.99
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_telecom_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "fdffd676-8010-496b-9c35-784b9ead1663",
+    "termination_reason": "user_stop",
+    "selected_message_index": 12,
+    "message_count": 17,
+    "decision_rule": "Choose a state where the visible telecom backend evidence reveals a policy-blocked suspension and the user explicitly opts into escalation.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores favor immediate transfer because no remaining self-service telecom action can satisfy the request to restore a policy-suspended line.",
+    "notes": [
+      "this sample pairs a telecom transfer decision with a different root cause than the retail escalation sample",
+      "history_summary excludes the later transfer success marker",
+      "tool:resume_line is scored very low because the assistant has already stated that policy blocks direct restoration",
+      "best_action is supported by the real next step in the source trajectory but the scores are manually assigned"
+    ]
+  }
+}

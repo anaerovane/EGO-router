@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_overdue_bill_step_15_manual_536",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|overdue_bill_suspension[PERSONA:None]",
+  "step_id": 15,
+  "query": "I’m ready to make the payment to restore my service. Could you please send me the payment request so I can proceed?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: Reports a \"No Service\" issue.\nassistant: Identified the account, inspected the affected line, and found that the line was suspended.\nassistant: Retrieved the billing records and explained that an overdue $65.00 bill was causing the suspension.\nuser: Said they were ready to pay and asked for the payment request needed to proceed.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Absolutely — I can send the payment request for that overdue bill now so you can complete payment and restore service."
+      },
+      {
+        "source": "think-refine",
+        "text": "The suspension cause is already identified and the user explicitly asked for the payment link, so the most direct grounded action is to send the payment request."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.12,
+      "margin": 0.85,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.98,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:toggle_data",
+    "tool:grant_app_permission",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.91,
+    "think": 0.07,
+    "tool:get_customer_by_phone": -0.87,
+    "tool:get_details_by_id": -0.54,
+    "tool:get_data_usage": -0.9,
+    "tool:refuel_data": -0.98,
+    "tool:send_payment_request": 0.99,
+    "tool:resume_line": -0.41,
+    "tool:enable_roaming": -0.96,
+    "tool:toggle_data": -0.94,
+    "tool:grant_app_permission": -0.99,
+    "tool:transfer_to_human_agents": -0.73
+  },
+  "best_action": "tool:send_payment_request",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "b3a0854d-1336-4401-b089-0e136c541a2e",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 38,
+    "decision_rule": "Choose a state where the service outage cause is already known and the user explicitly requests the payment request needed for the next recovery step.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores strongly favor the payment-request action because it directly satisfies the user request and unblocks restoration.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample captures a clean billing-remediation handoff before payment confirmation and line resumption."
+    ]
+  }
+}

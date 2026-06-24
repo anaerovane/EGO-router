@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_41_step_3_manual_449",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "41",
+  "step_id": 3,
+  "query": "Sure, my user ID is amelia_davis_8890.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user asks to cancel all upcoming flights that have only one passenger on the reservation.\nassistant: The assistant says it can help and asks for the user ID.\nuser: The user provides user ID amelia_davis_8890.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for sharing your user ID. I’ll look up your account so I can identify which reservations have only one passenger."
+      },
+      {
+        "source": "think-refine",
+        "text": "The request depends on reviewing multiple reservations and the user has only provided an account identifier, so the grounded next move is to retrieve the user record first."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.11,
+      "margin": 0.86,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 5
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.41,
+    "think": 0.08,
+    "tool:book_reservation": -0.97,
+    "tool:calculate": -0.87,
+    "tool:cancel_reservation": -0.94,
+    "tool:get_flight_status": -0.8,
+    "tool:get_reservation_details": -0.29,
+    "tool:get_user_details": 0.99,
+    "tool:list_all_airports": -0.95,
+    "tool:search_direct_flight": -0.92,
+    "tool:search_onestop_flight": -0.92,
+    "tool:send_certificate": -0.88,
+    "tool:transfer_to_human_agents": -0.55,
+    "tool:update_reservation_baggages": -0.91,
+    "tool:update_reservation_flights": -0.91,
+    "tool:update_reservation_passengers": -0.91
+  },
+  "best_action": "tool:get_user_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_airline_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "26b7177c-e62c-4cf3-a352-8e3a850e33cf",
+    "termination_reason": "user_stop",
+    "selected_message_index": 3,
+    "message_count": 32,
+    "decision_rule": "Choose a user turn where the user provides the account identifier for a multi-reservation cancellation request, making account lookup the most direct grounded next action.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is get_user_details because the assistant needs the account record to identify which bookings meet the one-passenger cancellation rule"
+    ]
+  }
+}

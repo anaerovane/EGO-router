@@ -1,0 +1,76 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]_step_21_manual_788",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]",
+  "step_id": 21,
+  "query": "I just tried using my mobile data, but it still isn’t working—there’s no connection at all. I really need excellent internet speed, so can you help me get this fixed?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports inconsistent and slow mobile data and wants excellent speed.\nassistant: The assistant identifies the customer and confirms that line 555-123-2002 is the affected line.\nassistant: The assistant retrieves plan details, finds that the line has exceeded its 15GB data limit, and explains that this is the visible cause of the slowdown.\nuser: The user declines a plan change but authorizes a 2GB data refuel.\nassistant: The assistant refuels 2GB successfully.\nuser: After trying mobile data again, the user reports that there is still no connection at all and asks for help fixing it.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. Since extra data has already been added and the connection is still completely down, the next step should shift from billing to diagnostics."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible state shows that the original overage issue has already been mitigated by refueling, yet the user still has no connection, so a fresh inspection of line or device details is more grounded than further billing actions or immediate escalation."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.26,
+      "margin": 0.27,
+      "disagreement": 0.16,
+      "verifier_confidence": 0.84,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.83,
+    "think": 0.34,
+    "tool:get_customer_by_phone": -0.9,
+    "tool:get_customer_by_name": -0.96,
+    "tool:get_details_by_id": 0.61,
+    "tool:get_bills_for_customer": -0.85,
+    "tool:send_payment_request": -0.97,
+    "tool:check_payment_request": -0.96,
+    "tool:make_payment": -0.98,
+    "tool:resume_line": -0.49,
+    "tool:enable_roaming": -0.71,
+    "tool:refuel_data": -0.22,
+    "tool:transfer_to_human_agents": 0.18
+  },
+  "best_action": "tool:get_details_by_id",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "id=[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None] trial=0",
+    "termination_reason": "user_stop",
+    "selected_message_index": 21,
+    "message_count": 28,
+    "decision_rule": "Choose a telecom state where a previously visible overage explanation has already been acted on successfully, but the user still has zero connectivity, forcing a transition from capacity remediation to deeper diagnosis.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores now favor renewed state inspection because additional billing or payment actions would be redundant after the successful refuel, while escalation is still possible but not yet best supported.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is tool:get_details_by_id because the remaining no-connection problem requires more environment inspection after the data refuel"
+    ]
+  }
+}

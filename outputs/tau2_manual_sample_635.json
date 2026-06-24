@@ -1,0 +1,109 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_airplane_bad_network_roaming_step_20_manual_635",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]airplane_mode_on|bad_network_preference|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 20,
+  "query": "Yes, I can perform diagnostic actions on my phone. Please guide me step by step on what you’d like me to check or do next.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that mobile data is not working well while abroad in France and wants excellent internet speed.\nassistant: The assistant asks for the phone number to identify the account.\nuser: The user provides phone number 555-123-2002.\nassistant: The assistant retrieves the customer, line, plan, and data-usage context and confirms the line is active with roaming enabled and data still available.\nassistant: The assistant says the next step is to diagnose the phone settings directly and asks whether the user can perform diagnostic actions on the device.\nuser: The user confirms they can follow guided diagnostic steps on the phone.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Great — since you can run checks on the phone, I’ll start with a network-status diagnostic so we can see whether signal, roaming, or another device setting is blocking mobile data abroad."
+      },
+      {
+        "source": "think-refine",
+        "text": "Account and line lookup are already complete, so the grounded next move is to inspect the device’s current network state before proposing any specific setting change."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.14,
+      "margin": 0.76,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:check_network_status",
+    "tool:check_status_bar",
+    "tool:check_data_restriction_status",
+    "tool:check_network_mode_preference",
+    "tool:check_vpn_status",
+    "tool:check_apn_settings",
+    "tool:check_sim_status",
+    "tool:toggle_airplane_mode",
+    "tool:toggle_roaming",
+    "tool:toggle_data",
+    "tool:toggle_data_saver_mode",
+    "tool:set_network_mode_preference",
+    "tool:disconnect_vpn",
+    "tool:reset_apn_settings",
+    "tool:reseat_sim_card",
+    "tool:reboot_device",
+    "tool:run_speed_test",
+    "tool:refuel_data",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.94,
+    "think": 0.12,
+    "tool:get_customer_by_phone": -0.67,
+    "tool:get_details_by_id": -0.41,
+    "tool:get_data_usage": -0.38,
+    "tool:check_network_status": 0.99,
+    "tool:check_status_bar": 0.41,
+    "tool:check_data_restriction_status": 0.16,
+    "tool:check_network_mode_preference": 0.08,
+    "tool:check_vpn_status": -0.03,
+    "tool:check_apn_settings": -0.07,
+    "tool:check_sim_status": 0.02,
+    "tool:toggle_airplane_mode": -0.58,
+    "tool:toggle_roaming": -0.44,
+    "tool:toggle_data": -0.33,
+    "tool:toggle_data_saver_mode": -0.25,
+    "tool:set_network_mode_preference": -0.36,
+    "tool:disconnect_vpn": -0.29,
+    "tool:reset_apn_settings": -0.46,
+    "tool:reseat_sim_card": -0.63,
+    "tool:reboot_device": -0.4,
+    "tool:run_speed_test": -0.18,
+    "tool:refuel_data": -0.73,
+    "tool:get_bills_for_customer": -0.88,
+    "tool:send_payment_request": -0.9,
+    "tool:check_payment_request": -0.91,
+    "tool:make_payment": -0.92,
+    "tool:resume_line": -0.89,
+    "tool:enable_roaming": -0.47,
+    "tool:transfer_to_human_agents": -0.61
+  },
+  "best_action": "tool:check_network_status",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_telecom_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "a1070f7c-f798-4205-8202-ca0cb50b6b3a",
+    "termination_reason": "user_stop",
+    "selected_message_index": 20,
+    "message_count": 43,
+    "decision_rule": "Choose a troubleshooting handoff point after account lookup where the user is ready to run on-device diagnostics and a broad network-state check is the most informative next probe.",
+    "scoring_method": "Manual one-step proxy scoring from the visible telecom state. Scores prioritize check_network_status because it jointly reveals airplane mode, signal, roaming, network type, and data state before any targeted fix is attempted.",
+    "notes": [
+      "query comes from the visible user turn that authorizes guided diagnostics",
+      "history_summary excludes later tool observations about airplane mode and roaming",
+      "best_action is check_network_status because the assistant has not yet collected the device-level evidence needed to choose a specific remediation step"
+    ]
+  }
+}

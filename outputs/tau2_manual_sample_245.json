@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_45_step_3_manual_245",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "45",
+  "step_id": 3,
+  "query": "My user ID is sophia_taylor_9065 and the reservation number is PEP4E0. The reason is definitely a family emergency—this is really urgent and I need to get a full refund. Please help me with this as soon as possible.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to cancel a flight because of a family emergency and is asking for a full refund.\nassistant: The assistant says it can help and asks for the user ID, the reservation ID, and the cancellation reason category.\nuser: The user provides user ID sophia_taylor_9065, reservation PEP4E0, and confirms the reason is a family emergency.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thank you for the details. I’ll open reservation PEP4E0 first so I can verify the booking and determine what refund options apply."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has already supplied the needed identifiers and stated reason, so the grounded next move is to retrieve the reservation details before taking any cancellation action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.12,
+      "margin": 0.86,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.41,
+    "think": 0.1,
+    "tool:book_reservation": -0.97,
+    "tool:calculate": -0.86,
+    "tool:cancel_reservation": -0.59,
+    "tool:get_flight_status": -0.84,
+    "tool:get_reservation_details": 0.99,
+    "tool:get_user_details": -0.16,
+    "tool:list_all_airports": -0.96,
+    "tool:search_direct_flight": -0.95,
+    "tool:search_onestop_flight": -0.95,
+    "tool:send_certificate": -0.86,
+    "tool:transfer_to_human_agents": -0.44,
+    "tool:update_reservation_baggages": -0.92,
+    "tool:update_reservation_flights": -0.92,
+    "tool:update_reservation_passengers": -0.92
+  },
+  "best_action": "tool:get_reservation_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "2886dcd9-4686-45e4-8d1a-f57793f0ebca",
+    "termination_reason": "user_stop",
+    "selected_message_index": 3,
+    "message_count": 25,
+    "decision_rule": "Choose a user turn where the user provides identifying booking or account information that makes a single grounded next action clearly available from the visible transcript.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is get_reservation_details because the assistant needs to inspect reservation PEP4E0 before deciding whether cancellation and refund handling fit the visible booking state."
+    ]
+  }
+}

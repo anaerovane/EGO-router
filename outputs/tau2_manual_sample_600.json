@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_36_step_3_manual_600",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "36",
+  "step_id": 3,
+  "query": "Yeah, my user ID is lucas_brown_4047, and the reservation ID is EUJUY6. I just need to move the flight out by two days. My wife... she passed away yesterday, and I can’t travel as planned.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user asks to change a booked flight because a family death makes the original travel date impossible.\nassistant: The assistant expresses sympathy and asks for the user ID and reservation ID needed to look up the booking.\nuser: The user provides user ID lucas_brown_4047, reservation ID EUJUY6, says the flight needs to move out by two days, and gives the bereavement context.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I’m very sorry for your loss. I have the reservation details you provided, so I’ll look up booking EUJUY6 first and then see what flight-change options are available."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has now supplied the reservation identifier and the requested change window, so the grounded next step is to retrieve the reservation details before evaluating rebooking options or exceptions."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.13,
+      "margin": 0.83,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.88,
+    "think": 0.14,
+    "tool:book_reservation": -0.97,
+    "tool:calculate": -0.9,
+    "tool:cancel_reservation": -0.89,
+    "tool:get_flight_status": -0.77,
+    "tool:get_reservation_details": 0.97,
+    "tool:get_user_details": -0.2,
+    "tool:list_all_airports": -0.96,
+    "tool:search_direct_flight": -0.74,
+    "tool:search_onestop_flight": -0.74,
+    "tool:send_certificate": -0.56,
+    "tool:transfer_to_human_agents": -0.34,
+    "tool:update_reservation_baggages": -0.93,
+    "tool:update_reservation_flights": -0.92,
+    "tool:update_reservation_passengers": -0.93
+  },
+  "best_action": "tool:get_reservation_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_airline_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "0ae8db7c-4cdb-4978-a67c-59c4cad2e640",
+    "termination_reason": "user_stop",
+    "selected_message_index": 3,
+    "message_count": 24,
+    "decision_rule": "Choose a user turn where the traveler provides the reservation identifier and requested schedule shift, making reservation retrieval the necessary grounded precursor to any compassionate rebooking handling.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores favor reservation lookup because the assistant must inspect the booking before deciding whether a change, waiver, or human escalation is appropriate.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "Airline was used only once in this batch for diversity after prioritizing retail and telecom."
+    ]
+  }
+}

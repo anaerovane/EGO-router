@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_30_step_15_manual_052",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "30",
+  "step_id": 15,
+  "query": "Yes, please use the same gift card (gift_card_5634230) for the refund. That works for me.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user asks to change an upcoming one-stop LAS-to-IAH trip to a nonstop flight and initially also asks to remove a checked bag.\nassistant: The assistant asks for the user ID and reservation ID.\nuser: The user provides user ID james_taylor_7043 and reservation ID 1N99U6, and accepts that the checked bag cannot be removed.\nassistant called tools: get_reservation_details and then search_direct_flight for LAS to IAH on 2024-05-19.\nassistant: The assistant presents nonstop options, the user chooses HAT266, and the assistant confirms the new outbound flight while keeping the return flight unchanged and the checked bag unchanged.\nuser: The user confirms that plan.\nassistant: The assistant asks whether any refund from the lower fare should be returned to the same gift card on file, gift_card_5634230.\nuser: The user explicitly confirms using the same gift card for the refund.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. I’ll update your reservation now to switch the outbound trip to nonstop flight HAT266 on May 19 while keeping the return flight and checked bag unchanged."
+      },
+      {
+        "source": "think-refine",
+        "text": "All operational details are now grounded: the new flight, unchanged segments, and refund payment method. The next move is to execute the reservation update."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.13,
+      "margin": 0.79,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.33,
+    "think": 0.09,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.79,
+    "tool:cancel_reservation": -0.87,
+    "tool:get_flight_status": -0.58,
+    "tool:get_reservation_details": -0.36,
+    "tool:get_user_details": -0.47,
+    "tool:list_all_airports": -0.94,
+    "tool:search_direct_flight": -0.9,
+    "tool:search_onestop_flight": -0.91,
+    "tool:send_certificate": -0.84,
+    "tool:transfer_to_human_agents": -0.31,
+    "tool:update_reservation_baggages": -0.89,
+    "tool:update_reservation_flights": 0.98,
+    "tool:update_reservation_passengers": -0.89
+  },
+  "best_action": "tool:update_reservation_flights",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "9c964235-e7e0-4583-a870-3023611f6a25",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 20,
+    "decision_rule": "Choose a user turn where the user has already confirmed the exact flight change and then explicitly confirms the refund/payment method, leaving the reservation update as the grounded next move.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user’s request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is supported by the real next assistant action, which calls update_reservation_flights with HAT266 and the unchanged return segment"
+    ]
+  }
+}

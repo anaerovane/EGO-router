@@ -1,0 +1,76 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]airplane_mode_on|bad_network_preference|user_abroad_roaming_enabled_off[PERSONA:Easy]_step_29_manual_790",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]airplane_mode_on|bad_network_preference|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 29,
+  "query": "I checked my phone’s network mode settings, and it’s currently set to “2G only.” Should I go ahead and change it to “4G/5G preferred” now? If so, I’m ready for your step-by-step instructions!",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports very poor mobile data while abroad in France and wants excellent speed.\nassistant: The assistant identifies the account and line, confirms roaming is enabled, and reviews plan usage, which is still below the limit.\nassistant: The user checks network status and reveals that Airplane Mode is on and Data Roaming is off.\nuser: The user follows guidance to turn Airplane Mode off and enable Data Roaming, then runs a speed test.\nuser: The connection returns but is still extremely slow on a poor 2G signal.\nassistant: The assistant asks for the phone’s network mode preference.\nuser: The user reports that the device is set to 2G only and asks whether to switch to 4G/5G preferred with step-by-step guidance.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes — the visible evidence now points directly to the network mode setting as the remaining bottleneck. The next response should guide the user to change that preference."
+      },
+      {
+        "source": "think-refine",
+        "text": "Airplane mode and roaming were already corrected, but the phone is still stuck on a 2G-only preference while abroad. That setting cleanly explains the remaining speed issue, so the next move is guided troubleshooting rather than another account-side tool action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.21,
+      "margin": 0.24,
+      "disagreement": 0.16,
+      "verifier_confidence": 0.86,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.82,
+    "think": 0.76,
+    "tool:get_customer_by_phone": -0.94,
+    "tool:get_customer_by_name": -0.97,
+    "tool:get_details_by_id": 0.22,
+    "tool:get_bills_for_customer": -0.87,
+    "tool:send_payment_request": -0.98,
+    "tool:check_payment_request": -0.97,
+    "tool:make_payment": -0.98,
+    "tool:resume_line": -0.63,
+    "tool:enable_roaming": -0.31,
+    "tool:refuel_data": -0.74,
+    "tool:transfer_to_human_agents": 0.14
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "id=[mobile_data_issue]airplane_mode_on|bad_network_preference|user_abroad_roaming_enabled_off[PERSONA:Easy] trial=0",
+    "termination_reason": "user_stop",
+    "selected_message_index": 29,
+    "message_count": 42,
+    "decision_rule": "Choose a telecom state where multiple earlier obstacles have been cleared and the remaining issue is crisply localized to a user-visible handset setting, making guided reasoning the most faithful next action under the available action inventory.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores favor thinking because the best next move is to translate the 2G-only diagnostic into concrete instructions, whereas the listed account tools do not directly implement a handset network-mode change.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is think because the decisive next move is to provide step-by-step handset guidance to change the network mode setting"
+    ]
+  }
+}

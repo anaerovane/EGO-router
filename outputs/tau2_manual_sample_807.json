@@ -1,0 +1,76 @@
+{
+  "sample_id": "tau2_telecom_task_[service_issue]airplane_mode_on|break_apn_settings|unseat_sim_card[PERSONA:None]_step_32_manual_807",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|break_apn_settings|unseat_sim_card[PERSONA:None]",
+  "step_id": 32,
+  "query": "I checked the SIM status, and it says \"No SIM card detected in the phone.\" What should I do now?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports a phone showing \"No Service\" for several hours.\nassistant: The assistant authenticated the account, verified the relevant line is active, and ruled out overdue-bill suspension from visible account checks.\nassistant: Guided troubleshooting found that airplane mode was on; the user turned it off, but the phone still showed no signal and data disabled.\nassistant: The assistant then asked the user to check SIM status.\nuser: The user reports that the phone says no SIM card is detected and asks what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "The SIM is not being recognized, so the assistant should guide the user through reseating the SIM card before moving on to deeper network checks."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible issue is now physical SIM detection rather than account state, so a guided next-step explanation is more grounded than another backend tool call."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.27,
+      "margin": 0.41,
+      "disagreement": 0.09,
+      "verifier_confidence": 0.9,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.82,
+    "think": 0.95,
+    "tool:get_customer_by_phone": -0.94,
+    "tool:get_customer_by_name": -0.97,
+    "tool:get_details_by_id": 0.18,
+    "tool:get_bills_for_customer": -0.91,
+    "tool:send_payment_request": -0.97,
+    "tool:check_payment_request": -0.96,
+    "tool:make_payment": -0.98,
+    "tool:resume_line": -0.74,
+    "tool:enable_roaming": -0.88,
+    "tool:refuel_data": -0.86,
+    "tool:transfer_to_human_agents": -0.12
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_telecom_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "f3334ccd-54b2-40b2-9e14-86260c384420",
+    "termination_reason": "user_stop",
+    "selected_message_index": 32,
+    "message_count": 51,
+    "decision_rule": "Choose a state where the device diagnostic reveals a concrete physical-layer issue that the user can act on immediately, making guided reasoning the most grounded next move.",
+    "scoring_method": "Manual one-step proxy scoring from visible state. Highest score goes to think because the assistant should now instruct SIM reseating rather than spend another turn on backend account actions.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is think because the user needs step-by-step SIM reseating guidance in response to the no-SIM diagnostic"
+    ]
+  }
+}

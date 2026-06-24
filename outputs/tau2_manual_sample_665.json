@@ -1,0 +1,69 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_usage_exceeded_user_abroad_roaming_enabled_off_persona_easy_step_19_manual_665",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 19,
+  "query": "I just tried using my mobile data, but it still isn’t working—there’s no connection at all. What should I do next to get excellent internet speed?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports mobile data problems while abroad in France and wants excellent internet speed.\nassistant: The assistant authenticates the account by phone number and inspects the line and plan details.\nassistant: The assistant discovers that the user has exceeded the 15GB plan limit while roaming and explains that high-speed data is throttled.\nuser: The user asks to refuel 2GB of data instead of changing plans.\nassistant: The assistant successfully adds 2GB of refuel data and tells the user to try mobile data again.\nuser: After trying again, the user reports there is still no connection at all and asks what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for checking. Since the extra data didn’t restore service, let’s inspect your current phone status next so we can see whether the issue is on the device side."
+      },
+      {
+        "source": "think-refine",
+        "text": "The refuel action addressed the account-level throttle, so the next grounded move is to inspect device/network state rather than add more data or transfer immediately."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.26,
+      "margin": 0.44,
+      "disagreement": 0.12,
+      "verifier_confidence": 0.88,
+      "steps_remaining": 7
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:check_device_settings",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.93,
+    "think": 0.19,
+    "tool:get_customer_by_phone": -0.89,
+    "tool:get_details_by_id": -0.42,
+    "tool:get_data_usage": -0.21,
+    "tool:change_plan": -0.78,
+    "tool:refuel_data": -0.73,
+    "tool:check_device_settings": 0.91,
+    "tool:transfer_to_human_agents": -0.26,
+    "tool:calculate": -0.84
+  },
+  "best_action": "tool:check_device_settings",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "722b42fa-e696-4169-9a7e-d60e4c487beb",
+    "termination_reason": "user_stop",
+    "selected_message_index": 19,
+    "message_count": 55,
+    "decision_rule": "Choose a point where the obvious account-level remedy has already been tried, forcing the next decision toward device-side diagnosis from visible user evidence.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. check_device_settings is highest because the user has already refueled data and now needs a grounded inspection of status-bar / network conditions before any further account action.",
+    "notes": [
+      "This sample complements earlier telecom refuel samples by moving to the immediate post-refuel troubleshooting state.",
+      "The query contains no hidden environment readouts; those happen only after the decision point.",
+      "Best action differs from nearby manual samples that preferred think at earlier diagnostic checkpoints."
+    ]
+  }
+}

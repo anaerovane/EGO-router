@@ -1,0 +1,98 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_usage_exceeded_user_abroad_roaming_enabled_off_step_29_manual_556",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 29,
+  "query": "Here’s what my phone reports:  - Airplane Mode: OFF - SIM Card Status: active - Cellular Connection: connected - Cellular Signal: excellent - Cellular Network Type: 5G - Mobile Data Enabled: Yes - Data Roaming Enabled: No - Wi-Fi: OFF  It looks like data roaming is currently off. What should I do next?",
+  "state": {
+    "history_summary": "assistant: The assistant has already identified the customer line, confirmed that roaming is enabled on the carrier side, and added a 2 GB data refuel after the user hit the plan limit abroad.\nassistant: After the refuel, the user still reports no data connection, so the assistant asks for a device network-status diagnostic.\nuser: The network-status output shows strong 5G connectivity and mobile data enabled, but data roaming is still turned off on the device while the user is in France.\nuser: The user asks what to do next given that data roaming is off.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Your line is already roaming-enabled with the carrier, so the next step is to turn on data roaming on the phone itself."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible diagnostic isolates the remaining blocker to a device setting: data roaming is off even though the user is abroad and carrier-side roaming is enabled, so the grounded next move is to enable roaming on the device rather than refuel again or recheck the account."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.12,
+      "margin": 0.84,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_customer",
+    "tool:get_customer_details",
+    "tool:get_line_details",
+    "tool:list_invoices",
+    "tool:get_plan_details",
+    "tool:check_service_status",
+    "tool:check_data_balance",
+    "tool:check_outage",
+    "tool:refuel_data",
+    "tool:change_plan",
+    "tool:toggle_airplane_mode",
+    "tool:toggle_mobile_data",
+    "tool:toggle_data_roaming",
+    "tool:check_network_status",
+    "tool:check_network_mode_preference",
+    "tool:toggle_data_saver_mode",
+    "tool:check_data_restriction_status",
+    "tool:check_vpn_status",
+    "tool:disconnect_vpn",
+    "tool:reboot_device",
+    "tool:run_speed_test",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.89,
+    "think": 0.08,
+    "tool:find_customer": -0.99,
+    "tool:get_customer_details": -0.84,
+    "tool:get_line_details": -0.44,
+    "tool:list_invoices": -0.88,
+    "tool:get_plan_details": -0.79,
+    "tool:check_service_status": -0.74,
+    "tool:check_data_balance": -0.61,
+    "tool:check_outage": -0.76,
+    "tool:refuel_data": -0.58,
+    "tool:change_plan": -0.95,
+    "tool:toggle_airplane_mode": -0.71,
+    "tool:toggle_mobile_data": -0.46,
+    "tool:toggle_data_roaming": 0.99,
+    "tool:check_network_status": 0.22,
+    "tool:check_network_mode_preference": -0.64,
+    "tool:toggle_data_saver_mode": -0.82,
+    "tool:check_data_restriction_status": -0.77,
+    "tool:check_vpn_status": -0.79,
+    "tool:disconnect_vpn": -0.85,
+    "tool:reboot_device": -0.73,
+    "tool:run_speed_test": -0.39,
+    "tool:transfer_to_human_agents": -0.81
+  },
+  "best_action": "tool:toggle_data_roaming",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "2d66d764-c5b6-4f86-a255-ce4ded06ef59",
+    "termination_reason": "user_stop",
+    "selected_message_index": 29,
+    "message_count": 40,
+    "decision_rule": "Choose a state where the account-side cause has already been handled, and the device diagnostic clearly surfaces one remaining blocker—data roaming off while abroad.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Enabling data roaming receives the highest score because it directly addresses the only clearly visible remaining misconfiguration.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample focuses on a device-setting correction after a successful carrier-side fix, increasing cross-step diversity within telecom."
+    ]
+  }
+}

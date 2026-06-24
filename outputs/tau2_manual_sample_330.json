@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_0_step_9_manual_330",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "0",
+  "step_id": 9,
+  "query": "Yes, please transfer me to a human agent. I’d like to see if there’s anything they can do, since I was told I didn’t need insurance because of my previous booking. Thank you. \n\n###TRANSFER###",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to cancel reservation EHGLP3.\nassistant: The assistant asks for the user ID.\nuser: The user provides user ID emma_kim_9957.\nassistant: The assistant retrieves reservation EHGLP3 and explains it is a basic-economy booking made more than 24 hours ago with no travel insurance.\nuser: The user says the cancellation reason is a change of plans, says they thought prior-trip insurance meant they were covered, and asks whether a refund is available.\nassistant: The assistant explains that because the current reservation is basic economy, older than 24 hours, and uninsured, it cannot be canceled for a refund under policy.\nuser: The user says yes, they want to be transferred to a human agent to see whether anything can still be done.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood — I’ll transfer you to a human agent so they can review the case further."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has explicitly requested escalation after the assistant's policy explanation, so the grounded next move is to transfer to a human agent."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.07,
+      "margin": 0.92,
+      "disagreement": 0.02,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 0
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.79,
+    "think": 0.1,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.94,
+    "tool:cancel_reservation": -0.93,
+    "tool:get_flight_status": -0.89,
+    "tool:get_reservation_details": -0.84,
+    "tool:get_user_details": -0.87,
+    "tool:list_all_airports": -0.98,
+    "tool:search_direct_flight": -0.97,
+    "tool:search_onestop_flight": -0.97,
+    "tool:send_certificate": -0.96,
+    "tool:transfer_to_human_agents": 0.99,
+    "tool:update_reservation_baggages": -0.98,
+    "tool:update_reservation_flights": -0.98,
+    "tool:update_reservation_passengers": -0.98
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "fc4573b6-3341-48c3-b357-5be446eb261c",
+    "termination_reason": "user_stop",
+    "selected_message_index": 9,
+    "message_count": 10,
+    "decision_rule": "Use the explicit transfer request immediately after the refund denial and insurance explanation, because escalation is directly requested and no further autonomous resolution is visible.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes the later transfer tool result because there is no further user turn afterward",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "this is an explicit transfer case and the selected user message itself includes the transfer marker from the source transcript"
+    ]
+  }
+}

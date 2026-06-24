@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_46_step_3_manual_730",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "46",
+  "step_id": 3,
+  "query": "I understand that’s your policy, but I’m really disappointed with the service I received regarding the insurance. Is there any way you can make an exception or escalate this request?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user asks for a refund of flight insurance without canceling the flight itself and says they are unhappy with the insurance service.\nassistant: The assistant explains that travel insurance cannot be removed or refunded after booking under policy.\nuser: The user pushes back on the denial, asks whether an exception is possible, and explicitly invites escalation of the insurance-refund request.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I understand. Since the user is explicitly seeking an exception beyond standard policy, the next grounded move is to escalate the case rather than repeat the same denial."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible context contains no self-service path that overrides the stated insurance policy, but it does include a direct user request for escalation, making transfer the most appropriate next action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.15,
+      "margin": 0.79,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.96,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.88,
+    "think": 0.22,
+    "tool:book_reservation": -0.97,
+    "tool:calculate": -0.84,
+    "tool:cancel_reservation": -0.94,
+    "tool:get_flight_status": -0.93,
+    "tool:get_reservation_details": -0.42,
+    "tool:get_user_details": -0.68,
+    "tool:list_all_airports": -0.97,
+    "tool:search_direct_flight": -0.95,
+    "tool:search_onestop_flight": -0.95,
+    "tool:send_certificate": -0.91,
+    "tool:transfer_to_human_agents": 0.98,
+    "tool:update_reservation_baggages": -0.96,
+    "tool:update_reservation_flights": -0.96,
+    "tool:update_reservation_passengers": -0.96
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_airline_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "631cbceb-764b-4267-ac09-5f59985af29d",
+    "termination_reason": "user_stop",
+    "selected_message_index": 3,
+    "message_count": 8,
+    "decision_rule": "Choose a user turn where the assistant has already stated the applicable insurance policy and the user explicitly asks for an exception or escalation, making transfer the most grounded next action.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. transfer_to_human_agents is highest because the request seeks policy exception handling not available in the current self-service path.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "Airline was used only once for diversity after prioritizing retail and telecom samples."
+    ]
+  }
+}

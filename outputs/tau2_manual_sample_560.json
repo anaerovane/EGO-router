@@ -1,0 +1,98 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_break_apn_settings_lock_sim_card_pin_step_13_manual_560",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]break_apn_settings|lock_sim_card_pin[PERSONA:None]",
+  "step_id": 13,
+  "query": "I checked my phone's status bar, and it shows \"No Signal\" and \"Data Disabled.\" There are no signal bars, and I don't see an airplane icon or any SIM card error messages. What should I do next?",
+  "state": {
+    "history_summary": "assistant: The user reports a no-service problem for calls and mobile data.\nassistant: The assistant authenticates the account, retrieves the line details, and verifies that the line is active.\nassistant: The assistant asks the user to inspect the phone status bar for indicators such as Airplane Mode, No Signal, or SIM issues.\nuser: The status-bar check shows No Signal and Data Disabled, with no Airplane Mode icon and no visible SIM error, and the user asks what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for checking. Since Airplane Mode is not the issue, the next useful check is whether the SIM is active, missing, or locked."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible state rules out the simplest Airplane Mode explanation but still points toward a service or SIM problem, so the grounded next move is to check device service/SIM status before escalating or touching the account again."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.18,
+      "margin": 0.57,
+      "disagreement": 0.07,
+      "verifier_confidence": 0.92,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_customer",
+    "tool:get_customer_details",
+    "tool:get_line_details",
+    "tool:list_invoices",
+    "tool:get_plan_details",
+    "tool:check_service_status",
+    "tool:check_data_balance",
+    "tool:check_outage",
+    "tool:refuel_data",
+    "tool:change_plan",
+    "tool:toggle_airplane_mode",
+    "tool:toggle_mobile_data",
+    "tool:toggle_data_roaming",
+    "tool:check_network_status",
+    "tool:check_network_mode_preference",
+    "tool:toggle_data_saver_mode",
+    "tool:check_data_restriction_status",
+    "tool:check_vpn_status",
+    "tool:disconnect_vpn",
+    "tool:reboot_device",
+    "tool:run_speed_test",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.9,
+    "think": 0.12,
+    "tool:find_customer": -0.99,
+    "tool:get_customer_details": -0.85,
+    "tool:get_line_details": -0.53,
+    "tool:list_invoices": -0.95,
+    "tool:get_plan_details": -0.96,
+    "tool:check_service_status": 0.97,
+    "tool:check_data_balance": -0.98,
+    "tool:check_outage": -0.62,
+    "tool:refuel_data": -0.99,
+    "tool:change_plan": -0.99,
+    "tool:toggle_airplane_mode": -0.84,
+    "tool:toggle_mobile_data": -0.21,
+    "tool:toggle_data_roaming": -0.9,
+    "tool:check_network_status": 0.24,
+    "tool:check_network_mode_preference": -0.94,
+    "tool:toggle_data_saver_mode": -0.99,
+    "tool:check_data_restriction_status": -0.98,
+    "tool:check_vpn_status": -0.98,
+    "tool:disconnect_vpn": -0.99,
+    "tool:reboot_device": -0.47,
+    "tool:run_speed_test": -0.95,
+    "tool:transfer_to_human_agents": -0.71
+  },
+  "best_action": "tool:check_service_status",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "b6333103-0a24-40f3-9edf-c391c09515b4",
+    "termination_reason": "user_stop",
+    "selected_message_index": 13,
+    "message_count": 20,
+    "decision_rule": "Choose a no-service troubleshooting state where account activation is already confirmed and the status bar rules out airplane mode, making SIM/service inspection the most grounded next diagnostic.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Checking service/SIM status receives the highest score because it most directly distinguishes between a locked SIM and other device-side causes without prematurely escalating.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample provides a telecom diagnostic step whose best action is another check rather than an immediate toggle or transfer."
+    ]
+  }
+}

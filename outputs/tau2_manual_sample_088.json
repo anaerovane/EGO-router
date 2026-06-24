@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_5_step_15_manual_088",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "5",
+  "step_id": 15,
+  "query": "I understand that’s the standard policy, but I’m really disappointed. I’ve chosen your airline repeatedly because of my Gold status, and this delay is a major inconvenience. Is there truly nothing more you can do—maybe a higher-value voucher, bonus miles, or a refund to my original payment method? I’d really appreciate if you could escalate this or check if there’s any flexibility, given the circumstances.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that flight HAT045 from Phoenix to Seattle was delayed, says they are a Gold member, and asks for compensation.\nassistant: The assistant asks for the reservation ID and flight date.\nuser: The user says they do not have the reservation ID, provides the name Mei Brown and user ID mei_brown_7075, and asks the assistant to look it up.\nassistant called tools: get_user_details for user mei_brown_7075, get_reservation_details for reservations DB1Y70, MUGYUB, and 3JA7XV while locating the correct booking, get_flight_status for HAT045 on 2024-05-15, and send_certificate.\nassistant: The assistant confirms the delayed flight HAT045 on 2024-05-15, says the user is a Gold member, and issues a $50 certificate per passenger for 4 passengers, totaling $200.\nuser: The user says the amount feels inadequate and asks whether something better, such as a refund to the original payment method, is possible.\nassistant: The assistant explains that the standard delay compensation for Gold members is the $50-per-passenger certificate already issued, and says a full refund would only be possible by canceling the business-class reservation.\nuser: The user continues to press for greater compensation or escalation.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I understand. Since the standard compensation has already been explained and you’re asking for review beyond that, I can transfer you to a human agent for further assistance."
+      },
+      {
+        "source": "think-refine",
+        "text": "The standard delay-compensation policy has already been exhausted, and the user is now asking for something beyond the allowed ceiling or escalation. The grounded next move is to transfer the case for human review."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.16,
+      "margin": 0.73,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.23,
+    "think": 0.12,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.79,
+    "tool:cancel_reservation": -0.77,
+    "tool:get_flight_status": -0.38,
+    "tool:get_reservation_details": -0.36,
+    "tool:get_user_details": -0.31,
+    "tool:list_all_airports": -0.95,
+    "tool:search_direct_flight": -0.95,
+    "tool:search_onestop_flight": -0.95,
+    "tool:send_certificate": -0.52,
+    "tool:transfer_to_human_agents": 0.98,
+    "tool:update_reservation_baggages": -0.92,
+    "tool:update_reservation_flights": -0.92,
+    "tool:update_reservation_passengers": -0.92
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "b39b8604-65fe-4090-8f01-5faf480a2488",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 20,
+    "decision_rule": "Choose a user turn where the standard delay-compensation policy is exhausted and the user still asks whether anything more can be done.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user’s request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is supported by the real next assistant action, which transfers the case to a human agent"
+    ]
+  }
+}

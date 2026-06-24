@@ -1,0 +1,76 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_airplane_mode_on_break_apn_settings_contract_end_suspension_lock_sim_card_pin_persona_none_step_17_manual_696",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|break_apn_settings|contract_end_suspension|lock_sim_card_pin[PERSONA:None]",
+  "step_id": 17,
+  "query": "It looks like my SIM card is locked with a PIN code. What should I do to unlock it?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports a No Service issue and authenticates with phone number 555-123-2002.\nassistant: The assistant identifies the account and starts device troubleshooting.\nuser: The status bar first shows Airplane Mode enabled, and after the user turns it off the phone still shows No Signal and Data Disabled.\nassistant: The assistant asks for SIM status to continue narrowing the cause.\nuser: The user reports that the SIM card is locked with a PIN code and asks what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Since the SIM is PIN-locked, the safest next step is to transfer you to a human agent who can help with the unlock process."
+      },
+      {
+        "source": "think-refine",
+        "text": "Even after resolving Airplane Mode, the remaining blocker is SIM lock, so the grounded next action is escalation rather than more network diagnostics."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.15,
+      "margin": 0.77,
+      "disagreement": 0.06,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_customer_by_id",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:get_bills_for_customer",
+    "tool:enable_roaming",
+    "tool:resume_line",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.9,
+    "think": 0.1,
+    "tool:get_customer_by_phone": -0.96,
+    "tool:get_customer_by_name": -0.98,
+    "tool:get_customer_by_id": -0.96,
+    "tool:get_details_by_id": -0.44,
+    "tool:get_data_usage": -0.94,
+    "tool:get_bills_for_customer": -0.89,
+    "tool:enable_roaming": -0.97,
+    "tool:resume_line": -0.94,
+    "tool:refuel_data": -0.96,
+    "tool:send_payment_request": -0.93,
+    "tool:transfer_to_human_agents": 0.98
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom-workflow_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "c686ae39-de99-4ec7-81f9-2f70c0ea14b8",
+    "termination_reason": "user_stop",
+    "selected_message_index": 17,
+    "message_count": 22,
+    "decision_rule": "Choose a state where one device-level cause has already been fixed but the conversation reaches a second blocker that requires escalation, making the transfer rationale fully visible.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. transfer_to_human_agents is highest because the remaining SIM-lock blocker cannot be resolved by the currently available self-service actions.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample differs from 695 by including a resolved Airplane Mode branch before the escalation point."
+    ]
+  }
+}

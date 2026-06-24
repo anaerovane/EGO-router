@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_[service_issue]airplane_mode_on|break_apn_settings|contract_end_suspension|unseat_sim_card[PERSONA:Easy]_step_21_manual_778",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|break_apn_settings|contract_end_suspension|unseat_sim_card[PERSONA:Easy]",
+  "step_id": 21,
+  "query": "I’ve just paid the overdue bill. Please go ahead and transfer me to a human agent so I can talk about renewing my contract and getting my service back. Thank you for your help so far.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports a \"No Service\" issue.\nassistant: The assistant authenticates the account, identifies that line 555-123-2002 is suspended, checks billing, finds an overdue $65.00 bill, and sends a payment request.\nassistant: The user pays the overdue bill and is informed that contract renewal is still needed before service can be restored.\nuser: After payment, the user explicitly asks to be transferred to a human agent to discuss renewing the contract and restoring service.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. I’ll transfer you to a human agent now so they can help with the contract renewal and service restoration steps."
+      },
+      {
+        "source": "think-refine",
+        "text": "The bill issue has already been addressed, but contract renewal remains outside the visible self-service action set, and the user explicitly requests escalation, so transfer is the most grounded next action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.07,
+      "margin": 0.93,
+      "disagreement": 0.02,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.87,
+    "think": -0.03,
+    "tool:get_customer_by_phone": -0.97,
+    "tool:get_customer_by_name": -0.98,
+    "tool:get_details_by_id": -0.56,
+    "tool:get_bills_for_customer": -0.79,
+    "tool:send_payment_request": -0.94,
+    "tool:check_payment_request": -0.9,
+    "tool:make_payment": -0.95,
+    "tool:resume_line": -0.48,
+    "tool:enable_roaming": -0.89,
+    "tool:refuel_data": -0.92,
+    "tool:transfer_to_human_agents": 0.99
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "e1803e15-9227-4f89-abe1-7e9cd1427893",
+    "termination_reason": "user_transfer",
+    "selected_message_index": 21,
+    "message_count": 26,
+    "decision_rule": "Choose a user turn where the supported telecom actions have already advanced the case as far as possible and the user explicitly requests escalation for the remaining contract issue.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Transfer dominates because contract renewal is the unresolved blocker and the user directly asks for a human handoff.",
+    "notes": [
+      "This sample separates payment completion from the remaining contract problem to justify escalation cleanly.",
+      "The selected state is later than simple suspension detection, increasing step diversity within the batch."
+    ]
+  }
+}

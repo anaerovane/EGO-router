@@ -1,0 +1,70 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_bad_vpn_data_saver_mode_on_user_abroad_roaming_disabled_on_persona_none_step_35_manual_686",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]bad_vpn|data_saver_mode_on|user_abroad_roaming_disabled_on[PERSONA:None]",
+  "step_id": 35,
+  "query": "I restarted my phone and ran the speed test again. This time, it shows a download speed of 27.50 Mbps with a “Good” connection. However, I really need to get “Excellent” internet speed—“Good” isn’t enough for me. What else can I try?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports very poor or unavailable mobile data and wants excellent speed.\nassistant: The assistant authenticates by phone number, checks line details, and asks for a speed test.\nuser: The speed test initially fails with no connection.\nassistant: The assistant asks for device-status checks.\nuser: The status bar shows excellent signal plus active Data Saver and VPN.\nassistant: The assistant has the user disable Data Saver, but the next speed test still shows no connection.\nassistant: The assistant confirms the user is abroad with Data Roaming already ON at the device level, then enables roaming on the line and asks the user to restart the phone.\nuser: After the restart, service improves to 27.50 Mbps and “Good,” but the user explicitly says this is still insufficient and asks for the next step to reach excellent speed.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for checking. Since your connection improved but is still capped at “Good,” the next thing to try is disconnecting the VPN and then rerunning the speed test."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible remaining bottleneck is the still-active VPN icon, so the grounded next move is to direct the user to disconnect the VPN instead of changing plans or repeating earlier checks."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.19,
+      "margin": 0.63,
+      "disagreement": 0.08,
+      "verifier_confidence": 0.91,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:check_device_settings",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.84,
+    "think": 0.18,
+    "tool:get_customer_by_phone": -0.95,
+    "tool:get_details_by_id": -0.71,
+    "tool:get_data_usage": -0.78,
+    "tool:change_plan": -0.69,
+    "tool:refuel_data": -0.73,
+    "tool:check_device_settings": 0.97,
+    "tool:transfer_to_human_agents": -0.8,
+    "tool:calculate": -0.93
+  },
+  "best_action": "tool:check_device_settings",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom-workflow_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "mobile_data_vpn_trial0",
+    "termination_reason": "user_stop",
+    "selected_message_index": 35,
+    "message_count": 44,
+    "decision_rule": "Choose a post-remediation telecom state where the user still needs a better connection and a visible device-side bottleneck remains in the conversation context.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. check_device_settings is highest because the next grounded intervention is another device/network configuration adjustment, specifically around the still-active VPN.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample diversifies telecom best_action away from account provisioning and toward guided device-side remediation"
+    ]
+  }
+}

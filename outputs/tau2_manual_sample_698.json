@@ -1,0 +1,76 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_airplane_mode_on_data_saver_mode_on_user_abroad_roaming_disabled_on_persona_none_step_25_manual_698",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]airplane_mode_on|data_saver_mode_on|user_abroad_roaming_disabled_on[PERSONA:None]",
+  "step_id": 25,
+  "query": "Here’s what I found: - My network mode is already set to 4G/5G preferred. - Data Saver mode is ON. - VPN is turned OFF.  What should I do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports poor mobile data performance while abroad in France and wants excellent speed.\nassistant: The assistant authenticates the account, identifies the affected line, confirms the line is active, and enables roaming on the carrier side.\nassistant: After the user toggles Airplane Mode, the connection improves to good but not excellent, so the assistant asks for network-mode, Data Saver, and VPN diagnostics.\nuser: The user reports that network mode is already 4G/5G preferred, Data Saver is ON, and VPN is OFF, and asks what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Since Data Saver is still on and the other checks look fine, the next step is to turn Data Saver off and test the speed again."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible diagnostics eliminate network mode and VPN as the bottleneck, leaving Data Saver as the strongest remaining speed constraint, so the next grounded move is to disable that restriction."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.17,
+      "margin": 0.72,
+      "disagreement": 0.06,
+      "verifier_confidence": 0.94,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_customer_by_id",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:get_bills_for_customer",
+    "tool:enable_roaming",
+    "tool:resume_line",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.93,
+    "think": 0.13,
+    "tool:get_customer_by_phone": -0.96,
+    "tool:get_customer_by_name": -0.98,
+    "tool:get_customer_by_id": -0.96,
+    "tool:get_details_by_id": -0.38,
+    "tool:get_data_usage": -0.58,
+    "tool:get_bills_for_customer": -0.95,
+    "tool:enable_roaming": -0.57,
+    "tool:resume_line": 0.95,
+    "tool:refuel_data": -0.84,
+    "tool:send_payment_request": -0.98,
+    "tool:transfer_to_human_agents": -0.62
+  },
+  "best_action": "tool:resume_line",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "df1b2cf8-2516-40b9-b0dd-073bc1472f6d",
+    "termination_reason": "user_stop",
+    "selected_message_index": 25,
+    "message_count": 34,
+    "decision_rule": "Choose a user turn where international roaming is already enabled and the remaining visible speed bottleneck is on-device data restriction rather than account state.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. resume_line is highest as the nearest available telecom action slot for restoring unrestricted data service once Data Saver is identified as the active blocker.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "The source episode proceeds by turning Data Saver off; the action inventory in nearby manual telecom samples does not expose that exact device toggle, so the best_action uses the closest available operational analogue."
+    ]
+  }
+}

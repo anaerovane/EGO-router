@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_3_step_7_manual_080",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "3",
+  "step_id": 7,
+  "query": "I’m pretty sure I’m a Gold member. Can you please confirm that for me and then tell me the total number of suitcases I can bring? Again, I really need the number in digits.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user asks how many suitcases are allowed for an upcoming flight.\nassistant: The assistant asks for the user ID and reservation ID.\nuser: The user provides user ID anya_garcia_5901 and reservation ID JMO1MG.\nassistant called tool: get_reservation_details for reservation JMO1MG.\nassistant: The assistant says the reservation is in economy with two passengers and currently states a total baggage allowance of two checked bags.\nuser: The user says they think they are a Gold member and asks for that status to be confirmed so the total suitcase allowance can be recalculated if needed.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I can confirm that for you. I’ll check your membership level first, then I’ll tell you the correct total number of bags you can bring."
+      },
+      {
+        "source": "think-refine",
+        "text": "The reservation details are already known, but the user now asks for a loyalty-tier adjustment that depends on profile data not yet visible in the conversation. The grounded next move is to look up the user details."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.11,
+      "margin": 0.85,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.19,
+    "think": 0.09,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.84,
+    "tool:cancel_reservation": -0.96,
+    "tool:get_flight_status": -0.72,
+    "tool:get_reservation_details": -0.39,
+    "tool:get_user_details": 0.99,
+    "tool:list_all_airports": -0.96,
+    "tool:search_direct_flight": -0.94,
+    "tool:search_onestop_flight": -0.94,
+    "tool:send_certificate": -0.9,
+    "tool:transfer_to_human_agents": -0.49,
+    "tool:update_reservation_baggages": -0.93,
+    "tool:update_reservation_flights": -0.93,
+    "tool:update_reservation_passengers": -0.93
+  },
+  "best_action": "tool:get_user_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "ed711271-0a9e-477b-8363-9b0d1403023f",
+    "termination_reason": "user_stop",
+    "selected_message_index": 7,
+    "message_count": 16,
+    "decision_rule": "Choose a user turn where the baggage allowance depends on a claimed Gold status that has not yet been verified from the user profile.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is supported by the real next assistant action, which checks the user's profile to confirm membership tier"
+    ]
+  }
+}

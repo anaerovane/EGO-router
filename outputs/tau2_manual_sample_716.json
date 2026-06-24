@@ -1,0 +1,71 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_bad_network_preference_user_abroad_roaming_enabled_off_persona_hard_step_15_manual_716",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]bad_network_preference|user_abroad_roaming_enabled_off[PERSONA:Hard]",
+  "step_id": 15,
+  "query": "Yes, I am currently abroad in France, so I’m outside my usual service area. Should I enable data roaming now?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports mobile data that keeps stopping or is very slow and says they need excellent speed.\nassistant: The assistant asks for the phone number.\nuser: The user provides 555-123-2002.\nassistant: The assistant authenticates the account, asks the user to run a speed test, and sees a no-connection result.\nassistant: The assistant asks for a network-status check.\nuser: The user reports Airplane Mode OFF, poor signal, mobile data enabled, and data roaming disabled.\nassistant: The assistant asks whether the user is outside the usual service area, explaining that roaming may need to be enabled if they are traveling.\nuser: The user says they are currently abroad in France and asks whether they should enable data roaming now.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes — because you’re outside your normal coverage area and roaming is currently off, I can enable data roaming on your line now."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible diagnostics show roaming disabled while the user is abroad, so the most grounded next move is to enable roaming rather than escalate or inspect unrelated billing data."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.18,
+      "margin": 0.7,
+      "disagreement": 0.08,
+      "verifier_confidence": 0.92,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:run_speed_test",
+    "tool:check_network_status",
+    "tool:toggle_airplane_mode",
+    "tool:enable_roaming",
+    "tool:reboot_device",
+    "tool:get_data_usage",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.9,
+    "think": 0.11,
+    "tool:get_customer_by_phone": -0.93,
+    "tool:run_speed_test": -0.57,
+    "tool:check_network_status": -0.31,
+    "tool:toggle_airplane_mode": -0.46,
+    "tool:enable_roaming": 0.96,
+    "tool:reboot_device": -0.19,
+    "tool:get_data_usage": -0.43,
+    "tool:transfer_to_human_agents": -0.52,
+    "tool:calculate": -0.91
+  },
+  "best_action": "tool:enable_roaming",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom-workflow_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "354f4370-7f8b-4258-a8e5-6f9272d772d7",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 30,
+    "decision_rule": "Choose a user turn where the troubleshooting branch clearly pivots on travel context and the user has supplied the missing fact needed to choose the next network action.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. enable_roaming is highest because roaming is disabled and the user confirms they are abroad; rebooting first would be premature.",
+    "notes": [
+      "The available actions are workflow-style telecom diagnostics, matching the visible trajectory",
+      "The state avoids mentioning later reboot or follow-up speed-test outcomes",
+      "This sample diversifies telecom best-action type away from refueling and transfer"
+    ]
+  }
+}

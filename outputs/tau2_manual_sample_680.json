@@ -1,0 +1,71 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_bad_network_preference_user_abroad_roaming_enabled_off_persona_hard_step_15_manual_680",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]bad_network_preference|user_abroad_roaming_enabled_off[PERSONA:Hard]",
+  "step_id": 15,
+  "query": "Yes, I am currently abroad in France, so I’m outside my usual service area. Should I enable data roaming now?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user is troubleshooting mobile data while traveling abroad.\nassistant: The assistant asks for network-status details after learning the connection is not working well.\nuser: The user provides device information showing Airplane Mode off, poor signal, mobile data enabled, a 2G network, and Data Roaming disabled.\nassistant: The assistant asks whether the user is currently outside the normal home coverage area so it can decide whether roaming should be enabled.\nuser: The user confirms they are abroad in France and asks whether to enable data roaming now.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes — because you’re outside your normal service area and roaming is currently off, enabling roaming is the next step to restore mobile data access abroad."
+      },
+      {
+        "source": "think-refine",
+        "text": "The state now links the poor connection to international travel and a disabled roaming setting. The best grounded next move is an account-side roaming enablement action, not more generic troubleshooting."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.19,
+      "margin": 0.64,
+      "disagreement": 0.06,
+      "verifier_confidence": 0.92,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:check_device_settings",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.89,
+    "think": 0.14,
+    "tool:get_customer_by_phone": -0.83,
+    "tool:get_details_by_id": -0.34,
+    "tool:get_data_usage": -0.43,
+    "tool:change_plan": 0.96,
+    "tool:refuel_data": -0.69,
+    "tool:check_device_settings": 0.42,
+    "tool:transfer_to_human_agents": -0.41,
+    "tool:calculate": -0.84
+  },
+  "best_action": "tool:change_plan",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom-workflow_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "354f4370-7f8b-4258-a8e5-6f9272d772d7",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 35,
+    "decision_rule": "Choose a user turn where the user confirms being abroad and asks about enabling roaming, making carrier-side roaming enablement the most direct grounded next action in the workflow trajectory.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. change_plan is used as the closest available account-side action for enabling roaming on the line, which outranks pure device guidance once the travel context is confirmed.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "In the source episode, the next concrete move is a carrier-side roaming enablement step rather than only instructing the user to toggle a local setting.",
+      "Because the telecom action inventory here is coarse, change_plan is the closest domain-appropriate proxy for account-side roaming enablement."
+    ]
+  }
+}

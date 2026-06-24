@@ -1,0 +1,84 @@
+{
+  "sample_id": "tau2_retail_task_35_step_8_manual_965",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "retail",
+  "task_id": "35",
+  "step_id": 8,
+  "query": "Seriously? How hard can this be? It’s Aarav Santos, and my zip code is 94109. Now can you finally find my orders or what?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to return an overpriced speaker and modify another order to swap a 17-inch laptop for a 13-inch one.\nassistant: The assistant asks for account verification details.\nuser: The user first gives a name and email, but both email lookup and a malformed name-only fallback fail to find a user.\nassistant: The assistant asks for the ZIP code to retry the alternate identity lookup.\nuser: The user provides the ZIP code 94109 along with the same name, asking the assistant to find the orders now.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks. With your full name and ZIP code, I can retry the account lookup and see whether I can locate the profile tied to those orders."
+      },
+      {
+        "source": "think-refine",
+        "text": "The earlier lookup failed because the fallback identity data was incomplete, and this turn supplies the missing ZIP code, so the best grounded next move is to rerun the name-and-ZIP search."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.2,
+      "margin": 0.6,
+      "disagreement": 0.08,
+      "verifier_confidence": 0.9,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_user_id_by_email",
+    "tool:find_user_id_by_name_zip",
+    "tool:get_user_details",
+    "tool:get_order_details",
+    "tool:get_product_details",
+    "tool:list_all_product_types",
+    "tool:modify_pending_order_items",
+    "tool:modify_pending_order_address",
+    "tool:modify_pending_order_payment",
+    "tool:cancel_pending_order",
+    "tool:return_delivered_order_items",
+    "tool:exchange_delivered_order_items",
+    "tool:modify_user_address",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.94,
+    "think": 0.14,
+    "tool:find_user_id_by_email": -0.63,
+    "tool:find_user_id_by_name_zip": 0.91,
+    "tool:get_user_details": -0.56,
+    "tool:get_order_details": -0.72,
+    "tool:get_product_details": -0.86,
+    "tool:list_all_product_types": -0.92,
+    "tool:modify_pending_order_items": -0.94,
+    "tool:modify_pending_order_address": -0.95,
+    "tool:modify_pending_order_payment": -0.94,
+    "tool:cancel_pending_order": -0.92,
+    "tool:return_delivered_order_items": -0.92,
+    "tool:exchange_delivered_order_items": -0.93,
+    "tool:modify_user_address": -0.95,
+    "tool:transfer_to_human_agents": -0.33,
+    "tool:calculate": -0.8
+  },
+  "best_action": "tool:find_user_id_by_name_zip",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_retail_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "39d2c249-6e85-4db3-8f36-049be2744cf3",
+    "termination_reason": "user_stop",
+    "selected_message_index": 8,
+    "message_count": 15,
+    "decision_rule": "Choose a retry point where the assistant explicitly requested one missing verification field and the user now supplies it, enabling a grounded second lookup attempt.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores emphasize retrying the now-complete authentication path while leaving transfer as a fallback if the retry still fails.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is find_user_id_by_name_zip because the new ZIP code is exactly the missing piece needed for the next lookup attempt"
+    ]
+  }
+}

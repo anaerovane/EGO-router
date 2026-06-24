@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_28_step_3_manual_114",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "28",
+  "step_id": 3,
+  "query": "Sure, my user ID is amelia_rossi_1297. The reason for cancellation is a change of plans. Can you please process the refund for me?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user asks to cancel flights under reservation ID SI5UKW and wants a refund.\nassistant: The assistant says it can help and asks for the user ID and cancellation reason.\nuser: The user provides user ID amelia_rossi_1297 and says the reason for cancellation is a change of plans.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for providing your details. I’ll retrieve reservation SI5UKW first so I can review the booking and the refund rules before discussing cancellation."
+      },
+      {
+        "source": "think-refine",
+        "text": "The reservation identifier is already visible and the user has now provided the missing account and reason details, so the grounded next move is to retrieve the reservation details before evaluating the refund request."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.11,
+      "margin": 0.87,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.42,
+    "think": 0.08,
+    "tool:book_reservation": -0.97,
+    "tool:calculate": -0.81,
+    "tool:cancel_reservation": -0.92,
+    "tool:get_flight_status": -0.8,
+    "tool:get_reservation_details": 0.99,
+    "tool:get_user_details": -0.31,
+    "tool:list_all_airports": -0.95,
+    "tool:search_direct_flight": -0.92,
+    "tool:search_onestop_flight": -0.92,
+    "tool:send_certificate": -0.88,
+    "tool:transfer_to_human_agents": -0.5,
+    "tool:update_reservation_baggages": -0.91,
+    "tool:update_reservation_flights": -0.91,
+    "tool:update_reservation_passengers": -0.91
+  },
+  "best_action": "tool:get_reservation_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "764b3beb-e513-4fe2-a7ea-249b40719bc7",
+    "termination_reason": "user_stop",
+    "selected_message_index": 3,
+    "message_count": 14,
+    "decision_rule": "Choose a user turn where the reservation identifier is already in visible context and the user then provides the remaining account details needed to inspect the booking, making reservation lookup the most direct grounded next action.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is get_reservation_details because the assistant must inspect reservation SI5UKW before determining the appropriate cancellation and refund path"
+    ]
+  }
+}

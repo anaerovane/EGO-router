@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_1_step_21_manual_314",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "1",
+  "step_id": 21,
+  "query": "Thank you for your help! That’s all I needed. Have a great day. \n\n###STOP###",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user asks for help canceling a reservation.\nassistant: The assistant asks for the user ID and trip details.\nuser: The user provides user ID raj_sanchez_7340 and identifies the Philadelphia-to-LaGuardia trip.\nassistant: The assistant retrieves the user profile, finds reservation Q69X3R, asks for the cancellation reason, explains that the booking is refundable because it was made within the last 24 hours, and then asks for explicit confirmation before cancellation.\nuser: The user confirms the cancellation and refund destination.\nassistant: The assistant cancels reservation Q69X3R and confirms that the refund will return to the original payment method.\nuser: The user thanks the assistant, says that is all they needed, and includes a stop marker.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "You’re welcome. If you need anything else later, feel free to reach out."
+      },
+      {
+        "source": "think-refine",
+        "text": "The reservation has already been canceled and the user is explicitly ending the interaction, so the grounded next move is to stop."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.08,
+      "margin": 0.91,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 0
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": 0.99,
+    "think": 0.1,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.94,
+    "tool:cancel_reservation": -0.83,
+    "tool:get_flight_status": -0.9,
+    "tool:get_reservation_details": -0.86,
+    "tool:get_user_details": -0.88,
+    "tool:list_all_airports": -0.98,
+    "tool:search_direct_flight": -0.97,
+    "tool:search_onestop_flight": -0.97,
+    "tool:send_certificate": -0.96,
+    "tool:transfer_to_human_agents": -0.88,
+    "tool:update_reservation_baggages": -0.98,
+    "tool:update_reservation_flights": -0.98,
+    "tool:update_reservation_passengers": -0.98
+  },
+  "best_action": "stop",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "834c32c7-f9fd-4c62-b05c-6921d2b068b4",
+    "termination_reason": "user_stop",
+    "selected_message_index": 21,
+    "message_count": 22,
+    "decision_rule": "Use the final user turn after the cancellation and refund have already been completed, because the traveler explicitly indicates the interaction is finished and includes a stop marker.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes the later assistant sign-off beyond the user's explicit stop turn",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "this is a stop case because the cancellation has already completed and the user explicitly ends the interaction"
+    ]
+  }
+}

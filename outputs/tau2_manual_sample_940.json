@@ -1,0 +1,80 @@
+{
+  "sample_id": "tau2_telecom_task_airplane_data_off_step_34_manual_940",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]airplane_mode_on|data_mode_off[PERSONA:None]",
+  "step_id": 34,
+  "query": "I've turned off Airplane Mode. My status bar now shows excellent signal strength and 5G, but it also says \"Data Disabled.\" What should I do next to get my mobile data working?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports mobile data that is not working and wants excellent speed.\nassistant: After identifying the account and affected line, the assistant verifies the user still has remaining plan data and asks diagnostic questions.\nuser: The user restarts the device and then reports a failed speed test with Airplane Mode shown in the status bar.\nassistant: The assistant identifies Airplane Mode as the cause and instructs the user to turn it off.\nuser: The user confirms Airplane Mode is now off and the phone shows excellent 5G signal, but mobile data itself is still disabled.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Great, turning off Airplane Mode fixed one blocker. The remaining issue is that mobile data is disabled, so the next step is to turn mobile data on."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible device status isolates the next missing prerequisite for data service, so the grounded next move is to enable mobile data rather than perform more abstract diagnostics."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.06,
+      "margin": 0.93,
+      "disagreement": 0.02,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_details",
+    "tool:find_line_by_phone",
+    "tool:get_plan_details",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:check_roaming_status",
+    "tool:toggle_data_roaming",
+    "tool:check_network_status",
+    "tool:toggle_airplane_mode",
+    "tool:toggle_mobile_data",
+    "tool:toggle_data_saver",
+    "tool:run_speed_test",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.92,
+    "think": 0.04,
+    "tool:get_customer_details": -0.9,
+    "tool:find_line_by_phone": -0.82,
+    "tool:get_plan_details": -0.74,
+    "tool:get_data_usage": -0.63,
+    "tool:refuel_data": -0.87,
+    "tool:check_roaming_status": -0.52,
+    "tool:toggle_data_roaming": -0.49,
+    "tool:check_network_status": -0.12,
+    "tool:toggle_airplane_mode": -0.71,
+    "tool:toggle_mobile_data": 0.99,
+    "tool:toggle_data_saver": -0.83,
+    "tool:run_speed_test": -0.61,
+    "tool:transfer_to_human_agents": -0.58
+  },
+  "best_action": "tool:toggle_mobile_data",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "4df14c33-a981-4ce5-968c-ae65d644cae5",
+    "termination_reason": "user_stop",
+    "selected_message_index": 34,
+    "message_count": 43,
+    "decision_rule": "Choose a late-stage troubleshooting state where one blocker has been cleared and the remaining disabled mobile-data toggle is explicitly visible.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. toggle_mobile_data is highest because the status bar explicitly shows the remaining blocker as Data Disabled.",
+    "notes": [
+      "query comes directly from the selected visible user message, not hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "sample provides a device-status-driven action decision with minimal ambiguity"
+    ]
+  }
+}

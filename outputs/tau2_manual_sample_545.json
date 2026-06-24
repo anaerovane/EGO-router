@@ -1,0 +1,84 @@
+{
+  "sample_id": "tau2_retail_task_17_step_3_manual_545",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "retail",
+  "task_id": "17",
+  "step_id": 3,
+  "query": "I don’t remember the email I used, but my name is Fatima Johnson and my zip code is 78712. The order number is W8665881.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: Wants to update the delivery address for an order so it goes to Suite 641 instead.\nassistant: Asked for authentication details and the order number.\nuser: Provided name Fatima Johnson, zip 78712, and order number W8665881 because the email was not remembered.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks — with your name and zip code, I can look up your account first and then verify order W8665881 before changing the address."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has provided an alternate authentication path that is sufficient for account lookup, so the next grounded action is to resolve the user ID by name and zip."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.08,
+      "margin": 0.91,
+      "disagreement": 0.02,
+      "verifier_confidence": 0.99,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_user_id_by_email",
+    "tool:find_user_id_by_name_zip",
+    "tool:get_user_details",
+    "tool:get_order_details",
+    "tool:get_product_details",
+    "tool:list_all_product_types",
+    "tool:modify_pending_order_items",
+    "tool:modify_pending_order_address",
+    "tool:modify_pending_order_payment",
+    "tool:cancel_pending_order",
+    "tool:return_delivered_order_items",
+    "tool:exchange_delivered_order_items",
+    "tool:modify_user_address",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.94,
+    "think": 0.06,
+    "tool:find_user_id_by_email": -0.91,
+    "tool:find_user_id_by_name_zip": 0.99,
+    "tool:get_user_details": -0.18,
+    "tool:get_order_details": 0.41,
+    "tool:get_product_details": -0.95,
+    "tool:list_all_product_types": -0.97,
+    "tool:modify_pending_order_items": -0.96,
+    "tool:modify_pending_order_address": -0.87,
+    "tool:modify_pending_order_payment": -0.98,
+    "tool:cancel_pending_order": -0.99,
+    "tool:return_delivered_order_items": -0.98,
+    "tool:exchange_delivered_order_items": -0.98,
+    "tool:modify_user_address": -0.97,
+    "tool:transfer_to_human_agents": -0.72,
+    "tool:calculate": -0.96
+  },
+  "best_action": "tool:find_user_id_by_name_zip",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_retail_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "3cb14cf3-dc95-426a-a6b9-4e7a59622a67",
+    "termination_reason": "user_stop",
+    "selected_message_index": 3,
+    "message_count": 16,
+    "decision_rule": "Choose an early authentication state where the user cannot provide email but does provide a valid name-and-zip fallback plus order number.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores prioritize completing identity lookup before operating on the pending order, while acknowledging that the order number will matter immediately afterward.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "get_order_details is helpful but secondary because the agent should authenticate the user first using the provided fallback identity fields."
+    ]
+  }
+}

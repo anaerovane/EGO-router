@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_3_step_9_manual_045",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "3",
+  "step_id": 9,
+  "query": "Thank you for clarifying! Just to double-check, does this include any extra allowance for Gold members? I’m pretty sure I’m a Gold member, and I want to make sure I’m getting the correct total number of suitcases I can bring for free. Can you confirm the total number in digits, including any Gold member benefits?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user asks how many suitcases are allowed on an upcoming flight.\nassistant: The assistant asks for the user ID and reservation ID.\nuser: The user provides user ID anya_garcia_5901 and reservation JMO1MG.\nassistant called tool: get_reservation_details for reservation JMO1MG.\nassistant: The assistant says the reservation is economy with 2 passengers and initially states there are 2 free checked bags total.\nuser: The user asks for the total number in digits.\nassistant: The assistant replies that there are 2 free checked bags total.\nuser: The user asks whether Gold member benefits increase the total allowance and asks for confirmation of the total including Gold benefits.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I can check that. I need to verify your loyalty status first, since any additional baggage allowance would depend on your membership level."
+      },
+      {
+        "source": "think-refine",
+        "text": "The reservation details are already visible, but the user is now asking about benefits tied to account status, so the grounded next step is to retrieve the user profile to confirm loyalty tier."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.13,
+      "margin": 0.8,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.24,
+    "think": 0.09,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.84,
+    "tool:cancel_reservation": -0.88,
+    "tool:get_flight_status": -0.79,
+    "tool:get_reservation_details": -0.41,
+    "tool:get_user_details": 0.98,
+    "tool:list_all_airports": -0.95,
+    "tool:search_direct_flight": -0.93,
+    "tool:search_onestop_flight": -0.93,
+    "tool:send_certificate": -0.89,
+    "tool:transfer_to_human_agents": -0.36,
+    "tool:update_reservation_baggages": -0.88,
+    "tool:update_reservation_flights": -0.9,
+    "tool:update_reservation_passengers": -0.9
+  },
+  "best_action": "tool:get_user_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "611c39d9-87ee-4d4b-b36a-1ad4ffd75739",
+    "termination_reason": "user_stop",
+    "selected_message_index": 9,
+    "message_count": 14,
+    "decision_rule": "Choose a user turn where the reservation is already known but the user asks about loyalty-based baggage benefits, making a user-profile lookup the grounded next action.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is supported by the real next assistant action, which retrieves the user profile to verify membership status"
+    ]
+  }
+}

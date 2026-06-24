@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_49_step_13_manual_024",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "49",
+  "step_id": 13,
+  "query": "I’m sorry, but I know for sure that I purchased insurance when I booked this flight. Can you please check again or escalate this to someone who can help? I really need the refund since I can’t travel due to being sick, and I bought the insurance for this exact reason.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to cancel a flight because they are sick and says insurance was purchased for a refund.\nassistant: The assistant asks for the user ID and reservation ID.\nuser: The user provides user ID anya_garcia_5901 and confirmation number 3RK2T9.\nassistant called tools: get_reservation_details.\ntool get_reservation_details returned reservation 3RK2T9 without travel insurance.\nassistant: The assistant says the reservation does not show insurance and asks the user to confirm the booking.\nuser: The user insists this is the correct reservation and asks for a double-check.\nassistant called tools: get_user_details and then get_reservation_details again.\ntool results still show no travel insurance associated with reservation 3RK2T9.\nassistant: The assistant explains that the system still shows no insurance and says it cannot process the refund on that basis.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I understand. Since you’re disputing the insurance record and asking for escalation, I can transfer you to a human agent for further help with the refund request."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible reservation checks still conflict with the user’s insurance claim, and the user explicitly asks to escalate. The grounded next move is to transfer to a human agent."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.14,
+      "margin": 0.79,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.96,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.28,
+    "think": 0.1,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.84,
+    "tool:cancel_reservation": -0.76,
+    "tool:get_flight_status": -0.76,
+    "tool:get_reservation_details": -0.35,
+    "tool:get_user_details": -0.31,
+    "tool:list_all_airports": -0.94,
+    "tool:search_direct_flight": -0.91,
+    "tool:search_onestop_flight": -0.91,
+    "tool:send_certificate": -0.86,
+    "tool:transfer_to_human_agents": 0.98,
+    "tool:update_reservation_baggages": -0.89,
+    "tool:update_reservation_flights": -0.89,
+    "tool:update_reservation_passengers": -0.89
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "3684ba9c-862c-47bb-9a5d-a776432de80a",
+    "termination_reason": "user_stop",
+    "selected_message_index": 13,
+    "message_count": 18,
+    "decision_rule": "Choose a user turn where repeated visible checks still contradict the user's insurance claim and the user explicitly requests escalation.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user’s request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is supported by the real next assistant action, which transfers the user for further review"
+    ]
+  }
+}

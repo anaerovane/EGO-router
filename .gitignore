@@ -12,9 +12,11 @@ __pycache__/
 .ruff_cache/
 .ipynb_checkpoints/
 
-# Generated experiment outputs
-outputs/
+# Generated logs and temporary outputs
 *.log
+outputs/_tmp_*.json
+outputs/tmp_*.json
+outputs/**/*.log
 
 # Local/editor state
 .claude/

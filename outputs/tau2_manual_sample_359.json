@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_20_step_19_manual_359",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "20",
+  "step_id": 19,
+  "query": "I’d like to book the first option—Flight HAT136 from JFK to ATL at 7:00 PM, then HAT039 from ATL to SEA at 10:00 PM, for $255. I do not want travel insurance. \n\nI’d like to use my two travel certificates to pay. If only one can be used, please use the larger one and charge the rest to my card ending 7447. \n\nAlso, I will have 3 baggages.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to book a one-way New York to Seattle flight on May 20.\nassistant: The assistant collects user ID mia_li_3668, cabin preference, and passenger details, retrieves the user profile, checks direct flights, and then checks one-stop flights after the user says they do not want to depart before 11 AM.\nassistant: The assistant presents one-stop options that satisfy the departure-time constraint.\nuser: The user chooses the first option, says they do not want travel insurance, asks to use the larger of two travel certificates with the rest charged to card ending 7447 if only one certificate can be used, and says they will have 3 baggages.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. I’ll set up the booking for the first one-stop option without travel insurance, with 3 checked bags, and using your larger certificate first before charging the remainder to card 7447 if needed."
+      },
+      {
+        "source": "think-refine",
+        "text": "The itinerary, passenger, baggage count, insurance preference, and payment instructions are all now visible, so the grounded next step is to attempt the reservation booking rather than search again."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.21,
+      "margin": 0.9,
+      "disagreement": 0.08,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.42,
+    "think": 0.09,
+    "tool:book_reservation": 0.99,
+    "tool:calculate": -0.18,
+    "tool:cancel_reservation": -0.99,
+    "tool:get_flight_status": -0.99,
+    "tool:get_reservation_details": -0.87,
+    "tool:get_user_details": -0.68,
+    "tool:list_all_airports": -0.99,
+    "tool:search_direct_flight": -0.94,
+    "tool:search_onestop_flight": -0.41,
+    "tool:send_certificate": -0.98,
+    "tool:transfer_to_human_agents": -0.77,
+    "tool:update_reservation_baggages": -0.71,
+    "tool:update_reservation_flights": -0.97,
+    "tool:update_reservation_passengers": -0.98
+  },
+  "best_action": "tool:book_reservation",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "32174d06-50ab-424b-88bb-05b93253cc94",
+    "termination_reason": "user_stop",
+    "selected_message_index": 19,
+    "message_count": 32,
+    "decision_rule": "Replace the invalid prepared index with the later user turn where the traveler explicitly selects a one-stop itinerary and supplies baggage, insurance, and payment instructions, because that is a real user decision point for booking.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops before the booking confirmation, payment correction, and final reservation creation",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "prepared tuple index 11 was invalid because it pointed to a tool message, so this sample uses user index 19 instead"
+    ]
+  }
+}

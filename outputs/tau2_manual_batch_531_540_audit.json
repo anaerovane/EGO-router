@@ -1,0 +1,85 @@
+{
+  "summary": [
+    {
+      "file": "tau2_manual_sample_531.json",
+      "domain": "retail",
+      "task_id": "19",
+      "step_id": 19,
+      "best_action": "tool:calculate",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_532.json",
+      "domain": "retail",
+      "task_id": "24",
+      "step_id": 11,
+      "best_action": "tool:get_order_details",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_533.json",
+      "domain": "retail",
+      "task_id": "35",
+      "step_id": 8,
+      "best_action": "tool:find_user_id_by_name_zip",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_534.json",
+      "domain": "retail",
+      "task_id": "70",
+      "step_id": 16,
+      "best_action": "tool:exchange_delivered_order_items",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_535.json",
+      "domain": "telecom",
+      "task_id": "[service_issue]break_apn_settings|lock_sim_card_pin[PERSONA:None]",
+      "step_id": 15,
+      "best_action": "think",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_536.json",
+      "domain": "telecom",
+      "task_id": "[service_issue]airplane_mode_on|overdue_bill_suspension[PERSONA:None]",
+      "step_id": 15,
+      "best_action": "tool:send_payment_request",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_537.json",
+      "domain": "telecom",
+      "task_id": "[service_issue]airplane_mode_on|break_apn_settings|contract_end_suspension|lock_sim_card_pin[PERSONA:None]",
+      "step_id": 12,
+      "best_action": "tool:transfer_to_human_agents",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_538.json",
+      "domain": "telecom",
+      "task_id": "[mms_issue]break_app_sms_permission|data_mode_off[PERSONA:None]",
+      "step_id": 20,
+      "best_action": "tool:get_data_usage",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_539.json",
+      "domain": "retail",
+      "task_id": "44",
+      "step_id": 11,
+      "best_action": "tool:modify_pending_order_items",
+      "issue_count": 0
+    },
+    {
+      "file": "tau2_manual_sample_540.json",
+      "domain": "retail",
+      "task_id": "48",
+      "step_id": 14,
+      "best_action": "tool:return_delivered_order_items",
+      "issue_count": 0
+    }
+  ],
+  "issues": []
+}

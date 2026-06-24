@@ -1,0 +1,76 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_usage_exceeded_user_abroad_roaming_enabled_off_step_33_manual_576",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 33,
+  "query": "I’ve turned Data Roaming ON as you suggested. The status bar now shows excellent signal, 5G, and data enabled. Should I try using my mobile data again, or is there anything else I should check first?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user is abroad in France and initially reports that mobile data is not working or is extremely slow.\nassistant: The assistant authenticates the line by phone number and determines that the carrier side is active, roaming is enabled on the line, and a 2 GB data refuel has already been added after the user requested it.\nassistant: When mobile data still fails, the assistant asks the user to inspect device settings. The user reports strong signal and 5G availability but also reveals that Data Roaming is turned off on the phone.\nassistant: The assistant explains that the device-side Data Roaming switch must be enabled in France and tells the user how to turn it on.\nuser: The user says Data Roaming is now ON and asks whether to test mobile data or check anything else first.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Great — now that the missing device-side roaming setting is enabled, the next step is to test the connection directly, ideally with a quick speed test or by loading a web page."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible device-side blocker has just been resolved, so the grounded next action is to verify service quality rather than perform more account-side lookups."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.17,
+      "margin": 0.61,
+      "disagreement": 0.06,
+      "verifier_confidence": 0.94,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_customer_by_id",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:enable_roaming",
+    "tool:resume_line",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.54,
+    "think": 0.31,
+    "tool:get_customer_by_phone": -0.93,
+    "tool:get_customer_by_name": -0.99,
+    "tool:get_customer_by_id": -0.79,
+    "tool:get_details_by_id": -0.63,
+    "tool:get_bills_for_customer": -0.81,
+    "tool:get_data_usage": -0.44,
+    "tool:refuel_data": -0.57,
+    "tool:enable_roaming": -0.72,
+    "tool:resume_line": -0.86,
+    "tool:send_payment_request": -0.9,
+    "tool:transfer_to_human_agents": -0.48
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "2d66d764-c5b6-4f86-a255-ce4ded06ef59",
+    "termination_reason": "user_stop",
+    "selected_message_index": 33,
+    "message_count": 40,
+    "decision_rule": "Choose a state where the next best move is an assistant-side instruction or verification step, not an immediate backend tool call, so the sample captures a non-tool decision point.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores make think the argmax because the grounded next step is to synthesize instructions to test the restored data path rather than invoke another telecom backend action.",
+    "notes": [
+      "this is a state-level decision after the device-side roaming toggle, before the user runs the confirming speed test",
+      "no future leakage: the history summary stops before the assistant asks for a web-page load or speed test result",
+      "available actions still list the telecom tool set, but all backend options score below think because the user needs guidance first",
+      "this sample diversifies the batch with a best_action of think"
+    ]
+  }
+}

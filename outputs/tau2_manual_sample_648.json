@@ -1,0 +1,70 @@
+{
+  "sample_id": "tau2_telecom_task_data_saver_data_exceeded_easy_step_7_manual_648",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_saver_mode_on|data_usage_exceeded[PERSONA:Easy]",
+  "step_id": 7,
+  "query": "I’ve turned off Data Saver mode as you suggested, but I’m still not getting any internet connection at all—my speed test failed because there’s no connection. What should I try next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user says mobile data is not working and wants excellent speed without Wi-Fi.\nassistant: The assistant asks the user to turn off Data Saver mode.\nuser: The user disables Data Saver mode and then runs a speed test, which fails with no connection.\nuser: After reporting the failed speed test, the user asks what to try next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for checking — since Data Saver is already off and there is still no connection, the next grounded account-side fix is to add temporary data to the line."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible troubleshooting evidence rules out Data Saver as sufficient, and the no-connection result is consistent with exhausted data, so refueling data is the highest-value next action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.11,
+      "margin": 0.82,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:check_device_settings",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.94,
+    "think": 0.1,
+    "tool:get_customer_by_phone": -0.92,
+    "tool:get_details_by_id": -0.58,
+    "tool:get_data_usage": -0.27,
+    "tool:change_plan": -0.7,
+    "tool:refuel_data": 0.98,
+    "tool:check_device_settings": -0.46,
+    "tool:transfer_to_human_agents": -0.63,
+    "tool:calculate": -0.74
+  },
+  "best_action": "tool:refuel_data",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_op_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "3fdad530-d854-43b7-87f5-2b801be6f09d",
+    "termination_reason": "user_stop",
+    "selected_message_index": 7,
+    "message_count": 18,
+    "decision_rule": "Choose the state after a failed post-Data-Saver speed test, where the visible evidence supports a data-cap remediation rather than another generic instruction.",
+    "scoring_method": "Manual one-step proxy scoring from the visible telecom state. Scores favor refueling data after the failed no-connection speed test while avoiding future leakage from later reboot success.",
+    "notes": [
+      "query is taken from the visible user message following the failed speed test",
+      "history_summary stops before the later refuel result, reboot, and successful recovery",
+      "best_action is refuel_data because the current visible evidence suggests exhausted data remains the most actionable blocker",
+      "this sample complements earlier telecom think states with a concrete operator-side intervention"
+    ]
+  }
+}

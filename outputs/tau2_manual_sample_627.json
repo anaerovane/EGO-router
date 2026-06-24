@@ -1,0 +1,77 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]bad_network_preference|bad_vpn|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:Easy]_step_13_manual_627",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]bad_network_preference|bad_vpn|data_usage_exceeded|user_abroad_roaming_disabled_off[PERSONA:Easy]",
+  "step_id": 13,
+  "query": "Yes, please go ahead and enable international roaming on my line. I really need to get my mobile data working at excellent speed while I’m here. Let me know once it’s done or if you need me to do anything on my phone.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports poor or nonworking mobile data while abroad in France.\nassistant: The assistant authenticates the account, inspects the correct line for phone number 555-123-2002, and discovers that roaming is currently disabled on that active line.\nassistant: The assistant explains that disabled international roaming is the likely cause and says it can enable roaming at no additional cost, then asks for permission to do so.\nuser: The user explicitly authorizes enabling international roaming on the line.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for confirming. I can enable international roaming on your line now."
+      },
+      {
+        "source": "think-refine",
+        "text": "The likely blocker has already been identified and the user has approved the change, so the grounded next move is to enable roaming rather than continue diagnosis."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.09,
+      "margin": 0.89,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.98,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.95,
+    "think": 0.06,
+    "tool:get_customer_by_phone": -0.92,
+    "tool:get_customer_by_name": -0.98,
+    "tool:get_details_by_id": -0.49,
+    "tool:get_bills_for_customer": -0.97,
+    "tool:send_payment_request": -0.95,
+    "tool:check_payment_request": -0.97,
+    "tool:make_payment": -0.98,
+    "tool:resume_line": -0.82,
+    "tool:enable_roaming": 0.99,
+    "tool:refuel_data": -0.28,
+    "tool:transfer_to_human_agents": -0.78
+  },
+  "best_action": "tool:enable_roaming",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "4c0cb1fa-9a66-466b-b83f-0aba8f18bc25",
+    "termination_reason": "user_stop",
+    "selected_message_index": 13,
+    "message_count": 22,
+    "decision_rule": "Choose a state where roaming-disabled status has already been surfaced from the line record and the user explicitly approves the fix, making enable_roaming the most direct grounded next action.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores favor immediately changing the roaming setting over additional checks because the relevant line-level cause is already established.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "The query is fully grounded in visible conversation and does not rely on hidden travel metadata beyond what the user already stated.",
+      "This sample adds a telecom configuration-change execution case distinct from billing and data-refuel actions."
+    ]
+  }
+}

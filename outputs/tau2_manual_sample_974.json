@@ -1,0 +1,75 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]_step_21_manual_974",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]",
+  "step_id": 21,
+  "query": "I just tried using my mobile data, but it still isn’t working—there’s no connection at all. I really need excellent internet speed, so can you help me get this fixed?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports mobile data failures and wants excellent speed.\nassistant: The assistant identifies the affected line, discovers the user exceeded the 15GB plan limit, and the user authorizes a 2GB refuel.\nassistant: The assistant completes the refuel, but the user-side speed test still reports no connection.\nuser: The user says mobile data still has no connection and asks for the next fix.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I’m sorry that the refuel didn’t restore service. I’ll re-check the line details so we can see what state the connection is in before deciding the next step."
+      },
+      {
+        "source": "think-refine",
+        "text": "Because the approved refuel has already been applied but service still fails, the grounded next move is to inspect the line again rather than repeat the same action or escalate immediately."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.22,
+      "margin": 0.43,
+      "disagreement": 0.09,
+      "verifier_confidence": 0.88,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.9,
+    "think": 0.19,
+    "tool:get_customer_by_phone": -0.95,
+    "tool:get_customer_by_name": -0.98,
+    "tool:get_details_by_id": 0.91,
+    "tool:get_bills_for_customer": -0.86,
+    "tool:send_payment_request": -0.94,
+    "tool:check_payment_request": -0.96,
+    "tool:make_payment": -0.97,
+    "tool:resume_line": -0.62,
+    "tool:enable_roaming": -0.38,
+    "tool:refuel_data": -0.81,
+    "tool:transfer_to_human_agents": -0.12
+  },
+  "best_action": "tool:get_details_by_id",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "4a0eabe0-1325-4c3e-8918-3a09a02506a2",
+    "termination_reason": "user_transfer",
+    "selected_message_index": 21,
+    "message_count": 28,
+    "decision_rule": "Choose a user turn after one approved remediation has already been executed but failed, so the next grounded action is state inspection rather than repeating the same billing-side operation.",
+    "scoring_method": "Manual one-step proxy scoring from the visible telecom state. Scores favor the action that refreshes the line state after refueling and before any escalation choice.",
+    "notes": [
+      "the query is taken from the post-refuel visible user complaint",
+      "future transfer is excluded from the decision state",
+      "this sample intentionally uses a telecom inspection action rather than another execution or transfer action"
+    ]
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_saver_mode_on_user_abroad_roaming_enabled_off_persona_easy_step_20_manual_677",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_saver_mode_on|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 20,
+  "query": "Here’s what I found on my phone:\n\n- Airplane Mode is OFF.\n- Mobile data is ON.\n- Data Roaming is currently OFF.\n\nShould I go ahead and enable Data Roaming now?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports mobile data problems while abroad in France.\nassistant: The assistant has already established that roaming is relevant and asks the user to check local device status.\nuser: The user runs phone-side checks and reports that the status bar shows excellent 5G signal with data enabled.\nuser: The user also reports network-status details showing Airplane Mode off, the SIM active, the phone connected to 5G, and Data Roaming disabled.\nuser: Based on those visible device checks, the user asks whether to enable Data Roaming now.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes — since you’re abroad and your device checks show roaming is currently off, the next step is to enable Data Roaming and then test the connection again."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible bottleneck is a local device setting, not an account-side issue: the phone already has signal, mobile data, and an active SIM, but Data Roaming is off. The grounded next action is to instruct the user to toggle roaming on-device."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.22,
+      "margin": 0.58,
+      "disagreement": 0.08,
+      "verifier_confidence": 0.9,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:check_device_settings",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.92,
+    "think": 0.17,
+    "tool:get_customer_by_phone": -0.89,
+    "tool:get_details_by_id": -0.56,
+    "tool:get_data_usage": -0.38,
+    "tool:change_plan": -0.9,
+    "tool:refuel_data": -0.77,
+    "tool:check_device_settings": 0.94,
+    "tool:transfer_to_human_agents": -0.45,
+    "tool:calculate": -0.86
+  },
+  "best_action": "tool:check_device_settings",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-2025-04-14_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "a7932627-6b85-4f27-86f1-3dac27455173",
+    "termination_reason": "user_stop",
+    "selected_message_index": 20,
+    "message_count": 27,
+    "decision_rule": "Choose a device-diagnostic user turn where the visible evidence isolates a disabled roaming setting as the immediate blocker, making guided device adjustment the most direct grounded next action.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. check_device_settings is highest because the next useful move is operational guidance on enabling roaming and retesting, not another account lookup or billing action.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "Available telecom actions are account/tool abstractions, so check_device_settings best matches user-facing instruction to change local phone settings.",
+      "This sample captures a mid-troubleshooting branch with strong visible evidence and no need for escalation."
+    ]
+  }
+}

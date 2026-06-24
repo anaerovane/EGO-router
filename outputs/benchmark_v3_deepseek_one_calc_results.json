@@ -1,0 +1,50 @@
+{
+  "config_path": "/Users/bytedance/Desktop/lunwen/aaai_agent_method/configs/experiment_benchmark_v3_deepseek_one_calc.json",
+  "mode": "real",
+  "avg_reward": 3.0,
+  "std_reward": 0.0,
+  "first_action_accuracy": 0.0,
+  "reward_by_type": {
+    "calc": 3.0
+  },
+  "reward_by_difficulty": {
+    "easy": 3.0
+  },
+  "reward_by_split": {
+    "train": 3.0
+  },
+  "reward_by_evaluation_type": {
+    "numeric_exact": 3.0
+  },
+  "first_action_accuracy_by_type": {
+    "calc": 0.0
+  },
+  "num_tasks": 1,
+  "trajectories": [
+    {
+      "id": "calc_001",
+      "query": "Compute `0.08 + 0.75 / (1 + 1)`.",
+      "task_type": "calc",
+      "difficulty": "easy",
+      "split": "train",
+      "evaluation_type": "numeric_exact",
+      "best_action": "tool:calculator",
+      "first_action": null,
+      "final_answer": "0.455",
+      "stop_reason": "low_entropy_and_low_value_of_continuation",
+      "reward": 3.0,
+      "evaluation": {
+        "matched_reference": true,
+        "matched_points": 0,
+        "total_points": 0,
+        "details": {
+          "pred": 0.455,
+          "target": 0.455,
+          "abs_err": 0.0,
+          "rel_err": 0.0
+        }
+      },
+      "trajectory": []
+    }
+  ]
+}

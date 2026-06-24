@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_usage_exceeded_user_abroad_roaming_enabled_off_persona_easy_step_29_manual_542",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 29,
+  "query": "I checked my phone’s settings, and it looks like data roaming is currently turned off. Should I go ahead and enable data roaming now?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports unusable mobile data while abroad in France and shares phone number 555-123-2002.\nassistant: The assistant authenticates the line, confirms roaming is enabled on the carrier side, and finds the user has exceeded the plan data cap.\nassistant: The assistant prices and adds a 2GB data refuel for the line, but the user still reports no connection afterward.\nassistant: The assistant asks the user to inspect device status and settings.\nuser: The user reports excellent signal, 5G connectivity, mobile data enabled, and then checks device settings and finds that data roaming on the phone itself is turned off.\nuser: The user asks whether enabling data roaming is the next step.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes — that setting is the likely blocker while you are abroad, so the right next step is to tell you to enable data roaming on the device and then test the connection again."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible troubleshooting state isolates a device-side roaming setting as the remaining blocker, so a direct guidance response is better than another backend tool call."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.12,
+      "margin": 0.81,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:check_roaming_status",
+    "tool:get_network_status",
+    "tool:run_speed_test",
+    "tool:refuel_data",
+    "tool:change_plan",
+    "tool:restart_device",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.91,
+    "think": 0.97,
+    "tool:get_customer_by_phone": -0.95,
+    "tool:get_details_by_id": -0.82,
+    "tool:get_data_usage": -0.76,
+    "tool:check_roaming_status": -0.57,
+    "tool:get_network_status": -0.44,
+    "tool:run_speed_test": -0.31,
+    "tool:refuel_data": -0.89,
+    "tool:change_plan": -0.94,
+    "tool:restart_device": -0.26,
+    "tool:transfer_to_human_agents": -0.73
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "d482947b-bc2a-479d-9084-e6cc9dceac7a",
+    "termination_reason": "user_stop",
+    "selected_message_index": 29,
+    "message_count": 38,
+    "decision_rule": "Choose a user turn where the backend account checks are already exhausted and the user surfaces a device-side setting that the assistant should address directly in natural language.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores prioritize the response-planning action because the next grounded move is to advise enabling data roaming, not to invoke another backend tool.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample intentionally uses a non-tool best action to diversify the batch and capture a device-guidance decision point."
+    ]
+  }
+}

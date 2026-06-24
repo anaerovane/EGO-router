@@ -1,0 +1,84 @@
+{
+  "sample_id": "tau2_manual_sample_301_step_9_manual_2f2ef042-d8da-479a-85a7-ef1d2c24a716",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "47",
+  "selected_message_index": 9,
+  "step_id": 9,
+  "query": "I really need the full refund, though. Is there any way you can escalate this or check with a supervisor? I don’t want to lose my money just because I have to be there for my best friend’s birthday. Can you please help me out?",
+  "state": {
+    "history_summary": "The user wants to cancel a flight and first asked whether a full refund is available. After the assistant checked the reservation and explained that the booking falls outside the refundable window, the user pushed back and asked whether the case could be escalated or reviewed by a supervisor. The user is now explicitly requesting escalation.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I understand you want someone else to review the refund denial, so I can transfer you to a human agent or supervisor."
+      },
+      {
+        "source": "think-refine",
+        "text": "Because you are asking for escalation after the refund policy explanation, the direct next step is a human handoff."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.14,
+      "margin": 0.79,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.41,
+    "think": 0.04,
+    "tool:book_reservation": -0.97,
+    "tool:calculate": -0.86,
+    "tool:cancel_reservation": -0.8,
+    "tool:get_flight_status": -0.64,
+    "tool:get_reservation_details": -0.43,
+    "tool:get_user_details": -0.41,
+    "tool:list_all_airports": -0.95,
+    "tool:search_direct_flight": -0.94,
+    "tool:search_onestop_flight": -0.94,
+    "tool:send_certificate": -0.88,
+    "tool:transfer_to_human_agents": 0.99,
+    "tool:update_reservation_baggages": -0.92,
+    "tool:update_reservation_flights": -0.92,
+    "tool:update_reservation_passengers": -0.92
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "2f2ef042-d8da-479a-85a7-ef1d2c24a716",
+    "termination_reason": "user_stop",
+    "selected_message_index": 9,
+    "message_count": 22,
+    "decision_rule": "Choose a user turn where the assistant has already explained the visible refund policy outcome and the user explicitly asks for escalation instead of accepting it.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user request using only visible conversation evidence.",
+    "notes": [
+      "manual / non-leaky annotation based only on transcript content visible before or at the selected user turn",
+      "query exactly matches the selected user message from the current source transcript file",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are grounded only in visible context from the transcript up to this turn",
+      "best_action is the argmax of action_scores"
+    ]
+  }
+}

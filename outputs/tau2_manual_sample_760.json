@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_36_step_7_manual_760",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "36",
+  "step_id": 7,
+  "query": "Is there really nothing you can do? My wife just passed away yesterday, and I can’t travel on those dates. I’m really struggling right now. Isn’t there any way to make an exception? I don’t want to cancel, just change the date.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user asks to change the date of a flight because of a serious personal emergency.\nassistant: The assistant retrieves reservation EUJUY6 and explains that it is a basic-economy round trip, so ordinary self-service date changes are not available under the visible policy context.\nuser: The user shares a bereavement situation, asks whether any exception is possible, and says they still want to change rather than cancel the trip.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I’m very sorry for your loss. Because the visible booking details suggest this cannot be handled through the normal self-service flow, the next grounded step is to connect you with a human agent who can review exception options."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user is requesting a policy exception after the reservation details have already been checked, so escalation is more appropriate than retrying the same reservation lookup or making an unsupported self-service change."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.29,
+      "margin": 0.44,
+      "disagreement": 0.11,
+      "verifier_confidence": 0.87,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.67,
+    "think": 0.26,
+    "tool:book_reservation": -0.93,
+    "tool:calculate": -0.61,
+    "tool:cancel_reservation": -0.9,
+    "tool:get_flight_status": -0.82,
+    "tool:get_reservation_details": -0.41,
+    "tool:get_user_details": -0.58,
+    "tool:list_all_airports": -0.96,
+    "tool:search_direct_flight": -0.54,
+    "tool:search_onestop_flight": -0.54,
+    "tool:send_certificate": -0.71,
+    "tool:transfer_to_human_agents": 0.7,
+    "tool:update_reservation_baggages": -0.95,
+    "tool:update_reservation_flights": -0.79,
+    "tool:update_reservation_passengers": -0.94
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "6ab9ca4d-d7bd-42a9-b5d2-55d010017c7f",
+    "termination_reason": "user_stop",
+    "selected_message_index": 7,
+    "message_count": 12,
+    "decision_rule": "Choose a user turn where a policy-blocked self-service change request turns into an exception appeal tied to a hardship circumstance, making human review the most grounded next action.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Highest score goes to escalation because the booking has already been checked and the remaining request is an exception outside normal self-service handling.",
+    "notes": [
+      "query comes directly from the selected visible user turn",
+      "history_summary stops before the assistant transfers the case to a human agent",
+      "best_action is the argmax because visible context no longer supports a standard automated update_reservation_flights action",
+      "this airline sample is included only for diversity after prioritizing retail and telecom cases"
+    ]
+  }
+}

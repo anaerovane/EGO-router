@@ -1,0 +1,109 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_break_apn_lock_pin_step_26_manual_639",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]break_apn_settings|lock_sim_card_pin[PERSONA:None]",
+  "step_id": 26,
+  "query": "I checked the SIM status, and it says the SIM card is locked with a PIN code. What should I do to unlock it?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports that the phone has shown No Service for hours and cannot make calls or use mobile data.\nassistant: The assistant verifies the account and line, confirms the phone line is active, and asks to run diagnostics on the device.\nassistant: The status bar and network checks show No Signal with Airplane Mode OFF, so the assistant asks the user to inspect SIM status.\nuser: The user reports that the SIM card is locked with a PIN code and asks how to unlock it.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "A locked SIM would block network access, so the right next step is to explain that the user needs the correct SIM PIN and, if they do not have it, move them to human support for PIN or PUK assistance."
+      },
+      {
+        "source": "think-refine",
+        "text": "No further device diagnostics will help until the SIM lock is cleared, but the agent cannot unlock a PIN-protected SIM directly, so escalation is the safest grounded action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.22,
+      "margin": 0.41,
+      "disagreement": 0.09,
+      "verifier_confidence": 0.88,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:check_network_status",
+    "tool:check_status_bar",
+    "tool:check_data_restriction_status",
+    "tool:check_network_mode_preference",
+    "tool:check_vpn_status",
+    "tool:check_apn_settings",
+    "tool:check_sim_status",
+    "tool:toggle_airplane_mode",
+    "tool:toggle_roaming",
+    "tool:toggle_data",
+    "tool:toggle_data_saver_mode",
+    "tool:set_network_mode_preference",
+    "tool:disconnect_vpn",
+    "tool:reset_apn_settings",
+    "tool:reseat_sim_card",
+    "tool:reboot_device",
+    "tool:run_speed_test",
+    "tool:refuel_data",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.9,
+    "think": 0.24,
+    "tool:get_customer_by_phone": -0.79,
+    "tool:get_details_by_id": -0.63,
+    "tool:get_data_usage": -0.89,
+    "tool:check_network_status": -0.27,
+    "tool:check_status_bar": -0.22,
+    "tool:check_data_restriction_status": -0.7,
+    "tool:check_network_mode_preference": -0.73,
+    "tool:check_vpn_status": -0.77,
+    "tool:check_apn_settings": -0.61,
+    "tool:check_sim_status": -0.35,
+    "tool:toggle_airplane_mode": -0.68,
+    "tool:toggle_roaming": -0.74,
+    "tool:toggle_data": -0.66,
+    "tool:toggle_data_saver_mode": -0.72,
+    "tool:set_network_mode_preference": -0.75,
+    "tool:disconnect_vpn": -0.78,
+    "tool:reset_apn_settings": -0.62,
+    "tool:reseat_sim_card": -0.44,
+    "tool:reboot_device": -0.39,
+    "tool:run_speed_test": -0.58,
+    "tool:refuel_data": -0.9,
+    "tool:get_bills_for_customer": -0.91,
+    "tool:send_payment_request": -0.92,
+    "tool:check_payment_request": -0.93,
+    "tool:make_payment": -0.94,
+    "tool:resume_line": -0.88,
+    "tool:enable_roaming": -0.83,
+    "tool:transfer_to_human_agents": 0.99
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_telecom_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "7de0c6a5-9b7d-4905-a271-949bf1c22c0f",
+    "termination_reason": "user_stop",
+    "selected_message_index": 26,
+    "message_count": 31,
+    "decision_rule": "Choose a late troubleshooting state where the root blocker is a SIM PIN lock that the agent cannot directly clear through available self-service tools.",
+    "scoring_method": "Manual one-step proxy scoring from the visible telecom state. Scores prefer transfer_to_human_agents because SIM unlock or PUK handling requires support escalation once the user surfaces the lock.",
+    "notes": [
+      "the visible state already rules out airplane mode as the cause, narrowing the blocker to the SIM lock",
+      "history_summary excludes the later transfer tool output",
+      "best_action is transfer_to_human_agents because direct tool remediation for SIM PIN unlock is not available in the action set"
+    ]
+  }
+}

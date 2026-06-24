@@ -1,0 +1,83 @@
+{
+  "sample_id": "tau2_airline_task_3_step_1_manual_278",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "3",
+  "step_id": 1,
+  "query": "Hi, I have an upcoming flight and I need to know exactly how many suitcases I’m allowed to bring with me. I have a lot to pack, so I really need the correct number. Can you help me with that?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user asks for the exact suitcase allowance for an upcoming flight and emphasizes needing the correct number.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes, I can help with that. Please share your user ID and your upcoming flight reservation ID so I can check the exact baggage allowance for your booking."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user is asking for a baggage allowance answer tied to a specific upcoming trip, but no account or reservation identifiers are available yet, so the grounded next step is to request those details rather than guess."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.14,
+      "margin": 0.83,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.96,
+      "steps_remaining": 5
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.62,
+    "think": 0.18,
+    "tool:book_reservation": -0.96,
+    "tool:calculate": -0.89,
+    "tool:cancel_reservation": -0.97,
+    "tool:get_flight_status": -0.9,
+    "tool:get_reservation_details": -0.54,
+    "tool:get_user_details": -0.49,
+    "tool:list_all_airports": -0.94,
+    "tool:search_direct_flight": -0.93,
+    "tool:search_onestop_flight": -0.93,
+    "tool:send_certificate": -0.95,
+    "tool:transfer_to_human_agents": -0.78,
+    "tool:update_reservation_baggages": -0.95,
+    "tool:update_reservation_flights": -0.95,
+    "tool:update_reservation_passengers": -0.95
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "41c6fd3d-755c-42e9-835c-e4ad21fabf1b",
+    "termination_reason": "user_stop",
+    "selected_message_index": 1,
+    "message_count": 16,
+    "decision_rule": "Use the opening user turn when it is still before any identifying details or reservation data are revealed, so the grounded next move is to ask for the account and booking information needed to answer the baggage question.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes all later assistant, tool, and user turns",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "selected_message_index is 1 and matches the opening baggage question exactly as written in the source simulation",
+      "this provenance tuple is unused across the existing tau2_manual_sample_*.json files, so it no longer collides with sample 269 or any other manual sample"
+    ]
+  }
+}

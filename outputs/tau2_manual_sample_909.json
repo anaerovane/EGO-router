@@ -1,0 +1,98 @@
+{
+  "sample_id": "tau2_telecom_task_data_exceeded_roaming_step_33_manual_909",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_usage_exceeded|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 33,
+  "query": "I’ve turned Data Roaming ON as you suggested. The status bar now shows excellent signal, 5G, and data enabled. Should I try using my mobile data again, or is there anything else I should check first?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user says mobile data is not working well while abroad in France and they need excellent internet speed.\nassistant: The assistant asks for the phone number on the account.\nuser: The user provides phone number 555-123-2002.\nassistant: The assistant retrieves the customer account, identifies the correct line, checks the plan, and determines that data usage exceeded the monthly allowance.\nassistant: The assistant explains that the user can refuel additional data, and the user confirms a 2 GB refuel.\nassistant: The assistant applies the refuel successfully.\nuser: After trying the connection, the user reports there is still no connection.\nassistant: The assistant asks the user to inspect phone network status.\nuser: The user reports excellent signal, 5G connectivity, mobile data enabled, and device-side data roaming turned off.\nassistant: The assistant tells the user to enable Data Roaming.\nuser: The user says Data Roaming is now on and the phone shows excellent signal, 5G, and data enabled, then asks what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "That sounds promising. Now that roaming is enabled and the phone shows 5G with data on, the next step is to try the connection again or run a speed test to confirm that your mobile data is actually working."
+      },
+      {
+        "source": "think-refine",
+        "text": "The device state now looks healthy and the obvious blockers have been removed, so the grounded next move is validation rather than another configuration change."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.17,
+      "margin": 0.74,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:refuel_data",
+    "tool:enable_roaming",
+    "tool:check_network_status",
+    "tool:check_network_mode_preference",
+    "tool:set_network_mode_preference",
+    "tool:check_data_restriction_status",
+    "tool:toggle_data_saver_mode",
+    "tool:check_roaming_status",
+    "tool:toggle_roaming",
+    "tool:check_data_usage",
+    "tool:check_status_bar",
+    "tool:toggle_airplane_mode",
+    "tool:toggle_data",
+    "tool:reboot_device",
+    "tool:run_speed_test",
+    "tool:check_apn_settings",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.76,
+    "think": 0.11,
+    "tool:get_customer_by_phone": -0.92,
+    "tool:get_customer_by_name": -0.97,
+    "tool:get_details_by_id": -0.74,
+    "tool:get_bills_for_customer": -0.98,
+    "tool:send_payment_request": -0.99,
+    "tool:refuel_data": -0.87,
+    "tool:enable_roaming": -0.9,
+    "tool:check_network_status": -0.42,
+    "tool:check_network_mode_preference": -0.65,
+    "tool:set_network_mode_preference": -0.69,
+    "tool:check_data_restriction_status": -0.61,
+    "tool:toggle_data_saver_mode": -0.78,
+    "tool:check_roaming_status": -0.63,
+    "tool:toggle_roaming": -0.93,
+    "tool:check_data_usage": -0.8,
+    "tool:check_status_bar": -0.57,
+    "tool:toggle_airplane_mode": -0.96,
+    "tool:toggle_data": -0.9,
+    "tool:reboot_device": -0.58,
+    "tool:run_speed_test": 0.98,
+    "tool:check_apn_settings": -0.66,
+    "tool:transfer_to_human_agents": -0.71
+  },
+  "best_action": "tool:run_speed_test",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "2d66d764-c5b6-4f86-a255-ce4ded06ef59",
+    "termination_reason": "user_stop",
+    "selected_message_index": 33,
+    "message_count": 40,
+    "decision_rule": "Choose a state where previously identified blockers have been fixed and the next grounded need is to validate whether service quality has actually recovered.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. run_speed_test is highest because the phone now reports healthy indicators after the roaming toggle, so the assistant should verify restored mobile-data performance before proposing further troubleshooting.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "This sample complements 906 and 907 by focusing on validation after a corrective change rather than on diagnosing the missing setting itself",
+      "Further configuration tools are lower because the visible device state no longer points to a specific unresolved blocker"
+    ]
+  }
+}

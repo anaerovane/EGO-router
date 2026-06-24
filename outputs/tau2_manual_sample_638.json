@@ -1,0 +1,109 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_overdue_bill_lock_pin_step_22_manual_638",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]break_apn_settings|lock_sim_card_pin|overdue_bill_suspension[PERSONA:Easy]",
+  "step_id": 22,
+  "query": "I’ve just completed the payment for the overdue bill. What should I do next to get my service restored?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports a phone showing No Service for several hours.\nassistant: The assistant identifies line 555-123-2002 and finds it is suspended.\nassistant: The assistant checks billing and explains that service is suspended because of an overdue $65.00 bill.\nassistant: The assistant sends a payment request to resolve the suspension.\nuser: The user says the bill payment has now been completed and asks what to do next to restore service.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks — now that the overdue payment is complete, I should verify the bill state and restore the suspended line so your service can come back online."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible blocker is line suspension due to nonpayment; after the user completes payment, the next grounded system action is to resume the line rather than start device troubleshooting."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.13,
+      "margin": 0.79,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:check_network_status",
+    "tool:check_status_bar",
+    "tool:check_data_restriction_status",
+    "tool:check_network_mode_preference",
+    "tool:check_vpn_status",
+    "tool:check_apn_settings",
+    "tool:check_sim_status",
+    "tool:toggle_airplane_mode",
+    "tool:toggle_roaming",
+    "tool:toggle_data",
+    "tool:toggle_data_saver_mode",
+    "tool:set_network_mode_preference",
+    "tool:disconnect_vpn",
+    "tool:reset_apn_settings",
+    "tool:reseat_sim_card",
+    "tool:reboot_device",
+    "tool:run_speed_test",
+    "tool:refuel_data",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.94,
+    "think": 0.17,
+    "tool:get_customer_by_phone": -0.76,
+    "tool:get_details_by_id": -0.62,
+    "tool:get_data_usage": -0.88,
+    "tool:check_network_status": -0.19,
+    "tool:check_status_bar": -0.14,
+    "tool:check_data_restriction_status": -0.57,
+    "tool:check_network_mode_preference": -0.66,
+    "tool:check_vpn_status": -0.71,
+    "tool:check_apn_settings": -0.58,
+    "tool:check_sim_status": -0.53,
+    "tool:toggle_airplane_mode": -0.69,
+    "tool:toggle_roaming": -0.73,
+    "tool:toggle_data": -0.64,
+    "tool:toggle_data_saver_mode": -0.72,
+    "tool:set_network_mode_preference": -0.74,
+    "tool:disconnect_vpn": -0.75,
+    "tool:reset_apn_settings": -0.6,
+    "tool:reseat_sim_card": -0.61,
+    "tool:reboot_device": -0.27,
+    "tool:run_speed_test": -0.43,
+    "tool:refuel_data": -0.89,
+    "tool:get_bills_for_customer": 0.36,
+    "tool:send_payment_request": -0.92,
+    "tool:check_payment_request": 0.28,
+    "tool:make_payment": -0.95,
+    "tool:resume_line": 0.99,
+    "tool:enable_roaming": -0.76,
+    "tool:transfer_to_human_agents": -0.55
+  },
+  "best_action": "tool:resume_line",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_telecom_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "1add7ff9-86de-432c-b721-14acf939effd",
+    "termination_reason": "user_stop",
+    "selected_message_index": 22,
+    "message_count": 47,
+    "decision_rule": "Choose a state where a billing blocker has just been cleared and the next highest-value action is to reactivate the line before any handset-level diagnostics continue.",
+    "scoring_method": "Manual one-step proxy scoring from the visible telecom state. Scores favor resume_line because line suspension is the grounded root cause already established in the conversation, and the user has just finished paying.",
+    "notes": [
+      "history_summary stops before the bill recheck and line-resume tool outputs",
+      "best_action is resume_line even though rechecking bills is somewhat plausible, because the user has already stated payment completion and the episode proceeds directly to line restoration",
+      "this sample diversifies telecom best actions into service-restoration rather than data troubleshooting"
+    ]
+  }
+}

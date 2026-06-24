@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_19_step_9_manual_340",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "19",
+  "step_id": 9,
+  "query": "Yes, my user ID is olivia_gonzalez_2305. Listing my current reservations would be helpful, thank you.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user says they need help with a flight reservation.\nassistant: The assistant asks for the user ID.\nuser: The user provides user ID olivia_gonzalez_2305.\nassistant: The assistant asks what kind of reservation help is needed.\nuser: The user says they want to change the return flight to a later one the same day, or otherwise the earliest flight the next day.\nassistant: The assistant asks for the reservation ID and offers to help locate it.\nuser: The user says they do not remember the reservation ID.\nassistant: The assistant asks the user to reconfirm the user ID and whether listing current reservations would help.\nuser: The user reconfirms user ID olivia_gonzalez_2305 and asks for the current reservations to be listed.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Absolutely — I’ll pull up your account and list your current reservations so you can identify the one whose return flight you want to change."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user explicitly wants the current reservations listed and has just reconfirmed the account identifier, so the grounded next move is to retrieve the user profile."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.09,
+      "margin": 0.9,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.98,
+      "steps_remaining": 6
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.39,
+    "think": 0.06,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.9,
+    "tool:cancel_reservation": -0.95,
+    "tool:get_flight_status": -0.92,
+    "tool:get_reservation_details": -0.44,
+    "tool:get_user_details": 0.99,
+    "tool:list_all_airports": -0.96,
+    "tool:search_direct_flight": -0.95,
+    "tool:search_onestop_flight": -0.95,
+    "tool:send_certificate": -0.94,
+    "tool:transfer_to_human_agents": -0.67,
+    "tool:update_reservation_baggages": -0.97,
+    "tool:update_reservation_flights": -0.9,
+    "tool:update_reservation_passengers": -0.97
+  },
+  "best_action": "tool:get_user_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "abb54297-6744-40c9-9feb-2ec256ff1e23",
+    "termination_reason": "user_stop",
+    "selected_message_index": 9,
+    "message_count": 28,
+    "decision_rule": "Use the later user turn where the traveler explicitly requests that current reservations be listed after reconfirming the user ID, because that makes account retrieval the clearest immediate action.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops before any reservation list or reservation-detail outputs are shown",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "selected_message_index is 9 rather than 3 because the decisive request here is the explicit ask to list the current reservations"
+    ]
+  }
+}

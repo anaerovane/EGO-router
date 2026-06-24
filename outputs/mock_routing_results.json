@@ -1,0 +1,1046 @@
+{
+  "config_path": "/Users/bytedance/Desktop/lunwen/aaai_agent_method/configs/experiment_mock.json",
+  "mode": "mock",
+  "avg_reward": 1.72,
+  "std_reward": 1.2163880959627975,
+  "first_action_accuracy": 0.3,
+  "reward_by_type": {
+    "math": 3.0,
+    "calc": 0.9000000000000001,
+    "search": 0.5,
+    "code": 3.0,
+    "think": 1.2
+  },
+  "first_action_accuracy_by_type": {
+    "math": 1.0,
+    "calc": 0.0,
+    "search": 0.0,
+    "code": 0.5,
+    "think": 0.0
+  },
+  "num_tasks": 10,
+  "trajectories": [
+    {
+      "query": "Derive the theorem carefully and justify the proof idea.",
+      "task_type": "math",
+      "best_action": "delegate:math",
+      "first_action": "delegate:math",
+      "final_answer": "Math-expert-supported answer: rigorous derivation with validated final result.",
+      "stop_reason": "low_entropy_and_low_value_of_continuation",
+      "reward": 3.0,
+      "trajectory": [
+        {
+          "step": 1,
+          "budget_before": 3,
+          "chosen_action": "delegate:math",
+          "action": "delegate:math",
+          "action_scores": [
+            {
+              "action_name": "delegate:math",
+              "score": 1.6071627930409513,
+              "estimated_gain": 1.4734908091293197,
+              "action_cost": 0.1,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.45469560528102954
+            },
+            {
+              "action_name": "delegate:code",
+              "score": 1.2682270625802141,
+              "estimated_gain": 1.1044908091293197,
+              "action_cost": 0.11,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4394098748202926
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 1.1243174728366552,
+              "estimated_gain": 0.9460564261236972,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4401695106315125
+            },
+            {
+              "action_name": "tool:search",
+              "score": 1.0377287782124343,
+              "estimated_gain": 0.8960564261236973,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.43608081600729154
+            },
+            {
+              "action_name": "think",
+              "score": 0.940723215056411,
+              "estimated_gain": 0.6588845110955843,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4306713806251644
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "query": "Calculate the numerical answer and verify the arithmetic.",
+      "task_type": "calc",
+      "best_action": "tool:calculator",
+      "first_action": "delegate:math",
+      "final_answer": "Math-expert-supported answer: rigorous derivation with validated final result.",
+      "stop_reason": "low_entropy_and_low_value_of_continuation",
+      "reward": 2.2,
+      "trajectory": [
+        {
+          "step": 1,
+          "budget_before": 3,
+          "chosen_action": "delegate:math",
+          "action": "delegate:math",
+          "action_scores": [
+            {
+              "action_name": "delegate:math",
+              "score": 3.42538522594802,
+              "estimated_gain": 1.1434908091293199,
+              "action_cost": 0.1,
+              "predicted_reward": 2.4040989126677235,
+              "exploration_bonus": 0.1493191255203754
+            },
+            {
+              "action_name": "delegate:code",
+              "score": 1.2682270625802141,
+              "estimated_gain": 1.1044908091293197,
+              "action_cost": 0.11,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4394098748202926
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 1.2106732273912,
+              "estimated_gain": 1.0460564261236973,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4415252651860572
+            },
+            {
+              "action_name": "tool:search",
+              "score": 1.0377287782124343,
+              "estimated_gain": 0.8960564261236973,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.43608081600729154
+            },
+            {
+              "action_name": "think",
+              "score": 0.940723215056411,
+              "estimated_gain": 0.6588845110955843,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4306713806251644
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "query": "Find supporting evidence for the factual claim.",
+      "task_type": "search",
+      "best_action": "tool:search",
+      "first_action": "delegate:math",
+      "final_answer": "Math-expert-supported answer: rigorous derivation with validated final result.",
+      "stop_reason": "no_available_actions",
+      "reward": 0.5,
+      "trajectory": [
+        {
+          "step": 1,
+          "budget_before": 3,
+          "chosen_action": "delegate:math",
+          "action": "delegate:math",
+          "action_scores": [
+            {
+              "action_name": "delegate:math",
+              "score": 3.054513905495383,
+              "estimated_gain": 1.1434908091293199,
+              "action_cost": 0.1,
+              "predicted_reward": 2.0890091377806677,
+              "exploration_bonus": 0.09353757995479378
+            },
+            {
+              "action_name": "delegate:code",
+              "score": 1.2682270625802141,
+              "estimated_gain": 1.1044908091293197,
+              "action_cost": 0.11,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4394098748202926
+            },
+            {
+              "action_name": "tool:search",
+              "score": 1.2131770381692486,
+              "estimated_gain": 1.0960564261236974,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4415290759641058
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 1.1243174728366552,
+              "estimated_gain": 0.9460564261236972,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4401695106315125
+            },
+            {
+              "action_name": "think",
+              "score": 0.940723215056411,
+              "estimated_gain": 0.6588845110955843,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4306713806251644
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "budget_before": 2,
+          "chosen_action": "delegate:math",
+          "action": "delegate:math",
+          "action_scores": [
+            {
+              "action_name": "delegate:math",
+              "score": 1.8881474665778901,
+              "estimated_gain": 1.060164760621287,
+              "action_cost": 0.1,
+              "predicted_reward": 0.988405068731174,
+              "exploration_bonus": 0.09860235131862248
+            },
+            {
+              "action_name": "delegate:code",
+              "score": 1.0911389919141956,
+              "estimated_gain": 1.0211647606212868,
+              "action_cost": 0.11,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.3331489453861019
+            },
+            {
+              "action_name": "tool:search",
+              "score": 1.0493607210924638,
+              "estimated_gain": 1.0288526932998587,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.334835931787584
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 0.9611750246958967,
+              "estimated_gain": 0.8788526932998587,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.33415023539101674
+            },
+            {
+              "action_name": "think",
+              "score": 0.7547337999436661,
+              "estimated_gain": 0.5684686941830859,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.3215354098880432
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "budget_before": 1,
+          "chosen_action": "delegate:math",
+          "action": "delegate:math",
+          "action_scores": [
+            {
+              "action_name": "delegate:math",
+              "score": 0.9155799496544358,
+              "estimated_gain": 0.7603211489820837,
+              "action_cost": 0.1,
+              "predicted_reward": 0.2544119696872197,
+              "exploration_bonus": 0.11489500333244508
+            },
+            {
+              "action_name": "delegate:code",
+              "score": 0.7612355687528799,
+              "estimated_gain": 0.7213211489820837,
+              "action_cost": 0.11,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.2581125921181087
+            },
+            {
+              "action_name": "tool:search",
+              "score": 0.7224684720274256,
+              "estimated_gain": 0.7331887806907219,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.259258008440312
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 0.6351141455384868,
+              "estimated_gain": 0.583188780690722,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.2594036819513731
+            },
+            {
+              "action_name": "think",
+              "score": 0.5664666549491187,
+              "estimated_gain": 0.4394453835138163,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.24293807896237493
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "query": "Implement the solution logic and debug the script behavior.",
+      "task_type": "code",
+      "best_action": "delegate:code",
+      "first_action": "delegate:math",
+      "final_answer": "Code-expert-supported answer: implementation details and debugging steps are correct.",
+      "stop_reason": "low_entropy_and_low_value_of_continuation",
+      "reward": 3.0,
+      "trajectory": [
+        {
+          "step": 1,
+          "budget_before": 3,
+          "chosen_action": "delegate:math",
+          "action": "delegate:math",
+          "action_scores": [
+            {
+              "action_name": "delegate:math",
+              "score": 2.1075065389808447,
+              "estimated_gain": 1.1434908091293199,
+              "action_cost": 0.1,
+              "predicted_reward": 1.166727154135799,
+              "exploration_bonus": 0.06881219708512389
+            },
+            {
+              "action_name": "delegate:code",
+              "score": 1.5608028392062128,
+              "estimated_gain": 1.4344908091293198,
+              "action_cost": 0.11,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.45148565144629105
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 1.1243174728366552,
+              "estimated_gain": 0.9460564261236972,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4401695106315125
+            },
+            {
+              "action_name": "tool:search",
+              "score": 1.0377287782124343,
+              "estimated_gain": 0.8960564261236973,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.43608081600729154
+            },
+            {
+              "action_name": "think",
+              "score": 0.940723215056411,
+              "estimated_gain": 0.6588845110955843,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4306713806251644
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "budget_before": 2,
+          "chosen_action": "delegate:code",
+          "action": "delegate:code",
+          "action_scores": [
+            {
+              "action_name": "delegate:code",
+              "score": 1.47540871623523,
+              "estimated_gain": 1.46156022336408,
+              "action_cost": 0.11,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.34308252637576225
+            },
+            {
+              "action_name": "delegate:math",
+              "score": 1.3500617930776933,
+              "estimated_gain": 1.1705602233640802,
+              "action_cost": 0.1,
+              "predicted_reward": 0.35953409906391365,
+              "exploration_bonus": 0.0955515041543115
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 1.0433063030544214,
+              "estimated_gain": 0.9827831993864549,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.327940583575935
+            },
+            {
+              "action_name": "tool:search",
+              "score": 0.9552975826001774,
+              "estimated_gain": 0.9327831993864549,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.3224318631216908
+            },
+            {
+              "action_name": "think",
+              "score": 0.8100119967361038,
+              "estimated_gain": 0.6410997153192152,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.315077238714771
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "query": "Improve the reasoning internally before giving a concise answer.",
+      "task_type": "think",
+      "best_action": "think",
+      "first_action": "delegate:code",
+      "final_answer": "Code-expert-supported answer: implementation details and debugging steps are correct.",
+      "stop_reason": "low_entropy_and_low_value_of_continuation",
+      "reward": 1.2,
+      "trajectory": [
+        {
+          "step": 1,
+          "budget_before": 3,
+          "chosen_action": "delegate:code",
+          "action": "delegate:code",
+          "action_scores": [
+            {
+              "action_name": "delegate:code",
+              "score": 3.832599760012539,
+              "estimated_gain": 1.1044908091293197,
+              "action_cost": 0.11,
+              "predicted_reward": 2.770945522066523,
+              "exploration_bonus": 0.23283705018609416
+            },
+            {
+              "action_name": "delegate:math",
+              "score": 1.8096736302050598,
+              "estimated_gain": 1.1434908091293199,
+              "action_cost": 0.1,
+              "predicted_reward": 0.8780123858616911,
+              "exploration_bonus": 0.059694056583446994
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 1.1243174728366552,
+              "estimated_gain": 0.9460564261236972,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4401695106315125
+            },
+            {
+              "action_name": "tool:search",
+              "score": 1.0377287782124343,
+              "estimated_gain": 0.8960564261236973,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.43608081600729154
+            },
+            {
+              "action_name": "think",
+              "score": 0.940723215056411,
+              "estimated_gain": 0.6588845110955843,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4306713806251644
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "budget_before": 2,
+          "chosen_action": "delegate:code",
+          "action": "delegate:code",
+          "action_scores": [
+            {
+              "action_name": "delegate:code",
+              "score": 1.926868437772711,
+              "estimated_gain": 0.8954715989296813,
+              "action_cost": 0.11,
+              "predicted_reward": 1.1718538022615608,
+              "exploration_bonus": 0.10386377642092116
+            },
+            {
+              "action_name": "delegate:math",
+              "score": 1.1979731874194144,
+              "estimated_gain": 0.9344715989296815,
+              "action_cost": 0.1,
+              "predicted_reward": 0.4401104479477332,
+              "exploration_bonus": 0.06356188038145211
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 0.8608299264639606,
+              "estimated_gain": 0.7530314043383354,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.34075323277637554
+            },
+            {
+              "action_name": "tool:search",
+              "score": 0.7730316767293498,
+              "estimated_gain": 0.7030314043383353,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.33545498304176485
+            },
+            {
+              "action_name": "think",
+              "score": 0.6796913899196846,
+              "estimated_gain": 0.4721167502208311,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.32839215223197815
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "query": "Derive the theorem carefully and justify the proof idea.",
+      "task_type": "math",
+      "best_action": "delegate:math",
+      "first_action": "delegate:math",
+      "final_answer": "Math-expert-supported answer: rigorous derivation with validated final result.",
+      "stop_reason": "low_entropy_and_low_value_of_continuation",
+      "reward": 3.0,
+      "trajectory": [
+        {
+          "step": 1,
+          "budget_before": 3,
+          "chosen_action": "delegate:math",
+          "action": "delegate:math",
+          "action_scores": [
+            {
+              "action_name": "delegate:math",
+              "score": 2.9006225853180703,
+              "estimated_gain": 1.4734908091293197,
+              "action_cost": 0.1,
+              "predicted_reward": 1.6625680599277077,
+              "exploration_bonus": 0.08558733763044113
+            },
+            {
+              "action_name": "delegate:code",
+              "score": 1.9518490053013255,
+              "estimated_gain": 1.1044908091293197,
+              "action_cost": 0.11,
+              "predicted_reward": 1.0274218518285863,
+              "exploration_bonus": 0.09560996571281774
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 1.1243174728366552,
+              "estimated_gain": 0.9460564261236972,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4401695106315125
+            },
+            {
+              "action_name": "tool:search",
+              "score": 1.0377287782124343,
+              "estimated_gain": 0.8960564261236973,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.43608081600729154
+            },
+            {
+              "action_name": "think",
+              "score": 0.940723215056411,
+              "estimated_gain": 0.6588845110955843,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4306713806251644
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "query": "Calculate the numerical answer and verify the arithmetic.",
+      "task_type": "calc",
+      "best_action": "tool:calculator",
+      "first_action": "delegate:code",
+      "final_answer": "Initial draft answer: uncertain and only partially supported.",
+      "stop_reason": "no_available_actions",
+      "reward": -0.4,
+      "trajectory": [
+        {
+          "step": 1,
+          "budget_before": 3,
+          "chosen_action": "delegate:code",
+          "action": "delegate:code",
+          "action_scores": [
+            {
+              "action_name": "delegate:code",
+              "score": 1.9518490053013255,
+              "estimated_gain": 1.1044908091293197,
+              "action_cost": 0.11,
+              "predicted_reward": 1.0274218518285863,
+              "exploration_bonus": 0.09560996571281774
+            },
+            {
+              "action_name": "delegate:math",
+              "score": 1.906635835581708,
+              "estimated_gain": 1.1434908091293199,
+              "action_cost": 0.1,
+              "predicted_reward": 0.9766005857392086,
+              "exploration_bonus": 0.05806806208257778
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 1.2106732273912,
+              "estimated_gain": 1.0460564261236973,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4415252651860572
+            },
+            {
+              "action_name": "tool:search",
+              "score": 1.0377287782124343,
+              "estimated_gain": 0.8960564261236973,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.43608081600729154
+            },
+            {
+              "action_name": "think",
+              "score": 0.940723215056411,
+              "estimated_gain": 0.6588845110955843,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4306713806251644
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "budget_before": 2,
+          "chosen_action": "delegate:code",
+          "action": "delegate:code",
+          "action_scores": [
+            {
+              "action_name": "delegate:code",
+              "score": 2.056089841261607,
+              "estimated_gain": 1.13156022336408,
+              "action_cost": 0.11,
+              "predicted_reward": 1.1131740096131506,
+              "exploration_bonus": 0.09108964178898842
+            },
+            {
+              "action_name": "delegate:math",
+              "score": 1.389281162871156,
+              "estimated_gain": 1.1705602233640802,
+              "action_cost": 0.1,
+              "predicted_reward": 0.3989134646155076,
+              "exploration_bonus": 0.09539150839618055
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 1.1301356714068262,
+              "estimated_gain": 1.082783199386455,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.3297699519283394
+            },
+            {
+              "action_name": "tool:search",
+              "score": 0.9552975826001774,
+              "estimated_gain": 0.9327831993864549,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.3224318631216908
+            },
+            {
+              "action_name": "think",
+              "score": 0.8100119967361038,
+              "estimated_gain": 0.6410997153192152,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.315077238714771
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "budget_before": 1,
+          "chosen_action": "delegate:code",
+          "action": "delegate:code",
+          "action_scores": [
+            {
+              "action_name": "delegate:code",
+              "score": 1.280524033248096,
+              "estimated_gain": 0.8694789152336668,
+              "action_cost": 0.11,
+              "predicted_reward": 0.5556923358240864,
+              "exploration_bonus": 0.09577461947539297
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 0.8360785308823551,
+              "estimated_gain": 0.8280284489118404,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.25225434930729074
+            },
+            {
+              "action_name": "delegate:math",
+              "score": 0.8317582381602947,
+              "estimated_gain": 0.9084789152336669,
+              "action_cost": 0.1,
+              "predicted_reward": 0.07035798361757398,
+              "exploration_bonus": 0.08919317659410396
+            },
+            {
+              "action_name": "tool:search",
+              "score": 0.6591043016267336,
+              "estimated_gain": 0.6780284489118403,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.24278012005166938
+            },
+            {
+              "action_name": "think",
+              "score": 0.647611979618582,
+              "estimated_gain": 0.5466918495330029,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.23292390751552963
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "query": "Find supporting evidence for the factual claim.",
+      "task_type": "search",
+      "best_action": "tool:search",
+      "first_action": "delegate:math",
+      "final_answer": "Math-expert-supported answer: rigorous derivation with validated final result.",
+      "stop_reason": "no_available_actions",
+      "reward": 0.5,
+      "trajectory": [
+        {
+          "step": 1,
+          "budget_before": 3,
+          "chosen_action": "delegate:math",
+          "action": "delegate:math",
+          "action_scores": [
+            {
+              "action_name": "delegate:math",
+              "score": 1.906635835581708,
+              "estimated_gain": 1.1434908091293199,
+              "action_cost": 0.1,
+              "predicted_reward": 0.9766005857392086,
+              "exploration_bonus": 0.05806806208257778
+            },
+            {
+              "action_name": "delegate:code",
+              "score": 1.4362897973692792,
+              "estimated_gain": 1.1044908091293197,
+              "action_cost": 0.11,
+              "predicted_reward": 0.5339877180178166,
+              "exploration_bonus": 0.07348489159154081
+            },
+            {
+              "action_name": "tool:search",
+              "score": 1.2131770381692486,
+              "estimated_gain": 1.0960564261236974,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4415290759641058
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 1.1243174728366552,
+              "estimated_gain": 0.9460564261236972,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4401695106315125
+            },
+            {
+              "action_name": "think",
+              "score": 0.940723215056411,
+              "estimated_gain": 0.6588845110955843,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4306713806251644
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "budget_before": 2,
+          "chosen_action": "delegate:code",
+          "action": "delegate:code",
+          "action_scores": [
+            {
+              "action_name": "delegate:code",
+              "score": 1.3070197011507143,
+              "estimated_gain": 1.0211647606212868,
+              "action_cost": 0.11,
+              "predicted_reward": 0.49522641208562296,
+              "exploration_bonus": 0.05380324253699771
+            },
+            {
+              "action_name": "delegate:math",
+              "score": 1.2418126518268788,
+              "estimated_gain": 1.060164760621287,
+              "action_cost": 0.1,
+              "predicted_reward": 0.3787487108128724,
+              "exploration_bonus": 0.06192389448591262
+            },
+            {
+              "action_name": "tool:search",
+              "score": 1.0493607210924638,
+              "estimated_gain": 1.0288526932998587,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.334835931787584
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 0.9611750246958967,
+              "estimated_gain": 0.8788526932998587,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.33415023539101674
+            },
+            {
+              "action_name": "think",
+              "score": 0.7547337999436661,
+              "estimated_gain": 0.5684686941830859,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.3215354098880432
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "budget_before": 1,
+          "chosen_action": "delegate:code",
+          "action": "delegate:code",
+          "action_scores": [
+            {
+              "action_name": "delegate:code",
+              "score": 1.1924719228537495,
+              "estimated_gain": 1.1095950484024484,
+              "action_cost": 0.11,
+              "predicted_reward": 0.25879913849239766,
+              "exploration_bonus": 0.1005169932192707
+            },
+            {
+              "action_name": "tool:search",
+              "score": 1.0854383015259546,
+              "estimated_gain": 1.128818838396117,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.2859422888892551
+            },
+            {
+              "action_name": "delegate:math",
+              "score": 1.0339418678139518,
+              "estimated_gain": 1.1485950484024485,
+              "action_cost": 0.1,
+              "predicted_reward": 0.04543410207251086,
+              "exploration_bonus": 0.11220197459935972
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 0.9937607576708293,
+              "estimated_gain": 0.9788188383961173,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.2817647450341295
+            },
+            {
+              "action_name": "think",
+              "score": 0.8714920104082347,
+              "estimated_gain": 0.7703631246491508,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.2666833544564565
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "query": "Implement the solution logic and debug the script behavior.",
+      "task_type": "code",
+      "best_action": "delegate:code",
+      "first_action": "delegate:code",
+      "final_answer": "Code-expert-supported answer: implementation details and debugging steps are correct.",
+      "stop_reason": "low_entropy_and_low_value_of_continuation",
+      "reward": 3.0,
+      "trajectory": [
+        {
+          "step": 1,
+          "budget_before": 3,
+          "chosen_action": "delegate:code",
+          "action": "delegate:code",
+          "action_scores": [
+            {
+              "action_name": "delegate:code",
+              "score": 2.6296651905213086,
+              "estimated_gain": 1.4344908091293198,
+              "action_cost": 0.11,
+              "predicted_reward": 1.4149505306334336,
+              "exploration_bonus": 0.1053974721279531
+            },
+            {
+              "action_name": "delegate:math",
+              "score": 1.7342694103011183,
+              "estimated_gain": 1.1434908091293199,
+              "action_cost": 0.1,
+              "predicted_reward": 0.8100323248410362,
+              "exploration_bonus": 0.05226989770016042
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 1.1243174728366552,
+              "estimated_gain": 0.9460564261236972,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4401695106315125
+            },
+            {
+              "action_name": "tool:search",
+              "score": 1.0377287782124343,
+              "estimated_gain": 0.8960564261236973,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.43608081600729154
+            },
+            {
+              "action_name": "think",
+              "score": 0.940723215056411,
+              "estimated_gain": 0.6588845110955843,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4306713806251644
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "query": "Improve the reasoning internally before giving a concise answer.",
+      "task_type": "think",
+      "best_action": "think",
+      "first_action": "delegate:math",
+      "final_answer": "Math-expert-supported answer: rigorous derivation with validated final result.",
+      "stop_reason": "low_entropy_and_low_value_of_continuation",
+      "reward": 1.2,
+      "trajectory": [
+        {
+          "step": 1,
+          "budget_before": 3,
+          "chosen_action": "delegate:math",
+          "action": "delegate:math",
+          "action_scores": [
+            {
+              "action_name": "delegate:math",
+              "score": 1.7342694103011183,
+              "estimated_gain": 1.1434908091293199,
+              "action_cost": 0.1,
+              "predicted_reward": 0.8100323248410362,
+              "exploration_bonus": 0.05226989770016042
+            },
+            {
+              "action_name": "delegate:code",
+              "score": 1.6159841655052383,
+              "estimated_gain": 1.1044908091293197,
+              "action_cost": 0.11,
+              "predicted_reward": 0.7216402192614685,
+              "exploration_bonus": 0.06552675848384806
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 1.1243174728366552,
+              "estimated_gain": 0.9460564261236972,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4401695106315125
+            },
+            {
+              "action_name": "tool:search",
+              "score": 1.0377287782124343,
+              "estimated_gain": 0.8960564261236973,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.43608081600729154
+            },
+            {
+              "action_name": "think",
+              "score": 0.940723215056411,
+              "estimated_gain": 0.6588845110955843,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.4306713806251644
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "budget_before": 2,
+          "chosen_action": "delegate:math",
+          "action": "delegate:math",
+          "action_scores": [
+            {
+              "action_name": "delegate:math",
+              "score": 1.1640078323965841,
+              "estimated_gain": 0.9344715989296815,
+              "action_cost": 0.1,
+              "predicted_reward": 0.4086097268689052,
+              "exploration_bonus": 0.06109724643744981
+            },
+            {
+              "action_name": "delegate:code",
+              "score": 1.1070543423586674,
+              "estimated_gain": 0.8954715989296813,
+              "action_cost": 0.11,
+              "predicted_reward": 0.3984519433385204,
+              "exploration_bonus": 0.05745153992991803
+            },
+            {
+              "action_name": "tool:calculator",
+              "score": 0.8608299264639606,
+              "estimated_gain": 0.7530314043383354,
+              "action_cost": 0.12,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.34075323277637554
+            },
+            {
+              "action_name": "tool:search",
+              "score": 0.7730316767293498,
+              "estimated_gain": 0.7030314043383353,
+              "action_cost": 0.16,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.33545498304176485
+            },
+            {
+              "action_name": "think",
+              "score": 0.6796913899196846,
+              "estimated_gain": 0.4721167502208311,
+              "action_cost": 0.05,
+              "predicted_reward": 0.0,
+              "exploration_bonus": 0.32839215223197815
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

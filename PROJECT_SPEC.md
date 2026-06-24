@@ -99,14 +99,25 @@ The repository includes benchmark-style JSON files and warm-start SFT examples. 
 
 Do not treat generated `router_sft_*.jsonl` files as the final real training dataset unless they have been explicitly validated and registered.
 
+## Outputs and local artifacts
+
+This repository keeps core local artifacts that are useful for reproducing project progress:
+
+- benchmark result JSON files;
+- synthetic sweep JSON/CSV summaries;
+- tau2 manual decision-point sample assets;
+- tau2 audit/summary files.
+
+Temporary simulation dumps and logs are intentionally ignored, especially `outputs/_tmp_*.json` and `*.log`.
+
 ## Security / secret handling
 
-This repository intentionally excludes local `.env` files and generated outputs. Use `.env.example` as a template and set API keys locally.
+Use `.env.example` as a template and set API keys locally. The real `.env` file is ignored.
 
 Never commit:
 
 - `.env`;
 - API keys;
 - local Claude settings;
-- private benchmark dumps;
+- private benchmark dumps that are not intended for release;
 - generated logs containing request payloads or credentials.

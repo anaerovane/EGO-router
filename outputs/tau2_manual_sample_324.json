@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_5_step_19_manual_324",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "5",
+  "step_id": 19,
+  "query": "I really don’t think that’s fair, considering my loyalty to your airline and the inconvenience this has caused. Is there any way you can escalate this or offer a higher amount? I’ve had better compensation from other airlines in the past, and I’d really like to see you do more for your Gold members. Can you check again if there’s any way to increase the compensation or provide it as a refund instead?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user is upset about delayed flight HAT045 and wants compensation, emphasizing loyalty and a missed meeting.\nassistant: The assistant asks for identifying details.\nuser: The user provides user ID mei_brown_7075, confirms reservation 3JA7XV, and says the delayed flight was today.\nassistant: The assistant verifies that the reservation contains delayed flight HAT045 and says the eligible compensation is a $200 certificate total.\nuser: The user says the amount is not enough and asks whether anything more substantial is possible.\nassistant: The assistant explains that delay compensation is limited to the standard certificate and cannot be increased or converted to a direct refund.\nuser: The user says the result is unfair and asks for escalation or a higher amount with case review.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I can’t increase the amount beyond the standard policy here, but I can escalate your case to a human agent for further review."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user is explicitly asking for escalation after the compensation ceiling has been explained, so transfer is the grounded next move."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.09,
+      "margin": 0.9,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.98,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.64,
+    "think": 0.14,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.94,
+    "tool:cancel_reservation": -0.97,
+    "tool:get_flight_status": -0.88,
+    "tool:get_reservation_details": -0.82,
+    "tool:get_user_details": -0.85,
+    "tool:list_all_airports": -0.98,
+    "tool:search_direct_flight": -0.97,
+    "tool:search_onestop_flight": -0.97,
+    "tool:send_certificate": -0.28,
+    "tool:transfer_to_human_agents": 0.99,
+    "tool:update_reservation_baggages": -0.98,
+    "tool:update_reservation_flights": -0.98,
+    "tool:update_reservation_passengers": -0.98
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "5307e6a1-50b4-4db1-9498-cc9029072c7d",
+    "termination_reason": "user_stop",
+    "selected_message_index": 19,
+    "message_count": 24,
+    "decision_rule": "Use the later-turn escalation request after the assistant has already clarified the compensation cap and non-refund policy, because human transfer is the only grounded path left in visible context.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes the later out-of-scope transfer outcome",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "this is a later-turn escalation case after compensation and refund limits have already been stated"
+    ]
+  }
+}

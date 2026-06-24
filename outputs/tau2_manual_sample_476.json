@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_7_step_3_manual_476",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "7",
+  "step_id": 3,
+  "query": "My user ID is daiki_muller_1116. Just a change of plans. Please go ahead.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user asks to cancel upcoming flights for reservations XEHM4B and 59XX6W.\nassistant: The assistant says it can help, asks for the user ID, and asks for the reason for cancellation.\nuser: The user provides user ID daiki_muller_1116 and says the reason is a change of plans.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for providing your user ID and the cancellation reason. I’ll retrieve the reservation details first so I can review XEHM4B and 59XX6W before proceeding."
+      },
+      {
+        "source": "think-refine",
+        "text": "The reservation identifiers are already available in visible context and the user has now provided the requested account details, so the grounded next move is to retrieve the reservation details."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.1,
+      "margin": 0.88,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.98,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.42,
+    "think": 0.08,
+    "tool:book_reservation": -0.97,
+    "tool:calculate": -0.88,
+    "tool:cancel_reservation": -0.81,
+    "tool:get_flight_status": -0.8,
+    "tool:get_reservation_details": 0.99,
+    "tool:get_user_details": -0.3,
+    "tool:list_all_airports": -0.95,
+    "tool:search_direct_flight": -0.92,
+    "tool:search_onestop_flight": -0.92,
+    "tool:send_certificate": -0.88,
+    "tool:transfer_to_human_agents": -0.5,
+    "tool:update_reservation_baggages": -0.91,
+    "tool:update_reservation_flights": -0.91,
+    "tool:update_reservation_passengers": -0.91
+  },
+  "best_action": "tool:get_reservation_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_airline_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "36c6e836-c28c-4e9e-82a3-496f4b6f6639",
+    "termination_reason": "user_stop",
+    "selected_message_index": 3,
+    "message_count": 38,
+    "decision_rule": "Choose a user turn where the reservation identifiers are already known in visible context and the user supplies the requested account information, making reservation lookup the most direct grounded next action.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is get_reservation_details because the assistant now has the reservation IDs and requested account context needed to inspect the two bookings"
+    ]
+  }
+}

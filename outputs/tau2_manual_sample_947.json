@@ -1,0 +1,66 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_saver_mode_on_data_usage_exceeded_persona_easy_step_7_manual_947",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_saver_mode_on|data_usage_exceeded[PERSONA:Easy]",
+  "step_id": 7,
+  "query": "I’ve turned Data Saver mode off as you requested. What would you like me to do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user says mobile data is not working well and they need excellent speed.\nassistant: The assistant asks the user to check Data Saver mode and toggle it if needed.\ntool: The device reports Data Saver mode is on and then shows Data Saver turned off, with Good 5G service and mobile data enabled.\nuser: The user confirms Data Saver is now off and asks for the next step.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks. Since Data Saver is no longer limiting traffic, the next likely blocker is that you may have run through your included data, so I’ll add a small data refuel to restore service and then have you test again."
+      },
+      {
+        "source": "think-refine",
+        "text": "The state already shows data is enabled on 5G and Data Saver has been removed, so adding more data is the most grounded next move if the plan is exhausted."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.16,
+      "margin": 0.74,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:enable_roaming",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.88,
+    "think": 0.09,
+    "tool:get_customer_by_phone": -0.98,
+    "tool:get_details_by_id": -0.81,
+    "tool:change_plan": -0.78,
+    "tool:refuel_data": 0.98,
+    "tool:enable_roaming": -0.64,
+    "tool:transfer_to_human_agents": -0.51
+  },
+  "best_action": "tool:refuel_data",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom-workflow_op_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "00b4ba3c-0909-4754-bbaf-8c89dfe16758",
+    "termination_reason": "user_stop",
+    "selected_message_index": 7,
+    "message_count": 16,
+    "decision_rule": "Choose a user turn after a device-side limiter has been removed but before connectivity is restored, where the likely remaining issue is exhausted data rather than signal or roaming.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. refuel_data is highest because the line appears otherwise healthy and a small data top-up is the most direct account-side fix for a data-usage-exceeded state.",
+    "notes": [
+      "query comes directly from the selected user message after Data Saver was turned off",
+      "history_summary excludes the later refuel success and speed-test result",
+      "this sample uses a different telecom best_action than neighboring roaming cases",
+      "available actions are domain-appropriate for the telecom workflow-op environment"
+    ]
+  }
+}

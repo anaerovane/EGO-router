@@ -1,0 +1,72 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_mode_off_data_usage_exceeded_step_21_manual_959",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]",
+  "step_id": 21,
+  "query": "I just tried using my mobile data, but it still isn’t working—there’s no connection at all. I really need excellent internet speed, so can you help me get this fixed?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports mobile data failures and insists on excellent speed.\nassistant: The assistant identifies the account and line, finds data usage above the plan limit, and offers refuel or plan change.\nuser: The user chooses to refuel 2 GB.\nassistant: The assistant successfully applies the 2 GB data refuel and says service should work again.\nuser: The user runs a speed test.\ntool: The speed test still reports no connection.\nuser: The user says mobile data still does not work and asks for help getting the issue fixed.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks for checking — since the refuel went through but you still have no connection, I need to reason through the next likely cause before taking another backend action."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible evidence shows the first suspected cause has been addressed, but connectivity still fails. The grounded next move is to think through follow-up diagnostics rather than immediately repeat refuel or jump to a billing action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.29,
+      "margin": 0.17,
+      "disagreement": 0.16,
+      "verifier_confidence": 0.78,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:add_goodwill_credit",
+    "tool:apply_payment_extension",
+    "tool:change_plan",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:lift_line_suspension",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.83,
+    "think": 0.71,
+    "tool:add_goodwill_credit": -0.96,
+    "tool:apply_payment_extension": -0.91,
+    "tool:change_plan": -0.79,
+    "tool:get_customer_by_phone": -0.84,
+    "tool:get_details_by_id": 0.39,
+    "tool:lift_line_suspension": -0.88,
+    "tool:refuel_data": -0.52,
+    "tool:send_payment_request": -0.9,
+    "tool:transfer_to_human_agents": 0.31
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "4a0eabe0-1325-4c3e-8918-3a09a02506a2",
+    "termination_reason": "user_stop",
+    "selected_message_index": 21,
+    "message_count": 28,
+    "decision_rule": "Choose a post-remediation user turn where the initial diagnosed cause has already been addressed but the problem persists, forcing a new reasoning branch from visible evidence.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. think is highest because the assistant should reason about follow-up diagnostics after refueling failed to restore connectivity; a direct repeat of the same remedy is less justified than structured troubleshooting.",
+    "notes": [
+      "query comes directly from the selected visible user message, not hidden task text",
+      "history_summary stops at the decision point and excludes later account-usage rechecks and transfer",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is think because the visible state calls for a new diagnostic plan, not another immediate corrective transaction"
+    ]
+  }
+}

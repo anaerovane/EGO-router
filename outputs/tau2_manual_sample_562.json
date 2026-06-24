@@ -1,0 +1,71 @@
+{
+  "sample_id": "tau2_telecom_task_service_issue_airplane_unseat_step_29_manual_562",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]airplane_mode_on|unseat_sim_card[PERSONA:None]",
+  "step_id": 29,
+  "query": "The diagnostic shows that no SIM card is detected in the phone. What should I do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user says the phone has shown No Service for hours and asks for help.\nassistant: The assistant requests account identification.\nuser: The user provides phone number 555-123-2002 and the name John Smith.\nassistant: The assistant checks the customer, line, and billing state, confirms the line is active with no overdue-bill suspension, and asks whether the user can perform diagnostics.\nuser: The user says they can follow diagnostic steps.\nassistant: The assistant asks the user to inspect the status bar.\nuser: The user reports Airplane Mode is enabled.\nassistant: The assistant tells the user to turn Airplane Mode off.\nuser: After turning it off, the user still sees No Signal and Data Disabled.\nassistant: The assistant asks the user to check SIM status.\nuser: The user reports that the diagnostic says no SIM card is detected in the phone.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "That points to a physical SIM-detection problem rather than an account issue. The next step is to reseat the SIM card and then check whether the phone recognizes it again."
+      },
+      {
+        "source": "think-refine",
+        "text": "The line is active and Airplane Mode has already been cleared, so a no-SIM result makes SIM reseating the most direct grounded recovery step."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.17,
+      "margin": 0.63,
+      "disagreement": 0.06,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_id",
+    "tool:get_bills_for_customer",
+    "tool:get_details_by_id",
+    "tool:check_status_bar",
+    "tool:toggle_airplane_mode",
+    "tool:check_sim_status",
+    "tool:reseat_sim_card",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.96,
+    "think": 0.08,
+    "tool:get_customer_by_phone": -0.48,
+    "tool:get_customer_by_id": -0.44,
+    "tool:get_bills_for_customer": -0.72,
+    "tool:get_details_by_id": -0.26,
+    "tool:check_status_bar": -0.11,
+    "tool:toggle_airplane_mode": -0.67,
+    "tool:check_sim_status": 0.21,
+    "tool:reseat_sim_card": 0.99,
+    "tool:transfer_to_human_agents": -0.39
+  },
+  "best_action": "tool:reseat_sim_card",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_telecom_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "55ce4655-c331-4a64-9b81-33ce765cf63f",
+    "termination_reason": "user_stop",
+    "selected_message_index": 29,
+    "message_count": 38,
+    "decision_rule": "Choose a diagnostic state where account-side causes have been eliminated and the user surfaces a device-side no-SIM reading that suggests a concrete next action.",
+    "scoring_method": "Manual one-step proxy scoring from the visible troubleshooting state. Scores favor the physical remediation step most directly implied by the no-SIM result.",
+    "notes": [
+      "history_summary excludes the later successful SIM reseat and restored service",
+      "available actions are domain-appropriate for telecom troubleshooting rather than generic retail or airline tools",
+      "best_action is reseat_sim_card because the phone cannot see the SIM after Airplane Mode was already corrected"
+    ]
+  }
+}

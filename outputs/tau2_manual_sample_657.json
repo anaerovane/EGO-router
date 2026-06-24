@@ -1,0 +1,75 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_saver_mode_on_user_abroad_roaming_enabled_off_step_15_manual_657",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_saver_mode_on|user_abroad_roaming_enabled_off[PERSONA:Easy]",
+  "step_id": 15,
+  "query": "I’m using an Android phone. Could you walk me through how to check if Data Roaming is enabled and make sure my network settings are optimized for the best possible speed? I want to be sure I’m getting excellent internet service while I’m in France.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports slow or non-working mobile data while abroad in France.\nassistant: The assistant identifies the account by phone number, retrieves the relevant line, and confirms that roaming is enabled on the carrier side.\nassistant: The assistant checks data usage and plan details and finds that the user still has available data remaining on the plan.\nuser: The user says they are on Android and asks for guidance to check whether Data Roaming is enabled and whether device settings are optimized for speed while in France.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes — the next step is to inspect the phone’s network-related settings so we can verify Data Roaming and see whether anything on the device is limiting speed."
+      },
+      {
+        "source": "think-refine",
+        "text": "Carrier-side roaming and data allowance have already been grounded, so the most useful next action is to check the device’s current network, restriction, and APN settings rather than change the line directly."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.22,
+      "margin": 0.41,
+      "disagreement": 0.1,
+      "verifier_confidence": 0.9,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:check_network_status",
+    "tool:check_network_mode_preference",
+    "tool:check_data_restriction_status",
+    "tool:check_apn_settings",
+    "tool:toggle_roaming",
+    "tool:toggle_data_saver_mode",
+    "tool:run_speed_test",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.95,
+    "think": 0.16,
+    "tool:get_customer_by_phone": -0.94,
+    "tool:get_details_by_id": -0.46,
+    "tool:get_data_usage": -0.39,
+    "tool:check_network_status": 0.72,
+    "tool:check_network_mode_preference": 0.68,
+    "tool:check_data_restriction_status": 0.67,
+    "tool:check_apn_settings": 0.64,
+    "tool:toggle_roaming": -0.21,
+    "tool:toggle_data_saver_mode": -0.18,
+    "tool:run_speed_test": -0.12,
+    "tool:transfer_to_human_agents": -0.61
+  },
+  "best_action": "tool:check_network_status",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "task_mobile_data_issue_data_saver_mode_on_user_abroad_roaming_enabled_off_trial_0",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 34,
+    "decision_rule": "Choose a device-diagnostics state where carrier-side checks are done and the user explicitly asks how to verify roaming and speed-related settings on the phone.",
+    "scoring_method": "Manual one-step proxy scoring from the visible telecom state. Multiple device-inspection actions are plausible, but check_network_status scores highest because it directly reveals whether data roaming is enabled and establishes the current connectivity baseline.",
+    "notes": [
+      "available_actions are domain-appropriate and include the other near-tie device checks surfaced in the real episode",
+      "history_summary excludes the later device inspection outputs and successful setting toggles",
+      "best_action is check_network_status because it is the single most informative first diagnostic step for the user’s stated question"
+    ]
+  }
+}

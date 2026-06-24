@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_18_step_7_manual_339",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "18",
+  "step_id": 7,
+  "query": "I want to downgrade all business class flights in all my reservations. I can’t afford any of them right now, so please change every business class ticket I have to economy. And again, I want to know how much money I’ll be saving in total after the downgrades.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to downgrade all business class flights to economy because of financial stress, without changing flights or passengers, and wants the total savings.\nassistant: The assistant asks for the user ID and reservation ID.\nuser: The user provides user ID omar_davis_3817, does not know the reservation IDs, and asks for a lookup while reiterating that every business class ticket should be downgraded to economy.\nassistant: The assistant retrieves the account and sees six reservations under omar_davis_3817, then asks whether the user wants specific reservations or all business-class flights across all reservations.\nuser: The user confirms they want every business-class ticket in all reservations downgraded to economy and again asks for the total savings after all downgrades.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood — I’ll review all of your reservations to find the ones that are currently in business class so I can work out the total savings and handle the downgrades."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has now clearly scoped the request across the entire account, so the grounded next move is to inspect the reservations one by one to identify which bookings actually contain business-class flights before any savings calculation or updates."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.17,
+      "margin": 0.71,
+      "disagreement": 0.07,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 6
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.55,
+    "think": 0.18,
+    "tool:book_reservation": -0.97,
+    "tool:calculate": -0.18,
+    "tool:cancel_reservation": -0.95,
+    "tool:get_flight_status": -0.88,
+    "tool:get_reservation_details": 0.99,
+    "tool:get_user_details": -0.64,
+    "tool:list_all_airports": -0.97,
+    "tool:search_direct_flight": -0.95,
+    "tool:search_onestop_flight": -0.95,
+    "tool:send_certificate": -0.95,
+    "tool:transfer_to_human_agents": -0.69,
+    "tool:update_reservation_baggages": -0.97,
+    "tool:update_reservation_flights": -0.73,
+    "tool:update_reservation_passengers": -0.97
+  },
+  "best_action": "tool:get_reservation_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "6f987238-dd41-4b13-a6dd-739fd9fa932e",
+    "termination_reason": "user_stop",
+    "selected_message_index": 7,
+    "message_count": 42,
+    "decision_rule": "Use the user turn where the traveler explicitly scopes the request to all business-class bookings across the account, because that is the first grounded point where reservation-by-reservation inspection is required.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user's request using only visible conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops before any reservation-detail retrieval, refund math, or downgrade actions are shown",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "special case: although the user asks for total savings, the savings cannot be computed until the business-class reservations are identified"
+    ]
+  }
+}

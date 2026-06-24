@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_[service_issue]break_apn_settings|lock_sim_card_pin[PERSONA:None]_step_25_manual_777",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[service_issue]break_apn_settings|lock_sim_card_pin[PERSONA:None]",
+  "step_id": 25,
+  "query": "I checked the SIM status, and it says the SIM card is locked with a PIN code. What should I do to unlock it?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports a persistent \"No Service\" problem.\nassistant: The assistant authenticates the telecom account, confirms the affected line is active, and guides the user through status-bar and network checks.\nassistant: The diagnostics show no signal and then reveal that the SIM card is locked with a PIN code.\nuser: The user asks what to do next to unlock the SIM.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "The next step is to enter the correct SIM PIN on the device, carefully, because that lock is the visible blocker preventing service from coming back."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user-visible diagnostic state now clearly points to a SIM security lock rather than billing or line suspension, so the best next move is guided reasoning rather than another account action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.27,
+      "margin": 0.22,
+      "disagreement": 0.13,
+      "verifier_confidence": 0.8,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.62,
+    "think": 0.71,
+    "tool:get_customer_by_phone": -0.93,
+    "tool:get_customer_by_name": -0.98,
+    "tool:get_details_by_id": 0.19,
+    "tool:get_bills_for_customer": -0.9,
+    "tool:send_payment_request": -0.96,
+    "tool:check_payment_request": -0.97,
+    "tool:make_payment": -0.98,
+    "tool:resume_line": -0.74,
+    "tool:enable_roaming": -0.78,
+    "tool:refuel_data": -0.84,
+    "tool:transfer_to_human_agents": 0.24
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_telecom_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "7de0c6a5-9b7d-4905-a271-949bf1c22c0f",
+    "termination_reason": "user_transfer",
+    "selected_message_index": 25,
+    "message_count": 31,
+    "decision_rule": "Choose a diagnostic state where no available environment action can directly unlock the SIM, so the next appropriate behavior is grounded explanation or guidance rather than tool execution.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. The highest score goes to think because the correct next response is procedural guidance about entering the SIM PIN, not another backend action.",
+    "notes": [
+      "This sample intentionally uses a non-tool best action to diversify the batch.",
+      "The state avoids future leakage by stopping before the later transfer that occurs in the source episode."
+    ]
+  }
+}

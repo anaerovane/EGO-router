@@ -1,0 +1,75 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_mode_off_data_usage_exceeded_step_15_manual_506",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_mode_off|data_usage_exceeded[PERSONA:None]",
+  "step_id": 15,
+  "query": "I definitely don’t want to change my plan, but I’m willing to refuel 2GB of data. Please go ahead and add 2GB so I can get back to excellent internet speed.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: Hi, my mobile data isn’t working properly. Sometimes it just stops, and other times it’s really slow. I need to get excellent internet speed on my phone—nothing less will do. Can you help me fix this?\nassistant: The assistant asks for the phone number to identify the account.\nuser: Sure, my phone number is 555-123-2002.\nassistant: The assistant looks up the customer account and then asks which line is having the issue because multiple lines are associated with the account.\nuser: The number that’s having the issue is 555-123-2002—the one I’m using right now.\nassistant: The assistant retrieves the affected line, confirms the line has exceeded its 15 GB plan limit, and explains that a data refuel or plan change is needed to restore speed.\nuser: I definitely don’t want to change my plan, but I’m willing to refuel 2GB of data. Please go ahead and add 2GB so I can get back to excellent internet speed.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. You want to keep your current plan and add a 2 GB refuel, so I’ll process that data add-on for the affected line now."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user explicitly authorized a 2 GB refuel after the line and pricing context were already established, so the next grounded step is to execute the refuel action."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.16,
+      "margin": 0.79,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:refuel_data",
+    "tool:send_payment_request",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:toggle_data",
+    "tool:grant_app_permission",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.96,
+    "think": 0.08,
+    "tool:get_customer_by_phone": -0.92,
+    "tool:get_details_by_id": -0.34,
+    "tool:get_data_usage": 0.18,
+    "tool:refuel_data": 0.97,
+    "tool:send_payment_request": -0.95,
+    "tool:resume_line": -0.88,
+    "tool:enable_roaming": -0.61,
+    "tool:toggle_data": -0.72,
+    "tool:grant_app_permission": -0.94,
+    "tool:transfer_to_human_agents": -0.57
+  },
+  "best_action": "tool:refuel_data",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "4a0eabe0-1325-4c3e-8918-3a09a02506a2",
+    "termination_reason": "user_stop",
+    "selected_message_index": 15,
+    "message_count": 28,
+    "decision_rule": "Choose a user turn where the user gives clear consent for a paid telecom account action and the line context has already been established, making execution stronger than another lookup.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect immediate usefulness for restoring service using only visible conversation evidence and already-known line context.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "Selected a nontrivial post-diagnosis authorization turn rather than the first account lookup.",
+      "Candidate answers avoid mentioning unseen tool outputs or future failure states."
+    ]
+  }
+}

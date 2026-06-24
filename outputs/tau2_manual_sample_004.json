@@ -1,0 +1,82 @@
+{
+  "sample_id": "tau2_airline_task_46_step_3_manual_004",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "airline",
+  "task_id": "46",
+  "step_id": 3,
+  "query": "I’m really disappointed to hear that. I wasn’t happy with the service I received, and I don’t think it’s fair that I can’t get a refund for the insurance, especially since I still want to keep my flight. Is there any way you can escalate this or check if an exception can be made?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: Hi, I’d like some help with my recent booking. I want to cancel the insurance I purchased for my flight and get a full refund for it, but I don’t want to cancel the flight itself. Can you assist me with that?\nassistant: According to the policy, travel insurance cannot be canceled or removed after the initial booking. Therefore, I am unable to assist with canceling the insurance separately from the flight.\n\nIf you have any other requests or need assistance with something else, please let me know.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "I can’t grant that exception directly in the system, but I can escalate this to a human agent who can review your insurance refund request while keeping the flight intact."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user is explicitly asking for escalation after a policy-based refusal. Since no additional self-service tool can change a standalone insurance-refund exception, the grounded next move is to transfer to a human agent."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.19,
+      "margin": 0.66,
+      "disagreement": 0.07,
+      "verifier_confidence": 0.91,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:book_reservation",
+    "tool:calculate",
+    "tool:cancel_reservation",
+    "tool:get_flight_status",
+    "tool:get_reservation_details",
+    "tool:get_user_details",
+    "tool:list_all_airports",
+    "tool:search_direct_flight",
+    "tool:search_onestop_flight",
+    "tool:send_certificate",
+    "tool:transfer_to_human_agents",
+    "tool:update_reservation_baggages",
+    "tool:update_reservation_flights",
+    "tool:update_reservation_passengers"
+  ],
+  "action_scores": {
+    "stop": -0.18,
+    "think": 0.12,
+    "tool:book_reservation": -0.98,
+    "tool:calculate": -0.81,
+    "tool:cancel_reservation": -0.84,
+    "tool:get_flight_status": -0.73,
+    "tool:get_reservation_details": -0.55,
+    "tool:get_user_details": -0.57,
+    "tool:list_all_airports": -0.93,
+    "tool:search_direct_flight": -0.89,
+    "tool:search_onestop_flight": -0.89,
+    "tool:send_certificate": -0.86,
+    "tool:transfer_to_human_agents": 0.95,
+    "tool:update_reservation_baggages": -0.9,
+    "tool:update_reservation_flights": -0.9,
+    "tool:update_reservation_passengers": -0.9
+  },
+  "best_action": "tool:transfer_to_human_agents",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_airline_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "d419e06d-ae52-49f2-9e24-d671f3ddc4b7",
+    "termination_reason": "user_stop",
+    "selected_message_index": 3,
+    "message_count": 8,
+    "decision_rule": "Choose a user turn where the user explicitly requests escalation after a policy refusal and the next grounded move can be justified from visible context only.",
+    "scoring_method": "Manual one-step proxy scoring from the decision-point state. Scores reflect which action most directly advances the user’s request using only visible policy and conversation evidence.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is supported by the real next assistant action in the source episode, which transfers to a human agent"
+    ]
+  }
+}

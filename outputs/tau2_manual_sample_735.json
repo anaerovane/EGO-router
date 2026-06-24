@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]bad_vpn|data_saver_mode_on|user_abroad_roaming_disabled_on[PERSONA:None]_step_17_manual_735",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]bad_vpn|data_saver_mode_on|user_abroad_roaming_disabled_on[PERSONA:None]",
+  "step_id": 17,
+  "query": "I’m currently abroad in France, so I am roaming. I haven’t made any recent changes to my phone settings, and I haven’t tried restarting my device yet. What should I do next to get excellent internet speed?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports slow or unreliable mobile data while wanting excellent speed.\nassistant: The assistant authenticates the account, retrieves the relevant line and plan details, and checks current data usage.\nassistant: The assistant observes that the line still has data available, so overage is not the obvious cause.\nassistant: The assistant asks follow-up questions about roaming and recent device changes.\nuser: The user says they are currently abroad in France, confirms they are roaming, and asks what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks, that helps. Since you’re abroad and still have data left, the next grounded account-side step is to make sure roaming is enabled on your line before we keep troubleshooting device settings."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has now surfaced international roaming context, and the visible line state still points to a carrier-side roaming gate as the highest-value next action among the available tools."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.29,
+      "margin": 0.41,
+      "disagreement": 0.12,
+      "verifier_confidence": 0.84,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.8,
+    "think": 0.22,
+    "tool:get_customer_by_phone": -0.91,
+    "tool:get_customer_by_name": -0.97,
+    "tool:get_details_by_id": 0.18,
+    "tool:get_bills_for_customer": -0.82,
+    "tool:send_payment_request": -0.95,
+    "tool:check_payment_request": -0.95,
+    "tool:make_payment": -0.97,
+    "tool:resume_line": -0.52,
+    "tool:enable_roaming": 0.89,
+    "tool:refuel_data": -0.43,
+    "tool:transfer_to_human_agents": -0.11
+  },
+  "best_action": "tool:enable_roaming",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "8ce14ca5-754f-42e6-b030-03cd0004490c",
+    "termination_reason": "user_stop",
+    "selected_message_index": 17,
+    "message_count": 30,
+    "decision_rule": "Choose a user turn where line and plan checks are already done, remaining data is available, and the newly revealed roaming context makes a roaming-state action the most direct next move.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores prioritize the carrier-side remediation most directly supported by the user’s visible statement and prior line data.",
+    "notes": [
+      "The sample is intentionally later in the trajectory to diversify telecom decision stages.",
+      "best_action is enable_roaming because the user is abroad and the line context indicates roaming configuration remains a plausible blocker."
+    ]
+  }
+}

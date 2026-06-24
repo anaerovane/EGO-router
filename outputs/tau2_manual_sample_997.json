@@ -1,0 +1,83 @@
+{
+  "sample_id": "tau2_retail_task_6_step_13_manual_997",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "retail",
+  "task_id": "6",
+  "step_id": 13,
+  "query": "For the water bottle, I’d like to exchange it for a bigger size—something larger than 500ml. For the desk lamp, I’d prefer one that’s less bright and, if possible, battery powered instead of USB or AC. \n\nAnd yes, using my PayPal account for any price difference sounds good to me.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user asks to exchange a recently purchased water bottle and desk lamp.\nassistant: The assistant requests authentication details.\nuser: The user cannot remember the account email.\nassistant: The assistant switches to name-and-ZIP verification.\nuser: The user provides the name Mei Kovacs and ZIP code 28236.\nassistant: The assistant finds the user profile, retrieves the delivered order containing both items, and summarizes the current lamp and water bottle variants in that order.\nuser: The user states the desired replacement attributes for both items and confirms PayPal can be used for any price difference.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Thanks, that’s clear. The next step is to look up the available variants for the water bottle and desk lamp so I can identify exchange options that match your preferences before confirming anything."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has specified preference constraints, but no concrete replacement SKUs have been surfaced yet. Retrieving product details is more grounded than attempting the exchange immediately."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.24,
+      "margin": 0.61,
+      "disagreement": 0.08,
+      "verifier_confidence": 0.91,
+      "steps_remaining": 4
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_user_id_by_email",
+    "tool:find_user_id_by_name_zip",
+    "tool:get_user_details",
+    "tool:get_order_details",
+    "tool:get_product_details",
+    "tool:list_all_product_types",
+    "tool:modify_pending_order_items",
+    "tool:modify_pending_order_address",
+    "tool:modify_pending_order_payment",
+    "tool:cancel_pending_order",
+    "tool:return_delivered_order_items",
+    "tool:exchange_delivered_order_items",
+    "tool:modify_user_address",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.91,
+    "think": 0.22,
+    "tool:find_user_id_by_email": -0.95,
+    "tool:find_user_id_by_name_zip": -0.84,
+    "tool:get_user_details": -0.71,
+    "tool:get_order_details": -0.19,
+    "tool:get_product_details": 0.97,
+    "tool:list_all_product_types": -0.87,
+    "tool:modify_pending_order_items": -0.95,
+    "tool:modify_pending_order_address": -0.97,
+    "tool:modify_pending_order_payment": -0.93,
+    "tool:cancel_pending_order": -0.96,
+    "tool:return_delivered_order_items": -0.61,
+    "tool:exchange_delivered_order_items": 0.36,
+    "tool:modify_user_address": -0.97,
+    "tool:transfer_to_human_agents": -0.54,
+    "tool:calculate": -0.62
+  },
+  "best_action": "tool:get_product_details",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_retail_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "4bec2b80-1781-4799-a103-037acd71715d",
+    "termination_reason": "user_stop",
+    "selected_message_index": 13,
+    "message_count": 28,
+    "decision_rule": "Choose a retail exchange turn where the customer has been authenticated and the source order is known, but the replacement variants still need to be surfaced from catalog data.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. get_product_details is highest because the user has described desired replacement attributes but no matching replacement item IDs have been retrieved yet.",
+    "notes": [
+      "query comes directly from the selected visible user message",
+      "history_summary stops before the assistant surfaces specific replacement options or processes any exchange",
+      "this sample diversifies retail best-action types by focusing on catalog lookup rather than account lookup"
+    ]
+  }
+}

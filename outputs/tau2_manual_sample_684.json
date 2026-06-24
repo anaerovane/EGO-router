@@ -1,0 +1,84 @@
+{
+  "sample_id": "tau2_retail_task_47_step_23_manual_684",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "retail",
+  "task_id": "47",
+  "step_id": 23,
+  "query": "Thanks for submitting the return and for prioritizing it. So, just to confirm, the total I paid for the remaining items is $329.85 + $545.68 + $652.61, right? That should be $1,528.14. Is that correct?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user wants to return an air purifier and a vacuum cleaner from a recent order.\nassistant: The assistant authenticates by name and ZIP after the user cannot recall the email and resolves the correct order number after one failed attempt.\nassistant: The assistant retrieves order #W9502127, disambiguates which vacuum should be returned, and presents the refund amount for the air purifier plus the canister vacuum to PayPal.\nuser: The user confirms the return request.\nassistant: The assistant submits the return and reports a $1,095.55 refund to PayPal.\nuser: After the return is already submitted, the user asks the assistant to verify an arithmetic total for the remaining items in the order.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Let me verify that total for you. I’ll calculate the sum of those three remaining-item amounts now."
+      },
+      {
+        "source": "think-refine",
+        "text": "The operational return work is already done, and the user’s new request is purely arithmetic verification, so calculation is the most direct grounded next move."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.09,
+      "margin": 0.86,
+      "disagreement": 0.03,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:find_user_id_by_email",
+    "tool:find_user_id_by_name_zip",
+    "tool:get_user_details",
+    "tool:get_order_details",
+    "tool:get_product_details",
+    "tool:list_all_product_types",
+    "tool:modify_pending_order_items",
+    "tool:modify_pending_order_address",
+    "tool:modify_pending_order_payment",
+    "tool:cancel_pending_order",
+    "tool:return_delivered_order_items",
+    "tool:exchange_delivered_order_items",
+    "tool:modify_user_address",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.86,
+    "think": 0.08,
+    "tool:find_user_id_by_email": -0.98,
+    "tool:find_user_id_by_name_zip": -0.98,
+    "tool:get_user_details": -0.93,
+    "tool:get_order_details": -0.51,
+    "tool:get_product_details": -0.9,
+    "tool:list_all_product_types": -0.99,
+    "tool:modify_pending_order_items": -0.97,
+    "tool:modify_pending_order_address": -0.97,
+    "tool:modify_pending_order_payment": -0.96,
+    "tool:cancel_pending_order": -0.96,
+    "tool:return_delivered_order_items": -0.95,
+    "tool:exchange_delivered_order_items": -0.96,
+    "tool:modify_user_address": -0.97,
+    "tool:transfer_to_human_agents": -0.9,
+    "tool:calculate": 0.99
+  },
+  "best_action": "tool:calculate",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_retail_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "47_trial0",
+    "termination_reason": "user_stop",
+    "selected_message_index": 23,
+    "message_count": 28,
+    "decision_rule": "Choose a later-state follow-up where the user has switched from return execution to explicit arithmetic verification, producing a different best-action type from typical catalog or order-mutation steps.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. calculate is highest because the user supplies the numbers to be checked directly; no additional order mutation or lookup is needed to answer the question.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This sample intentionally diversifies best_action type by using a post-transaction numeric verification state"
+    ]
+  }
+}

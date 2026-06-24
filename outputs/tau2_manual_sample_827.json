@@ -1,0 +1,72 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_saver_step_37_manual_827",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]bad_network_preference|data_saver_mode_on|data_usage_exceeded[PERSONA:Hard]",
+  "step_id": 37,
+  "query": "It looks like Data Saver mode is turned on. Could that be slowing things down? Should I turn it off to see if that helps? I haven’t tried moving around the house yet, but I can if that matters.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports mobile data that stops or is very slow and wants excellent speed.\nassistant: The assistant identifies the line, finds that data usage exceeded the plan limit, and the user approves a 2GB data refuel.\nassistant: After refueling, the connection remains poor; the assistant and user inspect device status, discover the phone is stuck on 2G, and then correct the preferred network mode to 4G/5G so the signal returns as excellent 5G.\nuser: A follow-up speed test still reports only good rather than excellent performance, and the user checks one more device setting: Data Saver mode is ON.\nuser: The user asks whether turning Data Saver off is the right next step.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes — Data Saver can absolutely hold your speed back. Please turn Data Saver off and then run the speed test again."
+      },
+      {
+        "source": "think-refine",
+        "text": "Earlier bottlenecks have already been resolved: extra data was added and network preference was fixed. With 5G signal now excellent, the remaining visible limiter is Data Saver mode being on, so toggling it off is the most grounded next move."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.09,
+      "margin": 0.88,
+      "disagreement": 0.04,
+      "verifier_confidence": 0.97,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:refuel_data",
+    "tool:set_network_preference",
+    "tool:toggle_data_saver",
+    "tool:restart_network",
+    "tool:run_speed_test",
+    "tool:check_data_saver",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.95,
+    "think": 0.07,
+    "tool:get_customer_by_phone": -0.9,
+    "tool:get_details_by_id": -0.59,
+    "tool:refuel_data": -0.63,
+    "tool:set_network_preference": -0.16,
+    "tool:toggle_data_saver": 0.97,
+    "tool:restart_network": 0.24,
+    "tool:run_speed_test": 0.12,
+    "tool:check_data_saver": -0.41,
+    "tool:transfer_to_human_agents": -0.67
+  },
+  "best_action": "tool:toggle_data_saver",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "b8a9545f-322c-45ae-bc22-26904f1ed326",
+    "termination_reason": "user_stop",
+    "selected_message_index": 37,
+    "message_count": 46,
+    "decision_rule": "Choose a late telecom state where several earlier causes have already been removed and a final visible speed-limiting setting remains.",
+    "scoring_method": "Manual one-step proxy scoring from the visible telecom state. Scores reward the action that directly addresses the newly surfaced limiter, while lower scores reflect already-completed or now-secondary interventions.",
+    "notes": [
+      "query comes directly from the selected user message, not from task hidden fields",
+      "history_summary excludes the later Data Saver toggle and final excellent speed test",
+      "best_action is toggle_data_saver because the user explicitly surfaces that setting as still enabled after data and network-mode issues were already resolved",
+      "this sample diversifies telecom best-action types away from account lookup and escalation toward a device-side optimization step"
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_data_saver_mode_on_data_usage_exceeded_persona_easy_step_32_manual_608",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_saver_mode_on|data_usage_exceeded[PERSONA:Easy]",
+  "step_id": 32,
+  "query": "Here’s what I found based on your questions:  - My status bar shows \"5G\" and \"Data Enabled,\" so I am connected to 5G and my phone is 5G capable. - The signal strength is \"good.\" - Data Saver mode is currently ON, which might be limiting my speeds. - Wi-Fi is OFF, and VPN is also OFF.  Do you think turning off Data Saver mode could help me get from “Good” speed to “Excellent”?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user has a mobile data performance problem and wants excellent speed.\nassistant: The assistant authenticates the account, confirms the affected line, diagnoses that the user exceeded the included data limit, and refuels 2 GB after the user approves it.\nassistant: The user then runs a speed test and reports that service improved only to 44 Mbps, labeled Good rather than Excellent.\nassistant: To optimize further, the assistant asks the user to check network and device settings such as 5G status, signal strength, Data Saver, Wi-Fi, and VPN.\nuser: The user reports good 5G signal, Wi-Fi and VPN both off, and importantly that Data Saver mode is ON, then asks whether disabling it could help.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes, turning off Data Saver is a sensible next step here, because it can throttle data usage and hold speeds below what your connection could otherwise deliver."
+      },
+      {
+        "source": "think-refine",
+        "text": "The key new evidence is already visible in the user’s report: Data Saver is on while other obvious constraints are absent, so the next move is to reason over that and instruct the user accordingly rather than call another account tool."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.17,
+      "margin": 0.55,
+      "disagreement": 0.09,
+      "verifier_confidence": 0.91,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_details_by_id",
+    "tool:get_data_usage",
+    "tool:change_plan",
+    "tool:refuel_data",
+    "tool:check_device_settings",
+    "tool:transfer_to_human_agents",
+    "tool:calculate"
+  ],
+  "action_scores": {
+    "stop": -0.87,
+    "think": 0.62,
+    "tool:get_customer_by_phone": -0.95,
+    "tool:get_details_by_id": -0.57,
+    "tool:get_data_usage": -0.48,
+    "tool:change_plan": -0.86,
+    "tool:refuel_data": -0.42,
+    "tool:check_device_settings": 0.38,
+    "tool:transfer_to_human_agents": -0.6,
+    "tool:calculate": -0.7
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "88da5d0a-ebf1-404f-adf0-ab5a30a57ab1",
+    "termination_reason": "user_stop",
+    "selected_message_index": 32,
+    "message_count": 41,
+    "decision_rule": "Choose a state where the user has already surfaced the decisive on-device setting in their own report, making the assistant’s next move primarily explanatory guidance.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. think outranks further tooling because the relevant evidence is already present: Data Saver is on, Wi-Fi and VPN are off, and the user asks for interpretive advice.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task text",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "This second think-style telecom sample differs from 606 by centering performance optimization after partial recovery rather than connectivity restoration abroad."
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]data_saver_mode_on|data_usage_exceeded[PERSONA:Easy]_step_13_manual_736",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_saver_mode_on|data_usage_exceeded[PERSONA:Easy]",
+  "step_id": 13,
+  "query": "Thanks for checking! I’d like to add 2 GB of data to my current plan, please. I don’t want to change my plan—just refuel the 2 GB for now. What do I need to do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports mobile data problems and wants excellent speed.\nassistant: The assistant authenticates the account, identifies the affected line, and retrieves the line and plan details.\nassistant: The assistant determines that the line has exceeded the 15 GB monthly data limit and explains that refueling or changing plans could restore speed.\nassistant: The assistant asks whether the user wants to add more data or switch plans.\nuser: The user explicitly declines a plan change and asks to refuel 2 GB.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Understood. I can go ahead and add 2 GB of refuel data to your current line so you can get service back without changing your plan."
+      },
+      {
+        "source": "think-refine",
+        "text": "The user has already selected a concrete remediation amount and rejected a plan change, so the grounded next action is to execute a 2 GB data refuel."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.14,
+      "margin": 0.76,
+      "disagreement": 0.05,
+      "verifier_confidence": 0.95,
+      "steps_remaining": 2
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.87,
+    "think": 0.09,
+    "tool:get_customer_by_phone": -0.93,
+    "tool:get_customer_by_name": -0.97,
+    "tool:get_details_by_id": -0.18,
+    "tool:get_bills_for_customer": -0.86,
+    "tool:send_payment_request": -0.92,
+    "tool:check_payment_request": -0.94,
+    "tool:make_payment": -0.96,
+    "tool:resume_line": -0.51,
+    "tool:enable_roaming": -0.36,
+    "tool:refuel_data": 0.98,
+    "tool:transfer_to_human_agents": -0.33
+  },
+  "best_action": "tool:refuel_data",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/gpt-4.1-mini-2025-04-14_telecom_base_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "f18e01b4-ebd5-4dee-8cb2-d4dae3a9f778",
+    "termination_reason": "user_stop",
+    "selected_message_index": 13,
+    "message_count": 19,
+    "decision_rule": "Choose a user turn where diagnosis is already complete and the user explicitly authorizes one of the offered telecom remediations with a concrete quantity.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores strongly favor the exact user-authorized remediation over additional lookup or escalation actions.",
+    "notes": [
+      "This sample provides a clear telecom execution case rather than another diagnostic lookup.",
+      "best_action is refuel_data because the user explicitly requested 2 GB and rejected a plan change."
+    ]
+  }
+}

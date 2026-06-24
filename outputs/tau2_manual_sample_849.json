@@ -1,0 +1,78 @@
+{
+  "sample_id": "tau2_telecom_task_mobile_data_issue_step_29_manual_849",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]data_saver_mode_on|data_usage_exceeded[PERSONA:Easy]",
+  "step_id": 29,
+  "query": "The diagnostic shows that Data Saver mode is ON right now. Could this be what’s slowing down my connection? What should I do next?",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports severely limited mobile data speed and wants excellent performance without Wi-Fi.\nassistant: The assistant identifies the line, sees the data cap has been exceeded, and offers extra-data refueling versus a plan change.\nuser: The user chooses a 2GB refuel, which is successfully added.\nuser: A speed test improves service to Good (44 Mbps) but not Excellent.\nassistant: The assistant checks the network mode, which is already set to 4G/5G preferred, then asks for data-restriction diagnostics.\nuser: The device diagnostic reports that Data Saver mode is ON, and the user asks if that is the likely cause and what to do next.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "Yes — Data Saver can absolutely throttle throughput enough to keep you below excellent speeds. The next step is to turn Data Saver off and then rerun the speed test."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible state has already ruled out the data cap and network-mode issues, so disabling Data Saver is the most direct remaining intervention."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.05,
+      "margin": 0.94,
+      "disagreement": 0.02,
+      "verifier_confidence": 0.98,
+      "steps_remaining": 1
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_details",
+    "tool:get_line_details",
+    "tool:check_bills",
+    "tool:get_plan_details",
+    "tool:refuel_data",
+    "tool:change_plan",
+    "tool:run_speed_test",
+    "tool:check_network_mode_preference",
+    "tool:check_data_restriction_status",
+    "tool:toggle_data_saver_mode",
+    "tool:toggle_roaming",
+    "tool:send_payment_request",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.97,
+    "think": 0.04,
+    "tool:get_customer_details": -0.88,
+    "tool:get_line_details": -0.76,
+    "tool:check_bills": -0.69,
+    "tool:get_plan_details": -0.77,
+    "tool:refuel_data": -0.81,
+    "tool:change_plan": -0.9,
+    "tool:run_speed_test": -0.34,
+    "tool:check_network_mode_preference": -0.58,
+    "tool:check_data_restriction_status": -0.26,
+    "tool:toggle_data_saver_mode": 0.99,
+    "tool:toggle_roaming": -0.73,
+    "tool:send_payment_request": -0.91,
+    "tool:transfer_to_human_agents": -0.67
+  },
+  "best_action": "tool:toggle_data_saver_mode",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/o4-mini-2025-04-16_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "99c27d16-85b4-45f1-901c-3fa7f9e81b07",
+    "termination_reason": "user_stop",
+    "selected_message_index": 29,
+    "message_count": 52,
+    "decision_rule": "Choose a telecom data-performance state where earlier remediation improved service somewhat but diagnostics expose a device-side throttling feature as the remaining likely bottleneck.",
+    "scoring_method": "Manual one-step proxy scoring from visible state. Disabling Data Saver is highest because the network mode is already optimal and the user is explicitly asking about the effect of the active restriction.",
+    "notes": [
+      "The source episode contains some noisy extra tool traffic before the assistant responds; this annotation ignores those irrelevant failed or unrelated calls and scores the state from the visible user-relevant evidence only.",
+      "This sample adds a device-throttling remediation action distinct from roaming and transfer cases."
+    ]
+  }
+}

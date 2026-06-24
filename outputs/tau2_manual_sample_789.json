@@ -1,0 +1,76 @@
+{
+  "sample_id": "tau2_telecom_task_[mobile_data_issue]bad_network_preference|data_saver_mode_on|data_usage_exceeded[PERSONA:Hard]_step_33_manual_789",
+  "is_real_collected_data": true,
+  "benchmark": "tau2",
+  "domain": "telecom",
+  "task_id": "[mobile_data_issue]bad_network_preference|data_saver_mode_on|data_usage_exceeded[PERSONA:Hard]",
+  "step_id": 33,
+  "query": "I just tried using the internet and ran a speed test, but it says the connection is “good,” not “excellent.” I really need it to be excellent, not just good. Is there anything else we can do to make it even faster? I’m sorry to be a bother, but this is really important to me.",
+  "state": {
+    "history_summary": "assistant: Hi! How can I help you today?\nuser: The user reports very poor mobile data and wants excellent speed.\nassistant: The assistant identifies the affected line, finds a data overage, and the user authorizes a 2GB refuel.\nassistant: After the refuel, the user still reports poor speed, so the assistant collects device diagnostics.\nuser: The diagnostic checks show poor signal on 2G with Data Saver on and no VPN.\nassistant: The assistant explains that 2G is the main problem, and the user changes the preferred network mode to 4G/5G.\nuser: After the change, the phone shows 5G with excellent signal, and a new speed test improves the connection to good but not excellent.\nuser: The user asks whether there is anything else that can be done to make the connection even faster.",
+    "candidate_answers": [
+      {
+        "source": "draft",
+        "text": "The network preference issue appears improved, but the user’s target is stricter than the current result. The next step should inspect any remaining device-side restrictions before concluding the issue is solved."
+      },
+      {
+        "source": "think-refine",
+        "text": "The visible state has already ruled out overage and bad network preference as the sole remaining blockers, while 5G and excellent signal are now present. That makes another round of guided reasoning about residual device restrictions more appropriate than billing actions or immediate escalation."
+      }
+    ],
+    "metrics": {
+      "entropy": 0.23,
+      "margin": 0.2,
+      "disagreement": 0.19,
+      "verifier_confidence": 0.82,
+      "steps_remaining": 3
+    }
+  },
+  "available_actions": [
+    "stop",
+    "think",
+    "tool:get_customer_by_phone",
+    "tool:get_customer_by_name",
+    "tool:get_details_by_id",
+    "tool:get_bills_for_customer",
+    "tool:send_payment_request",
+    "tool:check_payment_request",
+    "tool:make_payment",
+    "tool:resume_line",
+    "tool:enable_roaming",
+    "tool:refuel_data",
+    "tool:transfer_to_human_agents"
+  ],
+  "action_scores": {
+    "stop": -0.8,
+    "think": 0.69,
+    "tool:get_customer_by_phone": -0.93,
+    "tool:get_customer_by_name": -0.97,
+    "tool:get_details_by_id": 0.27,
+    "tool:get_bills_for_customer": -0.89,
+    "tool:send_payment_request": -0.98,
+    "tool:check_payment_request": -0.97,
+    "tool:make_payment": -0.98,
+    "tool:resume_line": -0.6,
+    "tool:enable_roaming": -0.75,
+    "tool:refuel_data": -0.39,
+    "tool:transfer_to_human_agents": 0.17
+  },
+  "best_action": "think",
+  "provenance": {
+    "source_type": "manual annotation from real tau2 episode",
+    "source_file": "/private/tmp/tau2-bench_escalated/data/tau2/results/final/claude-3-7-sonnet-20250219_telecom_default_gpt-4.1-2025-04-14_4trials.json",
+    "simulation_id": "id=[mobile_data_issue]bad_network_preference|data_saver_mode_on|data_usage_exceeded[PERSONA:Hard] trial=0",
+    "termination_reason": "user_stop",
+    "selected_message_index": 33,
+    "message_count": 46,
+    "decision_rule": "Choose a telecom state where earlier bottlenecks have been partially resolved and the user now asks for the final optimization step, but the available tool set still lacks a direct knob for the likely residual restriction.",
+    "scoring_method": "Manual one-step proxy scoring from the visible state. Scores give the highest value to reasoning because the next grounded move is to synthesize what has already been ruled out and guide another targeted check, not to repeat account actions that have low evidential support.",
+    "notes": [
+      "query comes directly from the selected visible user message, not from hidden task fields",
+      "history_summary stops at the decision point and excludes future assistant or tool outputs",
+      "candidate_answers are manual non-leaky drafts grounded only in visible context",
+      "best_action is think because the visible state suggests a remaining device-side limiter after 5G recovery, but the listed telecom tools do not directly expose that limiter"
+    ]
+  }
+}
