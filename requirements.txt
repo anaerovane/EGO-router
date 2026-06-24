@@ -1,0 +1,6 @@
+# Core experiments use the Python standard library.
+# Real OpenAI-compatible experiments use requests.
+requests>=2.31.0
+
+# Optional: router SFT training uses LLaMA-Factory, installed separately.
+# See training/README_router_finetune.md.
